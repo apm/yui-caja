@@ -1,0 +1,25 @@
+h2. YUI-Caja
+
+This projects contains files related to the effort to cajole YUI.
+
+YUI - http://developer.yahoo.com/yui/
+
+The YUI Library is a set of utilities and controls, written in JavaScript, for building richly interactive web applications using techniques such as DOM scripting, DHTML and AJAX. YUI is available under a BSD license and is free for all uses. 
+
+Caja - http://code.google.com/p/google-caja/
+
+A source-to-source translator for securing Javascript-based web content
+
+This project requires the full source tree for YUI2 and Caja, both publically available:
+
+YUI:
+
+http://github.com/yui/yui2/tree/master
+
+Caja:
+
+http://code.google.com/p/google-caja/source/checkout
+
+The default location expected for these directories is ../yui2 and ../google-caja.
+
+The caja test bed must be built ('ant testbed' in the root of the google-caja src dir)
