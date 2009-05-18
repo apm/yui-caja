@@ -1,0 +1,120 @@
+<html>
+<head>
+</head>
+<body>
+<script>
+
+    YAHOO.log = cajita.log;
+
+    var L = YAHOO.lang;
+
+    cajita.log('start: ' + navigator.userAgent);
+
+    YAHOO.util.Event.onAvailable("div1", function(e) {
+        cajita.log(this.id + " available");
+    });
+    
+    // @BUG {Caja} no DOMReady event fires
+    YAHOO.util.Event.onDOMReady(function(e) {
+        cajita.log("DOMReady");
+    });
+
+    // @BUG {Caja} no window load event fires
+    YAHOO.util.Event.on(window, "load", function(e) {
+        cajita.log("YUI window load");
+    });
+
+    window.addEventListener("load", function(e) {
+        cajita.log("native window load");
+    }, false);
+
+    // @BUG {Caja} fake document must do something with event listeners
+    // to get a number of things to work.
+    YAHOO.util.Event.on(document, "click", function(e) {
+        cajita.log("document.click");
+    });
+
+    YAHOO.util.Event.addListener("div1", "click", function(e) {
+        var target = YAHOO.util.Event.getTarget(e);
+        cajita.log(target.id + " clicked: " + YAHOO.util.Event.getXY(e));
+    });
+
+    var data = {
+        a: "data"
+    };
+
+    var context = {
+        a: "context"
+    };
+
+    YAHOO.util.Event.on("div2", "click", function(e, data) {
+        cajita.log("data obj and context adjust: " + data.a + ": " + this.a);
+    }, data, context);
+
+    cajita.log("isArray []: " + L.isArray([]));
+    cajita.log("isArray {}: " + L.isArray({}));
+
+    // @KNOWNISSUE HTMLElement collections are arrays in Caja, and not live lists
+    cajita.log("isArray element collection: " + L.isArray(document.getElementsByTagName('div')));
+
+    // @KNOWNISSUE arguments collections are arrays in Caja rather than an array-like collection
+    function(arg1, arg2) {
+        cajita.log("isArray arguments collection: " + L.isArray(arguments));
+    }(1, 2);
+
+    // @BUG {Caja} The user agent string needs to provide the information about 
+    // browser hosting the caja runtime.
+    cajita.log("UA: " + L.dump(YAHOO.env.ua, 0));
+
+    var ns = YAHOO.namespace('NEW_NAMESPACE.foo');
+    cajita.log("namepace + dump: " + L.dump(YAHOO, 0));
+
+    cajita.log("Dom.get('div1'): " + YAHOO.util.Dom.get('div1'));
+
+    var Animal = function() {
+        this.createEvent('myEvent');
+        this.subscribe('myEvent', this.handler, 'is an animal');
+    };
+
+    Animal.prototype.handler = function(arg) {
+        cajita.log('Animal');
+    };
+
+    YAHOO.augment(Animal, YAHOO.util.EventProvider);
+
+    var Dog = function() { 
+        Animal.prototype.constructor.apply(this, arguments);
+    };
+
+    YAHOO.extend(Dog, Animal, {
+        handler: function() {
+            cajita.log('Dog: ' + arguments);
+        }
+    });
+
+    var Cat = function() {
+        Animal.prototype.constructor.apply(this, arguments);
+    };
+
+    YAHOO.extend(Cat, Animal, {
+        handler: function() {
+            cajita.log('Cat: ' + arguments);
+        }
+    });
+
+    var d = new Dog(), c = new Cat();
+
+    d.fireEvent('myEvent', 'the dog');
+    c.fireEvent('myEvent', 'the cat');
+
+    cajita.log('end');
+
+</script>
+
+<div class="div1">div1</div>
+<div class="div2">div2</div>
+
+
+</body>
+
+</html>

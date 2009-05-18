@@ -1,0 +1,195 @@
+<html>
+<head>
+</head>
+<body>
+<style type="text/css">
+
+.dd-demo {
+    position:absolute;
+    border:4px solid #666;
+    text-align:center;
+    color:#fff;
+    height:60px;
+    width:60px;
+}
+
+.dd-demo .dd-handle {
+    background: #003366;
+    cursor:move;
+}
+
+.dd-demo .dd-multi-handle-1 {
+    background: #336699; float: left;
+    cursor:move;
+}
+
+.dd-demo .dd-multi-handle-2 {
+    background: #336699; float: right;
+    cursor:move;
+}
+
+.dd-outer-handle {
+    position:relative;
+    background: red;
+    cursor:move;
+    height: 20px;
+    width: 3em;
+    text-align:center;
+    top:0px; left:200px;
+}
+
+
+.dd-demo-em {
+    border:4px solid purple;
+}
+
+#dd-demo-1 { 
+    background-color:#6D739A;top:0px; left:0px;
+}
+
+#dd-demo-2 { 
+    background-color:#566F4E;top:50px; left:100px;
+}
+
+#dd-demo-3 {
+    background-color:#7E5B60;
+    top:20px; left:200px;
+}
+
+    #resize {
+
+        border: 1px solid black;
+
+        height: 100px;
+
+        width: 200px;
+
+        background-color: #fff;
+
+    }
+
+    #resize div.data {
+
+        overflow: hidden;
+
+        height: 100%;
+
+        width: 100%;
+
+    }
+
+
+</style>
+
+<div id="dd-demo-1" class="dd-demo">
+    <div id="dd-handle-1a" class="dd-multi-handle-1">H1</div>
+    <div id="dd-handle-1b" class="dd-multi-handle-2">H2</div>
+</div>
+<div id="dd-demo-2" class="dd-demo">
+    <div id="dd-handle-2" class="dd-handle">H</div>
+</div>
+
+<div id="dd-handle-3b" class="dd-outer-handle">Outer</div>
+<div id="dd-demo-3" class="dd-demo"></div>
+
+<script>
+
+    YAHOO.log = cajita.log;
+
+    var dd, dd2, dd3;
+
+
+        // the first two instances will share a proxy
+        // element, created automatically by the utility.
+        // this element will be resized at drag time so
+        // that it matches the size of the source element.
+        // it is configured by default to have a 2 pixel
+        // grey border.
+        dd = new YAHOO.util.DDProxy("dd-demo-1");
+        dd2 = new YAHOO.util.DDProxy("dd-demo-2");
+
+        // the third instance has a dedicated custom proxy
+        dd3 = new YAHOO.util.DDProxy("dd-demo-3", "default", { 
+
+                // Define a custom proxy element.  It will be
+                // created if not already on the page.
+                dragElId: "dd-demo-3-proxy", 
+
+                // When a drag starts, the proxy is normally
+                // resized.  Turn this off so we can keep a
+                // fixed sized proxy.
+                resizeFrame: false
+            });
+        /*
+ dd = new YAHOO.util.DD("dd-demo-1");
+
+        // Configure one or more child element as a drag handle
+        dd.setHandleElId("dd-handle-1a");
+        dd.setHandleElId("dd-handle-1b");
+
+        dd.onDragDrop = function(e, id) {
+            cajita.log('dropped on ' + id);
+        };
+
+        dd2 = new YAHOO.util.DD("dd-demo-2");
+        dd2.setHandleElId("dd-handle-2");
+
+        dd3 = new YAHOO.util.DD("dd-demo-3");
+        dd3.setHandleElId("dd-handle-3a");
+
+        // A handle that is not child of the source element
+        dd3.setOuterHandleElId("dd-handle-3b");
+        */
+
+
+    var createFrame =  function() {
+        var body=document.body;
+
+        var div, Dom=YAHOO.util.Dom,
+            id = 'tester' + Dom.generateId();
+
+        if (!div) {
+            div    = document.createElement("div");
+            div.id = id;
+            var s  = div.style;
+
+            s.position   = "absolute";
+            s.visibility = "hidden";
+            s.cursor     = "move";
+
+            // Caja bug, it can't handle the border property
+            s.border     = "2px solid black";
+            
+            s.zIndex     = 999;
+            s.height     = "25px";
+            s.width      = "25px";
+
+            var _data = document.createElement('div');
+            Dom.setStyle(_data, 'height', '100%');
+            Dom.setStyle(_data, 'width', '100%');
+            /**
+            * If the proxy element has no background-color, then it is considered to the "transparent" by Internet Explorer.
+            * Since it is "transparent" then the events pass through it to the iframe below.
+            * So creating a "fake" div inside the proxy element and giving it a background-color, then setting it to an
+            * opacity of 0, it appears to not be there, however IE still thinks that it is so the events never pass through.
+            */
+            Dom.setStyle(_data, 'background-color', '#ccc');
+            Dom.setStyle(_data, 'opacity', '0');
+            div.appendChild(_data);
+
+            // appendChild can blow up IE if invoked prior to the window load event
+            // while rendering a table.  It is possible there are other scenarios 
+            // that would cause this to happen as well.
+            body.insertBefore(div, body.firstChild);
+        }
+
+        return id;
+    };
+
+    cajita.log('end');
+
+</script>
+
+</body>
+
+</html>
