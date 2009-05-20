@@ -85,9 +85,18 @@
           <arg value="${build}/connection_gadget.vo.js" />
         </exec>
      </target>
+     <target name="json_gadget" depends="init">
+        <exec dir="." executable="${caja.cajoler}" output="${log}/cajole_json_gadget.log">
+          <arg value="-a" />
+          <arg value="-i" />
+          <arg value="${test}/json_gadget.html" />
+          <arg value="-o" />
+          <arg value="${build}/json_gadget.vo.js" />
+        </exec>
+     </target>
 
      <target name="yui" depends="init, utilities, json, treeview, resize, patch-utilities" />
-     <target name="gadgets" depends="init, core, dd, resize_gadget, connection_gadget" />
+     <target name="gadgets" depends="init, core, dd, resize_gadget, connection_gadget, json_gadget" />
      <target name="all" depends="init, yui, gadgets" />
 </project>
 

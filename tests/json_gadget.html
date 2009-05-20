@@ -1,0 +1,94 @@
+<html>
+<head>
+</head>
+<body>
+<script>
+    cajita.log('start');
+    YAHOO.log = cajita.log;
+    var L = YAHOO.lang;
+
+/*
+
+// @BUG {YUI} the JSON parse method uses eval.  Until we supply a parse without eval,
+// which has merit beyond this problem, we will have to provid a way to delegate to
+// the caja-bundled json_sans_eval. I have not checked to see if there are API
+// compatibility issues between the two or not.
+
+var jsonString = '{"productId":1234,"price":24.5,"inStock":true,"bananas":null}';
+
+var currencySymbol = "$";
+
+function myFilter(key,val) {
+    // format price as a string
+    if (key == "price") {
+        var f_price = currencySymbol + (val % 1 ? val + "0" : val + ".00");
+        return f_price.substr(0,f_price.indexOf('.') + 3);
+    }
+
+    // omit keys by returning undefined
+    if (key == "bananas") {
+        return undefined;
+    }
+}
+
+var formattedProd = L.JSON.parse(jsonString, myFilter);
+
+// key "bananas" is not present in the formattedProd object
+if (L.isUndefined(formattedProd.bananas)) {
+    cajita.log("We have no bananas today");
+}
+
+// and the price is the formatted string "$24.50"
+cajita.log("Your price: " + formattedProd.price);
+
+*/
+
+// a detailed object record set
+var records = [
+    {id:1, name: "Bob",   age: 47, favorite_color: "blue"},
+    {id:2, name: "Sally", age: 30, favorite_color: "mauve"},
+    {id:3, name: "Tommy", age: 13, favorite_color: "black"},
+    {id:4, name: "Chaz",  age: 26, favorite_color: "plaid"}
+];
+
+// Use an array of acceptable object key names as a whitelist.
+// To create a JSON string with only age and id
+var jsonStr = L.JSON.stringify(records,["id","age"]);
+
+// jsonStr now contains the string
+// [{"id":1,"age":47},{"id":2,"age":30},{"id":3,"age":13},{"id":4,"age":26}]
+
+cajita.log('json stringify: ' + jsonStr);
+
+// A deeply nested structure
+var deep = {
+    name : "Level 1",
+    children : {
+        name : "Level 2",
+        children : {
+            name : "Level 3",
+            children : {
+                name : "Level 4",
+                children : {
+                    name : "Level 5",
+                    children : {}
+                }
+            }
+        },
+        enough : true
+    }
+};
+
+// Stop at Level 2
+var jsonStr = L.JSON.stringify(deep, null, 2);
+
+// jsonStr contains no content for the children object at Level 2
+// {"name":"Level 1","children":{"name":"Level 2","children":{},"enough":true}}
+
+cajita.log('json stringify: ' + jsonStr);
+
+
+    cajita.log('end');
+</script>
+</body>
+</html>

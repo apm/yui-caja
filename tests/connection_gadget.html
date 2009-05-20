@@ -12,10 +12,10 @@
 
     var callback = {
         success: function(o){
-            cajita.log('connection success: ' + L.dump(o));
+            cajita.log('connection success: ' + YAHOO.lang.dump(o));
         },
         failure: function(o){
-            cajita.log('connection failure: ' + L.dump(o));
+            cajita.log('connection failure: ' + YAHOO.lang.dump(o));
         },
         argument: { foo:"foo", bar:"bar" }
     };
