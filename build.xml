@@ -1,83 +1,79 @@
 <?xml version="1.0"?>
 <project name="yui-caja" default="all" basedir=".">
-
      <property file="build.properties"/>
-
      <target name="init">
-          <mkdir dir="${build}"/>
-          <mkdir dir="${log}"/>
+        <mkdir dir="${build}"/>
+        <mkdir dir="${log}"/>
      </target>
-
      <target name="utilities" depends="init">
         <exec dir="." executable="${caja.cajoler}" output="${log}/cajole_utilities.log">
-            <arg value="-a" />
-            <arg value="-i" />
-            <arg value="${yui2.build}/utilities/utilities.js" />
-            <arg value="-o" />
-            <arg value="${build}/utilities.vo.js" />
+          <arg value="-a" />
+          <arg value="-i" />
+          <arg value="${yui2.build}/utilities/utilities.js" />
+          <arg value="-o" />
+          <arg value="${build}/utilities.vo.js" />
         </exec>
      </target>
-
      <target name="patch-utilities" depends="init"> 
-        <echo>need to remove code in utilities.js to get around Caja issue with the border CSS shorthand property</echo>
+        <echo>Scrubbing out css border property in utilities.vo.js</echo>
+        <replace file="${build}/utilities.vo.js">
+          <replacetoken><![CDATA[                                                 $v.s(D, 'border',
+                                                     '2px solid #aaa');]]></replacetoken>
+          <replacevalue><![CDATA[$v.s(D, 'borderWidth', '2px');$v.s(D, 'borderStyle', 'solid');$v.s(D, 'borderColor', '#aaa');]]></replacevalue>
+        </replace>
      </target>
-
      <target name="json" depends="init">
         <exec dir="." executable="${caja.cajoler}" output="${log}/cajole_json.log">
-            <arg value="-a" />
-            <arg value="-i" />
-            <arg value="${yui2.build}/json/json.js" />
-            <arg value="-o" />
-            <arg value="${build}/json.vo.js" />
+          <arg value="-a" />
+          <arg value="-i" />
+          <arg value="${yui2.build}/json/json.js" />
+          <arg value="-o" />
+          <arg value="${build}/json.vo.js" />
         </exec>
      </target>
-
      <target name="treeview" depends="init">
         <exec dir="." executable="${caja.cajoler}" output="${log}/cajole_treeview.log">
-            <arg value="-a" />
-            <arg value="-i" />
-            <arg value="${yui2.build}/treeview/treeview.js" />
-            <arg value="-o" />
-            <arg value="${build}/treeview.vo.js" />
+          <arg value="-a" />
+          <arg value="-i" />
+          <arg value="${yui2.build}/treeview/treeview.js" />
+          <arg value="-o" />
+          <arg value="${build}/treeview.vo.js" />
         </exec>
      </target>
-
      <target name="resize" depends="init">
         <exec dir="." executable="${caja.cajoler}" output="${log}/cajole_resize.log">
-            <arg value="-a" />
-            <arg value="-i" />
-            <arg value="${yui2.build}/resize/resize.js" />
-            <arg value="-o" />
-            <arg value="${build}/resize.vo.js" />
+          <arg value="-a" />
+          <arg value="-i" />
+          <arg value="${yui2.build}/resize/resize.js" />
+          <arg value="-o" />
+          <arg value="${build}/resize.vo.js" />
         </exec>
      </target>
-
      <target name="core" depends="init">
         <exec dir="." executable="${caja.cajoler}" output="${log}/cajole_core.log">
-            <arg value="-a" />
-            <arg value="-i" />
-            <arg value="${test}/core_gadget.html" />
-            <arg value="-o" />
-            <arg value="${build}/core_gadget.vo.js" />
+          <arg value="-a" />
+          <arg value="-i" />
+          <arg value="${test}/core_gadget.html" />
+          <arg value="-o" />
+          <arg value="${build}/core_gadget.vo.js" />
         </exec>
      </target>
-
      <target name="dd" depends="init">
         <exec dir="." executable="${caja.cajoler}" output="${log}/cajole_dd.log">
-            <arg value="-a" />
-            <arg value="-i" />
-            <arg value="${test}/dd_gadget.html" />
-            <arg value="-o" />
-            <arg value="${build}/dd_gadget.vo.js" />
+          <arg value="-a" />
+          <arg value="-i" />
+          <arg value="${test}/dd_gadget.html" />
+          <arg value="-o" />
+          <arg value="${build}/dd_gadget.vo.js" />
         </exec>
      </target>
      <target name="resize_gadget" depends="init">
         <exec dir="." executable="${caja.cajoler}" output="${log}/cajole_resize_gadget.log">
-            <arg value="-a" />
-            <arg value="-i" />
-            <arg value="${test}/resize_gadget.html" />
-            <arg value="-o" />
-            <arg value="${build}/resize_gadget.vo.js" />
+          <arg value="-a" />
+          <arg value="-i" />
+          <arg value="${test}/resize_gadget.html" />
+          <arg value="-o" />
+          <arg value="${build}/resize_gadget.vo.js" />
         </exec>
      </target>
 
