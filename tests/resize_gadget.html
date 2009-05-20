@@ -1,0 +1,38 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/resize.css">  
+</head>
+<body>
+<style type="text/css">
+    #resize {
+        border: 1px solid black;
+        height: 100px;
+        width: 200px;
+        background-color: #fff;
+    }
+
+    #resize div.data {
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+    }
+</style>
+
+<div id="resize" class="yui-skin-sam">
+<div class="data">
+  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse justo nibh, pharetra at, adipiscing ullamcorper.</p>
+  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse justo nibh, pharetra at, adipiscing ullamcorper.</p>
+</div>
+</div>
+
+<script>
+    cajita.log('start');
+    YAHOO.log = cajita.log;
+    cajita.log('known issue: some of the layout is missing, probably because of CSS properties that are being rejected by caja');
+    var resize = new YAHOO.util.Resize('resize');
+    cajita.log('end');
+</script>
+
+</body>
+
+</html>

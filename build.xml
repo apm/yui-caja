@@ -71,9 +71,18 @@
             <arg value="${build}/dd_gadget.vo.js" />
         </exec>
      </target>
+     <target name="resize_gadget" depends="init">
+        <exec dir="." executable="${caja.cajoler}" output="${log}/cajole_resize_gadget.log">
+            <arg value="-a" />
+            <arg value="-i" />
+            <arg value="${test}/resize_gadget.html" />
+            <arg value="-o" />
+            <arg value="${build}/resize_gadget.vo.js" />
+        </exec>
+     </target>
 
      <target name="yui" depends="init, utilities, json, treeview, resize, patch-utilities" />
-     <target name="gadgets" depends="init, core, dd" />
+     <target name="gadgets" depends="init, core, dd, resize_gadget" />
      <target name="all" depends="init, yui, gadgets" />
 </project>
 

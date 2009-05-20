@@ -2,24 +2,27 @@ h2. YUI-Caja
 
 This projects contains files related to the effort to cajole YUI.
 
-YUI - http://developer.yahoo.com/yui/
+* ["YUI": http://developer.yahoo.com/yui/]: The YUI Library is a set of utilities and controls, written in JavaScript, for building richly interactive web applications using techniques such as DOM scripting, DHTML and AJAX.
 
-The YUI Library is a set of utilities and controls, written in JavaScript, for building richly interactive web applications using techniques such as DOM scripting, DHTML and AJAX. YUI is available under a BSD license and is free for all uses. 
+* ["Caja": http://code.google.com/p/google-caja/]: A source-to-source translator for securing Javascript-based web content
 
-Caja - http://code.google.com/p/google-caja/
+This project requires the full source tree for YUI2 and Caja, both publically available.
 
-A source-to-source translator for securing Javascript-based web content
+Quick start:
 
-This project requires the full source tree for YUI2 and Caja, both publically available:
+[~] ➔ mkdir src; cd src
+[~/src] ➔ svn checkout http://google-caja.googlecode.com/svn/trunk/ google-caja
+[~/src] ➔ git clone git://github.com/yui/yui2.git
+[~/src] ➔ git clone git://github.com/apm/yui-caja.git
+[~/src] ➔ cd google-caja
+[~/src/google-caja] ➔ ant testbed
+[~/src] ➔ cd ../yui-caja
+[~/src/yui-caja] ➔ ant
+[~/src/yui-caja] ➔ open tests/core_host.html (open with a web browser, this may need to be served through a local web server)
 
-YUI:
+Todo:
 
-http://github.com/yui/yui2/tree/master
-
-Caja:
-
-http://code.google.com/p/google-caja/source/checkout
-
-The default location expected for these directories is ../yui2 and ../google-caja.
-
-The caja test bed must be built ('ant testbed' in the root of the google-caja src dir)
+* Replace the script execs with the cajole task should it exist, or create one.
+* Host file build step that generates the correct urls to the caja environment based on the caja.base property.
+* Replace existing tests with yuitest tests once yuitest is cajoled.
+* Document capabilities and known issues for each component.
