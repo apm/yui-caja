@@ -29,4 +29,5 @@ p. Todo:
 * Replace the script execs with the cajole task should it exist, or create one.
 * Host file build step that generates the correct urls to the caja environment based on the caja.base property.
 * Replace existing tests with yuitest tests once yuitest is cajoled.
+* Cajole each piece of the utilities stack individually, or concatenate the utilities stack in the build so locally built components can be picked up.
 * Document capabilities and known issues for each component.
