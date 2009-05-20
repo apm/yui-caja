@@ -10,7 +10,7 @@ This project requires the full source tree for YUI2 and Caja, both publically av
 
 Quick start:
 
-bc.
+<notextile>
 [~] ➔ mkdir src; cd src
 [~/src] ➔ svn checkout http://google-caja.googlecode.com/svn/trunk/ google-caja
 [~/src] ➔ git clone git://github.com/yui/yui2.git
@@ -20,6 +20,7 @@ bc.
 [~/src] ➔ cd ../yui-caja
 [~/src/yui-caja] ➔ ant
 [~/src/yui-caja] ➔ open tests/core_host.html (open with a web browser, this may need to be served through a local web server)
+</notextile>
 
 p. Todo:
 
