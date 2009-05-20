@@ -18,7 +18,7 @@ Quick start:
 [~/src] ➔ git clone git://github.com/apm/yui-caja.git
 [~/src] ➔ cd google-caja
 [~/src/google-caja] ➔ ant testbed
-[~/src] ➔ cd ../yui-caja
+[~/src/google-caja] ➔ cd ../yui-caja
 [~/src/yui-caja] ➔ ant
 [~/src/yui-caja] ➔ open tests/core_host.html (open with a web browser, this may need to be served through a local web server)
 </pre>
