@@ -31,6 +31,15 @@
           <arg value="${build}/json.vo.js" />
         </exec>
      </target>
+     <target name="yuitest" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-a" />
+          <arg value="-i" />
+          <arg value="./yuitest/yuitest.js" />
+          <arg value="-o" />
+          <arg value="${build}/yuitest.vo.js" />
+        </exec>
+     </target>
      <target name="treeview" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-a" />
@@ -103,9 +112,27 @@
           <arg value="${build}/treeview_gadget.vo.js" />
         </exec>
      </target>
+     <target name="yuitest_gadget" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-a" />
+          <arg value="-i" />
+          <arg value="${test}/yuitest_gadget.html" />
+          <arg value="-o" />
+          <arg value="${build}/yuitest_gadget.vo.js" />
+        </exec>
+     </target>
+     <target name="test_gadget" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-a" />
+          <arg value="-i" />
+          <arg value="${test}/error_gadget.html" />
+          <arg value="-o" />
+          <arg value="${build}/error_gadget.vo.js" />
+        </exec>
+     </target>
 
-     <target name="yui" depends="init, utilities, json, treeview, resize, patch-utilities" />
-     <target name="gadgets" depends="init, core, dd, resize_gadget, connection_gadget, json_gadget, treeview_gadget" />
+     <target name="yui" depends="init, utilities, yuitest, json, treeview, resize, patch-utilities" />
+     <target name="gadgets" depends="init, core, dd, resize_gadget, connection_gadget, json_gadget, treeview_gadget, yuitest_gadget" />
      <target name="all" depends="init, yui, gadgets" />
 </project>
 
