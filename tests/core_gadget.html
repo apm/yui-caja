@@ -62,6 +62,10 @@
         cajita.log("isArray arguments collection: " + L.isArray(arguments));
     }(1, 2);
 
+    var f = function(blah) { cajita.log('blah') }
+
+    cajita.log("isFunction: " + L.isFunction(f) + ', ' + (typeof f) + ', ' + Object.prototype.toString.apply(f));
+
     // @BUG {Caja} The user agent string needs to provide the information about 
     // browser hosting the caja runtime.
     cajita.log("UA: " + L.dump(YAHOO.env.ua, 0));
