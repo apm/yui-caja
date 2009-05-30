@@ -1,0 +1,36 @@
+<!doctype html>
+<html><head></head>
+<body>
+<script type="text/javascript">
+function Err(message) {
+    Error.apply(this, arguments);
+    this.message = "Err: " + message;
+}
+function WhoAmI() {
+    this.message = "I am Sam.  Sam I am.";
+}
+WhoAmI.prototype = (function () {
+    function F() {};
+    F.prototype = Error.prototype;
+    return new F();
+})();
+
+try {
+    var myError = new Err('boo!');
+    cajita.log('Successfully applied Error constructor to class instance');
+}
+catch (e) {
+    cajita.log('FAILED to apply Error constructor to class instance');
+}
+
+try {
+    throw new WhoAmI();
+}
+catch (e) {
+    cajita.log(e instanceof WhoAmI ?
+        "SUCCESS: " + e.message :
+        "Exception FAILED instanceof test");
+}
+</script>
+</body>
+</html>

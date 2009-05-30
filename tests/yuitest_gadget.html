@@ -1,0 +1,43 @@
+<html><head></head>
+<body>
+    <!--script src="../../yui2/build/utilities/utilities.js"></script>
+    <script src="../yuitest/logger.js"></script>
+    <script src="../yuitest/yuitest.js"></script-->
+    <div id="x"></div>
+    <script type="text/javascript">
+        YAHOO.log = cajita.log;
+        //YAHOO.log = console.log;
+
+        var t = YAHOO.tool,
+            Assert = YAHOO.util.Assert,
+            logger = new t.TestLogger('x'),
+            suite  = new t.TestSuite('suite'),
+            test   = new t.TestCase({
+                name : "Example tests",
+
+                _should : {
+                    fail : { 'test_should_fail' : true },
+                    error: { 'test_should_error': true }
+                },
+
+                test_pass : function () {},
+
+                test_fail : function () {
+                    Assert.areSame(true,false);
+                },
+
+                test_should_fail : function () {
+                    Assert.areSame(1,0);
+                },
+
+                test_should_error: function () {
+                    throw new Error("BOO");
+                }
+            });
+
+        suite.add(test);
+
+        YAHOO.tool.TestRunner.add(suite);
+        YAHOO.tool.TestRunner.run();
+    </script>
+</body>
