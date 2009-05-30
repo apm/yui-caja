@@ -15,6 +15,21 @@ if (!YAHOO.util.Logger) {
     YAHOO.widget.LogWriter.prototype = { log: function () {} };
 }
 
+(function () {
+
+var u = YAHOO.util,
+    t = YAHOO.tool,
+    l = YAHOO.lang,
+    isFunction = l.isFunction,
+    isNumber   = l.isNumber,
+    isString   = l.isString,
+    isObject   = l.isObject,
+    isNull     = l.isNull,
+    isUndefined= l.isUndefined,
+    isArray    = l.isArray,
+    isBoolean  = l.isBoolean,
+    extend     = l.extend;
+
 //-----------------------------------------------------------------------------
 // TestCase object
 //-----------------------------------------------------------------------------
@@ -28,10 +43,10 @@ if (!YAHOO.util.Logger) {
      * @param template An object containing any number of test methods, other methods,
      *                 an optional name, and anything else the test case needs.
      * @class TestCase
-     * @namespace YAHOO.tool
+     * @namespace t
      * @constructor
      */
-    YAHOO.tool.TestCase = function (template /*:Object*/) {
+    t.TestCase = function (template /*:Object*/) {
         
         /**
          * Special rules for the test case. Possible subobjects
@@ -46,7 +61,7 @@ if (!YAHOO.util.Logger) {
         }    
         
         //check for a valid name
-        if (!YAHOO.lang.isString(this.name)){
+        if (!isString(this.name)){
             /**
              * Name for the test case.
              */
@@ -56,7 +71,7 @@ if (!YAHOO.util.Logger) {
     };
     
     
-    YAHOO.tool.TestCase.prototype = {  
+    t.TestCase.prototype = {  
     
         /**
          * Resumes a paused test and runs the given function.
@@ -66,7 +81,7 @@ if (!YAHOO.util.Logger) {
          * @method resume
          */
         resume : function (segment /*:Function*/) /*:Void*/ {
-            YAHOO.tool.TestRunner.resume(segment);
+            t.TestRunner.resume(segment);
         },
     
         /**
@@ -81,12 +96,12 @@ if (!YAHOO.util.Logger) {
          */
         wait : function (segment /*:Function*/, delay /*:int*/) /*:Void*/{
             var args = arguments;
-            if (YAHOO.lang.isFunction(args[0])){
-                throw new YAHOO.tool.TestCase.Wait(args[0], args[1]);
+            if (isFunction(args[0])){
+                throw new t.TestCase.Wait(args[0], args[1]).toString();
             } else {
-                throw new YAHOO.tool.TestCase.Wait(function(){
-                    YAHOO.util.Assert.fail("Timeout: wait() called but resume() never called.");
-                }, (YAHOO.lang.isNumber(args[0]) ? args[0] : 10000));
+                throw new t.TestCase.Wait(function(){
+                    u.Assert.fail("Timeout: wait() called but resume() never called.");
+                }, (isNumber(args[0]) ? args[0] : 10000)).toString();
             }            
         },
     
@@ -117,25 +132,25 @@ if (!YAHOO.util.Logger) {
      * @param {Function} segment A function to run when the wait is over.
      * @param {int} delay The number of milliseconds to wait before running the code.
      * @class Wait
-     * @namespace YAHOO.tool.TestCase
+     * @namespace t.TestCase
      * @constructor
      *
      */
-    YAHOO.tool.TestCase.Wait = function (segment /*:Function*/, delay /*:int*/) {
+    t.TestCase.Wait = function (segment /*:Function*/, delay /*:int*/) {
         
         /**
          * The segment of code to run when the wait is over.
          * @type Function
          * @property segment
          */
-        this.segment /*:Function*/ = (YAHOO.lang.isFunction(segment) ? segment : null);
+        this.segment /*:Function*/ = (isFunction(segment) ? segment : null);
     
         /**
          * The delay before running the segment of code.
          * @type int
          * @property delay
          */
-        this.delay /*:int*/ = (YAHOO.lang.isNumber(delay) ? delay : 0);
+        this.delay /*:int*/ = (isNumber(delay) ? delay : 0);
     
     };
 
@@ -152,11 +167,11 @@ YAHOO.namespace("tool");
  * A test suite that can contain a collection of TestCase and TestSuite objects.
  * @param {String||Object} data The name of the test suite or an object containing
  *      a name property as well as setUp and tearDown methods.
- * @namespace YAHOO.tool
+ * @namespace t
  * @class TestSuite
  * @constructor
  */
-YAHOO.tool.TestSuite = function (data /*:String||Object*/) {
+t.TestSuite = function (data /*:String||Object*/) {
 
     /**
      * The name of the test suite.
@@ -172,29 +187,29 @@ YAHOO.tool.TestSuite = function (data /*:String||Object*/) {
     this.items /*:Array*/ = [];
 
     //initialize the properties
-    if (YAHOO.lang.isString(data)){
+    if (isString(data)){
         this.name = data;
-    } else if (YAHOO.lang.isObject(data)){
-        YAHOO.lang.augmentObject(this, data, true);
+    } else if (isObject(data)){
+        l.augmentObject(this, data, true);
     }
 
     //double-check name
     if (this.name === ""){
-        this.name = YAHOO.util.Dom.generateId(null, "testSuite");
+        this.name = u.Dom.generateId(null, "testSuite");
     }
 
 };
 
-YAHOO.tool.TestSuite.prototype = {
+t.TestSuite.prototype = {
     
     /**
      * Adds a test suite or test case to the test suite.
-     * @param {YAHOO.tool.TestSuite||YAHOO.tool.TestCase} testObject The test suite or test case to add.
+     * @param {t.TestSuite||t.TestCase} testObject The test suite or test case to add.
      * @return {Void}
      * @method add
      */
-    add : function (testObject /*:YAHOO.tool.TestSuite*/) /*:Void*/ {
-        if (testObject instanceof YAHOO.tool.TestSuite || testObject instanceof YAHOO.tool.TestCase) {
+    add : function (testObject /*:t.TestSuite*/) /*:Void*/ {
+        if (testObject instanceof t.TestSuite || testObject instanceof t.TestCase) {
             this.items.push(testObject);
         }
     },
@@ -226,7 +241,7 @@ YAHOO.namespace("tool");
 /**
  * The YUI test tool
  * @module yuitest
- * @namespace YAHOO.tool
+ * @namespace t
  * @requires yahoo,dom,event,logger
  */
 
@@ -236,7 +251,7 @@ YAHOO.namespace("tool");
 //-----------------------------------------------------------------------------
 
 
-YAHOO.tool.TestRunner = (function(){
+t.TestRunner = (function(){
 
     /**
      * A node in the test tree structure. May represent a TestSuite, TestCase, or
@@ -296,10 +311,10 @@ YAHOO.tool.TestRunner = (function(){
         };
         
         //initialize results
-        if (testObject instanceof YAHOO.tool.TestSuite){
+        if (testObject instanceof t.TestSuite){
             this.results.type = "testsuite";
             this.results.name = testObject.name;
-        } else if (testObject instanceof YAHOO.tool.TestCase){
+        } else if (testObject instanceof t.TestCase){
             this.results.type = "testcase";
             this.results.name = testObject.name;
         }
@@ -331,7 +346,7 @@ YAHOO.tool.TestRunner = (function(){
     /**
      * Runs test suites and test cases, providing events to allowing for the
      * interpretation of test results.
-     * @namespace YAHOO.tool
+     * @namespace t
      * @class TestRunner
      * @static
      */
@@ -342,12 +357,12 @@ YAHOO.tool.TestRunner = (function(){
         
         /**
          * Suite on which to attach all TestSuites and TestCases to be run.
-         * @type YAHOO.tool.TestSuite
+         * @type t.TestSuite
          * @property masterSuite
          * @private
          * @static
          */
-        this.masterSuite /*:YAHOO.tool.TestSuite*/ = new YAHOO.tool.TestSuite("YUI Test Results");        
+        this.masterSuite /*:t.TestSuite*/ = new t.TestSuite("YUI Test Results");        
 
         /**
          * Pointer to the current node in the test tree.
@@ -385,7 +400,7 @@ YAHOO.tool.TestRunner = (function(){
    
     }
     
-    YAHOO.lang.extend(TestRunner, YAHOO.util.EventProvider, {
+    extend(TestRunner, u.EventProvider, {
     
         //-------------------------------------------------------------------------
         // Constants
@@ -455,13 +470,13 @@ YAHOO.tool.TestRunner = (function(){
         /**
          * Adds a test case to the test tree as a child of the specified node.
          * @param {TestNode} parentNode The node to add the test case to as a child.
-         * @param {YAHOO.tool.TestCase} testCase The test case to add.
+         * @param {t.TestCase} testCase The test case to add.
          * @return {Void}
          * @static
          * @private
          * @method _addTestCaseToTestTree
          */
-       _addTestCaseToTestTree : function (parentNode /*:TestNode*/, testCase /*:YAHOO.tool.TestCase*/) /*:Void*/{
+       _addTestCaseToTestTree : function (parentNode /*:TestNode*/, testCase /*:t.TestCase*/) /*:Void*/{
             
             //add the test suite
             var node = parentNode.appendChild(testCase);
@@ -469,9 +484,9 @@ YAHOO.tool.TestRunner = (function(){
             //iterate over the items in the test case
             for (var prop in testCase){
                 var i = prop.indexOf('test'),
-                    isF = YAHOO.lang.isFunction(testCase[prop]);
+                    isF = isFunction(testCase[prop]);
                 //YAHOO.log('_addTestCaseToTestTree: ' + prop + ' ' + i + ' ' + isF);
-                if (prop.indexOf("test") === 0 && YAHOO.lang.isFunction(testCase[prop])){
+                if (prop.indexOf("test") === 0 && isFunction(testCase[prop])){
                     //YAHOO.log('_addTestCaseToTestTree: appending ' + prop);
                     node.appendChild(prop);
                 }
@@ -482,22 +497,22 @@ YAHOO.tool.TestRunner = (function(){
         /**
          * Adds a test suite to the test tree as a child of the specified node.
          * @param {TestNode} parentNode The node to add the test suite to as a child.
-         * @param {YAHOO.tool.TestSuite} testSuite The test suite to add.
+         * @param {t.TestSuite} testSuite The test suite to add.
          * @return {Void}
          * @static
          * @private
          * @method _addTestSuiteToTestTree
          */
-        _addTestSuiteToTestTree : function (parentNode /*:TestNode*/, testSuite /*:YAHOO.tool.TestSuite*/) /*:Void*/ {
+        _addTestSuiteToTestTree : function (parentNode /*:TestNode*/, testSuite /*:t.TestSuite*/) /*:Void*/ {
             
             //add the test suite
             var node = parentNode.appendChild(testSuite);
             
             //iterate over the items in the master suite
             for (var i=0; i < testSuite.items.length; i++){
-                if (testSuite.items[i] instanceof YAHOO.tool.TestSuite) {
+                if (testSuite.items[i] instanceof t.TestSuite) {
                     this._addTestSuiteToTestTree(node, testSuite.items[i]);
-                } else if (testSuite.items[i] instanceof YAHOO.tool.TestCase) {
+                } else if (testSuite.items[i] instanceof t.TestCase) {
                     this._addTestCaseToTestTree(node, testSuite.items[i]);
                 }                   
             }            
@@ -519,9 +534,9 @@ YAHOO.tool.TestRunner = (function(){
             
             //iterate over the items in the master suite
             for (var i=0; i < this.masterSuite.items.length; i++){
-                if (this.masterSuite.items[i] instanceof YAHOO.tool.TestSuite) {
+                if (this.masterSuite.items[i] instanceof t.TestSuite) {
                     this._addTestSuiteToTestTree(this._root, this.masterSuite.items[i]);
-                } else if (this.masterSuite.items[i] instanceof YAHOO.tool.TestCase) {
+                } else if (this.masterSuite.items[i] instanceof t.TestCase) {
                     this._addTestCaseToTestTree(this._root, this.masterSuite.items[i]);
                 }                   
             }            
@@ -542,18 +557,18 @@ YAHOO.tool.TestRunner = (function(){
          * @static
          */
         _handleTestObjectComplete : function (node /*:TestNode*/) /*:Void*/ {
-            if (YAHOO.lang.isObject(node.testObject)){
-                YAHOO.log('_handleTestObjectComplete: isObject(testObject)');
+            if (isObject(node.testObject)){
+                //YAHOO.log('_handleTestObjectComplete: isObject(testObject)');
                 node.parent.results.passed += node.results.passed;
                 node.parent.results.failed += node.results.failed;
                 node.parent.results.total += node.results.total;                
                 node.parent.results.ignored += node.results.ignored;                
                 node.parent.results[node.testObject.name] = node.results;
             
-                if (node.testObject instanceof YAHOO.tool.TestSuite){
+                if (node.testObject instanceof t.TestSuite){
                     node.testObject.tearDown();
                     this.fireEvent(this.TEST_SUITE_COMPLETE_EVENT, { testSuite: node.testObject, results: node.results});
-                } else if (node.testObject instanceof YAHOO.tool.TestCase){
+                } else if (node.testObject instanceof t.TestCase){
                     this.fireEvent(this.TEST_CASE_COMPLETE_EVENT, { testCase: node.testObject, results: node.results});
                 }      
             } 
@@ -573,27 +588,27 @@ YAHOO.tool.TestRunner = (function(){
         _next : function () /*:TestNode*/ {
         
             if (this._cur.firstChild) {
-                YAHOO.log('_next: firstChild');
+                //YAHOO.log('_next: firstChild');
                 this._cur = this._cur.firstChild;
             } else if (this._cur.next) {
-                YAHOO.log('_next: next');
+                //YAHOO.log('_next: next');
                 this._cur = this._cur.next;            
             } else {
                 while (this._cur && !this._cur.next && this._cur !== this._root){
-                    YAHOO.log('_next: while ...');
+                    //YAHOO.log('_next: while ...');
                     this._handleTestObjectComplete(this._cur);
                     this._cur = this._cur.parent;
                 }
                 
                 if (this._cur == this._root){
-                    YAHOO.log('_next: _cur == _root');
+                    //YAHOO.log('_next: _cur == _root');
                     this._cur.results.type = "report";
                     this._cur.results.timestamp = (new Date()).toLocaleString();
                     this._cur.results.duration = (new Date()) - this._cur.results.duration;
                     this.fireEvent(this.COMPLETE_EVENT, { results: this._cur.results});
                     this._cur = null;
                 } else {
-                    YAHOO.log('_next: _cur != _root');
+                    //YAHOO.log('_next: _cur != _root');
                     this._handleTestObjectComplete(this._cur);               
                     this._cur = this._cur.next;                
                 }
@@ -604,7 +619,7 @@ YAHOO.tool.TestRunner = (function(){
         
         /**
          * Runs a test case or test suite, returning the results.
-         * @param {YAHOO.tool.TestCase|YAHOO.tool.TestSuite} testObject The test case or test suite to run.
+         * @param {t.TestCase|t.TestSuite} testObject The test case or test suite to run.
          * @return {Object} Results of the execution with properties passed, failed, and total.
          * @private
          * @method _run
@@ -622,18 +637,18 @@ YAHOO.tool.TestRunner = (function(){
                 var testObject = node.testObject;
                 
                 //figure out what to do
-                if (YAHOO.lang.isObject(testObject)){
-                    if (testObject instanceof YAHOO.tool.TestSuite){
+                if (isObject(testObject)){
+                    if (testObject instanceof t.TestSuite){
                         this.fireEvent(this.TEST_SUITE_BEGIN_EVENT, { testSuite: testObject });
                         testObject.setUp();
-                    } else if (testObject instanceof YAHOO.tool.TestCase){
+                    } else if (testObject instanceof t.TestCase){
                         this.fireEvent(this.TEST_CASE_BEGIN_EVENT, { testCase: testObject });
                     }
                     
                     ////some environments don't support setTimeout
                     //if (typeof setTimeout != "undefined"){                    
                     //    setTimeout(function(){
-                    //        YAHOO.tool.TestRunner._run();
+                    //        t.TestRunner._run();
                     //    }, 0);
                     //} else {
                         this._run();
@@ -651,19 +666,19 @@ YAHOO.tool.TestRunner = (function(){
                 testObject = node.testObject;
                 
                 //figure out what to do
-                if (YAHOO.lang.isObject(testObject)){
-                    if (testObject instanceof YAHOO.tool.TestSuite){
-                        YAHOO.log('_run found TestSuite');
+                if (isObject(testObject)){
+                    if (testObject instanceof t.TestSuite){
+                        //YAHOO.log('_run found TestSuite');
                         this.fireEvent(this.TEST_SUITE_BEGIN_EVENT, { testSuite: testObject });
                         testObject.setUp();
-                    } else if (testObject instanceof YAHOO.tool.TestCase){
-                        YAHOO.log('_run found TestCase');
+                    } else if (testObject instanceof t.TestCase){
+                        //YAHOO.log('_run found TestCase');
                         this.fireEvent(this.TEST_CASE_BEGIN_EVENT, { testCase: testObject });
                     } else {
-                        YAHOO.log('NOT A TEST SUITE OR TEST CASE');
+                        //YAHOO.log('NOT A TEST SUITE OR TEST CASE');
                     }
                 } else {
-                    YAHOO.log('calling _runTest');
+                    //YAHOO.log('calling _runTest');
                     this._runTest(node);
                 }
 
@@ -677,7 +692,7 @@ YAHOO.tool.TestRunner = (function(){
             //get relevant information
             var node /*:TestNode*/ = this._cur;
             var testName /*:String*/ = node.testObject;
-            var testCase /*:YAHOO.tool.TestCase*/ = node.parent.testObject;
+            var testCase /*:t.TestCase*/ = node.parent.testObject;
             
             //cancel other waits if available
             if (testCase.__yui_wait){
@@ -690,7 +705,6 @@ YAHOO.tool.TestRunner = (function(){
             var shouldError /*:Object*/ = (testCase._should.error || {})[testName];
             
             //variable to hold whether or not the test failed
-            var failed /*:Boolean*/ = false;
             var error /*:Error*/ = null;
                 
             //try the test
@@ -701,28 +715,26 @@ YAHOO.tool.TestRunner = (function(){
                 
                 //if it should fail, and it got here, then it's a fail because it didn't
                 if (shouldFail){
-                    error = new YAHOO.util.ShouldFail();
-                    failed = true;
+                    error = new Error(new u.ShouldFail().toString());
                 } else if (shouldError){
-                    error = new YAHOO.util.ShouldError();
-                    failed = true;
+                    error = new Error(new u.ShouldError().toString());
                 }
                            
             } catch (thrown /*:Error*/){
-                if (thrown instanceof YAHOO.util.AssertionError) {
+                //YAHOO.log("Error: " + thrown);
+                if (/^(?:[A-Z][a-z]+){2}:/.test(thrown.message || '')) {
                     if (!shouldFail){
-                        error = thrown;
-                        failed = true;
+                        error = thrown.message.replace(/^[a-z]+:/i,'');
                     }
-                } else if (thrown instanceof YAHOO.tool.TestCase.Wait){
+                } else if (thrown instanceof t.TestCase.Wait){
                 
-                    if (YAHOO.lang.isFunction(thrown.segment)){
-                        if (YAHOO.lang.isNumber(thrown.delay)){
+                    if (isFunction(thrown.segment)){
+                        if (isNumber(thrown.delay)){
                         
                             //some environments don't support setTimeout
                             if (typeof setTimeout != "undefined"){
                                 testCase.__yui_wait = setTimeout(function(){
-                                    YAHOO.tool.TestRunner._resumeTest(thrown.segment);
+                                    t.TestRunner._resumeTest(thrown.segment);
                                 }, thrown.delay);                             
                             } else {
                                 throw new Error("Asynchronous tests not supported in this environment.");
@@ -735,32 +747,28 @@ YAHOO.tool.TestRunner = (function(){
                 } else {
                     //first check to see if it should error
                     if (!shouldError) {                        
-                        error = new YAHOO.util.UnexpectedError(thrown);
-                        failed = true;
+                        error = new u.UnexpectedError(thrown).getMessage();
                     } else {
                         //check to see what type of data we have
-                        if (YAHOO.lang.isString(shouldError)){
+                        if (isString(shouldError)){
                             
                             //if it's a string, check the error message
                             if (thrown.message != shouldError){
-                                error = new YAHOO.util.UnexpectedError(thrown);
-                                failed = true;                                    
+                                error = new u.UnexpectedError(thrown).getMessage();
                             }
-                        } else if (YAHOO.lang.isFunction(shouldError)){
+                        } else if (isFunction(shouldError)){
                         
                             //if it's a function, see if the error is an instance of it
                             if (!(thrown instanceof shouldError)){
-                                error = new YAHOO.util.UnexpectedError(thrown);
-                                failed = true;
+                                error = new u.UnexpectedError(thrown).getMessage();
                             }
                         
-                        } else if (YAHOO.lang.isObject(shouldError)){
+                        } else if (isObject(shouldError)){
                         
                             //if it's an object, check the instance and message
                             if (!(thrown instanceof shouldError.constructor) || 
                                     thrown.message != shouldError.message){
-                                error = new YAHOO.util.UnexpectedError(thrown);
-                                failed = true;                                    
+                                error = new u.UnexpectedError(thrown).getMessage();
                             }
                         
                         }
@@ -771,7 +779,7 @@ YAHOO.tool.TestRunner = (function(){
             }
             
             //fireEvent appropriate event
-            if (failed) {
+            if (error) {
                 this.fireEvent(this.TEST_FAIL_EVENT, { testCase: testCase, testName: testName, error: error });
             } else {
                 this.fireEvent(this.TEST_PASS_EVENT, { testCase: testCase, testName: testName });
@@ -782,13 +790,13 @@ YAHOO.tool.TestRunner = (function(){
             
             //update results
             node.parent.results[testName] = { 
-                result: failed ? "fail" : "pass",
-                message: error ? error.getMessage() : "Test passed",
+                result: error ? "fail" : "pass",
+                message: error || "Test passed",
                 type: "test",
                 name: testName
             };
             
-            if (failed){
+            if (error){
                 node.parent.results.failed++;
             } else {
                 node.parent.results.passed++;
@@ -798,7 +806,7 @@ YAHOO.tool.TestRunner = (function(){
             //set timeout not supported in all environments
             if (typeof setTimeout != "undefined"){
                 setTimeout(function(){
-                    YAHOO.tool.TestRunner._run();
+                    t.TestRunner._run();
                 }, 0);
             } else {
                 this._run();
@@ -818,7 +826,7 @@ YAHOO.tool.TestRunner = (function(){
         
             //get relevant information
             var testName /*:String*/ = node.testObject;
-            var testCase /*:YAHOO.tool.TestCase*/ = node.parent.testObject;
+            var testCase /*:t.TestCase*/ = node.parent.testObject;
             var test /*:Function*/ = testCase[testName];
             
             //get the "should" test cases
@@ -843,7 +851,7 @@ YAHOO.tool.TestRunner = (function(){
 //                //some environments don't support setTimeout
 //                if (typeof setTimeout != "undefined"){                    
 //                    setTimeout(function(){
-//                        YAHOO.tool.TestRunner._run();
+//                        t.TestRunner._run();
 //                    }, 0);              
 //                } else {
                     this._run();
@@ -926,7 +934,7 @@ YAHOO.tool.TestRunner = (function(){
         run : function (testObject /*:Object*/) /*:Void*/ {
             
             //pointer to runner to avoid scope issues 
-            var runner = YAHOO.tool.TestRunner;
+            var runner = t.TestRunner;
 
             //build the test tree
             runner._buildTestTree();
@@ -957,11 +965,11 @@ YAHOO.namespace("util");
  * known and expected results. Whenever a comparison (assertion) fails,
  * an error is thrown.
  *
- * @namespace YAHOO.util
+ * @namespace u
  * @class Assert
  * @static
  */
-YAHOO.util.Assert = {
+u.Assert = {
 
     //-------------------------------------------------------------------------
     // Helper Methods
@@ -970,6 +978,7 @@ YAHOO.util.Assert = {
     /**
      * Formats a message so that it can contain the original assertion message
      * in addition to the custom message.
+     * @param {String} type The error type
      * @param {String} customMessage The message passed in by the developer.
      * @param {String} defaultMessage The message created by the error by default.
      * @return {String} The final error message, containing either or both.
@@ -978,12 +987,9 @@ YAHOO.util.Assert = {
      * @method _formatMessage
      */
     _formatMessage : function (customMessage /*:String*/, defaultMessage /*:String*/) /*:String*/ {
-        var message = customMessage;
-        if (YAHOO.lang.isString(customMessage) && customMessage.length > 0){
-            return YAHOO.lang.substitute(customMessage, { message: defaultMessage });
-        } else {
-            return defaultMessage;
-        }        
+        var message = customMessage || defaultMessage;
+            
+        return l.substitute(message, { message: defaultMessage });
     },
     
     //-------------------------------------------------------------------------
@@ -997,7 +1003,7 @@ YAHOO.util.Assert = {
      * @static
      */
     fail : function (message /*:String*/) /*:Void*/ {
-        throw new YAHOO.util.AssertionError(this._formatMessage(message, "Test force-failed."));
+        throw new u.AssertionError(this._formatMessage(message, "Test force-failed.")).toString();
     },       
     
     //-------------------------------------------------------------------------
@@ -1015,7 +1021,7 @@ YAHOO.util.Assert = {
      */
     areEqual : function (expected /*:Object*/, actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (expected != actual) {
-            throw new YAHOO.util.ComparisonFailure(this._formatMessage(message, "Values should be equal."), expected, actual);
+            throw new u.ComparisonFailure(this._formatMessage(message, "Values should be equal."), expected, actual).toString();
         }
     },
     
@@ -1031,7 +1037,7 @@ YAHOO.util.Assert = {
     areNotEqual : function (unexpected /*:Object*/, actual /*:Object*/, 
                          message /*:String*/) /*:Void*/ {
         if (unexpected == actual) {
-            throw new YAHOO.util.UnexpectedValue(this._formatMessage(message, "Values should not be equal."), unexpected);
+            throw new u.UnexpectedValue(this._formatMessage(message, "Values should not be equal."), unexpected).toString();
         }
     },
     
@@ -1046,7 +1052,7 @@ YAHOO.util.Assert = {
      */
     areNotSame : function (unexpected /*:Object*/, actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (unexpected === actual) {
-            throw new YAHOO.util.UnexpectedValue(this._formatMessage(message, "Values should not be the same."), unexpected);
+            throw new u.UnexpectedValue(this._formatMessage(message, "Values should not be the same."), unexpected).toString();
         }
     },
 
@@ -1061,7 +1067,7 @@ YAHOO.util.Assert = {
      */
     areSame : function (expected /*:Object*/, actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (expected !== actual) {
-            throw new YAHOO.util.ComparisonFailure(this._formatMessage(message, "Values should be the same."), expected, actual);
+            throw new u.ComparisonFailure(this._formatMessage(message, "Values should be the same."), expected, actual).toString();
         }
     },    
     
@@ -1079,7 +1085,7 @@ YAHOO.util.Assert = {
      */
     isFalse : function (actual /*:Boolean*/, message /*:String*/) {
         if (false !== actual) {
-            throw new YAHOO.util.ComparisonFailure(this._formatMessage(message, "Value should be false."), false, actual);
+            throw new u.ComparisonFailure(this._formatMessage(message, "Value should be false."), false, actual).toString();
         }
     },
     
@@ -1093,7 +1099,7 @@ YAHOO.util.Assert = {
      */
     isTrue : function (actual /*:Boolean*/, message /*:String*/) /*:Void*/ {
         if (true !== actual) {
-            throw new YAHOO.util.ComparisonFailure(this._formatMessage(message, "Value should be true."), true, actual);
+            throw new u.ComparisonFailure(this._formatMessage(message, "Value should be true."), true, actual).toString();
         }
 
     },
@@ -1111,7 +1117,7 @@ YAHOO.util.Assert = {
      */
     isNaN : function (actual /*:Object*/, message /*:String*/) /*:Void*/{
         if (!isNaN(actual)){
-            throw new YAHOO.util.ComparisonFailure(this._formatMessage(message, "Value should be NaN."), NaN, actual);
+            throw new u.ComparisonFailure(this._formatMessage(message, "Value should be NaN."), NaN, actual).toString();
         }    
     },
     
@@ -1124,7 +1130,7 @@ YAHOO.util.Assert = {
      */
     isNotNaN : function (actual /*:Object*/, message /*:String*/) /*:Void*/{
         if (isNaN(actual)){
-            throw new YAHOO.util.UnexpectedValue(this._formatMessage(message, "Values should not be NaN."), NaN);
+            throw new u.UnexpectedValue(this._formatMessage(message, "Values should not be NaN."), NaN).toString();
         }    
     },
     
@@ -1137,8 +1143,8 @@ YAHOO.util.Assert = {
      * @static
      */
     isNotNull : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
-        if (YAHOO.lang.isNull(actual)) {
-            throw new YAHOO.util.UnexpectedValue(this._formatMessage(message, "Values should not be null."), null);
+        if (isNull(actual)) {
+            throw new u.UnexpectedValue(this._formatMessage(message, "Values should not be null."), null).toString();
         }
     },
 
@@ -1151,8 +1157,8 @@ YAHOO.util.Assert = {
      * @static
      */
     isNotUndefined : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
-        if (YAHOO.lang.isUndefined(actual)) {
-            throw new YAHOO.util.UnexpectedValue(this._formatMessage(message, "Value should not be undefined."), undefined);
+        if (isUndefined(actual)) {
+            throw new u.UnexpectedValue(this._formatMessage(message, "Value should not be undefined."), undefined).toString();
         }
     },
 
@@ -1165,8 +1171,8 @@ YAHOO.util.Assert = {
      * @static
      */
     isNull : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
-        if (!YAHOO.lang.isNull(actual)) {
-            throw new YAHOO.util.ComparisonFailure(this._formatMessage(message, "Value should be null."), null, actual);
+        if (!isNull(actual)) {
+            throw new u.ComparisonFailure(this._formatMessage(message, "Value should be null."), null, actual).toString();
         }
     },
         
@@ -1179,8 +1185,8 @@ YAHOO.util.Assert = {
      * @static
      */
     isUndefined : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
-        if (!YAHOO.lang.isUndefined(actual)) {
-            throw new YAHOO.util.ComparisonFailure(this._formatMessage(message, "Value should be undefined."), undefined, actual);
+        if (!isUndefined(actual)) {
+            throw new u.ComparisonFailure(this._formatMessage(message, "Value should be undefined."), undefined, actual).toString();
         }
     },    
     
@@ -1196,8 +1202,8 @@ YAHOO.util.Assert = {
      * @static
      */
     isArray : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
-        if (!YAHOO.lang.isArray(actual)){
-            throw new YAHOO.util.UnexpectedValue(this._formatMessage(message, "Value should be an array."), actual);
+        if (!isArray(actual)){
+            throw new u.UnexpectedValue(this._formatMessage(message, "Value should be an array."), actual).toString();
         }    
     },
    
@@ -1209,8 +1215,8 @@ YAHOO.util.Assert = {
      * @static
      */
     isBoolean : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
-        if (!YAHOO.lang.isBoolean(actual)){
-            throw new YAHOO.util.UnexpectedValue(this._formatMessage(message, "Value should be a Boolean."), actual);
+        if (!isBoolean(actual)){
+            throw new u.UnexpectedValue(this._formatMessage(message, "Value should be a Boolean."), actual).toString();
         }    
     },
    
@@ -1222,8 +1228,8 @@ YAHOO.util.Assert = {
      * @static
      */
     isFunction : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
-        if (!YAHOO.lang.isFunction(actual)){
-            throw new YAHOO.util.UnexpectedValue(this._formatMessage(message, "Value should be a function."), actual);
+        if (!isFunction(actual)){
+            throw new u.UnexpectedValue(this._formatMessage(message, "Value should be a function."), actual).toString();
         }    
     },
    
@@ -1239,7 +1245,7 @@ YAHOO.util.Assert = {
      */
     isInstanceOf : function (expected /*:Function*/, actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (!(actual instanceof expected)){
-            throw new YAHOO.util.ComparisonFailure(this._formatMessage(message, "Value isn't an instance of expected type."), expected, actual);
+            throw new u.ComparisonFailure(this._formatMessage(message, "Value isn't an instance of expected type."), expected, actual).toString();
         }
     },
     
@@ -1251,8 +1257,8 @@ YAHOO.util.Assert = {
      * @static
      */
     isNumber : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
-        if (!YAHOO.lang.isNumber(actual)){
-            throw new YAHOO.util.UnexpectedValue(this._formatMessage(message, "Value should be a number."), actual);
+        if (!isNumber(actual)){
+            throw new u.UnexpectedValue(this._formatMessage(message, "Value should be a number."), actual).toString();
         }    
     },    
     
@@ -1264,8 +1270,8 @@ YAHOO.util.Assert = {
      * @static
      */
     isObject : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
-        if (!YAHOO.lang.isObject(actual)){
-            throw new YAHOO.util.UnexpectedValue(this._formatMessage(message, "Value should be an object."), actual);
+        if (!isObject(actual)){
+            throw new u.UnexpectedValue(this._formatMessage(message, "Value should be an object."), actual).toString();
         }
     },
     
@@ -1277,8 +1283,8 @@ YAHOO.util.Assert = {
      * @static
      */
     isString : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
-        if (!YAHOO.lang.isString(actual)){
-            throw new YAHOO.util.UnexpectedValue(this._formatMessage(message, "Value should be a string."), actual);
+        if (!isString(actual)){
+            throw new u.UnexpectedValue(this._formatMessage(message, "Value should be a string."), actual).toString();
         }
     },
     
@@ -1292,7 +1298,7 @@ YAHOO.util.Assert = {
      */
     isTypeOf : function (expectedType /*:String*/, actualValue /*:Object*/, message /*:String*/) /*:Void*/{
         if (typeof actualValue != expectedType){
-            throw new YAHOO.util.ComparisonFailure(this._formatMessage(message, "Value should be of type " + expected + "."), expected, typeof actual);
+            throw new u.ComparisonFailure(this._formatMessage(message, "Value should be of type " + expected + "."), expected, typeof actual).toString();
         }
     }
 };
@@ -1307,12 +1313,12 @@ YAHOO.util.Assert = {
  * from which more specific assertion errors can be derived.
  *
  * @param {String} message The message to display when the error occurs.
- * @namespace YAHOO.util
+ * @namespace u
  * @class AssertionError
  * @extends Error
  * @constructor
  */ 
-YAHOO.util.AssertionError = function (message /*:String*/){
+u.AssertionError = function (message /*:String*/){
 
     //call superclass
     //Error.call(this, message);
@@ -1333,7 +1339,7 @@ YAHOO.util.AssertionError = function (message /*:String*/){
 };
 
 //inherit methods
-YAHOO.lang.extend(YAHOO.util.AssertionError, Error, {
+extend(u.AssertionError, Error, {
 
     /**
      * Returns a fully formatted error for an assertion failure. This should
@@ -1373,15 +1379,15 @@ YAHOO.lang.extend(YAHOO.util.AssertionError, Error, {
  * @param {String} message The message to display when the error occurs.
  * @param {Object} expected The expected value.
  * @param {Object} actual The actual value that caused the assertion to fail.
- * @namespace YAHOO.util
- * @extends YAHOO.util.AssertionError
+ * @namespace u
+ * @extends u.AssertionError
  * @class ComparisonFailure
  * @constructor
  */ 
-YAHOO.util.ComparisonFailure = function (message /*:String*/, expected /*:Object*/, actual /*:Object*/){
+u.ComparisonFailure = function (message /*:String*/, expected /*:Object*/, actual /*:Object*/){
 
     //call superclass
-    YAHOO.util.AssertionError.call(this, message);
+    u.AssertionError.call(this, message);
     
     /**
      * The expected value.
@@ -1407,7 +1413,7 @@ YAHOO.util.ComparisonFailure = function (message /*:String*/, expected /*:Object
 };
 
 //inherit methods
-YAHOO.lang.extend(YAHOO.util.ComparisonFailure, YAHOO.util.AssertionError, {
+extend(u.ComparisonFailure, u.AssertionError, {
 
     /**
      * Returns a fully formatted error for an assertion failure. This message
@@ -1430,15 +1436,15 @@ YAHOO.lang.extend(YAHOO.util.ComparisonFailure, YAHOO.util.AssertionError, {
  *
  * @param {String} message The message to display when the error occurs.
  * @param {Object} unexpected The unexpected value.
- * @namespace YAHOO.util
- * @extends YAHOO.util.AssertionError
+ * @namespace u
+ * @extends u.AssertionError
  * @class UnexpectedValue
  * @constructor
  */ 
-YAHOO.util.UnexpectedValue = function (message /*:String*/, unexpected /*:Object*/){
+u.UnexpectedValue = function (message /*:String*/, unexpected /*:Object*/){
 
     //call superclass
-    YAHOO.util.AssertionError.call(this, message);
+    u.AssertionError.call(this, message);
     
     /**
      * The unexpected value.
@@ -1457,7 +1463,7 @@ YAHOO.util.UnexpectedValue = function (message /*:String*/, unexpected /*:Object
 };
 
 //inherit methods
-YAHOO.lang.extend(YAHOO.util.UnexpectedValue, YAHOO.util.AssertionError, {
+extend(u.UnexpectedValue, u.AssertionError, {
 
     /**
      * Returns a fully formatted error for an assertion failure. The message
@@ -1476,15 +1482,15 @@ YAHOO.lang.extend(YAHOO.util.UnexpectedValue, YAHOO.util.AssertionError, {
  * a test was expected to fail but did not.
  *
  * @param {String} message The message to display when the error occurs.
- * @namespace YAHOO.util
- * @extends YAHOO.util.AssertionError
+ * @namespace u
+ * @extends u.AssertionError
  * @class ShouldFail
  * @constructor
  */  
-YAHOO.util.ShouldFail = function (message /*:String*/){
+u.ShouldFail = function (message /*:String*/){
 
     //call superclass
-    YAHOO.util.AssertionError.call(this, message || "This test should fail but didn't.");
+    u.AssertionError.call(this, message || "This test should fail but didn't.");
     
     /**
      * The name of the error that occurred.
@@ -1496,22 +1502,22 @@ YAHOO.util.ShouldFail = function (message /*:String*/){
 };
 
 //inherit methods
-YAHOO.lang.extend(YAHOO.util.ShouldFail, YAHOO.util.AssertionError);
+extend(u.ShouldFail, u.AssertionError);
 
 /**
  * ShouldError is subclass of AssertionError that is thrown whenever
  * a test is expected to throw an error but doesn't.
  *
  * @param {String} message The message to display when the error occurs.
- * @namespace YAHOO.util
- * @extends YAHOO.util.AssertionError
+ * @namespace u
+ * @extends u.AssertionError
  * @class ShouldError
  * @constructor
  */  
-YAHOO.util.ShouldError = function (message /*:String*/){
+u.ShouldError = function (message /*:String*/){
 
     //call superclass
-    YAHOO.util.AssertionError.call(this, message || "This test should have thrown an error but didn't.");
+    u.AssertionError.call(this, message || "This test should have thrown an error but didn't.");
     
     /**
      * The name of the error that occurred.
@@ -1523,7 +1529,7 @@ YAHOO.util.ShouldError = function (message /*:String*/){
 };
 
 //inherit methods
-YAHOO.lang.extend(YAHOO.util.ShouldError, YAHOO.util.AssertionError);
+extend(u.ShouldError, u.AssertionError);
 
 /**
  * UnexpectedError is subclass of AssertionError that is thrown whenever
@@ -1532,15 +1538,15 @@ YAHOO.lang.extend(YAHOO.util.ShouldError, YAHOO.util.AssertionError);
  *
  * @param {Error} cause The unexpected error that caused this error to be 
  *                      thrown.
- * @namespace YAHOO.util
- * @extends YAHOO.util.AssertionError
+ * @namespace u
+ * @extends u.AssertionError
  * @class UnexpectedError
  * @constructor
  */  
-YAHOO.util.UnexpectedError = function (cause /*:Object*/){
+u.UnexpectedError = function (cause /*:Object*/){
 
     //call superclass
-    YAHOO.util.AssertionError.call(this, "Unexpected error: " + cause.message);
+    u.AssertionError.call(this, "Unexpected error: " + cause.message);
     
     /**
      * The unexpected error that occurred.
@@ -1566,7 +1572,7 @@ YAHOO.util.UnexpectedError = function (cause /*:Object*/){
 };
 
 //inherit methods
-YAHOO.lang.extend(YAHOO.util.UnexpectedError, YAHOO.util.AssertionError);
+extend(u.UnexpectedError, u.AssertionError);
 
 //-----------------------------------------------------------------------------
 // ArrayAssert object
@@ -1576,12 +1582,12 @@ YAHOO.lang.extend(YAHOO.util.UnexpectedError, YAHOO.util.AssertionError);
  * The ArrayAssert object provides functions to test JavaScript array objects
  * for a variety of cases.
  *
- * @namespace YAHOO.util
+ * @namespace u
  * @class ArrayAssert
  * @static
  */
  
-YAHOO.util.ArrayAssert = {
+u.ArrayAssert = {
 
     /**
      * Asserts that a value is present in an array. This uses the triple equals 
@@ -1596,7 +1602,7 @@ YAHOO.util.ArrayAssert = {
                            message /*:String*/) /*:Void*/ {
         
         var found /*:Boolean*/ = false;
-        var Assert = YAHOO.util.Assert;
+        var Assert = u.Assert;
         
         //begin checking values
         for (var i=0; i < haystack.length && !found; i++){
@@ -1643,11 +1649,11 @@ YAHOO.util.ArrayAssert = {
         
         //check for valid matcher
         if (typeof matcher != "function"){
-            throw new TypeError("ArrayAssert.containsMatch(): First argument must be a function.");
+            throw new TypeError("ArrayAssert.containsMatch(): First argument must be a function.").toString();
         }
         
         var found /*:Boolean*/ = false;
-        var Assert = YAHOO.util.Assert;
+        var Assert = u.Assert;
         
         //begin checking values
         for (var i=0; i < haystack.length && !found; i++){
@@ -1674,7 +1680,7 @@ YAHOO.util.ArrayAssert = {
                            message /*:String*/) /*:Void*/ {
         
         var found /*:Boolean*/ = false;
-        var Assert = YAHOO.util.Assert;
+        var Assert = u.Assert;
         
         //begin checking values
         for (var i=0; i < haystack.length && !found; i++){
@@ -1721,11 +1727,11 @@ YAHOO.util.ArrayAssert = {
         
         //check for valid matcher
         if (typeof matcher != "function"){
-            throw new TypeError("ArrayAssert.doesNotContainMatch(): First argument must be a function.");
+            throw new TypeError("ArrayAssert.doesNotContainMatch(): First argument must be a function.").toString();
         }
 
         var found /*:Boolean*/ = false;
-        var Assert = YAHOO.util.Assert;
+        var Assert = u.Assert;
         
         //begin checking values
         for (var i=0; i < haystack.length && !found; i++){
@@ -1754,12 +1760,12 @@ YAHOO.util.ArrayAssert = {
         //try to find the value in the array
         for (var i=0; i < haystack.length; i++){
             if (haystack[i] === needle){
-                YAHOO.util.Assert.areEqual(index, i, message || "Value exists at index " + i + " but should be at index " + index + ".");
+                u.Assert.areEqual(index, i, message || "Value exists at index " + i + " but should be at index " + index + ".");
                 return;
             }
         }
         
-        var Assert = YAHOO.util.Assert;
+        var Assert = u.Assert;
         
         //if it makes it here, it wasn't found at all
         Assert.fail(Assert._formatMessage(message, "Value doesn't exist in array [" + haystack + "]."));
@@ -1781,7 +1787,7 @@ YAHOO.util.ArrayAssert = {
         
         //one may be longer than the other, so get the maximum length
         var len /*:int*/ = Math.max(expected.length, actual.length);
-        var Assert = YAHOO.util.Assert;
+        var Assert = u.Assert;
        
         //begin checking values
         for (var i=0; i < len; i++){
@@ -1809,7 +1815,7 @@ YAHOO.util.ArrayAssert = {
         
         //make sure the comparator is valid
         if (typeof comparator != "function"){
-            throw new TypeError("ArrayAssert.itemsAreEquivalent(): Third argument must be a function.");
+            throw new TypeError("ArrayAssert.itemsAreEquivalent(): Third argument must be a function.").toString();
         }
         
         //one may be longer than the other, so get the maximum length
@@ -1818,7 +1824,7 @@ YAHOO.util.ArrayAssert = {
         //begin checking values
         for (var i=0; i < len; i++){
             if (!comparator(expected[i], actual[i])){
-                throw new YAHOO.util.ComparisonFailure(YAHOO.util.Assert._formatMessage(message, "Values in position " + i + " are not equivalent."), expected[i], actual[i]);
+                throw new u.ComparisonFailure(u.Assert._formatMessage(message, "Values in position " + i + " are not equivalent."), expected[i], actual[i]).toString();
             }
         }
     },
@@ -1832,7 +1838,7 @@ YAHOO.util.ArrayAssert = {
      */
     isEmpty : function (actual /*:Array*/, message /*:String*/) /*:Void*/ {        
         if (actual.length > 0){
-            var Assert = YAHOO.util.Assert;
+            var Assert = u.Assert;
             Assert.fail(Assert._formatMessage(message, "Array should be empty."));
         }
     },    
@@ -1846,7 +1852,7 @@ YAHOO.util.ArrayAssert = {
      */
     isNotEmpty : function (actual /*:Array*/, message /*:String*/) /*:Void*/ {        
         if (actual.length === 0){
-            var Assert = YAHOO.util.Assert;
+            var Assert = u.Assert;
             Assert.fail(Assert._formatMessage(message, "Array should not be empty."));
         }
     },    
@@ -1867,7 +1873,7 @@ YAHOO.util.ArrayAssert = {
         
         //one may be longer than the other, so get the maximum length
         var len /*:int*/ = Math.max(expected.length, actual.length);
-        var Assert = YAHOO.util.Assert;
+        var Assert = u.Assert;
         
         //begin checking values
         for (var i=0; i < len; i++){
@@ -1889,7 +1895,7 @@ YAHOO.util.ArrayAssert = {
      */
     lastIndexOf : function (needle /*:Object*/, haystack /*:Array*/, index /*:int*/, message /*:String*/) /*:Void*/ {
     
-        var Assert = YAHOO.util.Assert;
+        var Assert = u.Assert;
     
         //try to find the value in the array
         for (var i=haystack.length; i >= 0; i--){
@@ -1916,11 +1922,11 @@ YAHOO.namespace("util");
  * The ObjectAssert object provides functions to test JavaScript objects
  * for a variety of cases.
  *
- * @namespace YAHOO.util
+ * @namespace u
  * @class ObjectAssert
  * @static
  */
-YAHOO.util.ObjectAssert = {
+u.ObjectAssert = {
         
     /**
      * Asserts that all properties in the object exist in another object.
@@ -1933,7 +1939,7 @@ YAHOO.util.ObjectAssert = {
     propertiesAreEqual : function (expected /*:Object*/, actual /*:Object*/, 
                            message /*:String*/) /*:Void*/ {
         
-        var Assert = YAHOO.util.Assert;
+        var Assert = u.Assert;
         
         //get all properties in the object
         var properties /*:Array*/ = [];        
@@ -1959,7 +1965,7 @@ YAHOO.util.ObjectAssert = {
      */    
     hasProperty : function (propertyName /*:String*/, object /*:Object*/, message /*:String*/) /*:Void*/ {
         if (!(propertyName in object)){
-            var Assert = YAHOO.util.Assert;
+            var Assert = u.Assert;
             Assert.fail(Assert._formatMessage(message, "Property '" + propertyName + "' not found on object."));
         }    
     },
@@ -1973,8 +1979,8 @@ YAHOO.util.ObjectAssert = {
      * @static
      */    
     hasOwnProperty : function (propertyName /*:String*/, object /*:Object*/, message /*:String*/) /*:Void*/ {
-        if (!YAHOO.lang.hasOwnProperty(object, propertyName)){
-            var Assert = YAHOO.util.Assert;
+        if (object.hasOwnProperty(propertyName)){
+            var Assert = u.Assert;
             Assert.fail(Assert._formatMessage(message, "Property '" + propertyName + "' not found on object instance."));
         }     
     }
@@ -1988,12 +1994,12 @@ YAHOO.util.ObjectAssert = {
  * The DateAssert object provides functions to test JavaScript Date objects
  * for a variety of cases.
  *
- * @namespace YAHOO.util
+ * @namespace u
  * @class DateAssert
  * @static
  */
  
-YAHOO.util.DateAssert = {
+u.DateAssert = {
 
     /**
      * Asserts that a date's month, day, and year are equal to another date's.
@@ -2005,12 +2011,12 @@ YAHOO.util.DateAssert = {
      */
     datesAreEqual : function (expected /*:Date*/, actual /*:Date*/, message /*:String*/){
         if (expected instanceof Date && actual instanceof Date){
-            var Assert = YAHOO.util.Assert;
+            var Assert = u.Assert;
             Assert.areEqual(expected.getFullYear(), actual.getFullYear(), Assert._formatMessage(message, "Years should be equal."));
             Assert.areEqual(expected.getMonth(), actual.getMonth(), Assert._formatMessage(message, "Months should be equal."));
             Assert.areEqual(expected.getDate(), actual.getDate(), Assert._formatMessage(message, "Day of month should be equal."));
         } else {
-            throw new TypeError("DateAssert.datesAreEqual(): Expected and actual values must be Date objects.");
+            throw new TypeError("DateAssert.datesAreEqual(): Expected and actual values must be Date objects.").toString();
         }
     },
 
@@ -2024,12 +2030,12 @@ YAHOO.util.DateAssert = {
      */
     timesAreEqual : function (expected /*:Date*/, actual /*:Date*/, message /*:String*/){
         if (expected instanceof Date && actual instanceof Date){
-            var Assert = YAHOO.util.Assert;
+            var Assert = u.Assert;
             Assert.areEqual(expected.getHours(), actual.getHours(), Assert._formatMessage(message, "Hours should be equal."));
             Assert.areEqual(expected.getMinutes(), actual.getMinutes(), Assert._formatMessage(message, "Minutes should be equal."));
             Assert.areEqual(expected.getSeconds(), actual.getSeconds(), Assert._formatMessage(message, "Seconds should be equal."));
         } else {
-            throw new TypeError("DateAssert.timesAreEqual(): Expected and actual values must be Date objects.");
+            throw new TypeError("DateAssert.timesAreEqual(): Expected and actual values must be Date objects.").toString();
         }
     }
     
@@ -2043,11 +2049,11 @@ YAHOO.namespace("util");
  * as regular, user-initiated events do, but can be used to test simple
  * user interactions safely.
  *
- * @namespace YAHOO.util
+ * @namespace u
  * @class UserAction
  * @static
  */
-YAHOO.util.UserAction = {
+u.UserAction = {
 
     //--------------------------------------------------------------------------
     // Generic event methods
@@ -2095,13 +2101,13 @@ YAHOO.util.UserAction = {
                                  keyCode /*:int*/,        charCode /*:int*/) /*:Void*/                             
     {
         //check target
-        target = YAHOO.util.Dom.get(target);        
+        target = u.Dom.get(target);        
         if (!target){
             throw new Error("simulateKeyEvent(): Invalid target.");
         }
         
         //check event type
-        if (YAHOO.lang.isString(type)){
+        if (isString(type)){
             type = type.toLowerCase();
             switch(type){
                 case "keyup":
@@ -2120,31 +2126,31 @@ YAHOO.util.UserAction = {
         }
         
         //setup default values
-        if (!YAHOO.lang.isBoolean(bubbles)){
+        if (!isBoolean(bubbles)){
             bubbles = true; //all key events bubble
         }
-        if (!YAHOO.lang.isBoolean(cancelable)){
+        if (!isBoolean(cancelable)){
             cancelable = true; //all key events can be cancelled
         }
-        if (!YAHOO.lang.isObject(view)){
+        if (!isObject(view)){
             view = window; //view is typically window
         }
-        if (!YAHOO.lang.isBoolean(ctrlKey)){
+        if (!isBoolean(ctrlKey)){
             ctrlKey = false;
         }
-        if (!YAHOO.lang.isBoolean(altKey)){
+        if (!isBoolean(altKey)){
             altKey = false;
         }
-        if (!YAHOO.lang.isBoolean(shiftKey)){
+        if (!isBoolean(shiftKey)){
             shiftKey = false;
         }
-        if (!YAHOO.lang.isBoolean(metaKey)){
+        if (!isBoolean(metaKey)){
             metaKey = false;
         }
-        if (!YAHOO.lang.isNumber(keyCode)){
+        if (!isNumber(keyCode)){
             keyCode = 0;
         }
-        if (!YAHOO.lang.isNumber(charCode)){
+        if (!isNumber(charCode)){
             charCode = 0; 
         }
 
@@ -2152,7 +2158,7 @@ YAHOO.util.UserAction = {
         var customEvent /*:MouseEvent*/ = null;
             
         //check for DOM-compliant browsers first
-        if (YAHOO.lang.isFunction(document.createEvent)){
+        if (isFunction(document.createEvent)){
         
             try {
                 
@@ -2212,7 +2218,7 @@ YAHOO.util.UserAction = {
             //fire the event
             target.dispatchEvent(customEvent);
 
-        } else if (YAHOO.lang.isObject(document.createEventObject)){ //IE
+        } else if (isObject(document.createEventObject)){ //IE
         
             //create an IE event object
             customEvent = document.createEventObject();
@@ -2302,13 +2308,13 @@ YAHOO.util.UserAction = {
     {
         
         //check target
-        target = YAHOO.util.Dom.get(target);        
+        target = u.Dom.get(target);        
         if (!target){
             throw new Error("simulateMouseEvent(): Invalid target.");
         }
         
         //check event type
-        if (YAHOO.lang.isString(type)){
+        if (isString(type)){
             type = type.toLowerCase();
             switch(type){
                 case "mouseover":
@@ -2327,43 +2333,43 @@ YAHOO.util.UserAction = {
         }
         
         //setup default values
-        if (!YAHOO.lang.isBoolean(bubbles)){
+        if (!isBoolean(bubbles)){
             bubbles = true; //all mouse events bubble
         }
-        if (!YAHOO.lang.isBoolean(cancelable)){
+        if (!isBoolean(cancelable)){
             cancelable = (type != "mousemove"); //mousemove is the only one that can't be cancelled
         }
-        if (!YAHOO.lang.isObject(view)){
+        if (!isObject(view)){
             view = window; //view is typically window
         }
-        if (!YAHOO.lang.isNumber(detail)){
+        if (!isNumber(detail)){
             detail = 1;  //number of mouse clicks must be at least one
         }
-        if (!YAHOO.lang.isNumber(screenX)){
+        if (!isNumber(screenX)){
             screenX = 0; 
         }
-        if (!YAHOO.lang.isNumber(screenY)){
+        if (!isNumber(screenY)){
             screenY = 0; 
         }
-        if (!YAHOO.lang.isNumber(clientX)){
+        if (!isNumber(clientX)){
             clientX = 0; 
         }
-        if (!YAHOO.lang.isNumber(clientY)){
+        if (!isNumber(clientY)){
             clientY = 0; 
         }
-        if (!YAHOO.lang.isBoolean(ctrlKey)){
+        if (!isBoolean(ctrlKey)){
             ctrlKey = false;
         }
-        if (!YAHOO.lang.isBoolean(altKey)){
+        if (!isBoolean(altKey)){
             altKey = false;
         }
-        if (!YAHOO.lang.isBoolean(shiftKey)){
+        if (!isBoolean(shiftKey)){
             shiftKey = false;
         }
-        if (!YAHOO.lang.isBoolean(metaKey)){
+        if (!isBoolean(metaKey)){
             metaKey = false;
         }
-        if (!YAHOO.lang.isNumber(button)){
+        if (!isNumber(button)){
             button = 0; 
         }
 
@@ -2371,7 +2377,7 @@ YAHOO.util.UserAction = {
         var customEvent /*:MouseEvent*/ = null;
             
         //check for DOM-compliant browsers first
-        if (YAHOO.lang.isFunction(document.createEvent)){
+        if (isFunction(document.createEvent)){
         
             customEvent = document.createEvent("MouseEvents");
         
@@ -2404,7 +2410,7 @@ YAHOO.util.UserAction = {
              * Check to see if relatedTarget has been assigned. Firefox
              * versions less than 2.0 don't allow it to be assigned via
              * initMouseEvent() and the property is readonly after event
-             * creation, so in order to keep YAHOO.util.getRelatedTarget()
+             * creation, so in order to keep u.getRelatedTarget()
              * working, assign to the IE proprietary toElement property
              * for mouseout event and fromElement property for mouseover
              * event.
@@ -2420,7 +2426,7 @@ YAHOO.util.UserAction = {
             //fire the event
             target.dispatchEvent(customEvent);
 
-        } else if (YAHOO.lang.isObject(document.createEventObject)){ //IE
+        } else if (isObject(document.createEventObject)){ //IE
         
             //create an IE event object
             customEvent = document.createEventObject();
@@ -2457,7 +2463,7 @@ YAHOO.util.UserAction = {
             /*
              * Have to use relatedTarget because IE won't allow assignment
              * to toElement or fromElement on generic events. This keeps
-             * YAHOO.util.customEvent.getRelatedTarget() functional.
+             * u.customEvent.getRelatedTarget() functional.
              */
             customEvent.relatedTarget = relatedTarget;
             
@@ -2544,7 +2550,7 @@ YAHOO.util.UserAction = {
      * Quirks: Firefox less than 2.0 doesn't set relatedTarget properly, so
      * toElement is assigned in its place. IE doesn't allow toElement to be
      * be assigned, so relatedTarget is assigned in its place. Both of these
-     * concessions allow YAHOO.util.Event.getRelatedTarget() to work correctly
+     * concessions allow u.Event.getRelatedTarget() to work correctly
      * in both browsers.
      * @param {HTMLElement} target The element to act on.
      * @param {Object} options Additional event options (use DOM standard names).
@@ -2561,7 +2567,7 @@ YAHOO.util.UserAction = {
      * Quirks: Firefox less than 2.0 doesn't set relatedTarget properly, so
      * fromElement is assigned in its place. IE doesn't allow fromElement to be
      * be assigned, so relatedTarget is assigned in its place. Both of these
-     * concessions allow YAHOO.util.Event.getRelatedTarget() to work correctly
+     * concessions allow u.Event.getRelatedTarget() to work correctly
      * in both browsers.
      * @param {HTMLElement} target The element to act on.
      * @param {Object} options Additional event options (use DOM standard names).
@@ -2653,11 +2659,11 @@ YAHOO.namespace("tool");
 
 /**
  * Runs pages containing test suite definitions.
- * @namespace YAHOO.tool
+ * @namespace t
  * @class TestManager
  * @static
  */
-YAHOO.tool.TestManager = {
+t.TestManager = {
 
     /**
      * Constant for the testpagebegin custom event
@@ -2720,7 +2726,7 @@ YAHOO.tool.TestManager = {
     
     /**
      * The logger used to output results from the various tests.
-     * @type YAHOO.tool.TestLogger
+     * @type t.TestLogger
      * @private
      * @property _logger
      * @static
@@ -2784,7 +2790,7 @@ YAHOO.tool.TestManager = {
         //if there's more to do, set a timeout to begin again
         if (this._pages.length){
             this._timeoutId = setTimeout(function(){
-                YAHOO.tool.TestManager._run();
+                t.TestManager._run();
             }, 1000);
         } else {
             this.fireEvent(this.TEST_MANAGER_COMPLETE_EVENT, this._results);
@@ -2850,13 +2856,13 @@ YAHOO.tool.TestManager = {
      * @static
      */
     load : function () /*:Void*/ {
-        if (parent.YAHOO.tool.TestManager !== this){
-            parent.YAHOO.tool.TestManager.load();
+        if (parent.t.TestManager !== this){
+            parent.t.TestManager.load();
         } else {
             
             if (this._frame) {
                 //assign event handling
-                var TestRunner = this._frame.YAHOO.tool.TestRunner;
+                var TestRunner = this._frame.t.TestRunner;
 
                 this._logger.setTestRunner(TestRunner);
                 TestRunner.subscribe(TestRunner.COMPLETE_EVENT, this._handleTestRunnerComplete, this, true);
@@ -2933,7 +2939,7 @@ YAHOO.tool.TestManager = {
             
             //create test logger if not already available
             if (!this._logger){
-                this._logger = new YAHOO.tool.TestLogger();
+                this._logger = new t.TestLogger();
             }
 
             this._initialized = true;
@@ -2985,7 +2991,7 @@ YAHOO.tool.TestManager = {
 
 };
 
-YAHOO.lang.augmentObject(YAHOO.tool.TestManager, YAHOO.util.EventProvider.prototype);
+l.augmentObject(t.TestManager, u.EventProvider.prototype);
 
 
 YAHOO.namespace("tool");
@@ -2997,18 +3003,18 @@ YAHOO.namespace("tool");
 /**
  * Displays test execution progress and results, providing filters based on
  * different key events.
- * @namespace YAHOO.tool
+ * @namespace t
  * @class TestLogger
  * @constructor
  * @param {HTMLElement} element (Optional) The element to create the logger in.
  * @param {Object} config (Optional) Configuration options for the logger.
  */
-YAHOO.tool.TestLogger = function (element, config) {
-    YAHOO.tool.TestLogger.superclass.constructor.call(this, element, config);
+t.TestLogger = function (element, config) {
+    t.TestLogger.superclass.constructor.call(this, element, config);
     this.init();
 };
 
-YAHOO.lang.extend(YAHOO.tool.TestLogger, YAHOO.widget.LogReader, {
+extend(t.TestLogger, YAHOO.widget.LogReader, {
 
     footerEnabled : true,
     newestOnTop : false,
@@ -3040,8 +3046,8 @@ YAHOO.lang.extend(YAHOO.tool.TestLogger, YAHOO.widget.LogReader, {
     init : function () {
     
         //attach to any available TestRunner
-        if (YAHOO.tool.TestRunner){
-            this.setTestRunner(YAHOO.tool.TestRunner);
+        if (t.TestRunner){
+            this.setTestRunner(t.TestRunner);
         }
         
         //hide useless sources
@@ -3072,11 +3078,11 @@ YAHOO.lang.extend(YAHOO.tool.TestLogger, YAHOO.widget.LogReader, {
     
     /**
      * Sets the source test runner that the logger should monitor.
-     * @param {YAHOO.tool.TestRunner} testRunner The TestRunner to observe.
+     * @param {t.TestRunner} testRunner The TestRunner to observe.
      * @return {Void}
      * @static
      */
-    setTestRunner : function (testRunner /*:YAHOO.tool.TestRunner*/) /*:Void*/ {
+    setTestRunner : function (testRunner /*:t.TestRunner*/) /*:Void*/ {
     
         if (this._runner){
             this.clearTestRunner();
@@ -3109,7 +3115,7 @@ YAHOO.lang.extend(YAHOO.tool.TestLogger, YAHOO.widget.LogReader, {
     _handleTestRunnerEvent : function (data /*:Object*/) /*:Void*/ {
     
         //shortcut variables
-        var TestRunner /*:Object*/ = YAHOO.tool.TestRunner;
+        var TestRunner /*:Object*/ = t.TestRunner;
     
         //data variables
         var message /*:String*/ = "";
@@ -3128,7 +3134,7 @@ YAHOO.lang.extend(YAHOO.tool.TestLogger, YAHOO.widget.LogReader, {
                 break;
                 
             case TestRunner.TEST_FAIL_EVENT:
-                message = data.testName + ": " + data.error.getMessage();
+                message = data.testName + ": " + data.error;
                 messageType = "fail";
                 break;
                 
@@ -3179,25 +3185,24 @@ YAHOO.namespace("tool.TestFormat");
  * Returns test results formatted as a JSON string. Requires JSON utility.
  * @param {Object} result The results object created by TestRunner.
  * @return {String} An XML-formatted string of results.
- * @namespace YAHOO.tool.TestFormat
+ * @namespace t.TestFormat
  * @method JSON
  * @static
  */
-YAHOO.tool.TestFormat.JSON = function(results /*:Object*/) /*:String*/ {
-    return YAHOO.lang.JSON.stringify(results);
+t.TestFormat.JSON = function(results /*:Object*/) /*:String*/ {
+    return l.JSON.stringify(results);
 };
 
 /**
  * Returns test results formatted as an XML string.
  * @param {Object} result The results object created by TestRunner.
  * @return {String} An XML-formatted string of results.
- * @namespace YAHOO.tool.TestFormat
+ * @namespace t.TestFormat
  * @method XML
  * @static
  */
-YAHOO.tool.TestFormat.XML = function(results /*:Object*/) /*:String*/ {
+t.TestFormat.XML = function(results /*:Object*/) /*:String*/ {
 
-    var l = YAHOO.lang;
     var xml /*:String*/ = "<" + results.type + " name=\"" + results.name.replace(/"/g, "&quot;").replace(/'/g, "&apos;") + "\"";
     
     if (l.isNumber(results.duration)){
@@ -3227,12 +3232,12 @@ YAHOO.namespace("tool");
  * An object capable of sending test results to a server.
  * @param {String} url The URL to submit the results to.
  * @param {Function} format (Optiona) A function that outputs the results in a specific format.
- *      Default is YAHOO.tool.TestFormat.XML.
+ *      Default is t.TestFormat.XML.
  * @constructor
- * @namespace YAHOO.tool
+ * @namespace t
  * @class TestReporter
  */
-YAHOO.tool.TestReporter = function(url /*:String*/, format /*:Function*/) {
+t.TestReporter = function(url /*:String*/, format /*:Function*/) {
 
     /**
      * The URL to submit the data to.
@@ -3246,7 +3251,7 @@ YAHOO.tool.TestReporter = function(url /*:String*/, format /*:Function*/) {
      * @type Function
      * @property format
      */
-    this.format /*:Function*/ = format || YAHOO.tool.TestFormat.XML;
+    this.format /*:Function*/ = format || t.TestFormat.XML;
 
     /**
      * Extra fields to submit with the request.
@@ -3273,10 +3278,10 @@ YAHOO.tool.TestReporter = function(url /*:String*/, format /*:Function*/) {
     this._iframe /*:HTMLElement*/ = null;
 };
 
-YAHOO.tool.TestReporter.prototype = {
+t.TestReporter.prototype = {
 
     //restore missing constructor
-    constructor: YAHOO.tool.TestReporter,
+    constructor: t.TestReporter,
     
     /**
      * Convert a date into ISO format.
@@ -3388,7 +3393,7 @@ YAHOO.tool.TestReporter.prototype = {
 
         //add fields to the form
         for (var prop in this._fields){
-            if (YAHOO.lang.hasOwnProperty(this._fields, prop) && typeof this._fields[prop] != "function"){
+            if (this._fields.hasOwnProperty(prop) && typeof this._fields[prop] != "function"){
                 if (YAHOO.env.ua.ie){
                     input = document.createElement("<input name=\"" + prop + "\" >");
                 } else {
@@ -3414,4 +3419,5 @@ YAHOO.tool.TestReporter.prototype = {
 
 };
 
-YAHOO.register("yuitest", YAHOO.tool.TestRunner, {version: "@VERSION@", build: "@BUILD@"});
+YAHOO.register("yuitest", t.TestRunner, {version: "@VERSION@", build: "@BUILD@"});
+})();
