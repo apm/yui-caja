@@ -95,7 +95,7 @@ var u = YAHOO.util,
          * @method wait
          */
         wait : function (segment /*:Function*/, delay /*:int*/) /*:Void*/{
-            var seg, delay;
+            var seg, delay, tid;
 
             if (isFunction(segment)) {
                 seg   = segment;
@@ -109,14 +109,14 @@ var u = YAHOO.util,
 
             //some environments don't support setTimeout
             if (typeof setTimeout != "undefined"){
-                this.__yui_wait = setTimeout(function(){
+                t.TestRunner.__yui_wait = setTimeout(function(){
                     t.TestRunner._resumeTest(seg);
                 }, delay);
             } else {
                 throw new Error("Asynchronous tests not supported in this environment.");
             }
 
-            throw "WaitWait";
+            throw "WaitWait:";
         },
     
         //-------------------------------------------------------------------------
@@ -641,8 +641,9 @@ t.TestRunner = (function(){
          */
         _run : function () /*:Void*/ {
         
-            //flag to indicate if the TestRunner should wait before continuing
-            var shouldWait /*:Boolean*/ = false;
+            if (this.__yui_wait) {
+                return;
+            }
             
             //get the next test node
             var node = this._next();
@@ -659,14 +660,14 @@ t.TestRunner = (function(){
                         this.fireEvent(this.TEST_CASE_BEGIN_EVENT, { testCase: testObject });
                     }
                     
-                    ////some environments don't support setTimeout
-                    //if (typeof setTimeout != "undefined"){                    
-                    //    setTimeout(function(){
-                    //        t.TestRunner._run();
-                    //    }, 0);
-                    //} else {
-                        this._run();
-                    //}
+                    //some environments don't support setTimeout
+                    if (typeof setTimeout != "undefined"){                    
+                        setTimeout(function(){
+                            t.TestRunner._run();
+                        }, 0);
+                    } else {
+                      this._run();
+                    }
                 } else {
                     this._runTest(node);
                 }
@@ -703,17 +704,13 @@ t.TestRunner = (function(){
         
         _resumeTest : function (segment /*:Function*/) /*:Void*/ {
         
-            //get relevant information
-            var node /*:TestNode*/ = this._cur;
+            var node /*:TestNode */ = this._cur;
             var testName /*:String*/ = node.testObject;
-            var testCase /*:t.TestCase*/ = node.parent.testObject;
+            var testCase /*:TestCase*/ = node.parent.testObject;
             
-            //cancel other waits if available
-            if (testCase.__yui_wait){
-                clearTimeout(testCase.__yui_wait);
-                delete testCase.__yui_wait;
-            }            
-            
+            clearTimeout(this.__yui_wait);
+            delete this.__yui_wait;
+
             //get the "should" test cases
             var shouldFail /*:Object*/ = (testCase._should.fail || {})[testName];
             var shouldError /*:Object*/ = (testCase._should.error || {})[testName];
@@ -736,17 +733,21 @@ t.TestRunner = (function(){
                            
             } catch (thrown /*:Error*/){
                 if (isString(thrown)) {
-                    var type = /^([A-Z][a-z]+){2}:/.exec(thrown);
-                    switch (type) {
-                        case 'WaitWait': return;
-                        case 'ShouldFail':
-                        case 'ShouldError':
-                            error = thrown.replace(/^[a-z]+: /i,'');
-                            break;
-                        default:
-                            if (!shouldFail) {
+                    var type = /^(?:[A-Z][a-z]+){2}(?=:)/.exec(thrown);
+                    if (type) {
+                        switch (type[0]) {
+                            case 'WaitWait': return;
+                            case 'ShouldFail':
+                            case 'ShouldError':
                                 error = thrown.replace(/^[a-z]+: /i,'');
-                            }
+                                break;
+                            default:
+                                if (!shouldFail) {
+                                    error = thrown.replace(/^[a-z]+: /i,'');
+                                }
+                        }
+                    } else if (!shouldError) {
+                        error = u.UnexpectedError(thrown);
                     }
                 } else if (!shouldError) {
                     error = u.UnexpectedError(thrown);
@@ -801,7 +802,7 @@ t.TestRunner = (function(){
         
             //get relevant information
             var testName /*:String*/ = node.testObject;
-            var testCase /*:t.TestCase*/ = node.parent.testObject;
+            var testCase /*:TestCase*/ = node.parent.testObject;
             var test /*:Function*/ = testCase[testName];
             
             //get the "should" test cases
@@ -823,14 +824,14 @@ t.TestRunner = (function(){
             
                 this.fireEvent(this.TEST_IGNORE_EVENT, { testCase: testCase, testName: testName });
                 
-//                //some environments don't support setTimeout
-//                if (typeof setTimeout != "undefined"){                    
-//                    setTimeout(function(){
-//                        t.TestRunner._run();
-//                    }, 0);              
-//                } else {
+                  //some environments don't support setTimeout
+                  if (typeof setTimeout != "undefined"){                    
+                      setTimeout(function(){
+                          t.TestRunner._run();
+                      }, 0);              
+                  } else {
                     this._run();
-//                }
+                  }
 
             } else {
             
