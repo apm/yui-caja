@@ -97,9 +97,9 @@ var u = YAHOO.util,
         wait : function (segment /*:Function*/, delay /*:int*/) /*:Void*/{
             var args = arguments;
             if (isFunction(args[0])){
-                throw new t.TestCase.Wait(args[0], args[1]).toString();
+                throw t.TestCase.Wait(args[0], args[1]).toString();
             } else {
-                throw new t.TestCase.Wait(function(){
+                throw t.TestCase.Wait(function(){
                     u.Assert.fail("Timeout: wait() called but resume() never called.");
                 }, (isNumber(args[0]) ? args[0] : 10000)).toString();
             }            
@@ -715,16 +715,18 @@ t.TestRunner = (function(){
                 
                 //if it should fail, and it got here, then it's a fail because it didn't
                 if (shouldFail){
-                    error = new Error(new u.ShouldFail().toString());
+                    throw u.ShouldFail();
                 } else if (shouldError){
-                    error = new Error(new u.ShouldError().toString());
+                    throw u.ShouldError();
                 }
                            
             } catch (thrown /*:Error*/){
-                //YAHOO.log("Error: " + thrown);
-                if (/^(?:[A-Z][a-z]+){2}:/.test(thrown.message || '')) {
+                var e = isString(thrown) ? thrown : thrown.message || '',
+                    type = /^([A-Z][a-z]+){2}:/.exec(e);
+
+                if (type) {
                     if (!shouldFail){
-                        error = thrown.message.replace(/^[a-z]+:/i,'');
+                        error = e.replace(/^[a-z]+: /i,'');
                     }
                 } else if (thrown instanceof t.TestCase.Wait){
                 
@@ -747,20 +749,20 @@ t.TestRunner = (function(){
                 } else {
                     //first check to see if it should error
                     if (!shouldError) {                        
-                        error = new u.UnexpectedError(thrown).getMessage();
+                        error = u.UnexpectedError(thrown);
                     } else {
                         //check to see what type of data we have
                         if (isString(shouldError)){
                             
                             //if it's a string, check the error message
                             if (thrown.message != shouldError){
-                                error = new u.UnexpectedError(thrown).getMessage();
+                                error = u.UnexpectedError(thrown);
                             }
                         } else if (isFunction(shouldError)){
                         
                             //if it's a function, see if the error is an instance of it
                             if (!(thrown instanceof shouldError)){
-                                error = new u.UnexpectedError(thrown).getMessage();
+                                error = u.UnexpectedError(thrown);
                             }
                         
                         } else if (isObject(shouldError)){
@@ -768,7 +770,7 @@ t.TestRunner = (function(){
                             //if it's an object, check the instance and message
                             if (!(thrown instanceof shouldError.constructor) || 
                                     thrown.message != shouldError.message){
-                                error = new u.UnexpectedError(thrown).getMessage();
+                                error = u.UnexpectedError(thrown);
                             }
                         
                         }
@@ -1003,7 +1005,7 @@ u.Assert = {
      * @static
      */
     fail : function (message /*:String*/) /*:Void*/ {
-        throw new u.AssertionError(this._formatMessage(message, "Test force-failed.")).toString();
+        throw u.AssertionError(this._formatMessage(message, "Test force-failed."));
     },       
     
     //-------------------------------------------------------------------------
@@ -1021,7 +1023,7 @@ u.Assert = {
      */
     areEqual : function (expected /*:Object*/, actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (expected != actual) {
-            throw new u.ComparisonFailure(this._formatMessage(message, "Values should be equal."), expected, actual).toString();
+            throw u.ComparisonFailure(this._formatMessage(message, "Values should be equal."), expected, actual);
         }
     },
     
@@ -1037,7 +1039,7 @@ u.Assert = {
     areNotEqual : function (unexpected /*:Object*/, actual /*:Object*/, 
                          message /*:String*/) /*:Void*/ {
         if (unexpected == actual) {
-            throw new u.UnexpectedValue(this._formatMessage(message, "Values should not be equal."), unexpected).toString();
+            throw u.UnexpectedValue(this._formatMessage(message, "Values should not be equal."), unexpected);
         }
     },
     
@@ -1052,7 +1054,7 @@ u.Assert = {
      */
     areNotSame : function (unexpected /*:Object*/, actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (unexpected === actual) {
-            throw new u.UnexpectedValue(this._formatMessage(message, "Values should not be the same."), unexpected).toString();
+            throw u.UnexpectedValue(this._formatMessage(message, "Values should not be the same."), unexpected);
         }
     },
 
@@ -1067,7 +1069,7 @@ u.Assert = {
      */
     areSame : function (expected /*:Object*/, actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (expected !== actual) {
-            throw new u.ComparisonFailure(this._formatMessage(message, "Values should be the same."), expected, actual).toString();
+            throw u.ComparisonFailure(this._formatMessage(message, "Values should be the same."), expected, actual);
         }
     },    
     
@@ -1085,7 +1087,7 @@ u.Assert = {
      */
     isFalse : function (actual /*:Boolean*/, message /*:String*/) {
         if (false !== actual) {
-            throw new u.ComparisonFailure(this._formatMessage(message, "Value should be false."), false, actual).toString();
+            throw u.ComparisonFailure(this._formatMessage(message, "Value should be false."), false, actual);
         }
     },
     
@@ -1099,7 +1101,7 @@ u.Assert = {
      */
     isTrue : function (actual /*:Boolean*/, message /*:String*/) /*:Void*/ {
         if (true !== actual) {
-            throw new u.ComparisonFailure(this._formatMessage(message, "Value should be true."), true, actual).toString();
+            throw u.ComparisonFailure(this._formatMessage(message, "Value should be true."), true, actual);
         }
 
     },
@@ -1117,7 +1119,7 @@ u.Assert = {
      */
     isNaN : function (actual /*:Object*/, message /*:String*/) /*:Void*/{
         if (!isNaN(actual)){
-            throw new u.ComparisonFailure(this._formatMessage(message, "Value should be NaN."), NaN, actual).toString();
+            throw u.ComparisonFailure(this._formatMessage(message, "Value should be NaN."), NaN, actual);
         }    
     },
     
@@ -1130,7 +1132,7 @@ u.Assert = {
      */
     isNotNaN : function (actual /*:Object*/, message /*:String*/) /*:Void*/{
         if (isNaN(actual)){
-            throw new u.UnexpectedValue(this._formatMessage(message, "Values should not be NaN."), NaN).toString();
+            throw u.UnexpectedValue(this._formatMessage(message, "Values should not be NaN."), NaN);
         }    
     },
     
@@ -1144,7 +1146,7 @@ u.Assert = {
      */
     isNotNull : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (isNull(actual)) {
-            throw new u.UnexpectedValue(this._formatMessage(message, "Values should not be null."), null).toString();
+            throw u.UnexpectedValue(this._formatMessage(message, "Values should not be null."), null);
         }
     },
 
@@ -1158,7 +1160,7 @@ u.Assert = {
      */
     isNotUndefined : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (isUndefined(actual)) {
-            throw new u.UnexpectedValue(this._formatMessage(message, "Value should not be undefined."), undefined).toString();
+            throw u.UnexpectedValue(this._formatMessage(message, "Value should not be undefined."), undefined);
         }
     },
 
@@ -1172,7 +1174,7 @@ u.Assert = {
      */
     isNull : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (!isNull(actual)) {
-            throw new u.ComparisonFailure(this._formatMessage(message, "Value should be null."), null, actual).toString();
+            throw u.ComparisonFailure(this._formatMessage(message, "Value should be null."), null, actual);
         }
     },
         
@@ -1186,7 +1188,7 @@ u.Assert = {
      */
     isUndefined : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (!isUndefined(actual)) {
-            throw new u.ComparisonFailure(this._formatMessage(message, "Value should be undefined."), undefined, actual).toString();
+            throw u.ComparisonFailure(this._formatMessage(message, "Value should be undefined."), undefined, actual);
         }
     },    
     
@@ -1203,7 +1205,7 @@ u.Assert = {
      */
     isArray : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (!isArray(actual)){
-            throw new u.UnexpectedValue(this._formatMessage(message, "Value should be an array."), actual).toString();
+            throw u.UnexpectedValue(this._formatMessage(message, "Value should be an array."), actual);
         }    
     },
    
@@ -1216,7 +1218,7 @@ u.Assert = {
      */
     isBoolean : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (!isBoolean(actual)){
-            throw new u.UnexpectedValue(this._formatMessage(message, "Value should be a Boolean."), actual).toString();
+            throw u.UnexpectedValue(this._formatMessage(message, "Value should be a Boolean."), actual);
         }    
     },
    
@@ -1229,7 +1231,7 @@ u.Assert = {
      */
     isFunction : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (!isFunction(actual)){
-            throw new u.UnexpectedValue(this._formatMessage(message, "Value should be a function."), actual).toString();
+            throw u.UnexpectedValue(this._formatMessage(message, "Value should be a function."), actual);
         }    
     },
    
@@ -1245,7 +1247,7 @@ u.Assert = {
      */
     isInstanceOf : function (expected /*:Function*/, actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (!(actual instanceof expected)){
-            throw new u.ComparisonFailure(this._formatMessage(message, "Value isn't an instance of expected type."), expected, actual).toString();
+            throw u.ComparisonFailure(this._formatMessage(message, "Value isn't an instance of expected type."), expected, actual);
         }
     },
     
@@ -1258,7 +1260,7 @@ u.Assert = {
      */
     isNumber : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (!isNumber(actual)){
-            throw new u.UnexpectedValue(this._formatMessage(message, "Value should be a number."), actual).toString();
+            throw u.UnexpectedValue(this._formatMessage(message, "Value should be a number."), actual);
         }    
     },    
     
@@ -1271,7 +1273,7 @@ u.Assert = {
      */
     isObject : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (!isObject(actual)){
-            throw new u.UnexpectedValue(this._formatMessage(message, "Value should be an object."), actual).toString();
+            throw u.UnexpectedValue(this._formatMessage(message, "Value should be an object."), actual);
         }
     },
     
@@ -1284,7 +1286,7 @@ u.Assert = {
      */
     isString : function (actual /*:Object*/, message /*:String*/) /*:Void*/ {
         if (!isString(actual)){
-            throw new u.UnexpectedValue(this._formatMessage(message, "Value should be a string."), actual).toString();
+            throw u.UnexpectedValue(this._formatMessage(message, "Value should be a string."), actual);
         }
     },
     
@@ -1298,7 +1300,7 @@ u.Assert = {
      */
     isTypeOf : function (expectedType /*:String*/, actualValue /*:Object*/, message /*:String*/) /*:Void*/{
         if (typeof actualValue != expectedType){
-            throw new u.ComparisonFailure(this._formatMessage(message, "Value should be of type " + expected + "."), expected, typeof actual).toString();
+            throw u.ComparisonFailure(this._formatMessage(message, "Value should be of type " + expected + "."), expected, typeof actual);
         }
     }
 };
@@ -1319,57 +1321,8 @@ u.Assert = {
  * @constructor
  */ 
 u.AssertionError = function (message /*:String*/){
-
-    //call superclass
-    //Error.call(this, message);
-    
-    /*
-     * Error message. Must be duplicated to ensure browser receives it.
-     * @type String
-     * @property message
-     */
-    this.message /*:String*/ = message;
-    
-    /**
-     * The name of the error that occurred.
-     * @type String
-     * @property name
-     */
-    this.name /*:String*/ = "AssertionError";
+    return "AssertionError: " + message;
 };
-
-//inherit methods
-extend(u.AssertionError, Error, {
-
-    /**
-     * Returns a fully formatted error for an assertion failure. This should
-     * be overridden by all subclasses to provide specific information.
-     * @method getMessage
-     * @return {String} A string describing the error.
-     */
-    getMessage : function () /*:String*/ {
-        return this.message;
-    },
-    
-    /**
-     * Returns a string representation of the error.
-     * @method toString
-     * @return {String} A string representation of the error.
-     */
-    toString : function () /*:String*/ {
-        return this.name + ": " + this.getMessage();
-    }//,
-    
-    /**
-     * Returns a primitive value version of the error. Same as toString().
-     * @method valueOf
-     * @return {String} A primitive value version of the error.
-     */
-    //valueOf : function () /*:String*/ {
-        //return this.toString();
-    //}
-
-});
 
 /**
  * ComparisonFailure is subclass of AssertionError that is thrown whenever
@@ -1386,47 +1339,10 @@ extend(u.AssertionError, Error, {
  */ 
 u.ComparisonFailure = function (message /*:String*/, expected /*:Object*/, actual /*:Object*/){
 
-    //call superclass
-    u.AssertionError.call(this, message);
-    
-    /**
-     * The expected value.
-     * @type Object
-     * @property expected
-     */
-    this.expected /*:Object*/ = expected;
-    
-    /**
-     * The actual value.
-     * @type Object
-     * @property actual
-     */
-    this.actual /*:Object*/ = actual;
-    
-    /**
-     * The name of the error that occurred.
-     * @type String
-     * @property name
-     */
-    this.name /*:String*/ = "ComparisonFailure";
-    
+    return "ComparisonFailure: "+ message +
+            "\nExpected: " + expected + " (" + (typeof expected) + ")"  +
+            "\nActual:" + actual + " (" + (typeof actual) + ")";
 };
-
-//inherit methods
-extend(u.ComparisonFailure, u.AssertionError, {
-
-    /**
-     * Returns a fully formatted error for an assertion failure. This message
-     * provides information about the expected and actual values.
-     * @method toString
-     * @return {String} A string describing the error.
-     */
-    getMessage : function () /*:String*/ {
-        return this.message + "\nExpected: " + this.expected + " (" + (typeof this.expected) + ")"  +
-            "\nActual:" + this.actual + " (" + (typeof this.actual) + ")";
-    }
-
-});
 
 /**
  * UnexpectedValue is subclass of AssertionError that is thrown whenever
@@ -1443,39 +1359,9 @@ extend(u.ComparisonFailure, u.AssertionError, {
  */ 
 u.UnexpectedValue = function (message /*:String*/, unexpected /*:Object*/){
 
-    //call superclass
-    u.AssertionError.call(this, message);
-    
-    /**
-     * The unexpected value.
-     * @type Object
-     * @property unexpected
-     */
-    this.unexpected /*:Object*/ = unexpected;
-    
-    /**
-     * The name of the error that occurred.
-     * @type String
-     * @property name
-     */
-    this.name /*:String*/ = "UnexpectedValue";
-    
+    return "UnexpectedValue: " + message +
+           "\nUnexpected: " + unexpected + " (" + (typeof unexpected) + ") ";
 };
-
-//inherit methods
-extend(u.UnexpectedValue, u.AssertionError, {
-
-    /**
-     * Returns a fully formatted error for an assertion failure. The message
-     * contains information about the unexpected value that was encountered.
-     * @method getMessage
-     * @return {String} A string describing the error.
-     */
-    getMessage : function () /*:String*/ {
-        return this.message + "\nUnexpected: " + this.unexpected + " (" + (typeof this.unexpected) + ") ";
-    }
-
-});
 
 /**
  * ShouldFail is subclass of AssertionError that is thrown whenever
@@ -1488,21 +1374,8 @@ extend(u.UnexpectedValue, u.AssertionError, {
  * @constructor
  */  
 u.ShouldFail = function (message /*:String*/){
-
-    //call superclass
-    u.AssertionError.call(this, message || "This test should fail but didn't.");
-    
-    /**
-     * The name of the error that occurred.
-     * @type String
-     * @property name
-     */
-    this.name /*:String*/ = "ShouldFail";
-    
+    return "ShouldFail: " + (message || "This test should fail but didn't.");
 };
-
-//inherit methods
-extend(u.ShouldFail, u.AssertionError);
 
 /**
  * ShouldError is subclass of AssertionError that is thrown whenever
@@ -1515,21 +1388,8 @@ extend(u.ShouldFail, u.AssertionError);
  * @constructor
  */  
 u.ShouldError = function (message /*:String*/){
-
-    //call superclass
-    u.AssertionError.call(this, message || "This test should have thrown an error but didn't.");
-    
-    /**
-     * The name of the error that occurred.
-     * @type String
-     * @property name
-     */
-    this.name /*:String*/ = "ShouldError";
-    
+    return "ShouldError: " + (message || "This test should have thrown an error but didn't.");
 };
-
-//inherit methods
-extend(u.ShouldError, u.AssertionError);
 
 /**
  * UnexpectedError is subclass of AssertionError that is thrown whenever
@@ -1545,34 +1405,12 @@ extend(u.ShouldError, u.AssertionError);
  */  
 u.UnexpectedError = function (cause /*:Object*/){
 
-    //call superclass
-    u.AssertionError.call(this, "Unexpected error: " + cause.message);
+    var e = new Error(cause);
     
-    /**
-     * The unexpected error that occurred.
-     * @type Error
-     * @property cause
-     */
-    this.cause /*:Error*/ = cause;
-    
-    /**
-     * The name of the error that occurred.
-     * @type String
-     * @property name
-     */
-    this.name /*:String*/ = "UnexpectedError";
-    
-    /**
-     * Stack information for the error (if provided).
-     * @type String
-     * @property stack
-     */
-    this.stack /*:String*/ = cause.stack;
-    
-};
+    e.message = "UnexpectedError: " + cause.message;
 
-//inherit methods
-extend(u.UnexpectedError, u.AssertionError);
+    return e;
+};
 
 //-----------------------------------------------------------------------------
 // ArrayAssert object
@@ -1824,7 +1662,7 @@ u.ArrayAssert = {
         //begin checking values
         for (var i=0; i < len; i++){
             if (!comparator(expected[i], actual[i])){
-                throw new u.ComparisonFailure(u.Assert._formatMessage(message, "Values in position " + i + " are not equivalent."), expected[i], actual[i]).toString();
+                throw u.ComparisonFailure(u.Assert._formatMessage(message, "Values in position " + i + " are not equivalent."), expected[i], actual[i]);
             }
         }
     },
@@ -3174,7 +3012,7 @@ extend(t.TestLogger, YAHOO.widget.LogReader, {
                 message = "info";
         }
     
-        YAHOO.log(message, messageType, "TestRunner");    
+        YAHOO.log(message);//, messageType, "TestRunner");    
     }
     
 });
