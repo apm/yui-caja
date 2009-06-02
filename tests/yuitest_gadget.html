@@ -1,11 +1,11 @@
 <html><head></head>
 <body>
-    <!--script src="../../yui2/build/utilities/utilities.js"></script>
-    <script src="../yuitest/yuitest.js"></script-->
+    <script src="../../yui2/build/utilities/utilities.js"></script>
+    <script src="../yuitest/yuitest.js"></script>
     <div id="x"></div>
     <script type="text/javascript">
-        YAHOO.log = cajita.log;
-        //YAHOO.log = console.log;
+        //YAHOO.log = cajita.log;
+        YAHOO.log = console.log;
 
         var t = YAHOO.tool,
             Assert = YAHOO.util.Assert,
@@ -31,7 +31,19 @@
 
                 test_should_error: function () {
                     throw new Error("BOO");
+                }/*,
+
+                test_wait: function () {
+                    var self = this;
+                    setTimeout(function () {
+                        self.resume(function () {
+                            Assert.areSame(1,1);
+                        });
+                    },10);
+
+                    this.wait();
                 }
+                */
             });
 
         suite.add(test);

@@ -95,14 +95,28 @@ var u = YAHOO.util,
          * @method wait
          */
         wait : function (segment /*:Function*/, delay /*:int*/) /*:Void*/{
-            var args = arguments;
-            if (isFunction(args[0])){
-                throw t.TestCase.Wait(args[0], args[1]).toString();
+            var seg, delay;
+
+            if (isFunction(segment)) {
+                seg   = segment;
+                delay = delay|0;
             } else {
-                throw t.TestCase.Wait(function(){
+                seg = function () {
                     u.Assert.fail("Timeout: wait() called but resume() never called.");
-                }, (isNumber(args[0]) ? args[0] : 10000)).toString();
-            }            
+                };
+                delay = isNumber(segment) ? segment : 10000;
+            }
+
+            //some environments don't support setTimeout
+            if (typeof setTimeout != "undefined"){
+                this.__yui_wait = setTimeout(function(){
+                    t.TestRunner._resumeTest(seg);
+                }, delay);
+            } else {
+                throw new Error("Asynchronous tests not supported in this environment.");
+            }
+
+            throw "WaitWait";
         },
     
         //-------------------------------------------------------------------------
@@ -587,10 +601,10 @@ t.TestRunner = (function(){
          */
         _next : function () /*:TestNode*/ {
         
-            if (this._cur.firstChild) {
+            if (this._cur && this._cur.firstChild) {
                 //YAHOO.log('_next: firstChild');
                 this._cur = this._cur.firstChild;
-            } else if (this._cur.next) {
+            } else if (this._cur && this._cur.next) {
                 //YAHOO.log('_next: next');
                 this._cur = this._cur.next;            
             } else {
@@ -721,63 +735,22 @@ t.TestRunner = (function(){
                 }
                            
             } catch (thrown /*:Error*/){
-                var e = isString(thrown) ? thrown : thrown.message || '',
-                    type = /^([A-Z][a-z]+){2}:/.exec(e);
-
-                if (type) {
-                    if (!shouldFail){
-                        error = e.replace(/^[a-z]+: /i,'');
+                if (isString(thrown)) {
+                    var type = /^([A-Z][a-z]+){2}:/.exec(thrown);
+                    switch (type) {
+                        case 'WaitWait': return;
+                        case 'ShouldFail':
+                        case 'ShouldError':
+                            error = thrown.replace(/^[a-z]+: /i,'');
+                            break;
+                        default:
+                            if (!shouldFail) {
+                                error = thrown.replace(/^[a-z]+: /i,'');
+                            }
                     }
-                } else if (thrown instanceof t.TestCase.Wait){
-                
-                    if (isFunction(thrown.segment)){
-                        if (isNumber(thrown.delay)){
-                        
-                            //some environments don't support setTimeout
-                            if (typeof setTimeout != "undefined"){
-                                testCase.__yui_wait = setTimeout(function(){
-                                    t.TestRunner._resumeTest(thrown.segment);
-                                }, thrown.delay);                             
-                            } else {
-                                throw new Error("Asynchronous tests not supported in this environment.");
-                            }
-                        }
-                    }
-                    
-                    return;
-                
-                } else {
-                    //first check to see if it should error
-                    if (!shouldError) {                        
-                        error = u.UnexpectedError(thrown);
-                    } else {
-                        //check to see what type of data we have
-                        if (isString(shouldError)){
-                            
-                            //if it's a string, check the error message
-                            if (thrown.message != shouldError){
-                                error = u.UnexpectedError(thrown);
-                            }
-                        } else if (isFunction(shouldError)){
-                        
-                            //if it's a function, see if the error is an instance of it
-                            if (!(thrown instanceof shouldError)){
-                                error = u.UnexpectedError(thrown);
-                            }
-                        
-                        } else if (isObject(shouldError)){
-                        
-                            //if it's an object, check the instance and message
-                            if (!(thrown instanceof shouldError.constructor) || 
-                                    thrown.message != shouldError.message){
-                                error = u.UnexpectedError(thrown);
-                            }
-                        
-                        }
-                    
-                    }
+                } else if (!shouldError) {
+                    error = u.UnexpectedError(thrown);
                 }
-                
             }
             
             //fireEvent appropriate event
@@ -1404,12 +1377,7 @@ u.ShouldError = function (message /*:String*/){
  * @constructor
  */  
 u.UnexpectedError = function (cause /*:Object*/){
-
-    var e = new Error(cause);
-    
-    e.message = "UnexpectedError: " + cause.message;
-
-    return e;
+    return "UnexpectedError: " + cause.message;
 };
 
 //-----------------------------------------------------------------------------
