@@ -708,8 +708,10 @@ t.TestRunner = (function(){
             var testName /*:String*/ = node.testObject;
             var testCase /*:TestCase*/ = node.parent.testObject;
             
-            clearTimeout(this.__yui_wait);
-            delete this.__yui_wait;
+            if (this.__yui_wait) {
+                clearTimeout(this.__yui_wait);
+                delete this.__yui_wait;
+            }
 
             //get the "should" test cases
             var shouldFail /*:Object*/ = (testCase._should.fail || {})[testName];
