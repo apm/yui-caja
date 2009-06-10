@@ -26,10 +26,25 @@ Quick start:
 </pre>
 </notextile>
 
+In addition to the adhoc tests provided in the tests directory, we are also
+in the process of converting the YUI test suite to run under Caja.  These
+tests are provided in the yuitests directory.
+
+A modified version of YUI Test is included in the distribution to run the tests 
+included in the yuitests directory.  This directory contains a single host file
+that uses php to make it possible to run all of the tests from the single host
+file.  This page takes a single parameter to indicate which test you wish to 
+run:
+
+http://localhost/src/yui-caja/yuitests/yuitest_host.php?test=dom
+
+If you don't have a php enabled web server available, it would be simple
+to create a static html file for the test you wish to run from the php
+file.
+
 p. Todo:
 
 * Replace the script execs with the cajole task should it exist, or create one.
 * Host file build step that generates the correct urls to the caja environment based on the caja.base property.
-* Replace existing tests with yuitest tests once yuitest is cajoled.
 * Cajole each piece of the utilities stack individually, or concatenate the utilities stack in the build so locally built components can be picked up.
 * Document capabilities and known issues for each component.
