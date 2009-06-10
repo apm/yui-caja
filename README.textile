@@ -26,21 +26,13 @@ Quick start:
 </pre>
 </notextile>
 
-In addition to the adhoc tests provided in the tests directory, we are also
-in the process of converting the YUI test suite to run under Caja.  These
-tests are provided in the yuitests directory.
+In addition to the adhoc tests provided in the tests directory, we are also in the process of converting the YUI test suite to run under Caja.  These tests are provided in the yuitests directory.
 
-A modified version of YUI Test is included in the distribution to run the tests 
-included in the yuitests directory.  This directory contains a single host file
-that uses php to make it possible to run all of the tests from the single host
-file.  This page takes a single parameter to indicate which test you wish to 
-run:
+A modified version of YUI Test is included in the distribution to run the tests included in the yuitests directory.  This directory contains a single host file that uses php to make it possible to run all of the tests from the single host file.  This page takes a single parameter to indicate which test you wish to run:
 
 http://localhost/src/yui-caja/yuitests/yuitest_host.php?test=dom
 
-If you don't have a php enabled web server available, it would be simple
-to create a static html file for the test you wish to run from the php
-file.
+If you don't have a php enabled web server available, it would be simple to create a static html file for the test you wish to run from the php file.
 
 p. Todo:
 
