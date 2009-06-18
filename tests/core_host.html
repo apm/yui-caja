@@ -57,15 +57,10 @@
       ___.getNewModuleHandler().setImports(testImports);
 
       attachDocumentStub(
-           '-gadget___',
-           {
-             rewrite:
-                 function (uri, mimeType) {
-                   if (/\.\/xhrTest.*/.test(uri)) { return uri; }
-                   if (!/^https?:\/\//i.test(uri)) { return null; }
-                   return 'http://gadget-proxy/?url=' + encodeURIComponent(uri)
-                       + '&mimeType=' + encodeURIComponent(mimeType);
-                 }
+           '-gadget___', {
+               rewrite: function (uri, mimeType) {
+                 return uri;
+               }
            },
            testImports,
            testDomContainer,
