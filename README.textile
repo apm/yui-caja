@@ -8,21 +8,19 @@ This projects contains files related to the effort to cajole YUI.
 
 This project requires the full source tree for YUI2 and Caja, both publically available.
 
-Note: as of Caja revision 3513, the YUI tests no longer work against the truck of the source tree.  The latest revision known to work is 3496.  The quick start notes reflect this.  This will be changed once the trunk works again.
-
 Quick start:
 
 <notextile>
 <pre>
 [~] ➔ mkdir src; cd src
-[~/src] ➔ svn checkout http://google-caja.googlecode.com/svn/trunk/ google-caja -r 3496
+[~/src] ➔ svn checkout http://google-caja.googlecode.com/svn/trunk/ google-caja
 [~/src] ➔ git clone git://github.com/yui/yui2.git
 [~/src] ➔ git clone git://github.com/apm/yui-caja.git
 [~/src] ➔ cd google-caja
 [~/src/google-caja] ➔ ant testbed
 [~/src/google-caja] ➔ cd ../yui-caja
 [~/src/yui-caja] ➔ ant
-[~/src/yui-caja] ➔ open tests/core_host.html (open with a web browser, this may need to be served through a local web server)
+[~/src/yui-caja] ➔ open tests/test_host.php?test=core (open with a web browser, this may need to be served through a local web server)
 </pre>
 </notextile>
 

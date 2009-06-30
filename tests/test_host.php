@@ -42,7 +42,9 @@
 
   </head>
   <body>
-    <div id="gadget___" class="gadget___"></div>
+    <div id="gadget___" class="gadget___">
+    <?php include("../cajoled/" . $test . "_gadget.vo..out.html"); ?>
+    </div>
 
     <script>(function () {
       var testImports = ___.copy(___.sharedImports);
@@ -79,13 +81,14 @@
       testImports.$v = valijaMaker.CALL___(testImports.outers); 
     })();</script>
 
-    <script src="../cajoled/utilities.vo.js"></script>
-    <script src="../cajoled/selector.vo.js"></script>
-    <script src="../cajoled/yuitest.vo.js"></script>
-    <script src="../cajoled/cookie.vo.js"></script>
-    <script src="../cajoled/profiler.vo.js"></script>
-    <script src="../cajoled/datasource.vo.js"></script>
-    <script src="../cajoled/<?php echo $test ?>_gadget.vo.js"></script>
+    <script src="../cajoled/utilities.vo..out.js"></script>
+    <script src="../cajoled/selector.vo..out.js"></script>
+    <script src="../cajoled/yuitest.vo..out.js"></script>
+    <script src="../cajoled/cookie.vo..out.js"></script>
+    <script src="../cajoled/profiler.vo..out.js"></script>
+    <script src="../cajoled/datasource.vo..out.js"></script>
+
+    <script src="../cajoled/<?php echo $test ?>_gadget.vo..out.js"></script>
 
   </body>
 </html>
