@@ -77,7 +77,8 @@
            testDomContainer,
            null);
 
-      testImports.htmlEmitter___ = new HtmlEmitter(testDomContainer);
+      testImports.htmlEmitter___ = new HtmlEmitter(testDomContainer, testImports.document);
+
       testImports.$v = valijaMaker.CALL___(testImports.outers); 
     })();</script>
 
