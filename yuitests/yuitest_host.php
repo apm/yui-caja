@@ -43,7 +43,9 @@
 
   </head>
   <body>
-    <div id="gadget___" class="gadget___"></div>
+    <div id="gadget___" class="gadget___">
+    <?php include("../cajoled/" . $test . "_test.vo..out.html"); ?>
+    </div>
 
     <script>(function () {
       var testImports = ___.copy(___.sharedImports);
@@ -111,16 +113,12 @@
       // inlineHtml("dom_test.vo.html", document.getElementById('gadget___'));
     </script>
 
-    <script src="../cajoled/utilities.vo.js"></script>
-    <script src="../cajoled/selector.vo.js"></script>
-    <script src="../cajoled/yuitest.vo.js"></script>
-    <script src="../cajoled/cookie.vo.js"></script>
-    <script src="../cajoled/profiler.vo.js"></script>
-    <script src="../cajoled/datasource.vo.js"></script>
-
-    <div id="gadget___">
-    <?php include("../cajoled/" . $test . "_test.vo..out.html"); ?>
-    </div>
+    <script src="../cajoled/utilities.vo..out.js"></script>
+    <script src="../cajoled/selector.vo..out.js"></script>
+    <script src="../cajoled/yuitest.vo..out.js"></script>
+    <script src="../cajoled/cookie.vo..out.js"></script>
+    <script src="../cajoled/profiler.vo..out.js"></script>
+    <script src="../cajoled/datasource.vo..out.js"></script>
 
     <script src="../cajoled/<?php echo $test ?>_test.vo..out.js"></script>
 
