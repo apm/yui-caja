@@ -240,7 +240,7 @@
         </exec>
      </target>
 
-     <target name="all" depends="init, yui, gadgets, yuitests, patch" />
+     <target name="all" depends="init, yui, gadgets, yuitests" />
      <target name="yui" depends="init, utilities, yuitest, json, treeview, resize, yuitest, selector, cookie, profiler, datasource" />
      <target name="patch" depends="patch-utilities" />
      <target name="gadgets" depends="init, core, dd, resize_gadget, connection_gadget, json_gadget, treeview_gadget, yuitest_gadget, error_gadget" />
