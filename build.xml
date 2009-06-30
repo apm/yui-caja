@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project name="yui-caja" default="all" basedir=".">
-     <property file="build.trunk.properties"/>
+     <property file="build.properties"/>
      <target name="init">
         <mkdir dir="${build}"/>
         <mkdir dir="${log}"/>
