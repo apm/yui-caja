@@ -1,13 +1,12 @@
 <?xml version="1.0"?>
 <project name="yui-caja" default="all" basedir=".">
-     <property file="build.properties"/>
+     <property file="build.felix.properties"/>
      <target name="init">
         <mkdir dir="${build}"/>
         <mkdir dir="${log}"/>
      </target>
      <target name="utilities" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yui2.build}/utilities/utilities.js" />
           <arg value="-o" />
@@ -16,7 +15,6 @@
      </target>
      <target name="selector" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yui2.build}/selector/selector.js" />
           <arg value="-o" />
@@ -25,7 +23,6 @@
      </target>
      <target name="cookie" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yui2.build}/cookie/cookie.js" />
           <arg value="-o" />
@@ -34,7 +31,6 @@
      </target>
      <target name="datasource" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yui2.build}/datasource/datasource.js" />
           <arg value="-o" />
@@ -44,7 +40,6 @@
 
      <target name="profiler" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yui2.build}/profiler/profiler.js" />
           <arg value="-o" />
@@ -61,7 +56,6 @@
      </target>
      <target name="json" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yui2.build}/json/json.js" />
           <arg value="-o" />
@@ -70,7 +64,6 @@
      </target>
      <target name="yuitest" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="./yuitest/yuitest.js" />
           <arg value="-o" />
@@ -79,7 +72,6 @@
      </target>
      <target name="treeview" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yui2.build}/treeview/treeview.js" />
           <arg value="-o" />
@@ -88,7 +80,6 @@
      </target>
      <target name="resize" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yui2.build}/resize/resize.js" />
           <arg value="-o" />
@@ -97,7 +88,6 @@
      </target>
      <target name="core" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${test}/core_gadget.html" />
           <arg value="-o" />
@@ -106,7 +96,6 @@
      </target>
      <target name="dd" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${test}/dd_gadget.html" />
           <arg value="-o" />
@@ -115,7 +104,6 @@
      </target>
      <target name="resize_gadget" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${test}/resize_gadget.html" />
           <arg value="-o" />
@@ -124,7 +112,6 @@
      </target>
      <target name="connection_gadget" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${test}/connection_gadget.html" />
           <arg value="-o" />
@@ -133,7 +120,6 @@
      </target>
      <target name="json_gadget" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${test}/json_gadget.html" />
           <arg value="-o" />
@@ -142,7 +128,6 @@
      </target>
      <target name="treeview_gadget" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${test}/treeview_gadget.html" />
           <arg value="-o" />
@@ -151,7 +136,6 @@
      </target>
      <target name="yuitest_gadget" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${test}/yuitest_gadget.html" />
           <arg value="-o" />
@@ -160,7 +144,6 @@
      </target>
      <target name="error_gadget" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${test}/error_gadget.html" />
           <arg value="-o" />
@@ -170,7 +153,6 @@
 
      <target name="yahoo_test" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yuitest}/yahoo.html" />
           <arg value="-o" />
@@ -179,7 +161,6 @@
      </target>
      <target name="animation_test" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yuitest}/animation.html" />
           <arg value="-o" />
@@ -188,7 +169,6 @@
      </target>
      <target name="dd_test" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yuitest}/dd.html" />
           <arg value="-o" />
@@ -197,7 +177,6 @@
      </target>
      <target name="dom_test" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yuitest}/dom.html" />
           <arg value="-o" />
@@ -206,7 +185,6 @@
      </target>
      <target name="selector_test" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yuitest}/selector.html" />
           <arg value="-o" />
@@ -215,7 +193,6 @@
      </target>
      <target name="element_test" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yuitest}/element.html" />
           <arg value="-o" />
@@ -224,7 +201,6 @@
      </target>
      <target name="yuitest_test" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yuitest}/yuitest.html" />
           <arg value="-o" />
@@ -233,7 +209,6 @@
      </target>
      <target name="connection_test" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yuitest}/connection.html" />
           <arg value="-o" />
@@ -242,7 +217,6 @@
      </target>
      <target name="cookie_test" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yuitest}/cookie.html" />
           <arg value="-o" />
@@ -251,7 +225,6 @@
      </target>
      <target name="profiler_test" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yuitest}/profiler.html" />
           <arg value="-o" />
@@ -260,7 +233,6 @@
      </target>
      <target name="datasource_test" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-a" />
           <arg value="-i" />
           <arg value="${yuitest}/datasource.html" />
           <arg value="-o" />

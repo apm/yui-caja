@@ -1,7 +1,18 @@
 <html>
 <head>
+
+<style>
+
+
+
+</style>
+
 </head>
 <body>
+
+<div id="div1">div1</div>
+<div id="div2">div2</div>
+
 <script>
 
     YAHOO.log = cajita.log;
@@ -19,13 +30,28 @@
         cajita.log("DOMReady");
     });
 
-    // @BUG {Caja} no window load event fires
+    // @BUG {Caja} no window load event fires.  still no dice
     YAHOO.util.Event.on(window, "load", function(e) {
         cajita.log("YUI window load");
     });
 
+    // is it expose in the wrong location?
+    YAHOO.util.Event.on(document, "load", function(e) {
+        cajita.log("YUI DOCUMENT load, which is the wrong place to expose the event.");
+    });
+
+    // okay, what if I try another element
+    YAHOO.util.Event.on("div1", "load", function(e) {
+        cajita.log("YUI div1 load, which is interesting.");
+    });
+
+
     window.addEventListener("load", function(e) {
         cajita.log("native window load");
+    }, false);
+
+    document.addEventListener("load", function(e) {
+        cajita.log("native DOCUMENT load which is the wrong place to expose the event.");
     }, false);
 
     // @BUG {Caja} fake document must do something with event listeners
@@ -115,8 +141,6 @@
 
 </script>
 
-<div class="div1">div1</div>
-<div class="div2">div2</div>
 
 
 </body>
