@@ -53,25 +53,25 @@
 <form id="frm" action="submitReporter.php">
     <input type="text" name="foo" value="bar">
 
-    <input type="checkbox" name="c0[]">
-    <input type="checkbox" name="c0[]">
-    <input type="checkbox" name="c0[]">
+    <input type="checkbox" name="c0" value="1">
+    <input type="checkbox" name="c0" value="2">
+    <input type="checkbox" name="c0" value="3">
 
-    <input type="checkbox" name="c1[]" checked="checked">
-    <input type="checkbox" name="c1[]">
-    <input type="checkbox" name="c1[]">
+    <input type="checkbox" name="c1" checked="checked">
+    <input type="checkbox" name="c1">
+    <input type="checkbox" name="c1">
 
-    <input type="checkbox" name="c2[]" value="C2.1" checked="checked">
-    <input type="checkbox" name="c2[]" value="C2.2">
-    <input type="checkbox" name="c2[]" value="C2.3">
+    <input type="checkbox" name="c2" value="C2.1" checked="checked">
+    <input type="checkbox" name="c2" value="C2.2">
+    <input type="checkbox" name="c2" value="C2.3">
 
-    <input type="checkbox" name="c3[]" value="C3.1" checked="checked">
-    <input type="checkbox" name="c3[]" value="C3.2" checked="checked">
-    <input type="checkbox" name="c3[]" value="C3.3" checked="checked">
+    <input type="checkbox" name="c3" value="C3.1" checked="checked">
+    <input type="checkbox" name="c3" value="C3.2" checked="checked">
+    <input type="checkbox" name="c3" value="C3.3" checked="checked">
 
-    <label for="c4.1"><input type="checkbox" id="c4.1" name="c4[]"> C4.1</label>
-    <label for="c4.2"><input type="checkbox" id="c4.2" name="c4[]" checked="checked"> C4.2</label>
-    <label for="c4.3"><input type="checkbox" id="c4.3" name="c4[]"> C4.3</label>
+    <label for="c4.1"><input type="checkbox" id="c4.1" name="c4"> C4.1</label>
+    <label for="c4.2"><input type="checkbox" id="c4.2" name="c4" checked="checked"> C4.2</label>
+    <label for="c4.3"><input type="checkbox" id="c4.3" name="c4"> C4.3</label>
 
     <input type="radio" name="r0">
     <input type="radio" name="r0">
@@ -144,79 +144,79 @@
     <label><select name="s8"></select> (s8) Single select, no options</label>
 
 
-    <label><select name="m1[]" multiple="multiple">
+    <label><select name="m1" multiple="multiple">
         <option>a</option>
         <option>b</option>
         <option>c</option>
     </select> (m1) Multiple select, no values, no selected</label>
 
-    <label><select name="m2[]" multiple="multiple">
+    <label><select name="m2" multiple="multiple">
         <option value="A">a</option>
         <option value="B">b</option>
         <option value="C">c</option>
     </select> (m2) Multiple select, all values, no selected</label>
 
-    <label><select name="m3[]" multiple="multiple">
+    <label><select name="m3" multiple="multiple">
         <option>a</option>
         <option>b</option>
         <option value="C">c</option>
     </select> (m3) Multiple select, some values, no selected</label>
 
-    <label><select name="m4[]" multiple="multiple">
+    <label><select name="m4" multiple="multiple">
         <option>a</option>
         <option selected="selected">b</option>
         <option>c</option>
     </select> (m4) Multiple select, no values, 1 selected</label>
 
-    <label><select name="m5[]" multiple="multiple">
+    <label><select name="m5" multiple="multiple">
         <option value="A">a</option>
         <option value="B" selected="selected">b</option>
         <option value="C">c</option>
     </select> (m5) Multiple select, all values, selected</label>
 
-    <label><select name="m6[]" multiple="multiple">
+    <label><select name="m6" multiple="multiple">
         <option>a</option>
         <option selected="selected">b</option>
         <option value="C">c</option>
     </select> (m6) Multiple select, some values, non-val selected</label>
 
-    <label><select name="m7[]" multiple="multiple">
+    <label><select name="m7" multiple="multiple">
         <option>a</option>
         <option>b</option>
         <option value="C" selected="selected">c</option>
     </select> (m7) Multiple select, some values, val selected</label>
 
-    <label><select name="m8[]" multiple="multiple">
+    <label><select name="m8" multiple="multiple">
         <option>a</option>
         <option selected="selected">b</option>
         <option selected="selected">c</option>
     </select> (m8) Multiple select, no values, 2 selected</label>
 
-    <label><select name="m9[]" multiple="multiple">
+    <label><select name="m9" multiple="multiple">
         <option value="A">a</option>
         <option value="B" selected="selected">b</option>
         <option value="C" selected="selected">c</option>
     </select> (m9) Multiple select, all values, 2 selected</label>
 
-    <label><select name="m10[]" multiple="multiple">
+    <label><select name="m10" multiple="multiple">
         <option selected="selected">a</option>
         <option selected="selected">b</option>
         <option value="C">c</option>
     </select> (m10) Multiple select, some values, 2 non-val selected</label>
 
-    <label><select name="m11[]" multiple="multiple">
+    <label><select name="m11" multiple="multiple">
         <option>a</option>
         <option value="B" selected="selected">b</option>
         <option value="C" selected="selected">c</option>
     </select> (m11) Multiple select, some values, 2 val selected</label>
 
-    <label><select name="m12[]" multiple="multiple">
+    <label><select name="m12" multiple="multiple">
         <option>a</option>
         <option selected="selected">b</option>
         <option value="C" selected="selected">c</option>
     </select> (m12) Multiple select, some values, 1 val, 1 non-val selected</label>
 
-    <label><select name="m13[]" multiple="multiple"></select> (m13) Multiple select, no options</label>
+    <label><select name="m13" multiple="multiple"></select> (m13) Multiple select, no options</label>
     <input type="submit" name="submit" value="Submit">
 </form>
 
@@ -336,7 +336,7 @@ FormAssert = {
         }
                     
         if (!pass) {
-            throw new YAHOO.util.AssertionError(Assert._formatMessage(message, "Form field name:values do not match.\n"+(field.name||field[0].name) + "\n" + YAHOO.lang.dump(values)));
+            throw YAHOO.util.AssertionError(Assert._formatMessage(message, "Form field name:values do not match.\n"+(field.name||field[0].name) + "\n" + YAHOO.lang.dump(values)));
         }
     }
 };
@@ -360,148 +360,148 @@ suite.add(new TestCase({
         };
 
         //TODO: create the form in testbed and destroy it in tearDown
-        frm.foo.value = "bar";
+        frm.elements.foo.value = "bar";
 
-        frm["c0[]"][0].checked =
-        frm["c0[]"][1].checked =
-        frm["c0[]"][2].checked =
+        frm.elements.c0[0].checked = false;
+        frm.elements.c0[1].checked = false;
+        frm.elements.c0[2].checked = false;
 
-        frm["c1[]"][1].checked =
-        frm["c1[]"][2].checked =
+        frm.elements.c1[1].checked = false;
+        frm.elements.c1[2].checked = false;
 
-        frm["c2[]"][1].checked =
-        frm["c2[]"][2].checked =
+        frm.elements.c2[1].checked = false;
+        frm.elements.c2[2].checked = false;
 
-        frm["c4[]"][0].checked =
-        frm["c4[]"][2].checked =
+        frm.elements.c4[0].checked = false;
+        frm.elements.c4[2].checked = false;
 
-        frm.r0[0].checked =
-        frm.r0[1].checked =
-        frm.r0[2].checked =
+        frm.elements.r0[0].checked = false;
+        frm.elements.r0[1].checked = false;
+        frm.elements.r0[2].checked = false;
 
-        frm.r1[0].checked =
-        frm.r1[2].checked =
+        frm.elements.r1[0].checked = false;
+        frm.elements.r1[2].checked = false;
 
-        frm.r2[0].checked =
-        frm.r2[2].checked =
+        frm.elements.r2[0].checked = false;
+        frm.elements.r2[2].checked = false;
 
-        frm.r3[0].checked =
-        frm.r3[2].checked =
+        frm.elements.r3[0].checked = false;
+        frm.elements.r3[2].checked = false;
 
-        frm.r4[0].checked =
-        frm.r4[2].checked = false;
+        frm.elements.r4[0].checked = false;
+        frm.elements.r4[2].checked = false;
 
-        frm["c1[]"][0].checked =
+        frm.elements["c1"][0].checked =
 
-        frm["c2[]"][0].checked =
+        frm.elements["c2"][0].checked =
 
-        frm["c3[]"][0].checked =
-        frm["c3[]"][1].checked =
-        frm["c3[]"][2].checked =
+        frm.elements["c3"][0].checked =
+        frm.elements["c3"][1].checked =
+        frm.elements["c3"][2].checked =
 
-        frm["c4[]"][1].checked =
+        frm.elements["c4"][1].checked =
 
-        frm.r1[0].checked =
+        frm.elements.r1[0].checked =
 
-        frm.r2[0].checked =
+        frm.elements.r2[0].checked =
 
-        frm.r3[0].checked =
+        frm.elements.r3[0].checked =
 
-        frm.r4[0].checked = true;
+        frm.elements.r4[0].checked = true;
 
-        frm.s0.options[0].selected =
-        frm.s0.options[1].selected =
-        frm.s0.options[2].selected =
+        frm.elements.s0.options[0].selected =
+        frm.elements.s0.options[1].selected =
+        frm.elements.s0.options[2].selected =
 
-        frm.s1.options[0].selected =
-        frm.s1.options[1].selected =
-        frm.s1.options[2].selected =
+        frm.elements.s1.options[0].selected =
+        frm.elements.s1.options[1].selected =
+        frm.elements.s1.options[2].selected =
 
-        frm.s2.options[0].selected =
-        frm.s2.options[1].selected =
-        frm.s2.options[2].selected =
+        frm.elements.s2.options[0].selected =
+        frm.elements.s2.options[1].selected =
+        frm.elements.s2.options[2].selected =
 
-        frm.s3.options[0].selected =
-        frm.s3.options[1].selected =
-        frm.s3.options[2].selected =
+        frm.elements.s3.options[0].selected =
+        frm.elements.s3.options[1].selected =
+        frm.elements.s3.options[2].selected =
 
-        frm.s4.options[0].selected =
-        frm.s4.options[2].selected =
+        frm.elements.s4.options[0].selected =
+        frm.elements.s4.options[2].selected =
 
-        frm.s5.options[0].selected =
-        frm.s5.options[2].selected =
+        frm.elements.s5.options[0].selected =
+        frm.elements.s5.options[2].selected =
 
-        frm.s6.options[0].selected =
-        frm.s6.options[2].selected =
+        frm.elements.s6.options[0].selected =
+        frm.elements.s6.options[2].selected =
 
-        frm.s7.options[0].selected =
-        frm.s7.options[1].selected =
+        frm.elements.s7.options[0].selected =
+        frm.elements.s7.options[1].selected =
 
-        frm["m1[]"].options[0].selected =
-        frm["m1[]"].options[1].selected =
-        frm["m1[]"].options[2].selected =
+        frm.elements["m1"].options[0].selected =
+        frm.elements["m1"].options[1].selected =
+        frm.elements["m1"].options[2].selected =
 
-        frm["m2[]"].options[0].selected =
-        frm["m2[]"].options[1].selected =
-        frm["m2[]"].options[2].selected =
+        frm.elements["m2"].options[0].selected =
+        frm.elements["m2"].options[1].selected =
+        frm.elements["m2"].options[2].selected =
 
-        frm["m3[]"].options[0].selected =
-        frm["m3[]"].options[1].selected =
-        frm["m3[]"].options[2].selected =
+        frm.elements["m3"].options[0].selected =
+        frm.elements["m3"].options[1].selected =
+        frm.elements["m3"].options[2].selected =
 
-        frm["m4[]"].options[0].selected =
-        frm["m4[]"].options[2].selected =
+        frm.elements["m4"].options[0].selected =
+        frm.elements["m4"].options[2].selected =
 
-        frm["m5[]"].options[0].selected =
-        frm["m5[]"].options[2].selected =
+        frm.elements["m5"].options[0].selected =
+        frm.elements["m5"].options[2].selected =
 
-        frm["m6[]"].options[0].selected =
-        frm["m6[]"].options[2].selected =
+        frm.elements["m6"].options[0].selected =
+        frm.elements["m6"].options[2].selected =
 
-        frm["m7[]"].options[0].selected =
-        frm["m7[]"].options[1].selected =
+        frm.elements["m7"].options[0].selected =
+        frm.elements["m7"].options[1].selected =
 
-        frm["m8[]"].options[0].selected =
+        frm.elements["m8"].options[0].selected =
 
-        frm["m9[]"].options[0].selected =
+        frm.elements["m9"].options[0].selected =
 
-        frm["m10[]"].options[2].selected =
+        frm.elements["m10"].options[2].selected =
 
-        frm["m11[]"].options[0].selected =
+        frm.elements["m11"].options[0].selected =
 
-        frm["m12[]"].options[0].selected = false;
+        frm.elements["m12"].options[0].selected = false;
 
 
-        frm.s4.options[1].selected =
+        frm.elements.s4.options[1].selected =
 
-        frm.s5.options[1].selected =
+        frm.elements.s5.options[1].selected =
 
-        frm.s6.options[1].selected =
+        frm.elements.s6.options[1].selected =
 
-        frm.s7.options[2].selected =
+        frm.elements.s7.options[2].selected =
 
-        frm["m4[]"].options[1].selected =
+        frm.elements["m4"].options[1].selected =
 
-        frm["m5[]"].options[1].selected =
+        frm.elements["m5"].options[1].selected =
 
-        frm["m6[]"].options[1].selected =
+        frm.elements["m6"].options[1].selected =
 
-        frm["m7[]"].options[2].selected =
+        frm.elements["m7"].options[2].selected =
 
-        frm["m8[]"].options[1].selected =
-        frm["m8[]"].options[2].selected =
+        frm.elements["m8"].options[1].selected =
+        frm.elements["m8"].options[2].selected =
 
-        frm["m9[]"].options[1].selected =
-        frm["m9[]"].options[2].selected =
+        frm.elements["m9"].options[1].selected =
+        frm.elements["m9"].options[2].selected =
 
-        frm["m10[]"].options[0].selected =
-        frm["m10[]"].options[1].selected =
+        frm.elements["m10"].options[0].selected =
+        frm.elements["m10"].options[1].selected =
 
-        frm["m11[]"].options[1].selected =
-        frm["m11[]"].options[2].selected =
+        frm.elements["m11"].options[1].selected =
+        frm.elements["m11"].options[2].selected =
 
-        frm["m12[]"].options[1].selected =
-        frm["m12[]"].options[2].selected = true;
+        frm.elements["m12"].options[1].selected =
+        frm.elements["m12"].options[2].selected = true;
     },
     tearDown : function () {
         delete this.response;
@@ -531,10 +531,10 @@ suite.add(new TestCase({
             FormAssert.fieldValueIs(frm.foo,o.GET.foo);
 
             Assert.isUndefined(o.GET.c0);
-            FormAssert.fieldValueIs(frm["c1[]"],o.GET.c1);
-            FormAssert.fieldValueIs(frm["c2[]"],o.GET.c2);
-            FormAssert.fieldValueIs(frm["c3[]"],o.GET.c3);
-            FormAssert.fieldValueIs(frm["c4[]"],o.GET.c4);
+            FormAssert.fieldValueIs(frm["c1"],o.GET.c1);
+            FormAssert.fieldValueIs(frm["c2"],o.GET.c2);
+            FormAssert.fieldValueIs(frm["c3"],o.GET.c3);
+            FormAssert.fieldValueIs(frm["c4"],o.GET.c4);
 
             Assert.isUndefined(o.GET.r0);
             //FormAssert.fieldValueIs(frm.r1,o.GET.r1); // radios all have "on"
@@ -583,24 +583,25 @@ suite.add(new TestCase({
             Assert.isUndefined(o.GET.m1);
             Assert.isUndefined(o.GET.m2);
             Assert.isUndefined(o.GET.m3);
-            FormAssert.fieldValueIs(frm['m4[]'],o.GET.m4);
-            FormAssert.fieldValueIs(frm['m5[]'],o.GET.m5);
-            FormAssert.fieldValueIs(frm['m5[]'],o.GET.m5);
-            FormAssert.fieldValueIs(frm['m6[]'],o.GET.m6);
-            FormAssert.fieldValueIs(frm['m7[]'],o.GET.m7);
-            FormAssert.fieldValueIs(frm['m8[]'],o.GET.m8);
-            FormAssert.fieldValueIs(frm['m9[]'],o.GET.m9);
-            FormAssert.fieldValueIs(frm['m10[]'],o.GET.m10);
-            FormAssert.fieldValueIs(frm['m11[]'],o.GET.m11);
-            FormAssert.fieldValueIs(frm['m12[]'],o.GET.m12);
+            FormAssert.fieldValueIs(frm['m4'],o.GET.m4);
+            FormAssert.fieldValueIs(frm['m5'],o.GET.m5);
+            FormAssert.fieldValueIs(frm['m5'],o.GET.m5);
+            FormAssert.fieldValueIs(frm['m6'],o.GET.m6);
+            FormAssert.fieldValueIs(frm['m7'],o.GET.m7);
+            FormAssert.fieldValueIs(frm['m8'],o.GET.m8);
+            FormAssert.fieldValueIs(frm['m9'],o.GET.m9);
+            FormAssert.fieldValueIs(frm['m10'],o.GET.m10);
+            FormAssert.fieldValueIs(frm['m11'],o.GET.m11);
+            FormAssert.fieldValueIs(frm['m12'],o.GET.m12);
         };
 
         this.wait(null,3000);
     }
 }));
 
-Event.onDOMReady(function () {
+//Event.onDOMReady(function () {
 
+    /*
     var logger = new TestLogger("log");
     logger.hideCategory('info');
     logger.showCategory('warn');
@@ -615,16 +616,15 @@ Event.onDOMReady(function () {
     };
 
     YAHOO.log("Tests","section","TestRunner");
+    */
 
     TestRunner.add(suite);
 
     TestRunner.run();
     
-});
+//});
 
 })();
 </script>
-<script type="text/javascript" src="/assets/dpSyntaxHighlighter.js"></script>
-<script type="text/javascript" src="/assets/dpSyntaxHighlightExample.js"></script>
 </body>
 </html>
