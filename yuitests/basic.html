@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>Test Page</title>
+</head>
+<body class="yui-skin-sam">
+<h1>Tests</h1>
+<form id="frm" action="submitReporter.php">
+    <input type="checkbox" name="c0">
+    <input type="checkbox" name="c0">
+    <input type="checkbox" name="c0">
+</form>
+
+<script type="text/javascript">
+(function () {
+
+//cajita = console;
+var frm = document.getElementById('frm'),
+    elm = frm.elements,
+    cg  = frm.c0,
+    cge = elm.c0;
+
+cajita.log("document.forms[0]: "+frm);
+if (document.forms) {
+    cajita.log("document.forms: "+ document.forms);
+    cajita.log("document.forms.length: "+ document.forms.length);
+    if (document.forms.length) {
+        cajita.log("document.forms[0]: "+document.forms[0]);
+        cajita.log("document.forms[0] === frm: "+document.forms[0] === frm);
+    } else {
+        cajita.log("document.forms.length FALSY");
+    }
+} else {
+    cajita.log("document.forms FALSY");
+}
+
+cajita.log("frm.elements: "+elm);
+cajita.log("frm.c0: "+cg);
+cajita.log("frm.elements.c0: "+cge);
+
+if (cg) {
+    cajita.log("frm.c0.length: "+cg.length);
+} else {
+    cajita.log("frm.c0 FALSY");
+}
+
+if (cge) {
+    cajita.log("frm.elements.c0.length: "+cge.length);
+} else {
+    cajita.log("frm.elements.c0 FALSY");
+}
+
+})();
+</script>
+</body>
+</html>

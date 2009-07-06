@@ -14,6 +14,13 @@
 }
 </style>
 
+</head>
+<body class="yui-skin-sam">
+    <div id="doc">
+        <div id="foo">foo</div>
+        <a id="bar">foo</a>
+    </div>
+    <!--textarea id="test-textarea"></textarea-->
 <script type="text/javascript">
 (function() {
 
@@ -69,10 +76,12 @@ YAHOO.log = cajita.log;
                 Assert.areEqual(elFoo, foo.get('element'), 'incorrect element');
             },            
 
+            /*
             test_get: function() {
                 var ta = new YAHOO.util.Element('test-textarea');//, { wrap: false });
                 ta.set('wrap', true);
             },            
+            */
 
             test_setHTMLAttr: function() {
                 var innerHTML = 'updated';
@@ -204,15 +213,5 @@ YAHOO.log = cajita.log;
     // }); 
 })();
 </script>
-<style type="text/css">
-
-</style>
-</head>
-<body class="yui-skin-sam">
-    <div id="doc">
-        <div id="foo">foo</div>
-        <a id="bar">foo</a>
-    </div>
-    <textarea id="test-textarea"></textarea>
 </body>
 </html>
