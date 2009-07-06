@@ -122,12 +122,12 @@ YAHOO.log = cajita.log;
             }
             YAHOO.util.DDM.handleMouseUp({ pageX: 120, pageY: 210 });
 
-            Assert.areEqual(startDrag, 1, "startDrag should have fired once");
-            Assert.areEqual(drag, 40, "drag should have fired 40 times");
-            Assert.areEqual(dragOver, 5, "dragOver should have fired 5 times");
-            Assert.areEqual(dragOut, 1, "dragOut should have fired once");
-            Assert.areEqual(invalidDrop, 1, "invalidDrop should have fired once");
-            Assert.areEqual(dragDrop, 0, "dragDrop should have fired once");
+            Assert.areEqual(1,startDrag, "startDrag should have fired once");
+            Assert.areEqual(40, drag, "drag should have fired 40 times");
+            Assert.areEqual(5, dragOver, "dragOver should have fired 5 times");
+            Assert.areEqual(1, dragOut, "dragOut should have fired once");
+            Assert.areEqual(1, invalidDrop, "invalidDrop should have fired once");
+            Assert.areEqual(0, dragDrop, "dragDrop should have fired once");
         },
 
         test_dragOnly: function() {
@@ -172,12 +172,12 @@ YAHOO.log = cajita.log;
             }
             YAHOO.util.DDM.handleMouseUp({ pageX: 120, pageY: 210 });
 
-            Assert.areEqual(startDrag, 1, "startDrag should have fired once");
-            Assert.areEqual(drag, 40, "drag should have fired 40 times");
-            Assert.areEqual(dragOver, 5, "dragOver should have fired 5 times");
-            Assert.areEqual(dragOut, 1, "dragOut should have fired once");
-            Assert.areEqual(invalidDrop, 1, "invalidDrop should have fired once");
-            Assert.areEqual(dragDrop, 0, "dragDrop should have fired once");
+            Assert.areEqual(1, startDrag, "startDrag should have fired once");
+            Assert.areEqual(40, drag, "drag should have fired 40 times");
+            Assert.areEqual(5, dragOver, "dragOver should have fired 5 times");
+            Assert.areEqual(1, dragOut, "dragOut should have fired once");
+            Assert.areEqual(1, invalidDrop, "invalidDrop should have fired once");
+            Assert.areEqual(0, dragDrop, 0, "dragDrop should have fired once");
         },
 
         test_containerScroll: function() {
@@ -197,12 +197,12 @@ YAHOO.log = cajita.log;
             }
             YAHOO.util.DDM.handleMouseUp({ pageX: 120, pageY: 110 });
 
-            Assert.areEqual(startDrag, 1, "startDrag should have fired once");
-            Assert.areEqual(drag, 40, "drag should have fired 40 times");
-            Assert.areEqual(dragOver, 5, "dragOver should have fired 5 times");
-            Assert.areEqual(dragOut, 1, "dragOut should have fired once");
-            Assert.areEqual(invalidDrop, 1, "invalidDrop should have fired once");
-            Assert.areEqual(dragDrop, 0, "dragDrop should have fired once");
+            Assert.areEqual(1, startDrag, "startDrag should have fired once");
+            Assert.areEqual(40, drag, "drag should have fired 40 times");
+            Assert.areEqual(5, dragOver, "dragOver should have fired 5 times");
+            Assert.areEqual(1, dragOut, "dragOut should have fired once");
+            Assert.areEqual(1, invalidDrop, "invalidDrop should have fired once");
+            Assert.areEqual(0, dragDrop, "dragDrop should have fired once");
         },
 
         test_to_fail: function (){

@@ -115,34 +115,27 @@ datasource (Passed:12 Failed:3 Total:15)
 dd (Passed:5 Failed:3 Total:8)
   - Are these failures actually passes?
   * test_dragOver: dragOver should have fired 5 times
-    Expected: 7 (number)
-    Actual:5 (number)
-  * test_dragOver: dragOver should have fired 5 times
-    Expected: 7 (number)
-    Actual:5 (number)
+    Expected: 5 (number)
+    Actual:7 (number)
+  * test_bodyScroll: dragOver should have fired 5 times
+    Expected: 5 (number)
+    Actual:7 (number)
   * test_containerScroll: dragOver should have fired 5 times
-    Expected: 7 (number)
-    Actual:5 (number)
+    Expected: 5 (number)
+    Actual:7 (number)
 
-dom (Passed:30 Failed:4 Total:34)
+dom (Passed:30 Failed:2 Total:34)
   * test_get: YAHOO.util.Element('doc')
     Expected: <DIV> (object)
     Actual: (object)
-  * test_hasClass: my.class should match element with my.class
-    Expected: true (boolean)
-    Actual:false (boolean)
-  * test_replaceClass: Y.Dom.replaceClass(el, new
-    RegExp('yiv-integer:\[1,(?:30|72|43200)\]'),
-    'yiv-integer:[1]')
-    Expected: yiv-required yiv-integer:[1] (string)
-    Actual:foo baz (string)
+    REASON: all DOM nodes have 'length' property, causing Dom.get to treat it as an array.
+
   * test_setAttribute: Y.Dom.setAttribute(el, 'for', 'foo')
     Expected: foo (string)
     Actual:undefined (undefined)
+    REASON: setAttribute in caja does not propagate to htmlFor attribute (bug #1066)
 
 element (Passed:11 Failed:2 Total:13)
-  - NPE exception on textarea in test file
-  - With textarea removed
   * test_DomEvent: UnexpectedError: Unrecognized event type MouseEvents
   * test_attribute: UnexpectedError: bad value `tahoma` for CSS property fontFamily
 
@@ -151,14 +144,17 @@ event
 
 get
   - No formal test suite
+  - no expectation it will work
 
 history
   - No formal test suite
+  - no expectation it will work
 
 imageloader
   - test won't cajole because of abs URLs?
 
 json
+  - bug to fork behavior for caja env
   - test suite needs to be migrated from yui3
 
 profiler (Passed:13 Failed:1 Total:14)
@@ -166,7 +162,7 @@ profiler (Passed:13 Failed:1 Total:14)
     not found: eval
 
 resize
-  - Not tested
+  - in Test dir
 
 selector (Passed:4 Failed:8 Total:12)
   * testTest: type=checkbox:checked

@@ -20,7 +20,7 @@
         <div id="foo">foo</div>
         <a id="bar">foo</a>
     </div>
-    <!--textarea id="test-textarea"></textarea-->
+    <textarea id="test-textarea"></textarea>
 <script type="text/javascript">
 (function() {
 
@@ -76,12 +76,10 @@ YAHOO.log = cajita.log;
                 Assert.areEqual(elFoo, foo.get('element'), 'incorrect element');
             },            
 
-            /*
             test_get: function() {
                 var ta = new YAHOO.util.Element('test-textarea');//, { wrap: false });
                 ta.set('wrap', true);
             },            
-            */
 
             test_setHTMLAttr: function() {
                 var innerHTML = 'updated';
@@ -129,14 +127,14 @@ YAHOO.log = cajita.log;
 
             test_attribute: function() {
                 foo.setAttributeConfig('fontname', {
-                    value: 'tahoma',
+                    value: 'Tahoma',
                     method: function(val) {
                         foo.setStyle('font-family', val);
                     }
                 });
 
-                foo.set('fontname', 'tahoma');
-                Assert.areEqual(Y.Dom.getStyle('foo', 'font-family'), 'tahoma', 'attribConfig');
+                foo.set('fontname', 'Tahoma');
+                Assert.areEqual(Y.Dom.getStyle('foo', 'font-family'), 'Tahoma', 'attribConfig');
                 foo.set('fontname', 'verdana');
                 foo.resetValue('fontname');
 
