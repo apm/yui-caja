@@ -8,7 +8,7 @@ connection ()
  - frm.elements.radioGroupName returns a single input (how to get others?)
  - document.forms returns undefined
 
-cookie (Passed:137 Failed:31 Total:168)
+cookie (Passed:137 Failed:31 Total:168) -- EXPECTED TO FAIL
   * testGetComplex: Retrieved cookie value is incorrect.
     Expected: Nicholas Zakas (string)
     Actual:null (object)
@@ -124,20 +124,21 @@ dd (Passed:5 Failed:3 Total:8)
     Expected: 5 (number)
     Actual:7 (number)
 
-dom (Passed:30 Failed:2 Total:34)
+dom (Passed:30 Failed:2 Total:34) -- FAILURES ARE NOT CRITICAL
   * test_get: YAHOO.util.Element('doc')
     Expected: <DIV> (object)
     Actual: (object)
-    REASON: all DOM nodes have 'length' property, causing Dom.get to treat it as an array.
+    REASON: all DOM nodes have 'length' property, causing Dom.get to treat it as an array. (bug #1067)
 
   * test_setAttribute: Y.Dom.setAttribute(el, 'for', 'foo')
     Expected: foo (string)
     Actual:undefined (undefined)
     REASON: setAttribute in caja does not propagate to htmlFor attribute (bug #1066)
 
-element (Passed:11 Failed:2 Total:13)
+element (Passed:11 Failed:2 Total:13) -- FAILURES ARE NOT CRITICAL
   * test_DomEvent: UnexpectedError: Unrecognized event type MouseEvents
   * test_attribute: UnexpectedError: bad value `tahoma` for CSS property fontFamily
+  - REASON: el.style.fontFamily only accepts 'serif', 'sans-serif', and 'monospace' (bug #1069)
 
 event
   - No formal test suite
@@ -195,13 +196,20 @@ yahoo (Passed:16 Failed:6 Total:22)
     arrays
     Expected: false (boolean)
     Actual:true (boolean)
+    EXPECTED BEHAVIOR
   * test_is_array_xframe: UnexpectedError: not found: xframe
+    EXPECTED BEHAVIOR
   * test_is_function_xframe: UnexpectedError: not found: xframe
+    EXPECTED BEHAVIOR
   * test_is_object_xframe: UnexpectedError: not found: xframe
+    EXPECTED BEHAVIOR
   * test_substitute: failed one level object dump
     Expected: {level1_1 => 1.1, level1_2 => 1.2, level1_3 =>
     {...}, level1_4 => 1.4} (string)
     Actual:[object Object] (string)
+    REASON: substitute checks that an object's toString method is
+            Object.proto.toString.  If not, it calls the "custom" toString.
+            Caja applies a !O.p toString.
 
 yuiloader
   - Not tested
