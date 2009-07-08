@@ -1,8 +1,22 @@
 <?php
+    $files = array(
+        'utilities'
+        //'selector',
+        //'yuitest',
+        //'cookie',
+        //'profiler',
+        //'datasource'
+    );
+
     $test = '';
 
+    if (isset($_GET['include'])) {
+        $files = array_unique(array_merge($files, split(',',$_GET['include'])));
+    }
+
     if (isset($_GET['test'])) {
-        $test = $_GET['test'];
+        $files[] = $test = $_GET['test']."_gadget";
+        
     }
 
     $caja_base = '../../google-caja';
@@ -43,7 +57,7 @@
   </head>
   <body>
     <div id="gadget___" class="gadget___">
-    <?php include("../cajoled/" . $test . "_gadget.vo..out.html"); ?>
+    <?php include("../cajoled/" . $test . ".vo..out.html"); ?>
     </div>
 
     <script>(function () {
@@ -82,14 +96,11 @@
       testImports.$v = valijaMaker.CALL___(testImports.outers); 
     })();</script>
 
-    <script src="../cajoled/utilities.vo..out.js"></script>
-    <script src="../cajoled/selector.vo..out.js"></script>
-    <script src="../cajoled/yuitest.vo..out.js"></script>
-    <script src="../cajoled/cookie.vo..out.js"></script>
-    <script src="../cajoled/profiler.vo..out.js"></script>
-    <script src="../cajoled/datasource.vo..out.js"></script>
-
-    <script src="../cajoled/<?php echo $test ?>_gadget.vo..out.js"></script>
+    <?php
+        foreach ($files as $file) {
+            echo('<script src="../cajoled/' . $file . '.vo..out.js"></script>');
+        }
+    ?>
 
   </body>
 </html>
