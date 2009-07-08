@@ -264,11 +264,98 @@
         </exec>
      </target>
 
-     <target name="all" depends="init, yui, gadgets, yuitests" />
+     <target name="connection_get_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/get_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/examples/get_example.vo.js" />
+        </exec>
+     </target>
+     <target name="connection_post_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/post_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/examples/post_example.vo.js" />
+        </exec>
+     </target>
+     <target name="connection_abort_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/abort_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/examples/abort_example.vo.js" />
+        </exec>
+     </target>
+     <target name="connection_weather_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/weather_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/examples/weather_example.vo.js" />
+        </exec>
+     </target>
+     <target name="connection_global_customevents_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/global_customevents_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/examples/global_customevents_example.vo.js" />
+        </exec>
+     </target>
+     <target name="connection_callback_customevents_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/callback_customevents_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/examples/callback_customevents_example.vo.js" />
+        </exec>
+     </target>
+
+     <target name="event_eventsimple_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/eventsimple_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/examples/eventsimple_example.vo.js" />
+        </exec>
+     </target>
+     <target name="event_custom-event_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/custom-event_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/examples/custom-event_example.vo.js" />
+        </exec>
+     </target>
+     <!--target name="event_event-timing_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/event-timing_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/examples/event-timing_example.vo.js" />
+        </exec>
+     </target>
+     <target name="event_event-delegation_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/event-delegation_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/examples/event-delegation_example.vo.js" />
+        </exec>
+     </target-->
+
+     <target name="all" depends="init, yui, gadgets, yuitests, examples" />
      <target name="yui" depends="init, utilities, yuitest, json, treeview, resize, yuitest, selector, cookie, profiler, datasource" />
      <target name="patch" depends="patch-utilities" />
      <target name="gadgets" depends="init, core, dd, resize_gadget, connection_gadget, json_gadget, treeview_gadget, yuitest_gadget, error_gadget" />
-     <target name="yuitests" depends="init, yahoo_test, animation_test, dd_test, dom_test, selector_test, yuitest_test,
-                                      connection_test, cookie_test, profiler_test, datasource_test" />
+     <target name="yuitests" depends="init, yahoo_test, animation_test, dd_test, dom_test, selector_test, yuitest_test, connection_test, cookie_test, profiler_test, datasource_test" />
+
+     <target name="examples" depends="init, core, connection_examples, event_examples"/>
+     <target name="connection_examples" depends="init, core, connection_get_ex, connection_post_ex, connection_abort_ex, connection_weather_ex, connection_global_customevents_ex, connection_callback_customevents_ex" />
+     <target name="event_examples" depends="init, core, event_eventsimple_ex, event_custom-event_ex"/><!--, event_event-timing_ex, event_event-delegation_ex" /-->
+
+
 </project>
 
