@@ -55,6 +55,7 @@ function successHandler(o){
 	YAHOO.log("Success handler called; handler will parse the retrieved XML and insert into DOM.", "info", "example");
 
 	var root = o.responseXML.documentElement;
+    // This is broken in Caja because o.responseXML is {}
 	var oTitle = root.getElementsByTagName('description')[0].firstChild.nodeValue;
 	var oDateTime = root.getElementsByTagName('lastBuildDate')[0].firstChild.nodeValue;
 	var descriptionNode = root.getElementsByTagName('description')[1].firstChild.nodeValue;
@@ -72,7 +73,7 @@ function failureHandler(o){
 
 function getModule(){
 	var iZip = oForm.elements['zip'].value;
-	var entryPoint = 'assets/weather.php';
+	var entryPoint = '../examples/assets/weather.php';
 	var queryString = encodeURI('?p=' + iZip);
 	var sUrl = entryPoint + queryString;
 

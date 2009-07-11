@@ -1,23 +1,67 @@
 <?php
-    $test = '';
-
-    if (isset($_GET['test'])) {
-        $test = $_GET['test'];
-    }
-
+    $suffix = 'test';
+    $base = '../cajoled';
     $caja_base = '../../google-caja';
+
+    $scripts = array();
+    $css = array();
+    $test = $bodyClass = '';
     
     if (isset($_GET['caja_base'])) {
         $caja_base = $_GET['caja_base'];
     }
 
-?>
+    add('utilities');
+    add('yuitest');
 
+    if (isset($_GET['suffix'])) {
+        $suffix = $_GET['suffix'];
+    }
+
+    if (isset($_GET['base'])) {
+        $base = $_GET['base'];
+    }
+
+    if (isset($_GET['include'])) {
+        array_map("add", split(',',$_GET['include']));
+    }
+
+    if (isset($_GET['css'])) {
+        array_map("addCSS", split(',',$_GET['css']));
+    }
+
+    if (isset($_GET['test'])) {
+        $test = $_GET['test'];
+        add($test);
+        add("{$test}_$suffix");
+    }
+
+    function add($file) {
+        global $scripts, $base;
+
+        $f = "$base/$file.vo..out.js";
+        if (file_exists($f)) {
+            $scripts[] = "<script src='$f'></script>";
+        }
+
+        addCSS($file);
+    }
+    function addCSS($file) {
+        global $css, $bodyClass;
+
+        $f = "../../yui2/build/$file/assets/skins/sam/$file.css";
+        if (file_exists($f)) {
+            $css[] = "<link rel='stylesheet' type='text/css' href='$f'>";
+            $bodyClass = ' class="yui-skin-sam"';
+        }
+    }
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
   <head>
 
     <title>YUI/Caja Host Page</title>
+    <?php echo(join("\n",array_unique($css))); ?>
 
     <script src="<?php echo $caja_base ?>/ant-lib/com/google/caja/plugin/html-sanitizer-minified.js"></script>
     <script src="<?php echo $caja_base ?>/third_party/js/json_sans_eval/json_sans_eval.js"></script>
@@ -43,9 +87,10 @@
     <script src="<?php echo $caja_base ?>/ant-www/testbed/valija.co.js"></script>
 
   </head>
-  <body>
+  <body<?php echo($bodyClass); ?>>
+
     <div id="gadget___" class="gadget___">
-    <?php include("../cajoled/" . $test . "_test.vo..out.html"); ?>
+    <?php include("$base/{$test}_$suffix.vo..out.html"); ?>
     </div>
 
     <script>(function () {
@@ -114,15 +159,7 @@
       // inlineHtml("dom_test.vo.html", document.getElementById('gadget___'));
     </script>
 
-    <script src="../cajoled/utilities.vo..out.js"></script>
-    <script src="../cajoled/selector.vo..out.js"></script>
-    <script src="../cajoled/yuitest.vo..out.js"></script>
-    <script src="../cajoled/cookie.vo..out.js"></script>
-    <script src="../cajoled/profiler.vo..out.js"></script>
-    <script src="../cajoled/datasource.vo..out.js"></script>
-
-    <script src="../cajoled/<?php echo $test ?>_test.vo..out.js"></script>
-
+    <?php echo(join("\n",array_unique($scripts))); ?>
 
   </body>
 </html>
