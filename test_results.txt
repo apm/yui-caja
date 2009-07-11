@@ -21,6 +21,7 @@ SUMMARY
     Widgets___    PENDING
     - treeview: TENTATIVE PASS (not thoroughly tested)
     - tabview:  TENTATIVE PASS (not thoroughly tested)
+    - AutoComplete: IN PROGRESS
 
     Tools___
     - profiler: PASS (no registerObject("{fn:function(){..}}") or registerFunction("foo.bar"))
@@ -33,6 +34,16 @@ DETAIL
 animation (Passed:5 Failed:0 Total:5)
  - Tests appear to be passing before completion of the animations
  - The animations work, however
+
+autocomplete (Passed:13 Failed:2 Total:15)
+ - Bug #1074 prevents normal operation.  el.appendChild(el2) return undefined
+ - workaround applied to lib code to see patched results.
+ * testSetHeader: Expected header content to be "header"
+   Expected: header (string)
+   Actual: (string)
+ * testExpandCollapseContainer: Expected container to be closed again
+   Expected: (string)
+   Actual:none (string)
 
 connection ()
  - Simple example as test passes

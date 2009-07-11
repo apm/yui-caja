@@ -9,10 +9,12 @@
 <script type="text/javascript">
 (function () {
 
-var p = document.createElement('p')
-p.style.fontFamily = "serif,sans-serif";
-cajita.log(p.style.fontFamily);
-//cajita.log("DONE");
+var div = document.createElement('div'),
+    span1 = document.createElement('span'),
+    span2 = document.createElement('span');
+
+div.appendChild(span2);
+cajita.log(div.insertBefore(span1,null));
 
 })();
 </script>
