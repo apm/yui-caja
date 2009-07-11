@@ -1,12 +1,49 @@
+SUMMARY
+    Core___  PASS
+    - yahoo: PASS (no substitute triggering dump)
+    - dom:   PASS (no Dom.get(Element instance) calls or setStyle fontFamily)
+    - event: PASS
+
+    Utils___      PENDING
+    - animation:  PASS
+    - connection: PASS (no XML responses and no setForm)
+    - cookie:     FAIL (expected)
+    - datasource:
+    - dd:         PASS (no outer drag handle. Drag element can lose conx with rapid mouse)
+    - element:    PASS (no setStyle fontFamily)
+    - get:
+    - history:
+    - imageloader:
+    - json:
+    - resize:
+    - selector:
+
+    Widgets___    PENDING
+    - treeview: TENTATIVE PASS (not thoroughly tested)
+    - tabview:  TENTATIVE PASS (not thoroughly tested)
+
+    Tools___
+    - profiler: PASS (no registerObject("{fn:function(){..}}") or registerFunction("foo.bar"))
+    - yuitest:
+    - logger:
+
+
+DETAIL
+
 animation (Passed:5 Failed:0 Total:5)
  - Tests appear to be passing before completion of the animations
  - The animations work, however
 
 connection ()
+ - Simple example as test passes
+ - 4 YDN examples work, 1 Fails because o.responseXML is {} (bug #1073)
+
  ** Unable to get test suite running **
- - Caja can't locate form elements by frm.foo.  You have to do frm.elements.foo.
- - frm.elements.radioGroupName returns a single input (how to get others?)
- - document.forms returns undefined
+ - bug #1064:
+     - Caja can't locate form elements by frm.foo.  You have to do
+       frm.elements.foo.
+     - frm.elements.radioGroupName returns a single input (how to get others?)
+     - document.forms returns undefined
 
 cookie (Passed:137 Failed:31 Total:168) -- EXPECTED TO FAIL
   * testGetComplex: Retrieved cookie value is incorrect.
@@ -113,7 +150,6 @@ datasource (Passed:12 Failed:3 Total:15)
   * testXHRHTMLTable: XHR failure case
 
 dd (Passed:5 Failed:3 Total:8)
-  - Are these failures actually passes?
   * test_dragOver: dragOver should have fired 5 times
     Expected: 5 (number)
     Actual:7 (number)
@@ -123,6 +159,8 @@ dd (Passed:5 Failed:3 Total:8)
   * test_containerScroll: dragOver should have fired 5 times
     Expected: 5 (number)
     Actual:7 (number)
+  - From non-yuitest page:
+  Inner drag handles work, but mouse activity can disconnect with element, causing the element to stay put while the mouse moves around.  Mouseup does not change this.  In fact, after disconnect, mouseover will latch on to the element again despite button state.
 
 dom (Passed:30 Failed:2 Total:34) -- FAILURES ARE NOT CRITICAL
   * test_get: YAHOO.util.Element('doc')
@@ -142,6 +180,8 @@ element (Passed:11 Failed:2 Total:13) -- FAILURES ARE NOT CRITICAL
 
 event
   - No formal test suite
+  - test gadget works for all event related items
+  - all examples work
 
 get
   - No formal test suite
@@ -192,6 +232,7 @@ yahoo (Passed:16 Failed:6 Total:22)
   * test_config: Values in position 0 are not equal.
     Expected: yahoo (string)
     Actual:undefined (undefined)
+    ???
   * test_is_array: Element collections are array-like, but not
     arrays
     Expected: false (boolean)
