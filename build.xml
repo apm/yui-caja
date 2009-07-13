@@ -151,6 +151,15 @@
         </exec>
      </target>
 
+     <target name="basic_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${test}/basic.html" />
+          <arg value="-o" />
+          <arg value="${build}/basic_test.vo.js" />
+        </exec>
+     </target>
+
      <target name="yahoo_test" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
