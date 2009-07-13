@@ -63,6 +63,19 @@
     <title>YUI/Caja Host Page</title>
     <?php echo(join("\n",array_unique($css))); ?>
 
+    <!--[if lt IE 8]>
+    <script type='text/javascript' src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>
+    <![endif]-->
+    <script>
+        if (!window.console &&
+            Object.prototype.toString.call(window.opera) === '[object Opera]') {
+            window.console = {
+                log : function () { opera.postError(arguments.join(' ')); },
+                warn : function () { opera.postError('WARN: ' + arguments.join(' ')); },
+                error : function () { opera.postError('ERROR: ' + arguments.join(' ')); }
+            }
+        }
+    </script>
     <script src="<?php echo $caja_base ?>/ant-lib/com/google/caja/plugin/html-sanitizer-minified.js"></script>
     <script src="<?php echo $caja_base ?>/third_party/js/json_sans_eval/json_sans_eval.js"></script>
     <script src="<?php echo $caja_base ?>/ant-www/testbed/cajita.js"></script>
