@@ -21,7 +21,7 @@ SUMMARY
     Widgets___    PENDING
     - treeview: TENTATIVE PASS (not thoroughly tested)
     - tabview:  TENTATIVE PASS (not thoroughly tested)
-    - AutoComplete: IN PROGRESS
+    - AutoComplete: TENTATIVE PASS (w bug workaround, not thoroughly tested)
 
     Tools___
     - profiler: PASS (no registerObject("{fn:function(){..}}") or registerFunction("foo.bar"))
@@ -35,12 +35,10 @@ animation (Passed:5 Failed:0 Total:5)
  - Tests appear to be passing before completion of the animations
  - The animations work, however
 
-autocomplete (Passed:13 Failed:2 Total:15)
- - Bug #1074 prevents normal operation.  el.appendChild(el2) return undefined
- - workaround applied to lib code to see patched results.
- * testSetHeader: Expected header content to be "header"
-   Expected: header (string)
-   Actual: (string)
+autocomplete (Passed:14 Failed:1 Total:15)
+ - Bug #1074 el.appendChild(el2) return undefined (patched in Felix head)
+ - Bug #1075 focus/blur listeners not executed (workaround found in
+   tests/examples/ac_basic_array_clean.html)
  * testExpandCollapseContainer: Expected container to be closed again
    Expected: (string)
    Actual:none (string)
