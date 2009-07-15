@@ -265,14 +265,6 @@
           <arg value="${build}/datasource_test.vo.js" />
         </exec>
      </target>
-     <target name="event_test" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yuitest}/event.html" />
-          <arg value="-o" />
-          <arg value="${build}/event_test.vo.js" />
-        </exec>
-     </target>
      <target name="imageloader_test" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
