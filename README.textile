@@ -20,17 +20,30 @@ Quick start:
 [~/src/google-caja] ➔ ant testbed
 [~/src/google-caja] ➔ cd ../yui-caja
 [~/src/yui-caja] ➔ ant
-[~/src/yui-caja] ➔ open tests/test_host.php?test=core (open with a web browser, this may need to be served through a local web server)
+[~/src/yui-caja] ➔ open tests/host.php?test=dom (open with a web browser, this may need to be served through a local web server)
 </pre>
 </notextile>
 
-In addition to the adhoc tests provided in the tests directory, we are also in the process of converting the YUI test suite to run under Caja.  These tests are provided in the yuitests directory.
+In addition to some adhoc tests, we are in the process of converting the YUI test suite and many examples from the 2.7.0 release to run under Caja.  The adhoc tests are located in the tests directory, the yuitests in the tests/yuitests directory, and the examples in tests/examples.
 
-A modified version of YUI Test is included in the distribution to run the tests included in the yuitests directory.  This directory contains a single host file that uses php to make it possible to run all of the tests from the single host file.  This page takes a single parameter to indicate which test you wish to run:
+A modified version of YUI Test is included in the distribution to run the tests included in the yuitests directory.  Test output is directed to the browser's console.  Use FireBug in Firefox, Web Inspector in Safari/WebKit, Dragonfly in Opera, and FireBug Lite in IE to see the results.  FireBug Lite is automatically loaded to the page in IE.
 
-http://localhost/src/yui-caja/yuitests/yuitest_host.php?test=dom
+The tests directory contains a single host file that uses php to make it possible to run all of the tests and examples from the single host file.  This page takes a few parameters to indicate which test or example you wish to run.  The only required parameter is 'test':
+
+By default, the hosts file looks for yuitests for the named test
+http://localhost/src/yui-caja/tests/host.php?test=dom
+
+The adhoc tests are called gadgets and require the suffix param as well
+http://localhost/src/yui-caja/tests/host.php?suffix=gadget&test=core
+
+The examples require the 'example' suffix and the inclusion of any libs not in the utilities rollup via the include param
+http://localhost/src/yui-caja/tests/host.php?suffix=example&include=data,datasource,autocomplete&test=autocomplete_basic_array
 
 If you don't have a php enabled web server available, it would be simple to create a static html file for the test you wish to run from the php file.
+
+Currently, there's no link list or convienent way to see which tests and examples are available.  The most up to date list is scrapable from the targets in the build.felix.xml file.
+
+The progress of cajoling the library is currently documented in the test_results.txt file.
 
 p. Todo:
 
@@ -38,3 +51,4 @@ p. Todo:
 * Host file build step that generates the correct urls to the caja environment based on the caja.base property.
 * Cajole each piece of the utilities stack individually, or concatenate the utilities stack in the build so locally built components can be picked up.
 * Document capabilities and known issues for each component.
+* Create a linked directory of cajoled tests and examples
