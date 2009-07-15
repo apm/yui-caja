@@ -48,7 +48,9 @@ body {
 
 <div id="container"></div>
 
+<input type="button" value="Send a GET Request" id="go">
 <script>
+(function () {
 var div = document.getElementById('container');
 
 var handleSuccess = function(o){
@@ -84,7 +86,7 @@ var callback =
   argument: { foo:"foo", bar:"bar" }
 };
 
-var sUrl = "../examples/assets/get.php?username=anonymous&userid=0";
+var sUrl = "examples/assets/get.php?username=anonymous&userid=0";
 
 function makeRequest(){
 	var request = YAHOO.util.Connect.asyncRequest('GET', sUrl, callback);
@@ -95,8 +97,10 @@ function makeRequest(){
 
 YAHOO.log("As you interact with this example, relevant steps in the process will be logged here.", "info", "example");
 
+YAHOO.util.Event.on('go','click',makeRequest);
+
+})();
 </script>
-<form><input type="button" value="Send a GET Request" onClick="makeRequest();"></form>
 
 <!--END SOURCE CODE FOR EXAMPLE =============================== -->
 

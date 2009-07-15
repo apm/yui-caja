@@ -49,9 +49,10 @@ body {
 
 <div id="container"></div>
 
+<input type="button" value="Create Two Transactions" id="go">
 
 <script>
-
+(function () {
 var div = document.getElementById('container');
 
 var handleSuccess = function(o){
@@ -84,9 +85,9 @@ var callback =
   timeout: 1500
 };
 
-var sUrl = '../examples/assets/sync.php';
+var sUrl = 'examples/assets/sync.php';
 
-function makeRequest(){
+YAHOO.util.Event.on('go','click',function () {
 	var obj1 = YAHOO.util.Connect.asyncRequest('GET', sUrl, callback);
 
 	YAHOO.log("Initiating request; tId: " + obj1.tId + ".", "info", "example");
@@ -95,12 +96,12 @@ function makeRequest(){
 
 	YAHOO.log("Initiating request; tId: " + obj2.tId + ".", "info", "example");
 
-}
+});
 
 YAHOO.log("As you interact with this example, relevant steps in the process will be logged here.", "info", "example");
 
+})();
 </script>
-<form><input type="button" value="Create Two Transactions" onClick="makeRequest();"></form>
 <!--END SOURCE CODE FOR EXAMPLE =============================== -->
 
 </body>

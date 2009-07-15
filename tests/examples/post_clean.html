@@ -48,7 +48,9 @@ body {
 
 <div id="container"></div>
 
+<input type="button" value="Send a POST Request" id="go">
 <script>
+(function () {
 var div = document.getElementById('container');
 
 var handleSuccess = function(o){
@@ -81,20 +83,21 @@ var callback =
   argument:['foo','bar']
 };
 
-var sUrl = "../examples/assets/post.php";
+var sUrl = "examples/assets/post.php";
 var postData = "username=anonymous&userid=0";
 
-function makeRequest(){
+YAHOO.util.Event.on('go','click', function () {
 
 	var request = YAHOO.util.Connect.asyncRequest('POST', sUrl, callback, postData);
 	
 	YAHOO.log("Initiating request; tId: " + request.tId + ".", "info", "example");
 
-}
+});
 
 YAHOO.log("As you interact with this example, relevant steps in the process will be logged here.", "info", "example");
+
+})();
 </script>
-<form><input type="button" value="Send a POST Request" onClick="makeRequest();"></form>
 <!--END SOURCE CODE FOR EXAMPLE =============================== -->
 
 </body>

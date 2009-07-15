@@ -45,10 +45,11 @@ body {
 <!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
 
 <form>
-<input type="button" onclick="makeRequest();" value="Send a Request">
+<input type="button" id="go" value="Send a Request">
 </form>
 <div id="container"></div>
 <script>
+(function () {
 var div = document.getElementById('container');
 
 var transactionObject = {
@@ -112,10 +113,12 @@ var callback = {
  	argument:["foo","bar"]
 };
 
-function makeRequest(){
-	var sUrl = "../examples/assets/get.php?s=hello%20world";
+YAHOO.util.Event.on('go','click',function (){
+	var sUrl = "examples/assets/get.php?s=hello%20world";
 	var request = YAHOO.util.Connect.asyncRequest('GET', sUrl, callback);
-};
+});
+
+})();
 </script>
 <!--END SOURCE CODE FOR EXAMPLE =============================== -->
 

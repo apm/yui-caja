@@ -45,9 +45,11 @@ body {
 	<p>Please enter a U.S. Zip Code or a location ID to get the current temperature.  The default is Zip Code 94089 for Sunnyvale, California; its location ID is: USCA1116.</p>
 </fieldset>
 <div id="weatherModule"></div>
-<input type="button" value="Get Weather RSS" onClick="getModule()">
+<input type="button" value="Get Weather RSS" id="go">
 </form>
+
 <script>
+(function () {
 var div = document.getElementById('weatherModule');
 var oForm = document.getElementById('wForm');
 
@@ -71,18 +73,20 @@ function failureHandler(o){
 	div.innerHTML = o.status + " " + o.statusText;
 }
 
-function getModule(){
+YAHOO.util.Event.on('go','click',function () {
 	var iZip = oForm.elements['zip'].value;
-	var entryPoint = '../examples/assets/weather.php';
+	var entryPoint = 'examples/assets/weather.php';
 	var queryString = encodeURI('?p=' + iZip);
 	var sUrl = entryPoint + queryString;
 
 	YAHOO.log("Submitting request; zip code: " + iZip, "info", "example");
 
 	var request = YAHOO.util.Connect.asyncRequest('GET', sUrl, { success:successHandler, failure:failureHandler });
-}
+});
+
 YAHOO.log("When you retrieve weather RSS data, relevant steps in the process will be reported here in the logger.", "info", "example");
 
+})();
 </script>
 
 <!--END SOURCE CODE FOR EXAMPLE =============================== -->
