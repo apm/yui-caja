@@ -2,8 +2,6 @@
 <html>
 <head>
 
-<!-- THERE'S A WORKAROUND BELOW THAT NEEDS TO GO AWAY -->
-
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>Basic Local Data</title>
 
@@ -61,7 +59,7 @@ body {
 <!-- To get the local data, add &include=data to the query string -->
 <!--script type="text/javascript" src="assets/js/data.js"></script-->
 <script type="text/javascript">
-// THIS IS THE WORKAROUND
+/*
 YAHOO.widget.AutoComplete.prototype._onTextboxKeyUp = (function (original) {
     return function (e,self) {
         original.call(this,e,self);
@@ -70,6 +68,7 @@ YAHOO.widget.AutoComplete.prototype._onTextboxKeyUp = (function (original) {
         }
     }
 })(YAHOO.widget.AutoComplete.prototype._onTextboxKeyUp);
+*/
 
 YAHOO.example.BasicLocal = function() {
     // Use a LocalDataSource
