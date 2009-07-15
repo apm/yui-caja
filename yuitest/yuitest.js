@@ -724,7 +724,7 @@ t.TestRunner = (function(){
             try {
             
                 //run the test
-                segment.apply(testCase);
+                segment.call(testCase);
                 
                 //if it should fail, and it got here, then it's a fail because it didn't
                 if (shouldFail){
