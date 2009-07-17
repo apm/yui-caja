@@ -21,6 +21,9 @@
         'AutoComplete' => array('test' => 'autocomplete',
             'include' => 'datasource'),
         'TabView' => array('test' => 'tabview'),
+        'Menu' => array('test' => 'menu',
+            'include' => 'container'),
+        'Slider' => array('test' => 'slider'),
     );
 
     $adhocs = array(

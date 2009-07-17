@@ -5,7 +5,7 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>YAHOO.widget.Menu Tests</title>
 
-        <link type="text/css" rel="stylesheet" href="../../../build/logger/assets/logger.css">
+        <!--link type="text/css" rel="stylesheet" href="../../../build/logger/assets/logger.css">
         <link type="text/css" rel="stylesheet" href="../../../build/yuitest/assets/testlogger.css">
         <link type="text/css" rel="stylesheet" href="../../../build/menu/assets/skins/sam/menu.css">
     
@@ -13,9 +13,11 @@
         <script type="text/javascript" src="../../../build/container/container_core-min.js"></script>
         <script type="text/javascript" src="../../../build/menu/menu.js"></script>
         <script type="text/javascript" src="../../../build/logger/logger-min.js"></script>
-        <script type="text/javascript" src="../../../build/yuitest/yuitest.js"></script>
+        <script type="text/javascript" src="../../../build/yuitest/yuitest.js"></script-->
     
         <script type="text/javascript">
+
+            YAHOO.log = cajita.log;
 
             YAHOO.util.Event.onDOMReady(function () {
 
@@ -27,8 +29,6 @@
                     MenuManager = YAHOO.widget.MenuManager,
                     Menu = YAHOO.widget.Menu,
                     MenuItem = YAHOO.widget.MenuItem,
-                    
-                    oLogger = new YAHOO.tool.TestLogger(),
                     
                     oMenu,
                     oMenuItem;
@@ -1737,9 +1737,9 @@
                     <li class="yuimenuitem"><a href="#">Menu Item One</a></li>
                     <li class="yuimenuitem"><a href="#test">Menu Item One</a></li>
                     <li class="yuimenuitem"><a href="test.html#test">Menu Item One</a></li>
-                    <li class="yuimenuitem"><a href="../../test.html#test">Menu Item Two</a></li>
-                    <li class="yuimenuitem"><a href="http://www.fake.com/test.html#test">Menu Item Two</a></li>
-                    <li class="yuimenuitem"><a href="http://www.yahoo.com" target="_blank">Menu Item Two</a></li>
+                    <li class="yuimenuitem"><a href="#test">Menu Item Two</a></li>
+                    <li class="yuimenuitem"><a href="test.html#test">Menu Item Two</a></li>
+                    <li class="yuimenuitem"><a href="#foo" target="_blank">Menu Item Two</a></li>
                 </ul>            
             </div>
         </div>
