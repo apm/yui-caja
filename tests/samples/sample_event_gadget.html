@@ -1,0 +1,68 @@
+<html>
+<head>
+<style>
+div#ratings{ position:relative; border: 1px solid rgb(204, 204, 204); padding: 15px; color: rgb(89, 89, 89); background-color: rgb(248, 248, 248); width:275px; }
+div#ratings div{ width:25px; height:25px; float:left; margin:10px; border:1px solid #4891e9; }
+div#ratings div.normal{ background-color:#c4d8f0; }
+div#ratings div.hover{ background-color:#ebc357; }
+div#ratings div.clicked{ background-color:#4891e9; }
+</style>
+</head>
+<body>
+<div id="ratings">
+    <div class="normal" id="star1"></div>
+    <div class="normal" id="star2"></div>
+    <div class="normal" id="star3"></div>
+    <div class="normal" id="star4"></div>
+    <div class="normal" id="star5"></div>
+    <br style="clear:both;height:1px;" />
+</div>
+
+<script>
+var ids = ['star1', 'star2', 'star3', 'star4', 'star5'];
+
+function fnOver(e){ 
+    var target = YAHOO.util.Event.getTarget(e, 1);
+    if (! YAHOO.util.Dom.hasClass(target.id, 'clicked')){ target.className = 'hover'; }
+}
+
+function fnOut(e){ 
+    var target = YAHOO.util.Event.getTarget(e, 1);
+    if (! YAHOO.util.Dom.hasClass(target.id, 'clicked')){ target.className = 'normal'; }    
+}
+
+function fnClick(e){
+    var target = YAHOO.util.Event.getTarget(e, 1);
+    var itmNum = target.id[target.id.length - 1];
+ 
+    //purge votes
+    var clickedEls = YAHOO.util.Dom.getElementsByClassName('clicked', 'div');
+/*    var divEl;
+    for (divEl in clickedEls){
+        if (clickedEls.hasOwnProperty(divEl)){
+            cajita.log(divEl.id); 
+            divEl.className = 'normal';
+        }
+    }*/
+
+    for (var i=0; i < clickedEls.length; i++){
+        clickedEls[i].className = 'normal';
+    }
+
+
+/*    for (var i = 1; i <= 5; i++){
+        document.getElementById('star' + i).className = 'normal';
+    }
+*/
+    //set new votes
+    for (i = 1; i <= itmNum; i++){
+        document.getElementById('star' + i).className = 'clicked';
+    }
+}
+
+YAHOO.util.Event.addListener(ids, "mouseover", fnOver);
+YAHOO.util.Event.addListener(ids, "mouseout", fnOut);
+YAHOO.util.Event.addListener(ids, "click", fnClick);
+</script>
+</body>
+</html>
