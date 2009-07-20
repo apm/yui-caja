@@ -1,0 +1,28 @@
+<html>
+<head>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/javascript">
+    // This test requires that it is run on a php enabled web server
+    var postData = "url=http://query.yahooapis.com/v1/public/yql&q=select%20*%20from%20weather.forecast%20where%20location%3D90210";
+    var sUrl = "sample_connection_gadget2.php";
+
+    var callback = {
+        success: function(o){
+            cajita.log('connection success: ');
+            if (o.responseText){
+                var dataResponse = JSON.parse(o.responseText);
+                document.getElementById('container').innerHTML = dataResponse.query.results.channel.item.description;
+            }
+        },
+        failure: function(o){
+            cajita.log('connection failure: ' + YAHOO.lang.dump(o));
+        }
+    };
+
+    cajita.log('make request');
+    var request = YAHOO.util.Connect.asyncRequest('POST', sUrl, callback, postData); 
+</script>
+</body>
+</html>
