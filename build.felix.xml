@@ -476,6 +476,54 @@
           <arg value="${build}/slider_test.vo.js" />
         </exec>
      </target>
+     <target name="module_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yuitest}/module.html" />
+          <arg value="-o" />
+          <arg value="${build}/module_test.vo.js" />
+        </exec>
+     </target>
+     <target name="config_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yuitest}/config.html" />
+          <arg value="-o" />
+          <arg value="${build}/config_test.vo.js" />
+        </exec>
+     </target>
+     <target name="calendar_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yuitest}/calendar.html" />
+          <arg value="-o" />
+          <arg value="${build}/calendar_test.vo.js" />
+        </exec>
+     </target>
+     <target name="datemath_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yuitest}/datemath.html" />
+          <arg value="-o" />
+          <arg value="${build}/datemath_test.vo.js" />
+        </exec>
+     </target>
+     <target name="colorpicker_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yuitest}/colorpicker.html" />
+          <arg value="-o" />
+          <arg value="${build}/colorpicker_test.vo.js" />
+        </exec>
+     </target>
+     <target name="paginator_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yuitest}/paginator.html" />
+          <arg value="-o" />
+          <arg value="${build}/paginator_test.vo.js" />
+        </exec>
+     </target>
 
      <target name="example_data" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
@@ -580,7 +628,7 @@
         depends="init, core, dd, resize_gadget, connection_gadget, json_gadget, treeview_gadget, yuitest_gadget, error_gadget" />
 
      <target name="yuitests"
-        depends="init, yahoo_test, animation_test, dd_test, dom_test, selector_test, yuitest_test, connection_test, cookie_test, profiler_test, datasource_test, tabview_test, autocomplete_test, menu_test, slider_test" />
+        depends="init, yahoo_test, animation_test, dd_test, dom_test, selector_test, yuitest_test, connection_test, cookie_test, profiler_test, datasource_test, tabview_test, autocomplete_test, menu_test, slider_test, module_test, config_test, calendar_test, datemath_test, colorpicker_test, paginator_test" />
 
      <target name="examples"
         depends="init, core, example_data, autocomplete_examples, connection_examples, event_examples"/>
