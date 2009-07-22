@@ -44,7 +44,7 @@
         'Connection Mgr POST' => array('test' => 'post'),
         'Connection Mgr abort' => array('test' => 'abort'),
         'Connection Mgr global custom events' => array('test' => 'global_customevents'),
-        'Connection Mgr callback cutsom events' => array('test' => 'callback_customevents'),
+        'Connection Mgr callback custom events' => array('test' => 'callback_customevents'),
         'Connection Mgr Weather RSS feed' => array('test' => 'weather'),
         'Event basics' => array('test' => 'eventsimple'),
         'Event Custom events' => array('test' => 'custom-event'),
@@ -71,6 +71,7 @@
 <html>
 <head>
     <title>Directory</title>
+    <link type="text/css" rel="stylesheet" href="../../yui2/build/datatable/assets/skins/sam/datatable.css">
     <style type="text/css">
         body {
             font: normal 83%/1.4 Arial, sans-serif;
@@ -94,9 +95,12 @@
             margin: 1em 0 0 20px;
             padding: 0;
         }
+        #tbl {
+            margin: 1em 0 0 20px;
+        }
     </style>
 </head>
-<body>
+<body class="yui-skin-sam">
 <form action="">
 <div>
     <label for="base">Caja base:</label>
@@ -105,6 +109,7 @@
 </div>
 </form>
 <h2>YUITest suites</h2>
+<div id="details"></div>
 <ul>
     <?php
         foreach ($yuitests as $label=>$item) {
@@ -128,5 +133,29 @@
         }
     ?>
 </ul>
+<h2>Status</h2>
+<div id="tbl"></div>
+<script type="text/javascript" src="http://yui.yahooapis.com/combo?2.7.0/build/yahoo-dom-event/yahoo-dom-event.js&2.7.0/build/element/element-min.js&2.7.0/build/datasource/datasource-min.js&2.7.0/build/datatable/datatable-min.js"></script>
+<script src="../../yui2/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script src="../../yui2/build/element/element-min.js"></script>
+<script src="../../yui2/build/datasource/datasource-min.js"></script>
+<script src="../../yui2/build/datatable/datatable-min.js"></script>
+<script src="data.js"></script>
+<script>
+new YAHOO.widget.DataTable('tbl',[
+    { key: 'module' },
+    { key: 'yuitest' },
+    { key: 'examples' }, 
+    { label: 'test results', children: [
+        { key: 'tests', label: 'pass', formatter: function (cell,row,col,data) { cell.innerHTML = data[0]; } },
+        { key: 'tests', label: 'fail', formatter: function (cell,row,col,data) { cell.innerHTML = data[1]; } },
+        { key: 'tests', label: 'error', formatter: function (cell,row,col,data) { cell.innerHTML = data[2]; } }
+    ]}],
+    new YAHOO.util.LocalDataSource(YAHOO.caja.data, {
+        responseType: YAHOO.util.DataSource.TYPE_JSARRAY,
+        responseSchema: {
+            fields: ['module','yuitest','examples','tests']
+        }}));
+</script>
 </body>
 </html>
