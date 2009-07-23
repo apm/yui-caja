@@ -524,6 +524,14 @@
           <arg value="${build}/paginator_test.vo.js" />
         </exec>
      </target>
+     <target name="json_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yuitest}/json.html" />
+          <arg value="-o" />
+          <arg value="${build}/json_test.vo.js" />
+        </exec>
+     </target>
 
      <target name="example_data" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
@@ -628,7 +636,7 @@
         depends="init, core, dd, resize_gadget, connection_gadget, json_gadget, treeview_gadget, yuitest_gadget, error_gadget" />
 
      <target name="yuitests"
-        depends="init, yahoo_test, animation_test, dd_test, dom_test, selector_test, yuitest_test, connection_test, cookie_test, profiler_test, datasource_test, tabview_test, autocomplete_test, menu_test, slider_test, module_test, config_test, calendar_test, datemath_test, colorpicker_test, paginator_test" />
+        depends="init, yahoo_test, animation_test, dd_test, dom_test, selector_test, yuitest_test, connection_test, cookie_test, profiler_test, datasource_test, tabview_test, autocomplete_test, menu_test, slider_test, module_test, config_test, calendar_test, datemath_test, colorpicker_test, paginator_test, json_test" />
 
      <target name="examples"
         depends="init, core, example_data, autocomplete_examples, connection_examples, event_examples"/>
