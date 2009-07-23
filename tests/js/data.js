@@ -38,12 +38,11 @@ YAHOO.namespace('caja').data = [
       cajoled: true, yuitest: false, examples: 0, tests : [0,0,0], files: { }
     },
     { module:'utilities',
-      cajoled: true, yuitest: true, examples: 0, tests : [0,0,0],
+      cajoled: true, yuitest: false, examples: 0, tests : [0,0,0],
       files: {
         tests: {
             "Core test (events, lang, etc)": "suffix=gadget&test=core"
-        },
-        examples: { }
+        }
       }
     },
     { module:'connection',
@@ -76,7 +75,7 @@ YAHOO.namespace('caja').data = [
       }
     },
     { module:'datasource',
-      cajoled: true, yuitest: true, examples: 1, tests : [12,3,0],
+      cajoled: true, yuitest: true, examples: 1, tests : [12,2,1],
       files: {
         yuitest: 'test=datasource'
       }
@@ -173,11 +172,20 @@ YAHOO.namespace('caja').data = [
         yuitest: 'test=paginator'
       }
     },
+    { module:'json',
+      cajoled: true, yuitest: true, examples: 3, tests : [44,0,6],
+      files: {
+        yuitest: 'test=json',
+        tests: {
+            'Simple test': 'suffix=gadget&test=json'
+        }
+      }
+    },
 
 /// STOPPED HERE
 
     { module:'button',
-      cajoled: true, yuitest: true, examples: 0, tests : [0,0,0],
+      cajoled: true, yuitest: false, examples: 0, tests : [0,0,0],
       files: {
         yuitest: 'test=',
         tests: { },
@@ -185,7 +193,7 @@ YAHOO.namespace('caja').data = [
       }
     },
     { module:'layout',
-      cajoled: true, yuitest: true, examples: 0, tests : [0,0,0],
+      cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0],
       files: {
         yuitest: 'test=',
         tests: { },
@@ -193,7 +201,7 @@ YAHOO.namespace('caja').data = [
       }
     },
     { module:'datatable',
-      cajoled: true, yuitest: true, examples: 0, tests : [0,0,0],
+      cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0],
       files: {
         yuitest: 'test=',
         tests: { },
@@ -201,7 +209,7 @@ YAHOO.namespace('caja').data = [
       }
     },
     { module:'editor',
-      cajoled: true, yuitest: true, examples: 0, tests : [0,0,0],
+      cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0],
       files: {
         yuitest: 'test=',
         tests: { },
@@ -209,15 +217,17 @@ YAHOO.namespace('caja').data = [
       }
     },
     { module:'treeview',
-      cajoled: true, yuitest: true, examples: 0, tests : [0,0,0],
+      cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0],
       files: {
         yuitest: 'test=',
-        tests: { },
+        tests: {
+            'Simple test': 'suffix=gadget&test=treeview'
+        },
         examples: { }
       }
     },
     { module:'uploader',
-      cajoled: true, yuitest: true, examples: 0, tests : [0,0,0],
+      cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0],
       files: {
         yuitest: 'test=',
         tests: { },
@@ -225,7 +235,7 @@ YAHOO.namespace('caja').data = [
       }
     },
     { module:'imagecropper',
-      cajoled: true, yuitest: true, examples: 0, tests : [0,0,0],
+      cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0],
       files: {
         yuitest: 'test=',
         tests: { },
@@ -233,7 +243,7 @@ YAHOO.namespace('caja').data = [
       }
     },
     { module:'charts',
-      cajoled: true, yuitest: true, examples: 0, tests : [0,0,0],
+      cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0],
       files: {
         yuitest: 'test=',
         tests: { },
@@ -241,15 +251,7 @@ YAHOO.namespace('caja').data = [
       }
     },
     { module:'history',
-      cajoled: true, yuitest: true, examples: 0, tests : [0,0,0],
-      files: {
-        yuitest: 'test=',
-        tests: { },
-        examples: { }
-      }
-    },
-    { module:'json',
-      cajoled: true, yuitest: true, examples: 0, tests : [0,0,0],
+      cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0],
       files: {
         yuitest: 'test=',
         tests: { },
@@ -257,7 +259,7 @@ YAHOO.namespace('caja').data = [
       }
     },
     { module:'logger',
-      cajoled: true, yuitest: true, examples: 0, tests : [0,0,0],
+      cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0],
       files: {
         yuitest: 'test=',
         tests: { },
@@ -265,11 +267,20 @@ YAHOO.namespace('caja').data = [
       }
     },
     { module:'stylesheet',
-      cajoled: true, yuitest: true, examples: 0, tests : [0,0,0],
+      cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0],
       files: {
         yuitest: 'test=',
         tests: { },
         examples: { }
+      }
+    },
+    { module:'resize',
+      cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0],
+      files: {
+        yuitest: 'test=',
+        tests: {
+            'Simple test': 'suffix=gadget&test=resize'
+        }
       }
     }
 ];
