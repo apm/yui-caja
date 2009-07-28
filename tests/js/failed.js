@@ -27,6 +27,6 @@ YAHOO.namespace('caja').failed = {
         "test_config: Values in position 0 are not equal.\n Expected: yahoo (string)\n Actual:undefined (undefined) NEEDS INVESTIGATION",
         "test_is_array: Element collections are array-like, but not arrays\n Expected: false (boolean)\n Actual:true (boolean)\n EXPECTED BEHAVIOR",
         "test_substitute: failed one level object dump Expected: {level1_1 => 1.1, level1_2 => 1.2, level1_3 => {...}, level1_4 => 1.4} (string)\n Actual:[object Object] (string)\n"+
-            "REASON: substitute checks that an object's toString method is Object.proto.toString.  If not, it calls the \"custom\" toString.  Caja applies a !O.p toString."
+            "REASON: substitute checks that an object's toString method is Object.proto.toString.  If not, it calls the \"custom\" toString.  [[#1088]Caja applies a !O.p toString]."
     ]
 };

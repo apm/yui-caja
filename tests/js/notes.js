@@ -36,6 +36,6 @@ YAHOO.namespace('caja').notes = {
         "As with all DD implementations, the response time of dragging is hindered and DD may lose hold of the mouse moves"
     ],
     yahoo: [
-        "Need to boil the {}.toString !== Object.prototype.toString issue (see failed test cases)"
+        "[[#1088]{}.toString !== Object.prototype.toString] is causing trouble with substitute when it leverages dump"
     ]
 };

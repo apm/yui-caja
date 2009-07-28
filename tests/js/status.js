@@ -1,52 +1,50 @@
 (function () {
 
 var Dom = YAHOO.util.Dom,
-    notes = YAHOO.namespace('caja').notes || {},
-    note_tmpl    = '<button type="button" class="notes">{label}</button>',
-    yuitest_tmpl = '<a href="'+YAHOO.caja.host+'{url}">run</a>',
-    example_tmpl = '<button type="button" class="examples" '+
-                        'title="List examples">{label}</button>',
-    failed_tmpl  = '<button type="button" class="failed" '+
-                        'title="Show failure info">{label}</button>',
-    error_tmpl   = '<button type="button" class="errors" '+
-                        'title="Show test error info">{label}</button>';
-
-function tmpl(template,content) {
-    return template.replace(/\{\w+\}/,content);
-}
+    Yc  = YAHOO.caja;
 
 function module_link(cell, rec, col, data) {
-    cell.innerHTML = notes[data] ? tmpl(note_tmpl, data) : data;
+    Dom.addClass(cell, rec.getData('status'));
+    cell.innerHTML = data;
 }
 
 function yuitest_link(cell, rec, col, data) {
     cell.innerHTML = data === true ?
-        tmpl(yuitest_tmpl, rec.getData('files').yuitest) :
+        '<a href="'+YAHOO.caja.host+'{url}">run</a>'.replace(/\{\w+\}/, rec.getData('files').yuitest) :
         (data === false ? 'not found' : data);
 }
 
 function examples_link(cell, rec, col, data) {
-    var examples = rec.getData('files').examples || {},
-        count = 0, k,
-        k, label;
+    var examples = (Yc.examples[rec.getData('module')] || []).length;
 
-    for (k in examples) {
-        if (examples.hasOwnProperty(k)) {
-            count++;
-        }
+    cell.innerHTML = examples + '/' + data;
+    if (examples) {
+        Dom.addClass(cell,'has-examples');
     }
-
-    label = count + '/' + data;
-
-    cell.innerHTML = count ? tmpl(example_tmpl, label) : label;
 }
 
 function failed_test_link(cell, rec, col, data) {
-    cell.innerHTML = data ? tmpl(failed_tmpl, data) : data;
+    cell.innerHTML = data;
+    if (+data) {
+        Dom.addClass(cell,'has-failed');
+    }
 }
 
 function test_errors_link(cell, rec, col, data) {
-    cell.innerHTML = data ? tmpl(error_tmpl, data) : data;
+    cell.innerHTML = data;
+    if (+data) {
+        Dom.addClass(cell, 'has-errors');
+    }
+}
+
+function notes_button(cell, rec, col, data) {
+    var module = rec.getData('module'),
+        hasNotes = Yc.notes[module] || Yc.examples[module] ||
+                   Yc.failed[module] || Yc.errors[module];
+
+    cell.innerHTML = hasNotes ?
+        '<button type="button" class="notes"><span>notes</span></button>':
+        '';
 }
 
 function format_detail_links(_,uri,label) {
@@ -56,7 +54,45 @@ function format_detail_links(_,uri,label) {
             (YAHOO.caja.host + uri)) + '">' + label + '</a>';
 }
 
-var dt = YAHOO.caja.statusTable = new YAHOO.widget.DataTable('tbl',[
+function expand(row, rec) {
+    var tr = document.createElement('tr'),
+        td = tr.appendChild(document.createElement('td')),
+        div = td.appendChild(document.createElement('div')),
+        module = rec.getData('module'),
+        sections = ['notes','errors','examples','failed'],i,s,
+        sectionCount = 0,
+        html = '';
+
+    Dom.addClass(tr, /yui-dt-(?:odd|even)/.exec(row.className)[0]);
+    td.colSpan = row.cells.length;
+    td.className = 'details';
+    
+    Dom.addClass(div, 'yui-dt-liner');
+    Dom.addClass(div, rec.getData('status'));
+
+    for (i = 0; i < 4; ++i) {
+        s = Yc[sections[i]][module];
+        if (s) {
+            sectionCount++;
+            html += '<div><h4>' + sections[i].toUpperCase() + '</h4>' +
+                    '<ul><li>' + s.join('</li><li>') + '</li></ul></div>';
+        }
+    }
+        
+    if (html) {
+        Dom.addClass(td,'col' + sectionCount);
+        div.innerHTML = html.replace(/\[\[(.*?)\](.*?)\]/gm,format_detail_links);
+
+        row.parentNode.insertBefore(tr, row.nextSibling);
+    }
+}
+
+function collapse(row) {
+    row.parentNode.removeChild(row);
+}
+
+function initTable(section) {
+var dt = YAHOO.caja[section + 'Table'] = new YAHOO.widget.DataTable(section,[
     { key: 'module', formatter: module_link },
     { key: 'yuitest', formatter: yuitest_link },
     { key: 'examples', formatter: examples_link }, 
@@ -64,11 +100,12 @@ var dt = YAHOO.caja.statusTable = new YAHOO.widget.DataTable('tbl',[
         { key: 'tests[0]', label: 'pass' },
         { key: 'tests[1]', label: 'fail', formatter: failed_test_link },
         { key: 'tests[2]', label: 'error', formatter: test_errors_link }
-    ]}],
-    new YAHOO.util.LocalDataSource(YAHOO.caja, {
+    ]},
+    { label: 'notes', formatter: notes_button }],
+    new YAHOO.util.LocalDataSource(YAHOO.caja.data, {
         responseType: YAHOO.util.DataSource.TYPE_JSON,
         responseSchema: {
-            resultsList: 'data',
+            resultsList: section,
             fields: [
                 'module',
                 { key: 'yuitest' },
@@ -76,36 +113,29 @@ var dt = YAHOO.caja.statusTable = new YAHOO.widget.DataTable('tbl',[
                 { key: 'tests[0]', parser: 'number' },
                 { key: 'tests[1]', parser: 'number' },
                 { key: 'tests[2]', parser: 'number' },
-                'files']
+                'files','status']
         }}));
+
+dt.sortColumn('module', YAHOO.widget.DataTable.CLASS_ASC);
 
 dt.subscribe('buttonClickEvent', function (e) {
     var rec = this.getRecord(e.target),
-        type = e.target.className,
-        content, html, k;
+        row = this.getTrEl(rec),
+        type = e.target.className;
         
-    if (type === 'examples') {
-        content = rec.getData('files').examples;
-        html = [];
-        for (k in content) {
-            if (content.hasOwnProperty(k)) {
-                html.push("[["+content[k]+"]"+k+"]");
-            }
-        }
-        content = html;
+    if (Dom.hasClass(row, 'show-details')) {
+        collapse(row.nextSibling);
+        Dom.removeClass(row, 'show-details');
     } else {
-        YAHOO.caja[e.target.className][rec.getData('module')];
+        expand(row, rec);
+        Dom.addClass(row, 'show-details');
     }
-        
-    if (content) {
-        html = "<ul><li><pre>" +
-                content.join("</pre></li><li><pre>") +
-               "</pre></li></ul>";
 
-        html = html.replace(/\[\[(.*?)\](.*?)\]/gm, format_detail_links);
-
-        document.getElementById('details').innerHTML = html;
-    }
 });
+}
+
+initTable('core');
+initTable('utils');
+initTable('widgets');
 
 })();
