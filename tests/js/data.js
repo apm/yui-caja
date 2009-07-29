@@ -1,7 +1,7 @@
 YAHOO.namespace('caja').data = {
     core: [
     { module:'yahoo',
-      cajoled: true, yuitest: true, examples: 6, tests : [16,6,0],
+      cajoled: true, yuitest: true, examples: 6, tests : [16,3,3],
       files: {
         yuitest: 'test=yahoo',
         tests: {
@@ -85,14 +85,14 @@ YAHOO.namespace('caja').data = {
       status: 'conditional'
     },
     { module:'element',
-      cajoled: true, yuitest: true, examples: 0, tests : [11,2,0],
+      cajoled: true, yuitest: true, examples: 0, tests : [11,0,2],
       files: {
         yuitest: 'test=element'
       },
       status: 'working'
     },
     { module:'selector',
-      cajoled: true, yuitest: true, examples: 2, tests : [4,8,0],
+      cajoled: true, yuitest: true, examples: 2, tests : [4,6,2],
       files: {
         yuitest: 'test=selector',
       },

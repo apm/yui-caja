@@ -18,9 +18,9 @@ body {
 }
 </style>
 
-<link rel="stylesheet" type="text/css" href="../../yui2/build/fonts/fonts-min.css" />
+<!--link rel="stylesheet" type="text/css" href="../../yui2/build/fonts/fonts-min.css" />
 <link rel="stylesheet" type="text/css" href="../../yui2/build/button/assets/skins/sam/button.css" />
-<link rel="stylesheet" type="text/css" href="../../yui2/build/container/assets/skins/sam/container.css" />
+<link rel="stylesheet" type="text/css" href="../../yui2/build/container/assets/skins/sam/container.css" /-->
 <!--script type="text/javascript" src="../../build/yahoo-dom-event/yahoo-dom-event.js"></script-->
 <!--script type="text/javascript" src="../../build/connection/connection-min.js"></script-->
 <!--script type="text/javascript" src="../../build/element/element-min.js"></script-->
@@ -69,7 +69,7 @@ function init() {
 		document.getElementById("resp").innerHTML = response;
 	};
 	var handleFailure = function(o) {
-		alert("Submission failed: " + o.status);
+		cajita.log("Submission failed: " + o.status);
 	};
 
 	// Instantiate the Dialog
@@ -86,7 +86,7 @@ function init() {
 	YAHOO.example.container.dialog1.validate = function() {
 		var data = this.getData();
 		if (data.firstname == "" || data.lastname == "") {
-			alert("Please enter your first and last names.");
+			cajita.log("Please enter your first and last names.");
 			return false;
 		} else {
 			return true;
@@ -115,13 +115,13 @@ YAHOO.util.Event.onDOMReady(init);
 <div id="dialog1">
 <div class="hd">Please enter your information</div>
 <div class="bd">
-<form method="POST" action="assets/post.php">
+<form method="POST" action="assets/dialog_post.php">
 	<label for="firstname">First Name:</label><input type="textbox" name="firstname" />
 	<label for="lastname">Last Name:</label><input type="textbox" name="lastname" />
 	<label for="email">E-mail:</label><input type="textbox" name="email" /> 
 
-	<label for="state[]">State:</label>
-	<select multiple name="state[]">
+	<label for="state">State:</label>
+	<select name="state">
 		<option value="California">California</option>
 		<option value="New Jersey">New Jersey</option>
 		<option value="New York">New York</option>
@@ -130,8 +130,8 @@ YAHOO.util.Event.onDOMReady(init);
 	<div class="clear"></div>
 
 	<label for="radiobuttons">Radio buttons:</label>
-	<input type="radio" name="radiobuttons[]" value="1" checked/> 1
-	<input type="radio" name="radiobuttons[]" value="2" /> 2
+	<input type="radio" name="radiobuttons" value="1" checked/> 1
+	<input type="radio" name="radiobuttons" value="2" /> 2
 	
 	<div class="clear"></div>
 
@@ -144,8 +144,8 @@ YAHOO.util.Event.onDOMReady(init);
 	<div class="clear"></div>
 
 	<label for="cbarray">Multi checkbox:</label>
-	<input type="checkbox" name="cbarray[]" value="1" /> 1
-	<input type="checkbox" name="cbarray[]" value="2" /> 2
+	<input type="checkbox" name="cbarray" value="1" /> 1
+	<input type="checkbox" name="cbarray" value="2" /> 2
 </form>
 </div>
 </div>
@@ -156,4 +156,3 @@ YAHOO.util.Event.onDOMReady(init);
 
 </body>
 </html>
-<!-- presentbright.corp.yahoo.com uncompressed/chunked Thu Feb 19 10:53:11 PST 2009 -->

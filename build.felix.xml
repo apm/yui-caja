@@ -532,6 +532,14 @@
           <arg value="${build}/json_test.vo.js" />
         </exec>
      </target>
+     <target name="sample_tabview_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${test}/sample_tabview_gadget.html" />
+          <arg value="-o" />
+          <arg value="${build}/sample_tabview_test.vo.js" />
+        </exec>
+     </target>
 
      <target name="example_data" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
@@ -623,6 +631,55 @@
         </exec>
      </target>
 
+     <target name="module_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/module_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/module_example.vo.js" />
+        </exec>
+     </target>
+     <target name="overlay_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/overlay_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/overlay_example.vo.js" />
+        </exec>
+     </target>
+     <target name="tooltip_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/tooltip_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/tooltip_example.vo.js" />
+        </exec>
+     </target>
+     <target name="panel_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/panel_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/panel_example.vo.js" />
+        </exec>
+     </target>
+     <target name="dialog_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/dialog-quickstart_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/dialog_example.vo.js" />
+        </exec>
+     </target>
+     <target name="simpledialog_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/simpledialog-quickstart_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/simpledialog_example.vo.js" />
+        </exec>
+     </target>
+
      <target name="all"
         depends="init, yui, gadgets, yuitests, examples" />
 
@@ -639,7 +696,7 @@
         depends="init, yahoo_test, animation_test, dd_test, dom_test, selector_test, yuitest_test, connection_test, cookie_test, profiler_test, datasource_test, tabview_test, autocomplete_test, menu_test, slider_test, module_test, config_test, calendar_test, datemath_test, colorpicker_test, paginator_test, json_test" />
 
      <target name="examples"
-        depends="init, core, example_data, autocomplete_examples, connection_examples, event_examples"/>
+        depends="init, core, example_data, autocomplete_examples, connection_examples, event_examples, container_examples"/>
 
      <target name="autocomplete_examples"
         depends="init, core, autocomplete_basic_array_ex" />
@@ -649,6 +706,9 @@
 
      <target name="event_examples"
         depends="init, core, event_eventsimple_ex, event_custom-event_ex, event_event-delegation_ex"/>
+
+     <target name="container_examples"
+        depends="init, core, module_ex, overlay_ex, tooltip_ex, panel_ex, dialog_ex, simpledialog_ex"/>
 
 </project>
 

@@ -3,18 +3,18 @@
 var Dom = YAHOO.util.Dom,
     Yc  = YAHOO.caja;
 
-function module_link(cell, rec, col, data) {
+function module(cell, rec, col, data) {
     Dom.addClass(cell, rec.getData('status'));
     cell.innerHTML = data;
 }
 
-function yuitest_link(cell, rec, col, data) {
+function yuitests(cell, rec, col, data) {
     cell.innerHTML = data === true ?
         '<a href="'+YAHOO.caja.host+'{url}">run</a>'.replace(/\{\w+\}/, rec.getData('files').yuitest) :
         (data === false ? 'not found' : data);
 }
 
-function examples_link(cell, rec, col, data) {
+function examples(cell, rec, col, data) {
     var examples = (Yc.examples[rec.getData('module')] || []).length;
 
     cell.innerHTML = examples + '/' + data;
@@ -23,14 +23,14 @@ function examples_link(cell, rec, col, data) {
     }
 }
 
-function failed_test_link(cell, rec, col, data) {
+function failed_tests(cell, rec, col, data) {
     cell.innerHTML = data;
     if (+data) {
         Dom.addClass(cell,'has-failed');
     }
 }
 
-function test_errors_link(cell, rec, col, data) {
+function test_errors(cell, rec, col, data) {
     cell.innerHTML = data;
     if (+data) {
         Dom.addClass(cell, 'has-errors');
@@ -59,7 +59,7 @@ function expand(row, rec) {
         td = tr.appendChild(document.createElement('td')),
         div = td.appendChild(document.createElement('div')),
         module = rec.getData('module'),
-        sections = ['notes','errors','examples','failed'],i,s,
+        sections = ['examples','failed','errors','notes'],i,s,
         sectionCount = 0,
         html = '';
 
@@ -93,13 +93,13 @@ function collapse(row) {
 
 function initTable(section) {
 var dt = YAHOO.caja[section + 'Table'] = new YAHOO.widget.DataTable(section,[
-    { key: 'module', formatter: module_link },
-    { key: 'yuitest', formatter: yuitest_link },
-    { key: 'examples', formatter: examples_link }, 
+    { key: 'module', formatter: module },
+    { key: 'yuitest', formatter: yuitests },
+    { key: 'examples', formatter: examples }, 
     { label: 'test results', children: [
         { key: 'tests[0]', label: 'pass' },
-        { key: 'tests[1]', label: 'fail', formatter: failed_test_link },
-        { key: 'tests[2]', label: 'error', formatter: test_errors_link }
+        { key: 'tests[1]', label: 'fail', formatter: failed_tests },
+        { key: 'tests[2]', label: 'error', formatter: test_errors }
     ]},
     { label: 'notes', formatter: notes_button }],
     new YAHOO.util.LocalDataSource(YAHOO.caja.data, {

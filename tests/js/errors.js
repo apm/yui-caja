@@ -1,6 +1,6 @@
 YAHOO.namespace('caja').errors = {
     connection: [
-        'YUI Test suite is focused on setForm, which is failing because of missing form API (see notes)'
+        'YUI Test suite is focused on setForm, which is failing because of missing form API'
     ],
     cookie: ['All failures are because cookies are not supported in Caja'],
     datasource: [
@@ -8,7 +8,7 @@ YAHOO.namespace('caja').errors = {
     ],
     element: [
         "test_DomEvent: UnexpectedError: Unrecognized event type MouseEvents",
-        "test_attribute: UnexpectedError: bad value `tahoma` for CSS property fontFamily (see notes)"
+        "test_attribute: UnexpectedError: bad value `tahoma` for CSS property fontFamily (see dom notes)"
     ],
     json: ["All errors are because eval is not provided, so parse fails"],
     profiler: ["All errors are because eval is not provided, so parse fails"],
@@ -17,7 +17,6 @@ YAHOO.namespace('caja').errors = {
         "testOffDom: UnexpectedError: obj is null"
     ],
     yahoo: [
-        "iframe related failures are expected",
         "test_is_array_xframe: UnexpectedError: not found: xframe",
         "test_is_function_xframe: UnexpectedError: not found: xframe",
         "test_is_object_xframe: UnexpectedError: not found: xframe"
