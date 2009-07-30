@@ -4,6 +4,9 @@ YAHOO.namespace('caja').notes = {
         'Bug #1074 el.appendChild(el2) return undefined (fixed)',
         'Bug #1075 focus/blur listeners not executed (fixed?) (workaround found n tests/examples/ac_basic_array_clean.html)'
     ],
+    calendar: [
+        'YUI Test suite stopped several times at the debugger statement in domita (or was that in cajita?)'
+    ],
     connection: [
         '[[suffix=gadget&test=connection]Simple example] as test works',
         'Weather feed example fails because [[#1073]o.responseXML is {}]',

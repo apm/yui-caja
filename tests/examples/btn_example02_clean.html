@@ -18,8 +18,8 @@ body {
 }
 </style>
 
-<link rel="stylesheet" type="text/css" href="../../yui2/build/fonts/fonts-min.css" />
-<link rel="stylesheet" type="text/css" href="../../yui2/build/button/assets/skins/sam/button.css" />
+<!--link rel="stylesheet" type="text/css" href="../../yui2/build/fonts/fonts-min.css" />
+<link rel="stylesheet" type="text/css" href="../../yui2/buiassets/button/skins/sam/button.css" /-->
 <!--script type="text/javascript" src="../../build/yahoo-dom-event/yahoo-dom-event.js"></script-->
 <!--script type="text/javascript" src="../../build/element/element-min.js"></script-->
 <!--script type="text/javascript" src="../../build/button/button-min.js"></script-->
@@ -47,7 +47,7 @@ body {
     #linkbutton2 a,
     #linkbutton5 a {
     
-        background: url(../button/assets/yahoo.gif) center center no-repeat;
+        background: url(assets/button/yahoo.gif) center center no-repeat;
         text-indent: -5em;
         overflow: hidden;
         padding: 0 1em;
@@ -60,7 +60,7 @@ body {
     #linkbutton6 a {
 
         padding-left: 2.25em;
-        background: url(../button/assets/yahoo.gif) 10% 50% no-repeat;
+        background: url(assets/button/yahoo.gif) 10% 50% no-repeat;
     
     }
 
@@ -99,9 +99,9 @@ body {
 
         // Create Buttons without using existing markup
 
-        var oLinkButton4 = new YAHOO.widget.Button({ type: "link", id: "linkbutton4", label: "Yahoo!", href: "http://www.yahoo.com", container: "linkbuttonsfromjavascript" });
-        var oLinkButton5 = new YAHOO.widget.Button({ type: "link", id: "linkbutton5", label: "Yahoo!", href: "http://www.yahoo.com", container: "linkbuttonsfromjavascript" });
-        var oLinkButton6 = new YAHOO.widget.Button({ type: "link", id: "linkbutton6", label: "Yahoo!", href: "http://www.yahoo.com", container: "linkbuttonsfromjavascript" });
+        var oLinkButton4 = new YAHOO.widget.Button({ type: "link", id: "linkbutton4", label: "Yahoo!", href: "#com", container: "linkbuttonsfromjavascript" });
+        var oLinkButton5 = new YAHOO.widget.Button({ type: "link", id: "linkbutton5", label: "Yahoo!", href: "#com", container: "linkbuttonsfromjavascript" });
+        var oLinkButton6 = new YAHOO.widget.Button({ type: "link", id: "linkbutton6", label: "Yahoo!", href: "#com", container: "linkbuttonsfromjavascript" });
 
     } ();
 
@@ -112,9 +112,9 @@ body {
     <div id="linkbuttonsfrommarkup">
         <h2>From Markup</h2>
 
-        <a id="linkbutton1" href="http://www.yahoo.com">Yahoo!</a>
-        <span id="linkbutton2" class="yui-button yui-link-button"><span class="first-child"><a href="http://www.yahoo.com">Yahoo!</a></span></span>
-        <span id="linkbutton3" class="yui-button yui-link-button"><em class="first-child"><a href="http://www.yahoo.com">Yahoo!</a></em></span>
+        <a id="linkbutton1" href="#com">Yahoo!</a>
+        <span id="linkbutton2" class="yui-button yui-link-button"><span class="first-child"><a href="#com">Yahoo!</a></span></span>
+        <span id="linkbutton3" class="yui-button yui-link-button"><em class="first-child"><a href="#com">Yahoo!</a></em></span>
 
     </div>
     
@@ -127,4 +127,3 @@ body {
 
 </body>
 </html>
-<!-- presentbright.corp.yahoo.com uncompressed/chunked Thu Feb 19 10:53:06 PST 2009 -->

@@ -9,9 +9,12 @@ function module(cell, rec, col, data) {
 }
 
 function yuitests(cell, rec, col, data) {
-    cell.innerHTML = data === true ?
-        '<a href="'+YAHOO.caja.host+'{url}">run</a>'.replace(/\{\w+\}/, rec.getData('files').yuitest) :
-        (data === false ? 'not found' : data);
+    var html = YAHOO.lang.isArray(data) ? data.join(" ") :
+            data === false ? "Not found" :
+            /test=/.test(data) ? "[["+data+"]run]" :
+            data;
+
+    cell.innerHTML = html.replace(/\[\[(.*?)\](.*?)\]/gm,format_detail_links);
 }
 
 function examples(cell, rec, col, data) {
@@ -95,7 +98,7 @@ function initTable(section) {
 var dt = YAHOO.caja[section + 'Table'] = new YAHOO.widget.DataTable(section,[
     { key: 'module', formatter: module },
     { key: 'yuitest', formatter: yuitests },
-    { key: 'examples', formatter: examples }, 
+    { key: 'examples', label: 'examples &amp; tests', formatter: examples }, 
     { label: 'test results', children: [
         { key: 'tests[0]', label: 'pass' },
         { key: 'tests[1]', label: 'fail', formatter: failed_tests },
@@ -113,7 +116,7 @@ var dt = YAHOO.caja[section + 'Table'] = new YAHOO.widget.DataTable(section,[
                 { key: 'tests[0]', parser: 'number' },
                 { key: 'tests[1]', parser: 'number' },
                 { key: 'tests[2]', parser: 'number' },
-                'files','status']
+                'status']
         }}));
 
 dt.sortColumn('module', YAHOO.widget.DataTable.CLASS_ASC);
