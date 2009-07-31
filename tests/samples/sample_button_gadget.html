@@ -1,0 +1,102 @@
+<html>
+<head>
+</head>
+<body>
+
+<form id="buttonEx" name="buttonEx" method="post">
+    <fieldset>
+        <legend>Info</legend>
+
+        <label for="firstname">First Name: </label><input type="text" id="firstname" name="firstname" value="">
+        <label for="lastname">Last Name: </label><input type="text" id="lastname" name="lastname" value=""><br /><br />
+
+        <div>
+            <label for="male">Gender: </label>
+            <div id="genderRadio"></div>
+        </div><br /><br />
+
+        <div>
+            <label>Visit My Site: </label>
+            <div id="visitSite"></div>
+        </div><br /><br />
+
+        <div>
+            <label>Favorite Film Genres: </label>
+            <div id="favGenres"></div>
+        </div><br /><br />
+        
+        <div>
+            <label for="month">Birthday: </label>
+            <input type="submit" id="month" name="month_button" value="Menu 1">
+            <select id="monthSelect" name="monthSelect">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+
+            <select name="day"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
+
+            <input type="text" name="year" value="">
+        </div><br /><br />
+
+        <span id="btnSubmit"></span>
+        <span id="btnReset"></span>
+
+    </fieldset>
+</form>
+
+<script type="text/javascript">
+var Button = YAHOO.widget.Button;
+
+//submit button
+var buttonSubmit = new Button({ type: "submit", label: "Submit Form", id: "submitbutton", name: "submitbutton", value:  "submitbuttonvalue", container: "btnSubmit" });
+function onExampleSubmit(e) {
+    cajita.log('submit button clicked');
+}
+YAHOO.util.Event.on("buttonEx", "submit", onExampleSubmit);
+
+//reset button
+var buttonSubmit = new Button({ type: "reset", label: "Reset Form", id: "resetbutton", name: "resetbutton", value:  "resetbuttonvalue", container: "btnReset" });
+function onExampleReset(e) {
+    cajita.log('reset button clicked');
+}
+YAHOO.util.Event.on("buttonEx", "reset", onExampleReset);
+
+
+//birthday pulldown
+YAHOO.util.Event.onContentReady("monthSelect", function (){
+    var btnBirthdayMonth = new Button('month', { type: "menu", menu: "monthSelect" });
+});
+
+//gender radio buttons
+var genderRadios = new YAHOO.widget.ButtonGroup({ 
+                                id:  "genderRadioGroup", 
+                                name:  "genderRadioField", 
+                                container:  "genderRadio" });
+
+genderRadios.addButtons([
+    { label: "Male", value: "male", checked: true },
+    { label: "Female", value: "female" }
+]);
+
+//visit site link button
+var btnVisitSite = new Button({ type: "link", id: "btnVisitSite", label: "Yahoo!", href: "http://www.yahoo.com", container: "visitSite" });
+
+//number of siblings button
+var btnCheck0 = new Button({ type: "checkbox", label: "Action", id: "checkbutton0", name: "checkboxfield0", value: "0", container: "favGenres", checked: true });
+var btnCheck1 = new Button({ type: "checkbox", label: "Romance", id: "checkbutton1", name: "checkboxfield1", value: "1", container: "favGenres" });
+var btnCheck2 = new Button({ type: "checkbox", label: "Horror", id: "checkbutton2", name: "checkboxfield2", value: "2", container: "favGenres" });
+var btnCheck3 = new Button({ type: "checkbox", label: "Comedy", id: "checkbutton3", name: "checkboxfield3", value: "3", container: "favGenres" });
+var btnCheck4 = new Button({ type: "checkbox", label: "Drama", id: "checkbutton4", name: "checkboxfield4", value: "More", container: "favGenres" });
+</script>
+</body>
+</html>

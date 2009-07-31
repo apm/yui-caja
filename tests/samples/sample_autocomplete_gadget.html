@@ -1,0 +1,23 @@
+<html>
+<head>
+</head>
+<body>
+<div id="myAutoComplete">
+    <input id="myInput" type="text">
+    <div id="myContainer"></div>
+</div>
+
+<script type="text/javascript">
+var arrayStates = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida"];
+
+var oDS = new YAHOO.util.LocalDataSource(arrayStates);
+oDS.responseType = YAHOO.util.DataSource.TYPE_JSARRAY;
+oDS.responseSchema = {fields : ["state"]};
+
+// Instantiate the AutoComplete
+var oAC = new YAHOO.widget.AutoComplete("myInput", "myContainer", oDS);
+oAC.prehighlightClassName = "yui-ac-prehighlight";
+oAC.useShadow = true;
+</script>
+</body>
+</html>

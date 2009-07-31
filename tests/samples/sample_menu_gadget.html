@@ -1,0 +1,95 @@
+<html>
+<head>
+</head>
+<body>
+<div class="yui-b" style="width:350px">
+    <div id="menuContainer" class="yuimenu">
+        <div class="bd">
+            <ul class="first-of-type">
+                <li class="yuimenuitem">
+                    <a class="yuimenuitemlabel" href="#profile">Profile</a>
+                </li>
+                <li class="yuimenuitem">
+                    <a class="yuimenuitemlabel" href="#">Websites</a>
+                </li>
+                <li class="yuimenuitem">
+                    <a class="yuimenuitemlabel" href="#about">Projects</a>
+                </li>
+                <li class="yuimenuitem">
+                    <a class="yuimenuitemlabel" href="#">More Information</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+YAHOO.util.Event.onContentReady("menuContainer", function () {
+     var oMenu = new YAHOO.widget.Menu("menuContainer", { 
+                                        position: "static", 
+                                        hidedelay: 750, 
+                                        lazyload: true });
+     var aSubmenuData = [
+     {
+         id: "profile", 
+         itemdata: [ 
+             { text: "My Data", url: "http://360.yahoo.com" },
+             { text: "Resume", url: "http://alerts.yahoo.com" },
+             { text: "Avatars", url: "http://avatars.yahoo.com" },
+             { text: "Picture Sets",
+               submenu: { 
+                   id: "picSets", 
+                   itemdata: [
+                       { text: "Load Flickr", url: "http://mail.yahoo.com" },
+                       { text: "Load Facebook", url: "http://addressbook.yahoo.com" }
+                   ] 
+               }
+             }, 
+             { text: "Education", url: "http://members.yahoo.com" }
+         ]
+     },
+     {
+         id: "websites", 
+         itemdata: [
+             { text: "My Blog", url: "http://auctions.shopping.yahoo.com" },
+             { text: "Personal Site", url: "http://autos.yahoo.com" },
+             { text: "Company Site", url: "http://classifieds.yahoo.com" }
+         ]    
+     },
+     {
+         id: "projects", 
+         itemdata: [
+             { text: "YAP", url: "http://auctions.shopping.yahoo.com" },
+             { text: "YQL", url: "http://autos.yahoo.com" },
+             { text: "TV Widgets", url: "http://classifieds.yahoo.com" },
+             { text: "Partner Integration", url: "http://shopping.yahoo.com/b:Flowers%20%26%20Gifts:20146735" }
+             { text: "Evangelism", url: "http://shopping.yahoo.com/b:Flowers%20%26%20Gifts:20146735" }
+         ]    
+     },
+     {
+         id: "information",
+         itemdata: [
+             { text: "Github Account", url: "http://downloads.yahoo.com" },
+             { text: "Twitter Account", url: "http://finance.yahoo.com" },
+             { text: "Facebook Account", url: "http://health.yahoo.com" },
+             { text: "MySpace Account", url: "http://smallbusiness.yahoo.com" },
+             { text: "LinkedIn Account", url: "http://weather.yahoo.com" }
+         ]
+     }];                    
+
+    oMenu.subscribe("beforeRender", function () {
+        var nSubmenus = aSubmenuData.length, i;
+
+        if (this.getRoot() == this) {
+            for (i = 0; i < nSubmenus; i++) {
+              	this.getItem(i).cfg.setProperty("submenu", aSubmenuData[i]);
+            }
+        } 
+    });
+
+    oMenu.render();
+});
+
+</script> 
+</body>
+</html>
