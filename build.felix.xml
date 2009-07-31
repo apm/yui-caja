@@ -460,6 +460,86 @@
           <arg value="${build}/autocomplete_test.vo.js" />
         </exec>
      </target>
+     <target name="menu_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yuitest}/menu.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_test.vo.js" />
+        </exec>
+     </target>
+     <target name="slider_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yuitest}/slider.html" />
+          <arg value="-o" />
+          <arg value="${build}/slider_test.vo.js" />
+        </exec>
+     </target>
+     <target name="module_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yuitest}/module.html" />
+          <arg value="-o" />
+          <arg value="${build}/module_test.vo.js" />
+        </exec>
+     </target>
+     <target name="config_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yuitest}/config.html" />
+          <arg value="-o" />
+          <arg value="${build}/config_test.vo.js" />
+        </exec>
+     </target>
+     <target name="calendar_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yuitest}/calendar.html" />
+          <arg value="-o" />
+          <arg value="${build}/calendar_test.vo.js" />
+        </exec>
+     </target>
+     <target name="datemath_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yuitest}/datemath.html" />
+          <arg value="-o" />
+          <arg value="${build}/datemath_test.vo.js" />
+        </exec>
+     </target>
+     <target name="colorpicker_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yuitest}/colorpicker.html" />
+          <arg value="-o" />
+          <arg value="${build}/colorpicker_test.vo.js" />
+        </exec>
+     </target>
+     <target name="paginator_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yuitest}/paginator.html" />
+          <arg value="-o" />
+          <arg value="${build}/paginator_test.vo.js" />
+        </exec>
+     </target>
+     <target name="json_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yuitest}/json.html" />
+          <arg value="-o" />
+          <arg value="${build}/json_test.vo.js" />
+        </exec>
+     </target>
+     <target name="sample_tabview_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${test}/sample_tabview_gadget.html" />
+          <arg value="-o" />
+          <arg value="${build}/sample_tabview_test.vo.js" />
+        </exec>
+     </target>
 
      <target name="example_data" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
@@ -551,6 +631,192 @@
         </exec>
      </target>
 
+     <target name="module_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/module_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/module_example.vo.js" />
+        </exec>
+     </target>
+     <target name="overlay_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/overlay_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/overlay_example.vo.js" />
+        </exec>
+     </target>
+     <target name="tooltip_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/tooltip_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/tooltip_example.vo.js" />
+        </exec>
+     </target>
+     <target name="panel_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/panel_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/panel_example.vo.js" />
+        </exec>
+     </target>
+     <target name="dialog_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/dialog-quickstart_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/dialog_example.vo.js" />
+        </exec>
+     </target>
+     <target name="simpledialog_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/simpledialog-quickstart_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/simpledialog_example.vo.js" />
+        </exec>
+     </target>
+
+     <target name="button1_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/btn_example01_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/button1_example.vo.js" />
+        </exec>
+     </target>
+     <target name="button2_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/btn_example02_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/button2_example.vo.js" />
+        </exec>
+     </target>
+     <target name="button3_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/btn_example03_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/button3_example.vo.js" />
+        </exec>
+     </target>
+     <target name="button4_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/btn_example04_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/button4_example.vo.js" />
+        </exec>
+     </target>
+     <target name="button5_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/btn_example05_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/button5_example.vo.js" />
+        </exec>
+     </target>
+     <target name="button6_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/btn_example06_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/button6_example.vo.js" />
+        </exec>
+     </target>
+     <target name="button7_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/btn_example07_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/button7_example.vo.js" />
+        </exec>
+     </target>
+     <target name="button8_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/btn_example08_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/button8_example.vo.js" />
+        </exec>
+     </target>
+     <target name="button9_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/btn_example09_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/button9_example.vo.js" />
+        </exec>
+     </target>
+     <target name="button10_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/btn_example10_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/button10_example.vo.js" />
+        </exec>
+     </target>
+     <target name="button11_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/btn_example11_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/button11_example.vo.js" />
+        </exec>
+     </target>
+     <target name="button12_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/btn_example12_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/button12_example.vo.js" />
+        </exec>
+     </target>
+     <target name="button13_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/btn_example13_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/button13_example.vo.js" />
+        </exec>
+     </target>
+     <target name="button14_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/btn_example14_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/button14_example.vo.js" />
+        </exec>
+     </target>
+     <target name="button-aria_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/button-ariaplugin_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/button-aria_example.vo.js" />
+        </exec>
+     </target>
+     <target name="button-menu-select_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/button-menu-select_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/button-menu-select_example.vo.js" />
+        </exec>
+     </target>
+     <target name="button-menu-swap_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/button-menu-swap_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/button-menu-swap_example.vo.js" />
+        </exec>
+     </target>
+
      <target name="all"
         depends="init, yui, gadgets, yuitests, examples" />
 
@@ -564,10 +830,10 @@
         depends="init, core, dd, resize_gadget, connection_gadget, json_gadget, treeview_gadget, yuitest_gadget, error_gadget" />
 
      <target name="yuitests"
-        depends="init, yahoo_test, animation_test, dd_test, dom_test, selector_test, yuitest_test, connection_test, cookie_test, profiler_test, datasource_test, tabview_test, autocomplete_test" />
+        depends="init, yahoo_test, animation_test, dd_test, dom_test, selector_test, yuitest_test, connection_test, cookie_test, profiler_test, datasource_test, tabview_test, autocomplete_test, menu_test, slider_test, module_test, config_test, calendar_test, datemath_test, colorpicker_test, paginator_test, json_test" />
 
      <target name="examples"
-        depends="init, core, example_data, autocomplete_examples, connection_examples, event_examples"/>
+        depends="init, core, example_data, autocomplete_examples, connection_examples, event_examples, container_examples, button_examples"/>
 
      <target name="autocomplete_examples"
         depends="init, core, autocomplete_basic_array_ex" />
@@ -577,6 +843,12 @@
 
      <target name="event_examples"
         depends="init, core, event_eventsimple_ex, event_custom-event_ex, event_event-delegation_ex"/>
+
+     <target name="container_examples"
+        depends="init, core, module_ex, overlay_ex, tooltip_ex, panel_ex, dialog_ex, simpledialog_ex"/>
+
+     <target name="button_examples"
+        depends="init, core, button1_ex, button2_ex, button3_ex, button4_ex, button5_ex, button6_ex, button7_ex, button8_ex, button9_ex, button10_ex, button11_ex, button12_ex, button13_ex, button14_ex, button-aria_ex, button-menu-select_ex, button-menu-swap_ex" />
 
 </project>
 

@@ -4,17 +4,17 @@
     <title>Test Page</title>
 </head>
 <body class="yui-skin-sam">
-<h1>Tests</h1>
-
+<div id="x"></div>
 <script type="text/javascript">
 (function () {
 
-var div = document.createElement('div'),
-    span1 = document.createElement('span'),
-    span2 = document.createElement('span');
+var a = document.createElement('div'),
+    b = document.createElement('div');
 
-div.appendChild(span2);
-cajita.log(div.insertBefore(span1,null));
+a.appendChild(b);
+
+cajita.log(b.parentNode);
+cajita.log(a.childNodes.length);
 
 })();
 </script>

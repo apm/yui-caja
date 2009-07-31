@@ -171,12 +171,7 @@ dd (Passed:5 Failed:3 Total:8)
   - From non-yuitest page:
   Inner drag handles work, but mouse activity can disconnect with element, causing the element to stay put while the mouse moves around.  Mouseup does not change this.  In fact, after disconnect, mouseover will latch on to the element again despite button state.
 
-dom (Passed:30 Failed:2 Total:34) -- FAILURES ARE NOT CRITICAL
-  * test_get: YAHOO.util.Element('doc')
-    Expected: <DIV> (object)
-    Actual: (object)
-    REASON: all DOM nodes have 'length' property, causing Dom.get to treat it as an array. (bug #1067)
-
+dom (Passed:31 Failed:1 Total:34) -- FAILURE IS NOT CRITICAL
   * test_setAttribute: Y.Dom.setAttribute(el, 'for', 'foo')
     Expected: foo (string)
     Actual:undefined (undefined)
@@ -236,6 +231,8 @@ selector (Passed:4 Failed:8 Total:12)
     Expected: true (boolean)
     Actual:false (boolean)
   * testOffDom: UnexpectedError: obj is null
+
+tabview (Passed:8 Failed:0 Total:8)
 
 yahoo (Passed:16 Failed:6 Total:22)
   * test_config: Values in position 0 are not equal.

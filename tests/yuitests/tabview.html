@@ -15,13 +15,35 @@
 <script type="text/javascript" src="../../../build/logger/logger.js"></script>
 <script type="text/javascript" src="../../../build/yuitest/yuitest.js"></script-->
 
+<style type="text/css">
+
+</style>
+</head>
+<body class="yui-skin-sam">
+    <div id="doc">
+        <div id="demo" class="yui-navset">
+            <ul class="yui-nav">
+                <li class="selected"><a href="#foo"><em>foo</em></a></li>
+                <li id="tab-bar"><a href="#bar"><em>bar</em></a></li>
+                <li><a href="#baz"><em>baz</em></a></li>
+            </ul>
+            <div class="yui-content">
+                <div id="foo">foo content</div>
+                <div id="bar">bar content</div>
+                <div id="baz">baz content</div>
+            </div>
+        </div>
+        <em id="alt-label">alternate label</em>
+        <div id="alt-content">alternate content</div>
+    </div>
 <script type="text/javascript">
 (function() {
+    YAHOO.log = cajita.log;
+
     var Y = YAHOO.util,
         tool = YAHOO.tool,
         suite = new tool.TestSuite("yuisuite");
 
-    Y.Event.onDOMReady(function() {
         var logger = new YAHOO.tool.TestLogger(null, { height: '80%' });
 
         var tabview = new YAHOO.widget.TabView('demo', {
@@ -102,35 +124,13 @@
         })); 
         tool.TestRunner.add(suite);
 
-        if (parent && parent != window) {
-            tool.TestManager.load();
-        } else {
+        //if (parent && parent != window) {
+            //tool.TestManager.load();
+        //} else {
             tool.TestRunner.run();
-        }
+        //}
 
-    }); 
 })();
 </script>
-<style type="text/css">
-
-</style>
-</head>
-<body class="yui-skin-sam">
-    <div id="doc">
-        <div id="demo" class="yui-navset">
-            <ul class="yui-nav">
-                <li class="selected"><a href="#foo"><em>foo</em></a></li>
-                <li id="tab-bar"><a href="#bar"><em>bar</em></a></li>
-                <li><a href="#baz"><em>baz</em></a></li>
-            </ul>
-            <div class="yui-content">
-                <div id="foo">foo content</div>
-                <div id="bar">bar content</div>
-                <div id="baz">baz content</div>
-            </div>
-        </div>
-        <em id="alt-label">alternate label</em>
-        <div id="alt-content">alternate content</div>
-    </div>
 </body>
 </html>
