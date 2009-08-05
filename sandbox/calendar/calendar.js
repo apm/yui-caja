@@ -1984,7 +1984,10 @@ Calendar.prototype = {
                     if (cal.Options.MULTI_SELECT) {
                         link = cell.getElementsByTagName("a")[0];
                         if (link) {
-                            link.blur();
+                            try {
+                                link.blur();
+                            }
+                            catch (x) {}
                         }
 
                         var cellDate = cal.cellDates[index];
@@ -1999,7 +2002,10 @@ Calendar.prototype = {
                     } else {
                         link = cell.getElementsByTagName("a")[0];
                         if (link) {
-                            link.blur();
+                            try {
+                                link.blur();
+                            }
+                            catch (x) {}
                         }
                         cal.selectCell(index);
                     }
