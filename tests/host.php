@@ -49,8 +49,11 @@
     function addCSS($file) {
         global $css, $bodyClass;
 
-        $f = "../../yui2/build/$file/assets/skins/sam/$file.css";
-        if (file_exists($f)) {
+        $a = "../../yui2/build/$file/assets/skins/sam/$file.css";
+        $b = "../../yui2/build/$file/$file.css";
+        $f = file_exists($a) ? $a : (file_exists($b) ? $b : false);
+
+        if ($f) {
             $css[] = "<link rel='stylesheet' type='text/css' href='$f'>";
             $bodyClass = ' class="yui-skin-sam"';
         }
