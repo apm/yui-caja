@@ -56,10 +56,10 @@ YAHOO.namespace('caja').data = {
           cajoled: true, yuitest: 'test=stylesheet', examples: 0, tests : [0,0,0] },
 
         { module:'resize', status: 'pending',
-          cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0] },
+          cajoled: true, yuitest: false, examples: 7, tests : [0,0,0] },
 
-        { module:'layout', status: 'pending',
-          cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0] },
+        { module:'layout', status: 'wip',
+          cajoled: true, yuitest: false, examples: 7, tests : [0,0,0] },
 
         { module:'history', status: 'pending',
           cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0] },

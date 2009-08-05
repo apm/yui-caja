@@ -273,6 +273,15 @@
           <arg value="${build}/resize.vo.js" />
         </exec>
      </target>
+     <target name="layout" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/layout/layout.js" />
+          <arg value="-o" />
+          <arg value="${build}/layout.vo.js" />
+        </exec>
+     </target>
+
      <target name="core" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
@@ -817,11 +826,44 @@
         </exec>
      </target>
 
+     <target name="layout1_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/page_layout_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/layout1_example.vo.js" />
+        </exec>
+     </target>
+     <target name="layout2_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/panel_layout_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/layout2_example.vo.js" />
+        </exec>
+     </target>
+     <target name="layout3_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/nested_layout_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/layout3_example.vo.js" />
+        </exec>
+     </target>
+     <target name="layout4_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/menu_layout_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/layout4_example.vo.js" />
+        </exec>
+     </target>
+
      <target name="all"
         depends="init, yui, gadgets, yuitests, examples" />
 
      <target name="yui"
-        depends="init, utilities, yahoo-dom-event, yahoo, dom, event, connection, dragdrop, animation, element, yuitest, json, treeview, resize, yuitest, selector, cookie, profiler, datasource, tabview, autocomplete, button, calendar, carousel, colorpicker, imagecropper, datatable, logger, menu, paginator, editor, slider, stylesheet, container" />
+        depends="init, utilities, yahoo-dom-event, yahoo, dom, event, connection, dragdrop, animation, element, yuitest, json, treeview, resize, yuitest, selector, cookie, profiler, datasource, tabview, autocomplete, button, calendar, carousel, colorpicker, imagecropper, datatable, logger, menu, paginator, editor, slider, stylesheet, container, layout" />
 
      <target name="patch"
         depends="patch-utilities" />
@@ -833,7 +875,7 @@
         depends="init, yahoo_test, animation_test, dd_test, dom_test, selector_test, yuitest_test, connection_test, cookie_test, profiler_test, datasource_test, tabview_test, autocomplete_test, menu_test, slider_test, module_test, config_test, calendar_test, datemath_test, colorpicker_test, paginator_test, json_test" />
 
      <target name="examples"
-        depends="init, core, example_data, autocomplete_examples, connection_examples, event_examples, container_examples, button_examples"/>
+        depends="init, core, example_data, autocomplete_examples, connection_examples, event_examples, container_examples, button_examples, layout_examples"/>
 
      <target name="autocomplete_examples"
         depends="init, core, autocomplete_basic_array_ex" />
@@ -850,5 +892,7 @@
      <target name="button_examples"
         depends="init, core, button1_ex, button2_ex, button3_ex, button4_ex, button5_ex, button6_ex, button7_ex, button8_ex, button9_ex, button10_ex, button11_ex, button12_ex, button13_ex, button14_ex, button-aria_ex, button-menu-select_ex, button-menu-swap_ex" />
 
+     <target name="layout_examples"
+        depends="init, core, layout1_ex, layout2_ex, layout3_ex, layout4_ex" />
 </project>
 

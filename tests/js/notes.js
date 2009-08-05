@@ -1,11 +1,20 @@
 YAHOO.namespace('caja').notes = {
-    animation: ['Tests appear to be passing before the animations complete.  But the animations are completing'],
+    animation: [
+        'Tests appear to be passing before the animations complete.  But the animations are completing',
+        'Glowing Button example uses ColorAnim.  Not working.'
+    ],
     autocomplete: [
         'Bug #1074 el.appendChild(el2) return undefined (fixed)',
         'Bug #1075 focus/blur listeners not executed (fixed?) (workaround found n tests/examples/ac_basic_array_clean.html)'
     ],
+    button: [
+        "Glowing button example isn't glowing.  ColorAnim is pesent and no errors are thrown.",
+        "Slider in Slider Button example isn't interactive.  Throws an odd error",
+        "ARIA example menu button throwing an error.  Likely related to [[#1092]parentNode of off DOM elements reporting null].  This bug is marked fixed.  Not in Felix's port yet?"
+    ],
     calendar: [
-        'YUI Test suite stopped several times at the debugger statement in domita (or was that in cajita?)'
+        'YUI Test suite stopped several times at the debugger statement in domita (or was that in cajita?)',
+        '[[#1095]link.blur() throws an error] which kills cell click callback operation'
     ],
     connection: [
         '[[suffix=gadget&test=connection]Simple example] as test works',
@@ -37,6 +46,9 @@ YAHOO.namespace('caja').notes = {
     ],
     json: [
         "Parse won't work because it uses eval.  Caja exposes a JSON object, so if it could [[#1086]report 'object JSON' to the Miller device], JSON util would work unmodified"
+    ],
+    layout: [
+        "Full page layout and Layout with Menus examples are displaying as a blank page.  The DOM is there, but some elements are sized height: 0.  Investigation pending."
     ],
     profiler: [
         "Should work except for passing eval strings to registerFunction etc"

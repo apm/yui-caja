@@ -21,17 +21,17 @@ YAHOO.namespace('caja').examples = {
         "[[suffix=example&include=button&test=button4]Radio Buttons]",
         "[[suffix=example&include=button&test=button5]Submit Buttons]",
         "[[suffix=example&include=button&test=button6]Reset Buttons]",
-        "[[suffix=example&include=button&test=button7]Menu Buttons]",
-        "[[suffix=example&include=button&test=button8]Split Buttons]",
-        "[[suffix=example&include=button,calendar&test=button9]Calendar Menu Button]",
-        "[[suffix=example&include=button,calendar&test=button10]Calendar Menu Button with Date on face]",
-        "[[suffix=example&include=button,slider,colorpicker&test=button11]ColorPicker Button]",
-        "[[suffix=example&include=button,menu&test=button12]Fixed width Menu Button]",
+        "[[suffix=example&include=container,menu,button&test=button7]Menu Buttons]",
+        "[[suffix=example&include=container,menu,button&test=button8]Split Buttons]",
+        "[[suffix=example&include=button,container,calendar&test=button9]Calendar Menu Button]",
+        "[[suffix=example&include=button,container,calendar&test=button10]Calendar Menu Button with Date on face]",
+        "[[suffix=example&include=button,container,menu,slider,colorpicker&test=button11]ColorPicker Button]",
+        "[[suffix=example&include=button,container,menu&test=button12]Fixed width Menu Button]",
         "[[suffix=example&include=button&test=button13]Glowing Button]",
-        "[[suffix=example&include=button,slider&test=button14]Slider Button]",
-        "[[suffix=example&include=button&test=button-aria]Using a Button ARIA plugin]",
-        "[[suffix=example&include=button&test=button-menu-select]Using Button to replace a select element]",
-        "[[suffix=example&include=button&test=button-menu-swap]Replacing the contents of a Button's menu]"
+        "[[suffix=example&include=button,container,menu,slider&test=button14]Slider Button]",
+        "[[suffix=example&include=button,container,menu&test=button-aria]Using a Button ARIA plugin]",
+        "[[suffix=example&include=button,container,menu&test=button-menu-select]Using Button to replace a select element]",
+        "[[suffix=example&include=button,container,menu&test=button-menu-swap]Replacing the contents of a Button's menu]"
     ],
     connection: [
         '[[suffix=gadget&test=connectio]Basic asyncRequest]',
@@ -55,6 +55,12 @@ YAHOO.namespace('caja').examples = {
     ],
     json: [
         '[[suffix=gadget&test=json]Simple test]'
+    ],
+    layout: [
+        '[[suffix=example&css=reset-fonts-grids&include=button,resize,layout&test=layout1]Full page Layout]',
+        '[[suffix=example&css=reset-fonts-grids&include=container,button,resize,layout&test=layout2]Resizable Panel Layout]',
+        '[[suffix=example&css=reset-fonts-grids&include=resize,layout&test=layout3]Nested Layout]',
+        '[[suffix=example&css=reset-fonts-grids&include=container,menu,resize,layout&test=layout4]Layout with Menu controls]'
     ],
     yuitest: [
         '[[suffix=gadget&test=yuitest]Simple suite to test that YUI Test cajoles]'
