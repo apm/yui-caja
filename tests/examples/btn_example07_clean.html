@@ -166,7 +166,7 @@ body {
 										//	target of the event
 
 			if (oMenuItem) {
-				alert("[MenuItem Properties] text: " + 
+				cajita.log("[MenuItem Properties] text: " + 
 							oMenuItem.cfg.getProperty("text") + ", value: " + 
 							oMenuItem.value);
 			}
@@ -191,7 +191,7 @@ body {
 
 		var onOverlayClick = function (p_oEvent) {
 			
-			alert("You clicked the Button's menu.");
+			cajita.log("You clicked the Button's menu.");
 			
 		};
 
@@ -206,7 +206,7 @@ body {
 
 		var onOverlayShow = function (p_sType, p_aArgs) {
 		
-			alert("The Button's menu is now visible.");
+			cajita.log("The Button's menu is now visible.");
 			
 		};
 		
@@ -230,7 +230,7 @@ body {
 		// Instantiate an Overlay instance
 
 		var oOverlay = new YAHOO.widget.Overlay("menubutton4menu", 
-													{ visible: false });
+													{ visible: false, monitorresize: false });
 
 		oOverlay.setBody("Menu Button 4 Menu");
 
@@ -249,7 +249,7 @@ body {
 			
 			var sText = p_oItem.cfg.getProperty("text");
 			
-			alert("[MenuItem Properties] text: " + sText + ", value: " + 
+			cajita.log("[MenuItem Properties] text: " + sText + ", value: " + 
 					p_oItem.value);
 			
     		oMenuButton5.set("label", sText);			

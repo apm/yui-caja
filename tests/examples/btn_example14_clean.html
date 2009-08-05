@@ -184,7 +184,7 @@ create an opacity slider button, similar to that found in Adobe Photoshop.
 
             /*
                 Create a new Button instance, wrapping the label in an 
-                <em> element.  The <em> element will be used to give the 
+                &lt;em> element.  The &lt;em> element will be used to give the 
                 Button instance a fixed width to prevent it from growing
                 and shrinking as the text label is updated.
             */
@@ -198,7 +198,7 @@ create an opacity slider button, similar to that found in Adobe Photoshop.
 
 
             /*
-                Maintain a reference to the <em> element inside the label
+                Maintain a reference to the &lt;em> element inside the label
                 so that its text can easily be updated in response to the firing
                 of the Slider instance's "change" event.
             */
@@ -310,7 +310,10 @@ create an opacity slider button, similar to that found in Adobe Photoshop.
     
                         window.setTimeout(function () {                    
 
-                            oSliderEl.focus();
+                            try {
+                                oSliderEl.focus();
+                            }
+                            catch (x) {}
                         
                         }, 0);
                     

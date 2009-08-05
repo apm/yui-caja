@@ -150,7 +150,7 @@ body {
 
 		var onButtonClick = function () {
 		
-			alert("You clicked the Button.");
+			cajita.log("You clicked the Button.");
 			
 		};
 
@@ -166,7 +166,7 @@ body {
 				oMenuItem = p_aArgs[1];	//	MenuItem instance that was the target of the event
 
 			if (oMenuItem) {
-				alert("[MenuItem Properties] text: " + oMenuItem.cfg.getProperty("text") + ", value: " + oMenuItem.value);
+				cajita.log("[MenuItem Properties] text: " + oMenuItem.cfg.getProperty("text") + ", value: " + oMenuItem.value);
 			}
 
 		};
@@ -180,7 +180,7 @@ body {
 		
 		var onOption = function () {
 			
-			alert("You clicked the Split Button's option area.");
+			cajita.log("You clicked the Split Button's option area.");
 			
 		};
 
@@ -208,7 +208,7 @@ body {
 
 		// Instantiate an Overlay instance
 
-		var oOverlay = new YAHOO.widget.Overlay("splitbutton4menu", { visible: false });
+		var oOverlay = new YAHOO.widget.Overlay("splitbutton4menu", { visible: false, monitorresize: false });
 
 		oOverlay.setBody("Split Button 4 Menu");
 
@@ -224,7 +224,7 @@ body {
 			
 			var sText = p_oItem.cfg.getProperty("text");
 			
-			alert("[MenuItem Properties] text: " + sText + ", value: " + p_oItem.value);
+			cajita.log("[MenuItem Properties] text: " + sText + ", value: " + p_oItem.value);
 
 		};
 
