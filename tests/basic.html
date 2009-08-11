@@ -4,17 +4,22 @@
     <title>Test Page</title>
 </head>
 <body class="yui-skin-sam">
-<div id="x"></div>
+
+<a href="#" id="a">Link</a>
+
 <script type="text/javascript">
 (function () {
 
-var a = document.createElement('div'),
-    b = document.createElement('div');
+document.getElementById('a').onclick = function (e) {
+    e = e || window.event;
+    if (e.preventDefault) {
+        e.preventDefault();
+    } else {
+        e.returnValue = false;
+    }
 
-a.appendChild(b);
-
-cajita.log(b.parentNode);
-cajita.log(a.childNodes.length);
+    this.blur();
+};
 
 })();
 </script>
