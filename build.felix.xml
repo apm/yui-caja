@@ -282,6 +282,15 @@
         </exec>
      </target>
 
+     <target name="yui_css" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${test}/all_css.html" />
+          <arg value="-o" />
+          <arg value="${build}/all_css_gadget.vo.js" />
+        </exec>
+     </target>
+
      <target name="core" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
@@ -860,7 +869,7 @@
      </target>
 
      <target name="all"
-        depends="init, yui, gadgets, yuitests, examples" />
+        depends="init, yui, yui_css, gadgets, yuitests, examples" />
 
      <target name="yui"
         depends="init, utilities, yahoo-dom-event, yahoo, dom, event, connection, dragdrop, animation, element, yuitest, json, treeview, resize, yuitest, selector, cookie, profiler, datasource, tabview, autocomplete, button, calendar, carousel, colorpicker, imagecropper, datatable, logger, menu, paginator, editor, slider, stylesheet, container, layout" />
