@@ -13,7 +13,10 @@ YAHOO.namespace('caja').data = {
           cajoled: true, yuitest: false, examples: 1, tests : [0,0,0] },
 
         { module:'utilities', status: 'conditional',
-          cajoled: true, yuitest: false, examples: 1, tests : [0,0,0] }
+          cajoled: true, yuitest: false, examples: 1, tests : [0,0,0] },
+
+        { module: 'reset-fonts-grids', status: 'wip',
+          cajoled: true, yuitest: false, examples: 17, tests: [0,0,0] }
     ],
 
 // Utils

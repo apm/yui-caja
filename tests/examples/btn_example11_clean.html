@@ -18,11 +18,11 @@ body {
 }
 </style>
 
-<!--link rel="stylesheet" type="text/css" href="../../yui2/build/slider/assets/skins/sam/slider.css" />
-<link rel="stylesheet" type="text/css" href="../../yui2/build/fonts/fonts-min.css" />
-<link rel="stylesheet" type="text/css" href="../../yui2/build/colorpicker/assets/skins/sam/colorpicker.css" />
-<link rel="stylesheet" type="text/css" href="../../yui2/build/menu/assets/skins/sam/menu.css" />
-<link rel="stylesheet" type="text/css" href="../../yui2/buiassets/button/skins/sam/button.css" /-->
+<link rel="stylesheet" type="text/css" href="css/fonts/fonts-min.css">
+<link rel="stylesheet" type="text/css" href="css/slider/assets/skins/sam/slider.css">
+<link rel="stylesheet" type="text/css" href="css/colorpicker/assets/skins/sam/colorpicker.css">
+<link rel="stylesheet" type="text/css" href="css/menu/assets/skins/sam/menu.css">
+<link rel="stylesheet" type="text/css" href="css/button/assets/skins/sam/button.css">
 <!--script type="text/javascript" src="../../build/yahoo-dom-event/yahoo-dom-event.js"></script-->
 <!--script type="text/javascript" src="../../build/dragdrop/dragdrop-min.js"></script-->
 <!--script type="text/javascript" src="../../build/slider/slider-min.js"></script-->
@@ -116,7 +116,7 @@ body {
 
 	#photo {
 	
-		background: #fff url(assets/button/ggbridge.png) top left no-repeat;
+		background: #fff url(examples/assets/button/ggbridge.png) top left no-repeat;
 		
 		/*
 			Hide the alpha PNG from IE 6 and make the background image transparent via the use of 
@@ -124,7 +124,7 @@ body {
 		*/
 
 		_background-image: none;
-		_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='assets/button/ggbridge.png', sizingMethod='image');;
+		_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='examples/assets/button/ggbridge.png', sizingMethod='image');;
 
 		border: solid 1px #000;
 		width: 400px;
@@ -177,8 +177,8 @@ that should be applied to the image.
             var oColorPicker = new YAHOO.widget.ColorPicker(oColorPickerMenu.body.id, {
                                     showcontrols: false,
                                     images: {
-                                        PICKER_THUMB: "assets/colorpicker/picker_thumb.png",
-                                        HUE_THUMB: "assets/colorpicker/hue_thumb.png"
+                                        PICKER_THUMB: "examples/assets/colorpicker/picker_thumb.png",
+                                        HUE_THUMB: "examples/assets/colorpicker/hue_thumb.png"
                                     }
                                 });
 

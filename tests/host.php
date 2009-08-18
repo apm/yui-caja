@@ -54,7 +54,7 @@
         $f = file_exists($a) ? $a : (file_exists($b) ? $b : false);
 
         if ($f) {
-            $css[] = "<link rel='stylesheet' type='text/css' href='$f'>";
+            //$css[] = "<link rel='stylesheet' type='text/css' href='$f'>";
             $bodyClass = ' class="yui-skin-sam"';
         }
     }
@@ -103,10 +103,12 @@
     <script src="<?php echo $caja_base ?>/ant-www/testbed/valija.co.js"></script>
 
   </head>
-  <body<?php echo($bodyClass); ?>>
+  <body>
 
     <div id="gadget___" class="gadget___">
-    <?php include("$base/{$test}_$suffix.vo..out.html"); ?>
+        <div<?php echo($bodyClass); ?>>
+            <?php include("$base/{$test}_$suffix.vo..out.html"); ?>
+        </div>
     </div>
 
     <script>(function () {

@@ -10,7 +10,10 @@ YAHOO.namespace('caja').notes = {
     button: [
         "Glowing button example isn't glowing.  ColorAnim is pesent and no errors are thrown.",
         "Slider in Slider Button example isn't interactive.  Throws an odd error",
-        "ARIA example menu button throwing an error.  Likely related to [[#1092]parentNode of off DOM elements reporting null].  This bug is marked fixed.  Not in Felix's port yet?"
+        "ARIA example menu button throwing an error.  Likely related to [[#1092]parentNode of off DOM elements reporting null].  This bug is marked fixed.  Not in Felix's port yet?",
+        "min-height: auto removed decrying bad value",
+        ":visited { padding, font-size, line-height, min-height } not allowed",
+        "body class removed when folding html in cajole_html.  Wrapper element classed with .gadget___.  CSS cajoled so .yui-skin-sam => .gadget___ .yui-skin-sam.  Skin is not applied because no wrapping element has .yui-skin-sam.  Adding .yui-skin-sam to the host page's body doesn't work because it would need .yui-skin-sam .gadget___.  I had to insert a new wrapper element inside .gadget___ before the include of the cajoled code.  Is this the recommended fix?"
     ],
     calendar: [
         'YUI Test suite stopped several times at the debugger statement in domita (or was that in cajita?)',
@@ -52,6 +55,11 @@ YAHOO.namespace('caja').notes = {
     ],
     profiler: [
         "Should work except for passing eval strings to registerFunction etc"
+    ],
+    'reset-fonts-grids': [
+        "[[#1103]body assignment stripped], so the baseline 13px font-size, 1.231 line-height, and font face are not normalized",
+        "font-size: x-small removed (for IE quirks mode) is this relevant?",
+        "font: 100% stripped from table selector as invalid value"
     ],
     resize: [
         "As with all DD implementations, the response time of dragging is hindered and DD may lose hold of the mouse moves"

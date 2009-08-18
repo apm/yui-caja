@@ -35,12 +35,12 @@ YAHOO.namespace('caja').examples = {
     ],
     connection: [
         '[[suffix=gadget&test=connectio]Basic asyncRequest]',
-        '[[suffix=gadget&test=get]GET]',
-        '[[suffix=gadget&test=post]POST]',
-        '[[suffix=gadget&test=abort]Abort]',
-        '[[suffix=gadget&test=weather]Weather feed]',
-        '[[suffix=gadget&test=global_customevents]Global custom events]',
-        '[[suffix=gadget&test=callback_customevent]Callback custom events]'
+        '[[suffix=example&test=get]GET]',
+        '[[suffix=example&test=post]POST]',
+        '[[suffix=example&test=abort]Abort]',
+        '[[suffix=example&test=weather]Weather feed]',
+        '[[suffix=example&test=global_customevents]Global custom events]',
+        '[[suffix=example&test=callback_customevent]Callback custom events]'
     ],
     container: [
         "[[suffix=example&include=container&test=module]Basic Module]",
