@@ -12,7 +12,6 @@
     }
 
     add('utilities');
-    add('yuitest');
 
     if (isset($_GET['suffix'])) {
         $suffix = $_GET['suffix'];
@@ -33,8 +32,11 @@
     if (isset($_GET['test'])) {
         $test = $_GET['test'];
         add($test);
+        add('logger');
+        add('yuitest');
         add("{$test}_$suffix");
     }
+
 
     function add($file) {
         global $scripts, $base;
