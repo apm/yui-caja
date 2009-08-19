@@ -8,7 +8,8 @@
      <target name="utilities" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yui2.build}/utilities/utilities.js" />
+          <!--arg value="${yui2.build}/utilities/utilities.js" /-->
+          <arg value="./sandbox/utilities/utilities.js" />
           <arg value="-o" />
           <arg value="${build}/utilities.vo.js" />
         </exec>
@@ -48,7 +49,8 @@
      <target name="connection" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yui2.build}/connection/connection.js" />
+          <!--arg value="${yui2.build}/connection/connection.js" /-->
+          <arg value="./sandbox/connection/connection.js" />
           <arg value="-o" />
           <arg value="${build}/connection.vo.js" />
         </exec>
@@ -202,7 +204,8 @@
      <target name="yuitest" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="./sandbox/yuitest/yuitest.js" />
+          <!--arg value="./sandbox/yuitest/yuitest.js" /-->
+          <arg value="./sandbox/yuitest2/yuitest.js" />
           <arg value="-o" />
           <arg value="${build}/yuitest.vo.js" />
         </exec>
