@@ -19,6 +19,9 @@ Quick start:
 [~/src] ➔ cd google-caja
 [~/src/google-caja] ➔ ant testbed
 [~/src/google-caja] ➔ cd ../yui-caja
+[~/src/yui-caja] ➔ ln -s ../yui2 tests/css
+[~/src/yui-caja] ➔ ln -s ../yui2 tests/yuitests/css
+[~/src/yui-caja] ➔ ln -s ../yui2 tests/examples/css
 [~/src/yui-caja] ➔ ant
 [~/src/yui-caja] ➔ open tests/host.php?test=dom (open with a web browser, this may need to be served through a local web server)
 </pre>
@@ -28,7 +31,9 @@ In addition to some adhoc tests, we are in the process of converting the YUI tes
 
 A modified version of YUI Test is included in the distribution to run the tests included in the yuitests directory.  Test output is directed to the browser's console.  Use FireBug in Firefox, Web Inspector in Safari/WebKit, Dragonfly in Opera, and FireBug Lite in IE to see the results.  FireBug Lite is automatically loaded to the page in IE.
 
-The tests directory contains an index.php file that includes a link list to all cajoled tests and examples (working or not).  All tests and examples use a single host.php file to make it possible to run all of the tests and examples from the single host file.  This page takes a few parameters to indicate which test or example you wish to run.  The only required parameter is 'test':
+The tests directory contains an index.php file that includes a summary of the current status of the Cajoling effort, displayed in three DataTables.  All cajoled tests and examples are linked from the corresponding module entry or its notes.
+
+All tests and examples use a single host.php file to make it possible to run all of the tests and examples from the single host file.  This page takes a few parameters to indicate which test or example you wish to run.  The only required parameter is 'test':
 
 By default, the hosts file looks for yuitests for the named test
 http://localhost/src/yui-caja/tests/host.php?test=dom
@@ -41,11 +46,8 @@ http://localhost/src/yui-caja/tests/host.php?suffix=example&include=data,datasou
 
 If you don't have a php enabled web server available, it would be simple to create a static html file for the test you wish to run from the php file.
 
-The progress of cajoling the library is currently documented in the test_results.txt file.
-
 p. Todo:
 
 * Replace the script execs with the cajole task should it exist, or create one.
 * Host file build step that generates the correct urls to the caja environment based on the caja.base property.
-* Cajole each piece of the utilities stack individually, or concatenate the utilities stack in the build so locally built components can be picked up.
-* Document capabilities and known issues for each component.
+* Document capabilities and known issues for each component. (in progress see /tests/index.php)
