@@ -2,7 +2,7 @@
 <head>
 <title>YUI Tests</title>
 <link type="text/css" rel="stylesheet" href="css/logger/assets/logger.css" />     
-<link type="text/css" rel="stylesheet" href="css/yuitest/assets/yuitest.css" />     
+<link type="text/css" rel="stylesheet" href="css/yuitest/assets/testlogger.css" />     
 
 <style type="text/css">
     #xframe {
@@ -13,7 +13,7 @@
 
 <script type="text/javascript">
 
-YAHOO.log = cajita.log;
+//YAHOO.log = cajita.log;
 
 var g_modules=[];
 
@@ -26,6 +26,7 @@ var YAHOO_config = {
 
 </head>
 <body>
+<div id="logr"></div>
 <iframe name="xframe" id="xframe" src="assets/xframe.html"></iframe>
 <h1>YAHOO test page</h1>
 <p>This page contains tests being run by yuitest, the results of which<br />
@@ -424,7 +425,7 @@ are output in the logger to the right. <br />View the source to see how it's don
     // YAHOO.util.Event.onDomReady(function (){ // need to wait for the frame to load
     // YAHOO.util.Event.on(window, "load", function (){
         //create the logger
-        var logger = new YAHOO.tool.TestLogger();
+        var logger = new YAHOO.tool.TestLogger('logr');
         
         //add the tests
         YAHOO.tool.TestRunner.add(suite);
