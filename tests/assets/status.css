@@ -1,0 +1,92 @@
+body {
+    font: normal 83%/1.4 Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+form {
+    background: #333;
+    border-bottom: 3px solid #111;
+    color: #fff;
+    padding: 10px 15px;
+}
+.content {
+    position: relative;
+    margin: 0 20px;
+}
+h2 {
+    color: #684;
+    line-height: 1.1;
+    margin: 1em 0;
+    border-bottom: 1px solid #aaa;
+}
+.yui-dt table {
+    width: 100%;
+}
+#legend {
+    list-style: none;
+    margin: 1em 0 0;
+    padding: 0;
+}
+.details pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.content button {
+    border: 0 none;
+    font-family: inherit;
+    font-size: inherit;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}
+.content button span {
+    color: #00e;
+    text-decoration: underline;
+}
+#legend li {
+    display: inline-block;
+    margin: 0 1ex;
+    padding-left: .75ex;
+}
+.working {
+    border-left: 5px solid #0c0;
+}
+.conditional {
+    border-left: 5px solid #f90;
+}
+.unsupported {
+    border-left: 5px solid #900;
+}
+.wip {
+    border-left: 5px solid #069;
+}
+.pending {
+    border-left: 5px solid #aaa;
+}
+.details {
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+}
+.details ul {
+    padding: 0 0 0 1em;
+}
+.details li {
+    padding: .5ex 0;
+}
+.details .yui-dt-liner {
+    overflow: hidden;
+}
+.details .yui-dt-liner div {
+    float: left;
+    white-space: pre-wrap;
+    margin-right: 1em;
+}
+.col2 .yui-dt-liner div {
+    width: 45%;
+}
+.col3 .yui-dt-liner div {
+    width: 30%;
+}
+.col4 .yui-dt-liner div {
+    width: 23%;
+}

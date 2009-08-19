@@ -10,7 +10,7 @@
 <head>
     <title>Directory</title>
     <link type="text/css" rel="stylesheet" href="../../yui2/build/datatable/assets/skins/sam/datatable.css">
-    <link type="text/css" rel="stylesheet" href="css/status.css">
+    <link type="text/css" rel="stylesheet" href="assets/status.css">
 </head>
 <body class="yui-skin-sam">
 <form action="">
