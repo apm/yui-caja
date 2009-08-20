@@ -1,8 +1,8 @@
 <html>
 <head>
 
-<link type="text/css" rel="stylesheet" href="css/logger/assets/logger.css">
-<link type="text/css" rel="stylesheet" href="css/yuitest/assets/yuitest.css">     
+<link type="text/css" rel="stylesheet" href="yui/logger/assets/logger.css">
+<link type="text/css" rel="stylesheet" href="yui/yuitest/assets/testlogger.css">     
 
 <style>
 .everything { position:relative; height:420px; }
@@ -26,6 +26,7 @@
 </head>
 
 <body>
+<div id="logr"></div>
 
 <div class='everything' id='everything'>
 	<div class='topmain' id='topmain'></div>
@@ -293,7 +294,7 @@ imageLoaderTestSuite.add(foldConditionalTestCase);
 YAHOO.tool.TestRunner.add(imageLoaderTestSuite);
 
 YAHOO.util.Event.onDOMReady(function() {
-	var logger = new YAHOO.tool.TestLogger();
+	var logger = new YAHOO.tool.TestLogger('logr');
     if (parent && parent != window) {
         YAHOO.tool.TestManager.load();
     } else {

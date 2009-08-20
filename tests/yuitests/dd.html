@@ -2,8 +2,8 @@
 <html>
 <head>
 <title>YUI Tests</title>
-<link type="text/css" rel="stylesheet" href="css/logger/assets/logger.css" />     
-<link type="text/css" rel="stylesheet" href="css/yuitest/assets/testlogger.css" />     
+<link type="text/css" rel="stylesheet" href="yui/logger/assets/logger.css" />     
+<link type="text/css" rel="stylesheet" href="yui/yuitest/assets/testlogger.css" />     
 
 <style type="text/css">
 
@@ -17,6 +17,7 @@
 
 </head>
 <body>
+<div id="logr"></div>
 <div id="ddcontainer">
     <div id="dd1div" class="dd">dd1</div>
     <div id="dd2div" class="dd">dd2</div>
@@ -29,7 +30,7 @@
 
 (function() {
 
-YAHOO.log = cajita.log;
+//YAHOO.log = cajita.log;
 
     var Dom=YAHOO.util.Dom,
         Event=YAHOO.util.Event,
@@ -237,7 +238,7 @@ YAHOO.log = cajita.log;
 
     // YAHOO.util.Event.on(window, "load", function (){
         //create the logger
-        var logger = new YAHOO.tool.TestLogger();
+        new YAHOO.tool.TestLogger('logr');
         
         //add the tests
         YAHOO.tool.TestRunner.add(suite);

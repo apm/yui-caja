@@ -2,10 +2,10 @@
 <html>
 <head>
     <title>Paginator Test Page</title>
-    <!--link type="text/css" rel="stylesheet" href="/assets/dpSyntaxHighlighter.css">
-    <link type="text/css" rel="stylesheet" href="../../../build/logger/assets/logger.css">
-    <link type="text/css" rel="stylesheet" href="../../../build/yuitest/assets/testlogger.css"-->
-    <link type="text/css" rel="stylesheet" href="../../../build/paginator/assets/skins/sam/paginator.css">
+    <!--link type="text/css" rel="stylesheet" href="/assets/dpSyntaxHighlighter.css"-->
+    <link type="text/css" rel="stylesheet" href="yui/logger/assets/logger.css">
+    <link type="text/css" rel="stylesheet" href="yui/yuitest/assets/testlogger.css"-->
+    <link type="text/css" rel="stylesheet" href="yui/paginator/assets/skins/sam/paginator.css">
     <style type="text/css" class="highlight-ignore">
         h1 {
             font: normal 125%/1.4 Arial, sans-serif;
@@ -29,6 +29,7 @@
     </style>
 </head>
 <body class="yui-skin-sam">
+<div id="logr"></div>
 <h1>Paginator Tests</h1>
 <input type="button" id="go" value="recordOffset -= 3">
 <input type="button" id="del" value="totalRecords -= 3">
@@ -46,7 +47,7 @@
 <script type="text/javascript">
 (function () {
 
-YAHOO.log = cajita.log;
+//YAHOO.log = cajita.log;
 
 var t = YAHOO.tool,
     u = YAHOO.util,
@@ -150,7 +151,7 @@ first/next deactivated when on 1
 */
 YAHOO.util.Event.onDOMReady(function () {
 
-    var logger = new TestLogger("log");
+    var logger = new TestLogger("logr");
     logger.hideCategory('info');
 
     var p = new YAHOO.widget.Paginator({

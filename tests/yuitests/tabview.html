@@ -3,9 +3,9 @@
 <head>
 <title>TabView Test Suite</title>
 
-<!--link type="text/css" rel="stylesheet" href="../../../build/logger/assets/logger.css">
-<link type="text/css" rel="stylesheet" href="../../../build/yuitest/assets/testlogger.css"-->
-<link type="text/css" rel="stylesheet" href="../../../build/tabview/assets/skins/sam/tabview.css">     
+<link type="text/css" rel="stylesheet" href="yui/logger/assets/logger.css">
+<link type="text/css" rel="stylesheet" href="yui/yuitest/assets/testlogger.css">
+<link type="text/css" rel="stylesheet" href="yui/tabview/assets/skins/sam/tabview.css">     
 
 <!--script type="text/javascript" src="../../../build/yahoo/yahoo.js"></script>
 <script type="text/javascript" src="../../../build/event/event.js"></script>
@@ -20,6 +20,7 @@
 </style>
 </head>
 <body class="yui-skin-sam">
+<div id="logr"></div>
     <div id="doc">
         <div id="demo" class="yui-navset">
             <ul class="yui-nav">
@@ -38,13 +39,14 @@
     </div>
 <script type="text/javascript">
 (function() {
-    YAHOO.log = cajita.log;
+    //YAHOO.log = cajita.log;
 
     var Y = YAHOO.util,
         tool = YAHOO.tool,
         suite = new tool.TestSuite("yuisuite");
 
-        var logger = new YAHOO.tool.TestLogger(null, { height: '80%' });
+        //var logger = new YAHOO.tool.TestLogger(null, { height: '80%' });
+        var logger = new YAHOO.tool.TestLogger('logr');
 
         var tabview = new YAHOO.widget.TabView('demo', {
             'activeIndex': 1 

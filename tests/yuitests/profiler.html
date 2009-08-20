@@ -1,15 +1,16 @@
 <html>
 <head>
 <title>profiler tests</title>
-<link rel="stylesheet" type="text/css" href="css/logger/assets/logger.css">
-<link rel="stylesheet" type="text/css" href="css/yuitest/assets/yuitest.css">
+<link rel="stylesheet" type="text/css" href="yui/logger/assets/logger.css">
+<link rel="stylesheet" type="text/css" href="yui/yuitest/assets/testlogger.css">
 </head>
 <body>
+<div id="logr"></div>
 <h1>profile tests</h1>
 <p><input type="button" value="Run Tests" id="btnRun" /></p>
 <script type="text/javascript">
 
-YAHOO.log = cajita.log;
+//YAHOO.log = cajita.log;
 
 YAHOO.namespace("test");
 
@@ -485,7 +486,7 @@ YAHOO.test.profiler_test = (function(){
 
 (function (){
     //create the logger
-    var logger = new YAHOO.tool.TestLogger();
+    var logger = new YAHOO.tool.TestLogger('logr');
     
     //add the tests
     YAHOO.tool.TestRunner.add(YAHOO.test.profiler_test);

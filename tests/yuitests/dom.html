@@ -3,8 +3,8 @@
 <head>
 <title>DOM Test Suite</title>
 
-<link type="text/css" rel="stylesheet" href="css/logger/assets/logger.css">
-<link type="text/css" rel="stylesheet" href="css/yuitest/assets/yuitest.css">     
+<link type="text/css" rel="stylesheet" href="yui/logger/assets/logger.css">
+<link type="text/css" rel="stylesheet" href="yui/yuitest/assets/testlogger.css">     
 
 <style>
 #doc {
@@ -36,6 +36,7 @@
 
 </head>
 <body>
+<div id="logr"></div>
 
     <em class="my.class our(class" id="class-regex-one">lorem</em> 
     <em class="yiv-integer:([{1,30}])^$?*+|" id="class-regex-three">dolor</em> 
@@ -89,7 +90,7 @@
 <script type="text/javascript">
 (function() {
 
-YAHOO.log = cajita.log;
+//YAHOO.log = cajita.log;
 
     var Y = YAHOO.util,
         tool = YAHOO.tool,
@@ -98,7 +99,8 @@ YAHOO.log = cajita.log;
         suite = new tool.TestSuite("yuisuite");
 
     // Y.Event.onDOMReady(function() {
-        var logger = new YAHOO.tool.TestLogger(null, { height: '80%' });
+        //var logger = new YAHOO.tool.TestLogger(null, { height: '80%' });
+        new tool.TestLogger('logr');
 
         suite.add( new tool.TestCase({
             name: 'YAHOO.util.Dom',

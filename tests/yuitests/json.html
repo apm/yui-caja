@@ -2,9 +2,9 @@
 <html>
 <head>
     <title>Test Page</title>
-    <!--link type="text/css" rel="stylesheet" href="/assets/dpSyntaxHighlighter.css">
-    <link type="text/css" id="locallink" rel="stylesheet" href="../../../build/logger/assets/logger.css">
-    <link type="text/css" rel="stylesheet" href="../../../build/yuitest/assets/testlogger.css"-->
+    <!--link type="text/css" rel="stylesheet" href="/assets/dpSyntaxHighlighter.css"-->
+    <link type="text/css" id="locallink" rel="stylesheet" href="yui/logger/assets/logger.css">
+    <link type="text/css" rel="stylesheet" href="yui/yuitest/assets/testlogger.css">
     <style type="text/css" id="styleblock" class="highlight-ignore">
         h1 {
             font: normal 125%/1.4 Arial, sans-serif;
@@ -40,6 +40,7 @@
     </style>
 </head>
 <body class="yui-skin-sam">
+<div id="logr"></div>
 <h1>Tests</h1>
 <div id="testbed"></div>
 <form action=''>
@@ -78,7 +79,7 @@
 <script type="text/javascript" src="../../../build/json/json-debug.js"></script-->
 <script type="text/javascript">
 (function () {
-YAHOO.log = cajita.log;
+//YAHOO.log = cajita.log;
 
 var d = document,
     t = YAHOO.tool,
@@ -910,7 +911,7 @@ if (JSON.useNativeParse) {
 }
 */
 
-var logger = new TestLogger("log");
+var logger = new TestLogger("logr");
 
 TestRunner.add(suite);
 

@@ -5,9 +5,9 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>YAHOO.widget.Module Tests</title>
 
-        <!--link type="text/css" rel="stylesheet" href="../../../build/logger/assets/logger.css" />
-        <link type="text/css" rel="stylesheet" href="../../../build/yuitest/assets/testlogger.css" /-->
-        <link type="text/css" rel="stylesheet" href="../../../build/calendar/assets/skins/sam/calendar.css" />
+        <link type="text/css" rel="stylesheet" href="yui/logger/assets/logger.css">
+        <link type="text/css" rel="stylesheet" href="yui/yuitest/assets/testlogger.css">
+        <link type="text/css" rel="stylesheet" href="yui/calendar/assets/skins/sam/calendar.css">
     
         <!--script type="text/javascript" src="../../../build/yahoo/yahoo-min.js"></script>
         <script type="text/javascript" src="../../../build/dom/dom-min.js"></script>
@@ -23,7 +23,7 @@
     
         <script type="text/javascript">
 
-            YAHOO.log = cajita.log;
+            //YAHOO.log = cajita.log;
 
 			YAHOO.util.Assert.isDOMElement = function (actual, message) {
 
@@ -39,7 +39,7 @@
 
             YAHOO.util.Event.onDOMReady(function () {
 
-                var oLogger = new YAHOO.tool.TestLogger();
+                var oLogger = new YAHOO.tool.TestLogger('logr');
 
                 var oModule;
                 
@@ -438,7 +438,7 @@
 	
     </head>
     <body>
-    
+        <div id="logr"></div>
         <div id="module1">
             <div class="bd">The body of the module1</div>
         </div>

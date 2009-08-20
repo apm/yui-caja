@@ -3,8 +3,8 @@
 <head>
 <title>Element Test Suite</title>
 
-<link rel="stylesheet" type="text/css" href="css/logger/assets/logger.css">
-<link rel="stylesheet" type="text/css" href="css/yuitest/assets/yuitest.css">
+<link rel="stylesheet" type="text/css" href="yui/logger/assets/logger.css">
+<link rel="stylesheet" type="text/css" href="yui/yuitest/assets/testlogger.css">
 
 <style type="text/css">
 #foo {
@@ -16,6 +16,7 @@
 
 </head>
 <body class="yui-skin-sam">
+    <div id="logr"></div>
     <div id="doc">
         <div id="foo">foo</div>
         <a id="bar">foo</a>
@@ -24,7 +25,7 @@
 <script type="text/javascript">
 (function() {
 
-YAHOO.log = cajita.log;
+//YAHOO.log = cajita.log;
 
     var Y = YAHOO.util,
         tool = YAHOO.tool,
@@ -34,7 +35,8 @@ YAHOO.log = cajita.log;
         var Assert = YAHOO.util.Assert,
             ArrayAssert = YAHOO.util.ArrayAssert;
 
-        var logger = new YAHOO.tool.TestLogger(null, { height: '80%' });
+        //var logger = new YAHOO.tool.TestLogger(null, { height: '80%' });
+        var logger = new YAHOO.tool.TestLogger('logr');
 
         Y.Element.prototype.initAttributes = function() {
             this.setAttributeConfig('foo', {

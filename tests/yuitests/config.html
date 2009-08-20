@@ -1,20 +1,21 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-	<!--link type="text/css" rel="stylesheet" href="../../../build/logger/assets/logger.css" />
-	<link type="text/css" rel="stylesheet" href="../../../build/yuitest/assets/testlogger.css" />
+	<link type="text/css" rel="stylesheet" href="yui/logger/assets/logger.css">
+	<link type="text/css" rel="stylesheet" href="yui/yuitest/assets/testlogger.css">
 
-	<script type="text/javascript" src="../../../build/yahoo-dom-event/yahoo-dom-event.js"></script>
+	<!--script type="text/javascript" src="../../../build/yahoo-dom-event/yahoo-dom-event.js"></script>
 	<script type="text/javascript" src="../../../build/logger/logger-min.js"></script>
 	<script type="text/javascript" src="../../../build/yuitest/yuitest.js"></script>
     <script type="text/javascript" src="../../../build/container/container_core-min.js"></script-->
 
 </head>
 <body>
+    <div id="logr"></div>
     <script type="text/javascript">
 	(function() { 
 
-        YAHOO.log = cajita.log;
+        //YAHOO.log = cajita.log;
 
 		YAHOO.namespace("tests");
 
@@ -221,7 +222,7 @@
 
         function runTests() {
 
-			var logger = new YAHOO.tool.TestLogger();
+			var logger = new YAHOO.tool.TestLogger('logr');
 			var testSuite=new YAHOO.tool.TestSuite("configsuite");
 			testSuite.add(configTestCase);
 

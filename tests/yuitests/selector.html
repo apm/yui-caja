@@ -3,8 +3,8 @@
 <head>
 <title>Selector Test Suite</title>
 
-<link rel="stylesheet" type="text/css" href="css/logger/assets/logger.css">
-<link rel="stylesheet" type="text/css" href="css/yuitest/assets/yuitest.css">
+<link rel="stylesheet" type="text/css" href="yui/logger/assets/logger.css">
+<link rel="stylesheet" type="text/css" href="yui/yuitest/assets/testlogger.css">
 
 <style type="text/css">
 #root-test > ol > li > ol li {
@@ -13,6 +13,7 @@
 </style>
 </head>
 <body>
+<div id="logr"></div>
     <div id="demo" class="foo" title="this is a demo">
         <p class="para first" id="demo-first-child"><em>lorem ipsum</em></p>
         <p class="para">lorem ipsum</p>
@@ -61,10 +62,11 @@
 
 <script>
 
-YAHOO.log = cajita.log;
+//YAHOO.log = cajita.log;
 // onload = function() {
     var Y = YAHOO.util;
-    var logger = new YAHOO.tool.TestLogger(null, {height:'2000px'});
+    //var logger = new YAHOO.tool.TestLogger(null, {height:'2000px'});
+    var logger = new YAHOO.tool.TestLogger('logr');
     var suite = new YAHOO.tool.TestSuite("Selector Suite");
     var Selector = Y.Selector;
 

@@ -3,8 +3,8 @@
 <head>
 <title>Animation Test Suite</title>
 
-<link type="text/css" rel="stylesheet" href="css/logger/assets/skins/sam/logger.css">
-<link type="text/css" rel="stylesheet" href="css/yuitest/assets/skins/sam/yuitest.css">     
+<link type="text/css" rel="stylesheet" href="yui/logger/assets/logger.css">
+<link type="text/css" rel="stylesheet" href="yui/yuitest/assets/testlogger.css">     
 
 <style type="text/css">
 #foo,
@@ -18,6 +18,7 @@
 
 </head>
 <body class="yui-skin-sam">
+    <div id="logr"></div>
     <div id="doc">
         <div id="foo">foo</div>
         <div id="bar">bar</div>
@@ -25,14 +26,14 @@
 
 <script type="text/javascript">
 (function() {
-YAHOO.log = cajita.log;
+//YAHOO.log = cajita.log;
     var Y = YAHOO.util,
         tool = YAHOO.tool,
         suite = new tool.TestSuite("yuisuite");
 
     // Y.Event.onDOMReady(function() {
         // var logger = new YAHOO.tool.TestLogger(null, { height: '80%' });
-        var logger = new tool.TestLogger();
+        var logger = new tool.TestLogger('logr');
 
         var animFoo = new Y.Anim('foo', { width: { to: 10 } });
         var elFoo = document.getElementById('foo');

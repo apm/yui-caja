@@ -3,8 +3,8 @@
 <head>
     <title>Test Page</title>
 
-    <link rel="stylesheet" type="text/css" href="css/logger/assets/logger.css">
-    <link rel="stylesheet" type="text/css" href="css/yuitest/assets/yuitest.css">
+    <link rel="stylesheet" type="text/css" href="yui/logger/assets/logger.css">
+    <link rel="stylesheet" type="text/css" href="yui/yuitest/assets/testlogger.css">
 
     <style type="text/css" class="highlight-ignore">
         h1 {
@@ -48,6 +48,7 @@
     </style>
 </head>
 <body class="yui-skin-sam">
+<div id="logr"></div>
 <h1>Tests</h1>
 <div id="testbed"></div>
 <form id="frm" action="submitReporter.php">
@@ -223,7 +224,7 @@
 <script type="text/javascript">
 (function () {
 
-YAHOO.log = cajita.log;
+//YAHOO.log = cajita.log;
 
 var t = YAHOO.tool,
     u = YAHOO.util,
@@ -601,8 +602,7 @@ suite.add(new TestCase({
 
 //Event.onDOMReady(function () {
 
-    /*
-    var logger = new TestLogger("log");
+    var logger = new TestLogger("logr");
     logger.hideCategory('info');
     logger.showCategory('warn');
     logger.formatMsg = function (e) {
@@ -616,7 +616,6 @@ suite.add(new TestCase({
     };
 
     YAHOO.log("Tests","section","TestRunner");
-    */
 
     TestRunner.add(suite);
 

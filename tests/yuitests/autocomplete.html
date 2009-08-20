@@ -1,9 +1,9 @@
 <html>
 <head>
 <title>YUI AutoComplete Tests</title>
-<link type="text/css" rel="stylesheet" href="css/logger/assets/skins/sam/logger.css" />
-<link type="text/css" rel="stylesheet" href="css/yuitest/assets/skins/sam/testlogger.css" />
-<link type="text/css" rel="stylesheet" href="css/autocomplete/assets/autocomplete.css" />
+<link type="text/css" rel="stylesheet" href="yui/logger/assets/logger.css" />
+<link type="text/css" rel="stylesheet" href="yui/yuitest/assets/testlogger.css" />
+<link type="text/css" rel="stylesheet" href="yui/autocomplete/assets/autocomplete.css" />
 
 <!--script type="text/javascript" src="../../../build/yahoo/yahoo-min.js"></script>
 <script type="text/javascript" src="../../../build/dom/dom-min.js"></script>
@@ -14,6 +14,7 @@
 <script type="text/javascript" src="../../../build/autocomplete/autocomplete.js"></script-->
 </head>
 <body>
+<div id="logr"></div>
 <h1>AutoComplete Tests</h1>
 <p><input type="button" value="Run Tests" id="btnRun" disabled="true" /></p>
 
@@ -36,7 +37,7 @@
         AutoComplete = YAHOO.widget.AutoComplete;
         
 
-    YAHOO.log = cajita.log;
+    //YAHOO.log = cajita.log;
 
     var AutoCompleteTestCase = function (template) {
         AutoCompleteTestCase.superclass.constructor.call(this, template);
@@ -260,7 +261,7 @@
     var acApiTest = new AutoCompleteTestCase(acApiTemplate);
 
     YAHOO.util.Event.addListener(window, "load", function() {
-        var logger = new TestLogger();
+        var logger = new TestLogger('logr');
         
         var acsuite = new TestSuite("AutoComplete Test Suite");
         acsuite.add(acApiTest);
