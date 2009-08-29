@@ -202,7 +202,7 @@
      <target name="yuitest" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="./sandbox/yuitest/yuitest.js" />
+          <arg value="${yui2.build}/yuitest/yuitest.js" />
           <arg value="-o" />
           <arg value="${build}/yuitest.vo.js" />
         </exec>
@@ -210,7 +210,7 @@
      <target name="calendar" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="./sandbox/calendar/calendar.js" />
+          <arg value="${yui2.build}/calendar/calendar.js" />
           <arg value="-o" />
           <arg value="${build}/calendar.vo.js" />
         </exec>
@@ -218,7 +218,7 @@
      <target name="container" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="./sandbox/container/container.js" />
+          <arg value="${yui2.build}/container/container.js" />
           <arg value="-o" />
           <arg value="${build}/container.vo.js" />
         </exec>
