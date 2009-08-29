@@ -11,8 +11,6 @@
         $caja_base = $_GET['caja_base'];
     }
 
-    add('utilities');
-
     if (isset($_GET['suffix'])) {
         $suffix = $_GET['suffix'];
     }
@@ -31,9 +29,6 @@
 
     if (isset($_GET['test'])) {
         $test = $_GET['test'];
-        add($test);
-        add('logger');
-        add('yuitest');
         add("{$test}_$suffix");
     }
 
