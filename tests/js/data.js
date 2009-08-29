@@ -82,7 +82,7 @@ YAHOO.namespace('caja').data = {
           cajoled: true, yuitest: [
             '[[include=container&test=module]Module]',
             '[[include=container&test=config]Config]' ],
-          examples: 15, tests : [12,1,0] },
+          examples: 15, tests : [13,0,0] },
 
         { module:'datatable', status: 'pending',
           cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0] },
