@@ -13,7 +13,7 @@
 </style>
 </head>
 <body>
-<div id="logr"></div>
+<div id="xlogr"></div>
     <div id="demo" class="foo" title="this is a demo">
         <p class="para first" id="demo-first-child"><em>lorem ipsum</em></p>
         <p class="para">lorem ipsum</p>
@@ -60,8 +60,12 @@
     </form>
     <div class="Bar" id="class-bar"></div>
 
+<script src="yui/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script src="yui/selector/selector.js"></script>
+<script src="yui/logger/logger.js"></script>
+<script src="yui/yuitest/yuitest.js"></script>
 <script>
-
+(function () {
 //YAHOO.log = cajita.log;
 // onload = function() {
     var Y = YAHOO.util;
@@ -321,6 +325,7 @@
     YAHOO.tool.TestRunner.add(suite);
     YAHOO.tool.TestRunner.run();
 // };
+})();
 </script>
 </body>
 </html>

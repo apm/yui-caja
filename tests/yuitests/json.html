@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Test Page</title>
-    <!--link type="text/css" rel="stylesheet" href="/assets/dpSyntaxHighlighter.css"-->
     <link type="text/css" id="locallink" rel="stylesheet" href="yui/logger/assets/logger.css">
     <link type="text/css" rel="stylesheet" href="yui/yuitest/assets/testlogger.css">
     <style type="text/css" id="styleblock" class="highlight-ignore">
@@ -40,7 +39,6 @@
     </style>
 </head>
 <body class="yui-skin-sam">
-<div id="logr"></div>
 <h1>Tests</h1>
 <div id="testbed"></div>
 <form action=''>
@@ -71,16 +69,14 @@
     <input type="image" id="input_image" src="404.png" value="input image">
 </form>
 
-<!--script type="text/javascript" src="../../../build/yahoo/yahoo.js"></script>
-<script type="text/javascript" src="../../../build/dom/dom.js"></script>
-<script type="text/javascript" src="../../../build/event/event.js"></script>
-<script type="text/javascript" src="../../../build/logger/logger-min.js"></script>
-<script type="text/javascript" src="../../../build/yuitest/yuitest-min.js"></script>
-<script type="text/javascript" src="../../../build/json/json-debug.js"></script-->
+<script type="text/javascript" src="yui/yahoo/yahoo.js"></script>
+<script type="text/javascript" src="yui/dom/dom.js"></script>
+<script type="text/javascript" src="yui/event/event.js"></script>
+<script type="text/javascript" src="yui/logger/logger-min.js"></script>
+<script type="text/javascript" src="yui/yuitest/yuitest-min.js"></script>
+<script type="text/javascript" src="yui/json/json-debug.js"></script>
 <script type="text/javascript">
 (function () {
-//YAHOO.log = cajita.log;
-
 var d = document,
     t = YAHOO.tool,
     u = YAHOO.util,
@@ -517,9 +513,11 @@ suite.add(new TestCase({
     },
 
     test_stringifyDate : function () {
-        // This assumes Pacific Time Zone (GMT -7:00)
-        Assert.areSame('{"dt":"1946-07-06T07:00:00Z"}',
-            JSON.stringify({dt : new Date(1946,6,6)}));
+        // native toJSON method should be called if available
+        var d = new Date(Date.UTC(1946,6,6)),
+            ref = d.toJSON ? d.toJSON() : "1946-07-06T00:00:00Z";
+
+        Assert.areSame('{"dt":"'+ref+'"}', JSON.stringify({dt : d}));
     },
 
     test_stringifyFormValue : function () {
@@ -536,10 +534,10 @@ suite.add(new TestCase({
             textarea                : $('textarea').value,
             select                  : $('select').value,
             multiple_select         : $('multiple_select').value,
-            button                  : $('button').value,
-            button_with_value       : $('button_with_value').value,
-            button_submit           : $('button_submit').value,
-            button_submit_with_value: $('button_submit_with_value').value,
+            //button                  : $('button').value,
+            //button_with_value       : $('button_with_value').value,
+            //button_submit           : $('button_submit').value,
+            //button_submit_with_value: $('button_submit_with_value').value,
             input_button            : $('input_button').value,
             input_submit            : $('input_submit').value,
             input_image             : $('input_image').value
@@ -556,10 +554,10 @@ suite.add(new TestCase({
             '"textarea":"textarea",'+
             '"select":"selected",'+
             '"multiple_select":"selected",'+
-            '"button":"",'+
-            '"button_with_value":"button value",'+
-            '"button_submit":"",'+
-            '"button_submit_with_value":"submit button value",'+
+            //'"button":"",'+
+            //'"button_with_value":"button value",'+
+            //'"button_submit":"",'+
+            //'"button_submit_with_value":"submit button value",'+
             '"input_button":"input button",'+
             '"input_submit":"input submit",'+
             '"input_image":"input image"}',
@@ -794,6 +792,34 @@ suite.add(new TestCase({
 }));
 
 suite.add(new TestCase({
+    name : "toJSON",
+
+    test_toJSON_on_object: function () {
+        Assert.areSame('"toJSON"',
+            JSON.stringify({ toJSON: function () { return "toJSON" } }));
+
+        // TODO: complex object with toJSON
+    },
+
+    test_toJSON_on_proto: function () {
+        function A() {}
+        A.prototype.toJSON = function () { return "A" };
+        
+        function B() {}
+        B.prototype = new A();
+
+        function C() {
+            this.x = "X";
+            this.y = "Y";
+            this.z = "Z";
+        }
+        C.prototype = new B();
+
+        Assert.areSame('"A"', JSON.stringify(new C()));
+    }
+}));
+
+suite.add(new TestCase({
     name : "replacer",
 
     test_replacer : function () {
@@ -882,6 +908,32 @@ suite.add(new TestCase({
                         return v;
                     }
                 },'_'));
+    },
+
+    test_replacer_after_toJSON : function () {
+        Assert.areSame('{"a":"ABC"}',
+            JSON.stringify({a:{ toJSON: function () { return "abc"; } } },
+                function (k,v) {
+                    return typeof v === 'string' ? v.toUpperCase() : v;
+                }));
+
+        // Date instances in ES5 have toJSON that outputs toISOString, which
+        // means the replacer should never receive a Date instance
+        var str = JSON.stringify([new Date()], function (k,v) {
+            return (v instanceof Date) ? "X" : v;
+        });
+        Assert.areSame(-1, str.indexOf("X"), "Date incorrectly received by replacer");
+    },
+
+    test_replacer_returning_Date : function () {
+        var d = new Date(),
+            ref = JSON.stringify(d);
+
+        Assert.areSame('{"dt":'+ref+',"date_from_replacer":{}}',
+            JSON.stringify({ dt: d, date_from_replacer: 1 },
+                function (k,v) {
+                    return typeof v === 'number' ? d : v;
+                }));
     }
 }));
 
@@ -897,7 +949,6 @@ suite.add(new TestCase({
 }
 
 addTests();
-/*
 // If native JSON is available, run the tests again without native calls
 if (JSON.useNativeParse) {
     suite.add(new TestCase({
@@ -909,9 +960,20 @@ if (JSON.useNativeParse) {
     }));
     addTests();
 }
-*/
 
-var logger = new TestLogger("logr");
+var logger = new TestLogger("log");
+logger.hideCategory('info');
+logger.formatMsg = function (e) {
+    if (e.category === 'section') {
+        return "<h3>"+e.msg+"</h3>";
+    } else if (e.category === "break") {
+        return "<br>";
+    } else {
+        return TestLogger.prototype.formatMsg.call(this,e);
+    }
+};
+
+YAHOO.log("Tests","section","TestRunner");
 
 TestRunner.add(suite);
 

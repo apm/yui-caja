@@ -26,12 +26,15 @@ var YAHOO_config = {
 
 </head>
 <body>
-<div id="slogr"></div>
+<div id="xlogr"></div>
 <iframe name="xframe" id="xframe" src="assets/xframe.html"></iframe>
 <h1>YAHOO test page</h1>
 <p>This page contains tests being run by yuitest, the results of which<br />
 are output in the logger to the right. <br />View the source to see how it's done.</p>
 <p><input type="button" value="Run Tests" id="btnRun" /></p>
+<script src="yui/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script src="yui/logger/logger.js"></script>
+<script src="yui/yuitest/yuitest.js"></script>
 <script type="text/javascript">
 
 (function() {
