@@ -202,7 +202,7 @@
      <target name="yuitest" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="./sandbox/yuitest/yuitest.js" />
+          <arg value="${yui2.build}/yuitest/yuitest.js" />
           <arg value="-o" />
           <arg value="${build}/yuitest.vo.js" />
         </exec>
