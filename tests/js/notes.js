@@ -51,7 +51,7 @@ YAHOO.namespace('caja').notes = {
         "Parse won't work because it uses eval.  Caja exposes a JSON object, so if it could [[#1086]report 'object JSON' to the Miller device], JSON util would work unmodified"
     ],
     layout: [
-        "Full page layout and Layout with Menus examples are displaying as a blank page.  The DOM is there, but some elements are sized height: 0.  Investigation pending."
+        "Full page layout and Layout with Menus examples are displaying as a blank page because Caja doesn't grant access to [[#1120]document.documentElement for getting clientHeight]."
     ],
     profiler: [
         "Should work except for passing eval strings to registerFunction etc"
