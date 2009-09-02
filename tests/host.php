@@ -19,9 +19,11 @@
         $base = $_GET['base'];
     }
 
+    /*
     if (isset($_GET['include'])) {
         array_map("add", split(',',$_GET['include']));
     }
+    */
 
     if (isset($_GET['css'])) {
         array_map("addCSS", split(',',$_GET['css']));
