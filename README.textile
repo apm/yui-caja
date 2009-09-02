@@ -19,35 +19,24 @@ Quick start:
 [~/src] ➔ cd google-caja
 [~/src/google-caja] ➔ ant testbed
 [~/src/google-caja] ➔ cd ../yui-caja
-[~/src/yui-caja] ➔ ln -s ../yui2 tests/css
-[~/src/yui-caja] ➔ ln -s ../yui2 tests/yuitests/css
-[~/src/yui-caja] ➔ ln -s ../yui2 tests/examples/css
+[~/src/yui-caja] ➔ ln -s ../yui2/build tests/yui
+[~/src/yui-caja] ➔ ln -s ../yui2/build tests/yuitests/yui
+[~/src/yui-caja] ➔ ln -s ../yui2/build tests/examples/yui
 [~/src/yui-caja] ➔ ant
-[~/src/yui-caja] ➔ open tests/host.php?test=dom (open with a web browser, this may need to be served through a local web server)
 </pre>
 </notextile>
 
-In addition to some adhoc tests, we are in the process of converting the YUI test suite and many examples from the 2.7.0 release to run under Caja.  The adhoc tests are located in the tests directory, the yuitests in the tests/yuitests directory, and the examples in tests/examples.
+Then open tests/index.php in a web browser.  This will require a local web server running PHP.
 
-A modified version of YUI Test is included in the distribution to run the tests included in the yuitests directory.  Test output is directed to the browser's console.  Use FireBug in Firefox, Web Inspector in Safari/WebKit, Dragonfly in Opera, and FireBug Lite in IE to see the results.  FireBug Lite is automatically loaded to the page in IE.
+The index page summarizes the current status of the cajoling and testing process for YUI 2.  Test suites and examples are all powered by a single host.php that wraps the cajoled test and example pages (referred to as gadgets after cajoling).  host.php operates by evaluating query string parameters, so it can be used to test other cajoled content not linked by the index file.
 
-The tests directory contains an index.php file that includes a summary of the current status of the Cajoling effort, displayed in three DataTables.  All cajoled tests and examples are linked from the corresponding module entry or its notes.
+The original source of the individual tests, test suites, and examples are under the /tests directory, in the respective yuitests and examples subfolders.
 
-All tests and examples use a single host.php file to make it possible to run all of the tests and examples from the single host file.  This page takes a few parameters to indicate which test or example you wish to run.  The only required parameter is 'test':
-
-By default, the hosts file looks for yuitests for the named test
-http://localhost/src/yui-caja/tests/host.php?test=dom
-
-The adhoc tests are called gadgets and require the suffix param as well
-http://localhost/src/yui-caja/tests/host.php?suffix=gadget&test=core
-
-The examples require the 'example' suffix and the inclusion of any libs not in the utilities rollup via the include param
-http://localhost/src/yui-caja/tests/host.php?suffix=example&include=data,datasource,autocomplete&test=autocomplete_basic_array
-
-If you don't have a php enabled web server available, it would be simple to create a static html file for the test you wish to run from the php file.
+FireBug Lite is automatically loaded onto the page in IE6 and 7.
 
 p. Todo:
 
 * Replace the script execs with the cajole task should it exist, or create one.
 * Host file build step that generates the correct urls to the caja environment based on the caja.base property.
 * Document capabilities and known issues for each component. (in progress see /tests/index.php)
+* auto-generate yuitests from ../yui2/src/{module}/tests/*.html in the build step.
