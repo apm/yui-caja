@@ -17,7 +17,8 @@ YAHOO.namespace('caja').notes = {
     ],
     calendar: [
         'YUI Test suite stopped several times at the debugger statement in domita (or was that in cajita?)',
-        '[[#1095]link.blur() throws an error] which kills cell click callback operation'
+        '[[#1095]link.blur() throws an error] which kills cell click callback operation',
+        "[[#1120]Missing document.compatMode] may be causing some positioning issues"
     ],
     connection: [
         '[[suffix=gadget&test=connection]Simple example] as test works',
@@ -27,7 +28,8 @@ YAHOO.namespace('caja').notes = {
     container: [
         'Default resize monitor setting is <code>true</code>, and is powered by an iframe, which is not allowed.',
         "testMethods test fails because [[#1092]Caja does not correctly report parentNode for off-DOM elements].  The portion of the test that this affects was commented out.",
-        "Panel and Dialog examples are constraining inside a smaller region"
+        "Panel and Dialog examples are constraining inside a smaller region",
+        "[[#1120]Missing document.compatMode] may be causing some positioning issues"
     ],
     cookie: ['Cookies are not supported in Caja'],
     dragdrop: [
@@ -36,7 +38,11 @@ YAHOO.namespace('caja').notes = {
     dom: [
         '<del>Dom.get(Element instance) fails because [[#1066]nodes expose a length property]</del>',
         '[[#1069]fontFamily support is limited]',
-        "[[#1066]node.setAttribute('for',x) does not propagate to node.htmlFor]"
+        "[[#1066]node.setAttribute('for',x) does not propagate to node.htmlFor]",
+        "[[#1120]Dom.getClientHeight, Width, etc don't work] because both doc.compatMode and document.documentElement are undefined"
+    ],
+    editor: [
+        "[[#1120]Missing document.compatMode] may be causing some issues"
     ],
     get: [
         "No expectation for this to work, though that may change"
@@ -45,7 +51,8 @@ YAHOO.namespace('caja').notes = {
         "No expectation for this to work"
     ],
     imageloader: [
-        "YUI Test not cajoling because of 'malformed URLs'.  Felix may patch cajoler to accept arbitrary urls"
+        "YUI Test not cajoling because of 'malformed URLs'.  Felix may patch cajoler to accept arbitrary urls",
+        "[[#1120]Missing document.compatMode] may be causing some issues"
     ],
     json: [
         "Parse won't work because it uses eval.  Caja exposes a JSON object, so if it could [[#1086]report 'object JSON' to the Miller device], JSON util would work unmodified"
