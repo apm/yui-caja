@@ -550,12 +550,12 @@
           <arg value="${build}/json_test.vo.js" />
         </exec>
      </target>
-     <target name="sample_tabview_test" depends="init">
+     <target name="datatable_test" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${test}/sample_tabview_gadget.html" />
+          <arg value="${yuitest}/datatable.html" />
           <arg value="-o" />
-          <arg value="${build}/sample_tabview_test.vo.js" />
+          <arg value="${build}/datatable_test.vo.js" />
         </exec>
      </target>
 
@@ -868,6 +868,15 @@
         </exec>
      </target>
 
+     <target name="datatable1_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/dt_basic_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable1_example.vo.js" />
+        </exec>
+     </target>
+
      <target name="all"
         depends="init, yui, yui_css, gadgets, yuitests, examples" />
 
@@ -881,10 +890,10 @@
         depends="init, core, dd, resize_gadget, connection_gadget, json_gadget, treeview_gadget, yuitest_gadget, error_gadget" />
 
      <target name="yuitests"
-        depends="init, yahoo_test, animation_test, dd_test, dom_test, selector_test, yuitest_test, connection_test, cookie_test, profiler_test, datasource_test, tabview_test, autocomplete_test, menu_test, slider_test, module_test, config_test, calendar_test, datemath_test, colorpicker_test, paginator_test, json_test" />
+        depends="init, yahoo_test, animation_test, dd_test, dom_test, selector_test, yuitest_test, connection_test, cookie_test, profiler_test, datasource_test, tabview_test, autocomplete_test, menu_test, slider_test, module_test, config_test, calendar_test, datemath_test, colorpicker_test, paginator_test, json_test, datatable_test" />
 
      <target name="examples"
-        depends="init, core, example_data, autocomplete_examples, connection_examples, event_examples, container_examples, button_examples, layout_examples"/>
+        depends="init, core, example_data, autocomplete_examples, connection_examples, event_examples, container_examples, button_examples, layout_examples, datatable_examples"/>
 
      <target name="autocomplete_examples"
         depends="init, core, autocomplete_basic_array_ex" />
@@ -903,5 +912,8 @@
 
      <target name="layout_examples"
         depends="init, core, layout1_ex, layout2_ex, layout3_ex, layout4_ex" />
+
+    <target name="datatable_examples"
+        depends="init, core, datatable1_ex" />
 </project>
 

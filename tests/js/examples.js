@@ -73,5 +73,8 @@ YAHOO.namespace('caja').examples = {
     ],
     treeview: [
         '[[suffix=gadget&test=treeview]Simple test]'
+    ],
+    datatable: [
+        '[[suffix=example&test=datatable1]Basic example]'
     ]
 };

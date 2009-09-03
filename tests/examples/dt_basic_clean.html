@@ -18,13 +18,13 @@ body {
 }
 </style>
 
-<link rel="stylesheet" type="text/css" href="../../yui2/build/fonts/fonts-min.css" />
-<link rel="stylesheet" type="text/css" href="../../yui2/build/datatable/assets/skins/sam/datatable.css" />
-<!--script type="text/javascript" src="../../build/yahoo-dom-event/yahoo-dom-event.js"></script-->
-<!--script type="text/javascript" src="../../build/dragdrop/dragdrop-min.js"></script-->
-<!--script type="text/javascript" src="../../build/element/element-min.js"></script-->
-<!--script type="text/javascript" src="../../build/datasource/datasource-min.js"></script-->
-<!--script type="text/javascript" src="../../build/datatable/datatable-min.js"></script-->
+<link rel="stylesheet" type="text/css" href="yui/fonts/fonts-min.css" />
+<link rel="stylesheet" type="text/css" href="yui/datatable/assets/skins/sam/datatable.css" />
+<script type="text/javascript" src="yui/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="yui/dragdrop/dragdrop-min.js"></script>
+<script type="text/javascript" src="yui/element/element-min.js"></script>
+<script type="text/javascript" src="yui/datasource/datasource-min.js"></script>
+<script type="text/javascript" src="yui/datatable/datatable-min.js"></script>
 
 
 <!--begin custom header content for this example-->
@@ -37,7 +37,7 @@ body {
 
 </head>
 
-<body class=" yui-skin-sam">
+<body class="yui-skin-sam">
 
 
 <h1>Basic Example</h1>
@@ -46,21 +46,18 @@ body {
 	<p>A demonstration of the DataTable's basic feature set.</p>
 			
 </div>
-
-<!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
-
 <div id="basic"></div>
 
-<!--script type="text/javascript" src="assets/js/data.js"></script-->
+<script type="text/javascript" src="assets/datatable/js/data.js"></script>
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.Basic = function() {
         var myColumnDefs = [
-            {key:"id", sortable:true, resizeable:true},
-            {key:"date", formatter:YAHOO.widget.DataTable.formatDate, sortable:true, sortOptions:{defaultDir:YAHOO.widget.DataTable.CLASS_DESC},resizeable:true},
-            {key:"quantity", formatter:YAHOO.widget.DataTable.formatNumber, sortable:true, resizeable:true},
-            {key:"amount", formatter:YAHOO.widget.DataTable.formatCurrency, sortable:true, resizeable:true},
-            {key:"title", sortable:true, resizeable:true}
+            {key:"id", sortable:true},
+            {key:"date", formatter:YAHOO.widget.DataTable.formatDate, sortable:true, sortOptions:{defaultDir:YAHOO.widget.DataTable.CLASS_DESC}},
+            {key:"quantity", formatter:YAHOO.widget.DataTable.formatNumber, sortable:true},
+            {key:"amount", formatter:YAHOO.widget.DataTable.formatCurrency, sortable:true},
+            {key:"title", sortable:true},
         ];
 
         var myDataSource = new YAHOO.util.DataSource(YAHOO.example.Data.bookorders);
@@ -80,8 +77,5 @@ YAHOO.util.Event.addListener(window, "load", function() {
 });
 </script>
 
-<!--END SOURCE CODE FOR EXAMPLE =============================== -->
-
 </body>
 </html>
-<!-- presentbright.corp.yahoo.com uncompressed/chunked Thu Feb 19 10:53:11 PST 2009 -->

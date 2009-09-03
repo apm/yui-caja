@@ -85,7 +85,7 @@ YAHOO.namespace('caja').data = {
           examples: 15, tests : [13,0,0] },
 
         { module:'datatable', status: 'pending',
-          cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0] },
+          cajoled: true, yuitest: 'test=datatable', examples: 31, tests : [63,4,11] },
 
         { module:'menu', status: 'wip',
           cajoled: true, yuitest: 'include=container&test=menu',

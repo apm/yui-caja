@@ -44,6 +44,9 @@ YAHOO.namespace('caja').notes = {
     editor: [
         "[[#1120]Missing document.compatMode] may be causing some issues"
     ],
+    datatable: [
+        "Column resizing won't work because the two ways to accomplish the task (dynamic stylesheets and generated Function) are both verboten in Caja"
+    ],
     get: [
         "No expectation for this to work, though that may change"
     ],
