@@ -75,6 +75,9 @@ YAHOO.namespace('caja').examples = {
         '[[suffix=gadget&test=treeview]Simple test]'
     ],
     datatable: [
-        '[[suffix=example&test=datatable1]Basic example]'
+        '[[suffix=example&test=datatable1]Sorting and resizable columns]',
+        '[[suffix=example&test=datatable2]Client side pagination]',
+        '[[suffix=example&test=datatable3]Cell editing]',
+        '[[suffix=example&test=datatable4]Progressive enhancement]'
     ]
 };

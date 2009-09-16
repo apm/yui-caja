@@ -558,6 +558,14 @@
           <arg value="${build}/datatable_test.vo.js" />
         </exec>
      </target>
+     <target name="stylesheet_test" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yuitest}/stylesheet.html" />
+          <arg value="-o" />
+          <arg value="${build}/stylesheet_test.vo.js" />
+        </exec>
+     </target>
 
      <target name="example_data" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
@@ -876,6 +884,30 @@
           <arg value="${build}/datatable1_example.vo.js" />
         </exec>
      </target>
+     <target name="datatable2_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/dt_clientpagination_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable2_example.vo.js" />
+        </exec>
+     </target>
+     <target name="datatable3_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/dt_cellediting_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable3_example.vo.js" />
+        </exec>
+     </target>
+     <target name="datatable4_ex" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${example}/dt_enhanced_clean.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable4_example.vo.js" />
+        </exec>
+     </target>
 
      <target name="all"
         depends="init, yui, yui_css, gadgets, yuitests, examples" />
@@ -914,6 +946,6 @@
         depends="init, core, layout1_ex, layout2_ex, layout3_ex, layout4_ex" />
 
     <target name="datatable_examples"
-        depends="init, core, datatable1_ex" />
+        depends="init, core, datatable1_ex, datatable2_ex, datatable3_ex, datatable4_ex" />
 </project>
 

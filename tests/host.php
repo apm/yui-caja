@@ -6,6 +6,7 @@
     $scripts = array();
     $css = array();
     $test = $bodyClass = '';
+    $bodyClass = ' class="yui-skin-sam"';
     
     if (isset($_GET['caja_base'])) {
         $caja_base = $_GET['caja_base'];
