@@ -47,7 +47,7 @@
             <arg value="-i" />
             <arg value="${test}/basic.html" />
             <arg value="-o" />
-            <arg value="${build}/basic_test.vo.js" />
+            <arg value="${build}/basic_gadget.vo.js" />
         </exec>
     </target>
 
