@@ -1,131 +1,155 @@
 YAHOO.namespace('caja').data = {
     core: [
         { module:'yahoo', status: 'working',
-          cajoled: true, yuitest: 'test=yahoo', examples: 6, tests : [16,3,3] },
+          yuitest: 'test=yahoo', tests : [16,3,3] },
 
         { module:'dom', status: 'working',
-          cajoled: true, yuitest: 'test=dom', examples: 6, tests : [31,1,0] },
+          yuitest: 'test=dom', tests : [31,1,0] },
 
         { module:'event', status: 'working',
-          cajoled: true, yuitest: false, examples: 4, tests : [0,0,0] },
+          yuitest: false, tests : [0,0,0] },
 
         { module:'yahoo-dom-event', status: 'working',
-          cajoled: true, yuitest: false, examples: 1, tests : [0,0,0] },
+          yuitest: false, tests : [0,0,0] },
 
         { module:'utilities', status: 'conditional',
-          cajoled: true, yuitest: false, examples: 1, tests : [0,0,0] },
+          yuitest: false, tests : [0,0,0] },
 
         { module: 'reset-fonts-grids', status: 'wip',
-          cajoled: true, yuitest: false, examples: 17, tests: [0,0,0] }
+          yuitest: false, tests: [0,0,0] },
+
+        { module: 'base', status: 'pending',
+          yuitest: false, tests: [0,0,0] }
     ],
 
 // Utils
 
     utils: [
-        { module:'connection', status: 'conditional',
-          cajoled: true, yuitest: 'test=connection', examples: 7, tests : [0,0,1] },
-
-        { module:'dragdrop', status: 'conditional',
-          cajoled: true, yuitest: 'test=dd', examples: 9, tests : [5,3,0] },
-
         { module:'animation', status: 'working',
-          cajoled: true, yuitest: 'test=animation', examples: 10, tests : [5,0,0] },
+          yuitest: 'test=animation', tests : [5,0,0] },
 
-        { module:'json', status: 'conditional',
-          cajoled: true, yuitest: 'test=json', examples: 5, tests : [44,0,6] },
-
-        { module:'datasource', status: 'conditional',
-          cajoled: true, yuitest: 'test=datasource', examples: 1, tests : [12,2,1]},
-
-        { module:'element', status: 'working',
-          cajoled: true, yuitest: 'test=element', examples: 0, tests : [11,0,2] },
-
-        { module:'selector', status: 'wip',
-          cajoled: true, yuitest: 'test=selector', examples: 2, tests : [4,6,2] },
-
-        { module:'yuitest', status: 'conditional',
-          cajoled: 'custom', yuitest: 'test=yuitest', examples: 6, tests : [49,0,68] },
+        { module:'connection', status: 'conditional',
+          yuitest: 'test=connection', tests : [0,0,1] },
 
         { module:'cookie', status: 'unsupported',
-          cajoled: true, yuitest: 'test=cookie', examples: 3, tests : [137,31,0] },
+          yuitest: 'test=cookie', tests : [137,31,0] },
 
-        { module:'profiler', status: 'conditional',
-          cajoled: true, yuitest: 'test=profiler', examples: 2, tests : [13,0,1] },
+        { module:'datasource', status: 'conditional',
+          yuitest: 'test=datasource', tests : [12,2,1]},
 
-        { module:'imageloader', status: 'wip',
-          cajoled: true, yuitest: 'test=imageloader', examples: 4, tests : [0,0,0] },
+        { module:'dragdrop', status: 'conditional',
+          yuitest: 'test=dd', tests : [5,3,0] },
 
-        { module:'stylesheet', status: 'pending',
-          cajoled: true, yuitest: 'test=stylesheet', examples: 0, tests : [0,0,0] },
+        { module:'element', status: 'working',
+          yuitest: 'test=element', tests : [11,0,2] },
 
-        { module:'resize', status: 'pending',
-          cajoled: true, yuitest: false, examples: 7, tests : [0,0,0] },
-
-        { module:'layout', status: 'wip',
-          cajoled: true, yuitest: false, examples: 7, tests : [0,0,0] },
+        { module:'get', status: 'pending',
+          yuitest: 'pending', tests : [0,0,0] },
 
         { module:'history', status: 'pending',
-          cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0] },
+          yuitest: 'pending', tests : [0,0,0] },
+
+        { module:'imagecropper', status: 'pending',
+          yuitest: 'pending', tests : [0,0,0] },
+
+        { module:'imageloader', status: 'wip',
+          yuitest: 'test=imageloader', tests : [0,0,0] },
+
+        { module:'json', status: 'conditional',
+          yuitest: 'test=json', tests : [44,0,6] },
+
+        { module:'layout', status: 'wip',
+          yuitest: false, tests : [0,0,0] },
+
+        { module:'logger', status: 'pending',
+          yuitest: 'pending', tests : [0,0,0] },
+
+        { module:'profiler', status: 'conditional',
+          yuitest: 'test=profiler', tests : [13,0,1] },
+
+        { module:'resize', status: 'pending',
+          yuitest: false, tests : [0,0,0] },
+
+        { module:'selector', status: 'wip',
+          yuitest: 'test=selector', tests : [4,6,2] },
+
+        { module:'storage', status: 'pending',
+          yuitest: 'pending', tests : [0,0,0] },
+
+        { module:'stylesheet', status: 'pending',
+          yuitest: 'test=stylesheet', tests : [0,0,0] },
+
+        { module:'swf', status: 'pending',
+          yuitest: 'pending', tests : [0,0,0] },
+
+        { module:'swfstore', status: 'pending',
+          yuitest: 'pending', tests : [0,0,0] },
+
+        { module:'uploader', status: 'pending',
+          yuitest: 'pending', tests : [0,0,0] },
+
+        { module:'yuiloader', status: 'pending',
+          yuitest: 'pending', tests : [0,0,0] },
+
+        { module:'yuitest', status: 'conditional',
+          yuitest: 'test=yuitest', tests : [49,0,68] }
     ],
 
 // Widgets
 
     widgets: [
         { module:'autocomplete', status: 'wip',
-          cajoled: true, yuitest: 'include=datasource&test=autocomplete',
-          examples: 12, tests : [14,1,0] },
+          yuitest: 'test=autocomplete', tests : [14,1,0] },
 
         { module:'button', status: 'conditional',
-          cajoled: true, yuitest: false, examples: 17, tests : [0,0,0] },
-
-        { module:'container', status: 'wip',
-          cajoled: true, yuitest: [
-            '[[include=container&test=module]Module]',
-            '[[include=container&test=config]Config]' ],
-          examples: 15, tests : [13,0,0] },
-
-        { module:'datatable', status: 'pending',
-          cajoled: true, yuitest: 'test=datatable', examples: 31, tests : [63,4,11] },
-
-        { module:'menu', status: 'wip',
-          cajoled: true, yuitest: 'include=container&test=menu',
-          examples: 26, tests : [0,0,1] },
-
-        { module:'slider', status: 'wip',
-          cajoled: true, yuitest: false, examples: 7, tests : [0,0,0] },
-
-        { module:'tabview', status: 'wip',
-          cajoled: true, yuitest: 'test=tabview', examples: 7, tests : [8,0,0] },
+          yuitest: false, tests : [0,0,0] },
 
         { module:'calendar', status: 'wip',
-          cajoled: true, yuitest: [
-            "[[test=calendar]Calendar]",
-            "[[include=calendar&test=datemath]DateMath]" ],
-          examples: 14, tests : [57,4,0] },
+          yuitest: 'pending', tests : [57,4,0] },
 
-        { module:'colorpicker', status: 'wip',
-          cajoled: true, yuitest: 'include=dragdrop,slider&test=colorpicker',
-          examples: 4, tests : [4,0,2] },
-
-        { module:'paginator', status: 'wip',
-          cajoled: true, yuitest: 'test=paginator', examples: 4, tests : [7,0,0] },
-
-        { module:'editor', status: 'pending',
-          cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0] },
-
-        { module:'treeview', status: 'wip',
-          cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0] },
-
-        { module:'uploader', status: 'pending',
-          cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0] },
-
-        { module:'imagecropper', status: 'pending',
-          cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0] },
+        { module:'carousel', status: 'pending',
+          yuitest: 'pending', tests : [0,0,0] },
 
         { module:'charts', status: 'pending',
-          cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0] },
+          yuitest: 'pending', tests : [0,0,0] },
 
-        { module:'logger', status: 'pending',
-          cajoled: true, yuitest: 'pending', examples: 0, tests : [0,0,0] },
+        { module:'colorpicker', status: 'wip',
+          yuitest: 'test=colorpicker', tests : [4,0,2] },
+
+        { module:'container', status: 'wip',
+          yuitest: [
+            '[[test=module]Module]',
+            '[[test=config]Config]' ],
+          tests : [13,0,0] },
+
+        { module:'datatable', status: 'pending',
+          yuitest: 'test=datatable', tests : [63,4,11] },
+
+        { module:'editor', status: 'pending',
+          yuitest: 'pending', tests : [0,0,0] },
+
+        { module:'menu', status: 'wip',
+          yuitest: 'test=menu', tests : [0,0,0] },
+
+        { module:'paginator', status: 'wip',
+          yuitest: 'test=paginator', tests : [7,0,0] },
+
+        { module:'profilerviewer', status: 'pending',
+          yuitest: 'pending', tests : [0,0,0] },
+
+        { module:'progressbar', status: 'pending',
+          yuitest: 'pending', tests : [0,0,0] },
+
+        { module:'slider', status: 'wip',
+          yuitest: false, tests : [0,0,0] },
+
+        { module:'tabview', status: 'wip',
+          yuitest: 'test=tabview', tests : [8,0,0] },
+
+        { module:'treeview', status: 'wip',
+          yuitest: 'pending', tests : [0,0,0] },
+
+        { module:'uploader', status: 'pending',
+          yuitest: 'pending', tests : [0,0,0] }
     ]
 };

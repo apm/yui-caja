@@ -1,5 +1,4 @@
 <?php
-    $suffix = 'test';
     $base = '../cajoled';
     $caja_base = '../../google-caja';
 
@@ -12,19 +11,9 @@
         $caja_base = $_GET['caja_base'];
     }
 
-    if (isset($_GET['suffix'])) {
-        $suffix = $_GET['suffix'];
-    }
-
     if (isset($_GET['base'])) {
         $base = $_GET['base'];
     }
-
-    /*
-    if (isset($_GET['include'])) {
-        array_map("add", split(',',$_GET['include']));
-    }
-    */
 
     if (isset($_GET['css'])) {
         array_map("addCSS", split(',',$_GET['css']));
@@ -32,7 +21,7 @@
 
     if (isset($_GET['test'])) {
         $test = $_GET['test'];
-        add("{$test}_$suffix");
+        add($test);
     }
 
 
@@ -107,7 +96,7 @@
 
     <div id="gadget___" class="gadget___">
         <div<?php echo($bodyClass); ?>>
-            <?php include("$base/{$test}_$suffix.vo..out.html"); ?>
+            <?php include("$base/$test.vo..out.html"); ?>
         </div>
     </div>
 

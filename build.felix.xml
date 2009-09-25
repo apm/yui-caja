@@ -1,951 +1,3697 @@
 <?xml version="1.0"?>
 <project name="yui-caja" default="all" basedir=".">
-     <property file="build.felix.properties"/>
-     <target name="init">
+    <property file="build.felix.properties"/>
+
+    <target name="init">
         <mkdir dir="${build}"/>
-        <mkdir dir="${log}"/>
-     </target>
-     <target name="utilities" depends="init">
+    </target>
+
+    <target name="yui_css" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/utilities/utilities.js" />
-          <arg value="-o" />
-          <arg value="${build}/utilities.vo.js" />
+            <arg value="-i" />
+            <arg value="${test}/all_css.html" />
+            <arg value="-o" />
+            <arg value="${build}/all_css_gadget.vo.js" />
         </exec>
-     </target>
-     <target name="yahoo-dom-event" depends="init">
+    </target>
+
+    <target name="core_gadget" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/yahoo-dom-event/yahoo-dom-event.js" />
-          <arg value="-o" />
-          <arg value="${build}/yahoo-dom-event.vo.js" />
+            <arg value="-i" />
+            <arg value="${test}/core_gadget.html" />
+            <arg value="-o" />
+            <arg value="${build}/core_gadget.vo.js" />
         </exec>
-     </target>
-     <target name="yahoo" depends="init">
+    </target>
+
+    <target name="dd_gadget" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/yahoo/yahoo.js" />
-          <arg value="-o" />
-          <arg value="${build}/yahoo.vo.js" />
+            <arg value="-i" />
+            <arg value="${test}/dd_gadget.html" />
+            <arg value="-o" />
+            <arg value="${build}/dd_gadget.vo.js" />
         </exec>
-     </target>
-     <target name="dom" depends="init">
+    </target>
+
+    <target name="resize_gadget" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/dom/dom.js" />
-          <arg value="-o" />
-          <arg value="${build}/dom.vo.js" />
+            <arg value="-i" />
+            <arg value="${test}/resize_gadget.html" />
+            <arg value="-o" />
+            <arg value="${build}/resize_gadget.vo.js" />
         </exec>
-     </target>
-     <target name="event" depends="init">
+    </target>
+
+    <target name="basic_gadget" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/event/event.js" />
-          <arg value="-o" />
-          <arg value="${build}/event.vo.js" />
+            <arg value="-i" />
+            <arg value="${test}/basic.html" />
+            <arg value="-o" />
+            <arg value="${build}/basic_test.vo.js" />
         </exec>
-     </target>
-     <target name="connection" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/connection/connection.js" />
-          <arg value="-o" />
-          <arg value="${build}/connection.vo.js" />
-        </exec>
-     </target>
-     <target name="dragdrop" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/dragdrop/dragdrop.js" />
-          <arg value="-o" />
-          <arg value="${build}/dragdrop.vo.js" />
-        </exec>
-     </target>
-     <target name="animation" depends="init">
+    </target>
+
+    <target name="yui_gadgets" depends="core_gadget, dd_gadget, resize_gadget, basic_gadget" />
+
+    <target name="animation" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
           <arg value="${yui2.build}/animation/animation.js" />
           <arg value="-o" />
           <arg value="${build}/animation.vo.js" />
         </exec>
-     </target>
-     <target name="element" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/element/element.js" />
-          <arg value="-o" />
-          <arg value="${build}/element.vo.js" />
-        </exec>
-     </target>
-     <target name="selector" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/selector/selector.js" />
-          <arg value="-o" />
-          <arg value="${build}/selector.vo.js" />
-        </exec>
-     </target>
-     <target name="cookie" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/cookie/cookie.js" />
-          <arg value="-o" />
-          <arg value="${build}/cookie.vo.js" />
-        </exec>
-     </target>
-     <target name="datasource" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/datasource/datasource.js" />
-          <arg value="-o" />
-          <arg value="${build}/datasource.vo.js" />
-        </exec>
-     </target>
-     <target name="autocomplete" depends="init">
+    </target>
+    <target name="autocomplete" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
           <arg value="${yui2.build}/autocomplete/autocomplete.js" />
           <arg value="-o" />
           <arg value="${build}/autocomplete.vo.js" />
         </exec>
-     </target>
-     <target name="button" depends="init">
+    </target>
+    <target name="base" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/base/base.css" />
+          <arg value="-o" />
+          <arg value="${build}/base.vo.js" />
+        </exec>
+    </target>
+    <target name="button" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
           <arg value="${yui2.build}/button/button.js" />
           <arg value="-o" />
           <arg value="${build}/button.vo.js" />
         </exec>
-     </target>
-     <target name="carousel" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/carousel/carousel.js" />
-          <arg value="-o" />
-          <arg value="${build}/carousel.vo.js" />
-        </exec>
-     </target>
-     <target name="colorpicker" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/colorpicker/colorpicker.js" />
-          <arg value="-o" />
-          <arg value="${build}/colorpicker.vo.js" />
-        </exec>
-     </target>
-     <target name="datatable" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/datatable/datatable.js" />
-          <arg value="-o" />
-          <arg value="${build}/datatable.vo.js" />
-        </exec>
-     </target>
-     <target name="imagecropper" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/imagecropper/imagecropper.js" />
-          <arg value="-o" />
-          <arg value="${build}/imagecropper.vo.js" />
-        </exec>
-     </target>
-     <target name="logger" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/logger/logger.js" />
-          <arg value="-o" />
-          <arg value="${build}/logger.vo.js" />
-        </exec>
-     </target>
-     <target name="menu" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/menu/menu.js" />
-          <arg value="-o" />
-          <arg value="${build}/menu.vo.js" />
-        </exec>
-     </target>
-     <target name="paginator" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/paginator/paginator.js" />
-          <arg value="-o" />
-          <arg value="${build}/paginator.vo.js" />
-        </exec>
-     </target>
-     <target name="editor" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/editor/editor.js" />
-          <arg value="-o" />
-          <arg value="${build}/editor.vo.js" />
-        </exec>
-     </target>
-     <target name="slider" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/slider/slider.js" />
-          <arg value="-o" />
-          <arg value="${build}/slider.vo.js" />
-        </exec>
-     </target>
-     <target name="stylesheet" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/stylesheet/stylesheet.js" />
-          <arg value="-o" />
-          <arg value="${build}/stylesheet.vo.js" />
-        </exec>
-     </target>
-
-     <!-- locally patched -->
-     <target name="yuitest" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/yuitest/yuitest.js" />
-          <arg value="-o" />
-          <arg value="${build}/yuitest.vo.js" />
-        </exec>
-     </target>
-     <target name="calendar" depends="init">
+    </target>
+    <target name="calendar" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
           <arg value="${yui2.build}/calendar/calendar.js" />
           <arg value="-o" />
           <arg value="${build}/calendar.vo.js" />
         </exec>
-     </target>
-     <target name="container" depends="init">
+    </target>
+    <target name="carousel" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/carousel/carousel.js" />
+          <arg value="-o" />
+          <arg value="${build}/carousel.vo.js" />
+        </exec>
+    </target>
+    <target name="charts" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/charts/charts.js" />
+          <arg value="-o" />
+          <arg value="${build}/charts.vo.js" />
+        </exec>
+    </target>
+    <target name="colorpicker" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/colorpicker/colorpicker.js" />
+          <arg value="-o" />
+          <arg value="${build}/colorpicker.vo.js" />
+        </exec>
+    </target>
+    <target name="connection" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/connection/connection.js" />
+          <arg value="-o" />
+          <arg value="${build}/connection.vo.js" />
+        </exec>
+    </target>
+    <target name="container" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
           <arg value="${yui2.build}/container/container.js" />
           <arg value="-o" />
           <arg value="${build}/container.vo.js" />
         </exec>
-     </target>
-
-
-     <target name="profiler" depends="init">
+    </target>
+    <target name="cookie" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yui2.build}/profiler/profiler.js" />
+          <arg value="${yui2.build}/cookie/cookie.js" />
           <arg value="-o" />
-          <arg value="${build}/profiler.vo.js" />
+          <arg value="${build}/cookie.vo.js" />
         </exec>
-     </target>
-     <target name="patch-utilities" depends="init"> 
-        <echo>Scrubbing out css border property in utilities.vo.js</echo>
-        <replace file="${build}/utilities.vo.js">
-          <replacetoken><![CDATA[                                                 $v.s(D, 'border',
-                                                     '2px solid #aaa');]]></replacetoken>
-          <replacevalue><![CDATA[$v.s(D, 'borderWidth', '2px');$v.s(D, 'borderStyle', 'solid');$v.s(D, 'borderColor', '#aaa');]]></replacevalue>
-        </replace>
-     </target>
-     <target name="json" depends="init">
+    </target>
+    <target name="datasource" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/datasource/datasource.js" />
+          <arg value="-o" />
+          <arg value="${build}/datasource.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/datatable/datatable.js" />
+          <arg value="-o" />
+          <arg value="${build}/datatable.vo.js" />
+        </exec>
+    </target>
+    <target name="datemath" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/datemath/datemath.js" />
+          <arg value="-o" />
+          <arg value="${build}/datemath.vo.js" />
+        </exec>
+    </target>
+    <target name="dom" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/dom/dom.js" />
+          <arg value="-o" />
+          <arg value="${build}/dom.vo.js" />
+        </exec>
+    </target>
+    <target name="dragdrop" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/dragdrop/dragdrop.js" />
+          <arg value="-o" />
+          <arg value="${build}/dragdrop.vo.js" />
+        </exec>
+    </target>
+    <target name="editor" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/editor/editor.js" />
+          <arg value="-o" />
+          <arg value="${build}/editor.vo.js" />
+        </exec>
+    </target>
+    <target name="element" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/element/element.js" />
+          <arg value="-o" />
+          <arg value="${build}/element.vo.js" />
+        </exec>
+    </target>
+    <target name="element-delegate" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/element-delegate/element-delegate.js" />
+          <arg value="-o" />
+          <arg value="${build}/element-delegate.vo.js" />
+        </exec>
+    </target>
+    <target name="event" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/event/event.js" />
+          <arg value="-o" />
+          <arg value="${build}/event.vo.js" />
+        </exec>
+    </target>
+    <target name="event-delegate" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/event-delegate/event-delegate.js" />
+          <arg value="-o" />
+          <arg value="${build}/event-delegate.vo.js" />
+        </exec>
+    </target>
+    <target name="event-mouseenter" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/event-mouseenter/event-mouseenter.js" />
+          <arg value="-o" />
+          <arg value="${build}/event-mouseenter.vo.js" />
+        </exec>
+    </target>
+    <target name="event-simulate" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/event-simulate/event-simulate.js" />
+          <arg value="-o" />
+          <arg value="${build}/event-simulate.vo.js" />
+        </exec>
+    </target>
+    <target name="fonts" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/fonts/fonts.css" />
+          <arg value="-o" />
+          <arg value="${build}/fonts.vo.js" />
+        </exec>
+    </target>
+    <target name="get" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/get/get.js" />
+          <arg value="-o" />
+          <arg value="${build}/get.vo.js" />
+        </exec>
+    </target>
+    <target name="grids" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/grids/grids.css" />
+          <arg value="-o" />
+          <arg value="${build}/grids.vo.js" />
+        </exec>
+    </target>
+    <target name="history" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/history/history.js" />
+          <arg value="-o" />
+          <arg value="${build}/history.vo.js" />
+        </exec>
+    </target>
+    <target name="imagecropper" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/imagecropper/imagecropper.js" />
+          <arg value="-o" />
+          <arg value="${build}/imagecropper.vo.js" />
+        </exec>
+    </target>
+    <target name="imageloader" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/imageloader/imageloader.js" />
+          <arg value="-o" />
+          <arg value="${build}/imageloader.vo.js" />
+        </exec>
+    </target>
+    <target name="json" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
           <arg value="${yui2.build}/json/json.js" />
           <arg value="-o" />
           <arg value="${build}/json.vo.js" />
         </exec>
-     </target>
-     <target name="treeview" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/treeview/treeview.js" />
-          <arg value="-o" />
-          <arg value="${build}/treeview.vo.js" />
-        </exec>
-     </target>
-     <target name="tabview" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/tabview/tabview.js" />
-          <arg value="-o" />
-          <arg value="${build}/tabview.vo.js" />
-        </exec>
-     </target>
-     <target name="resize" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yui2.build}/resize/resize.js" />
-          <arg value="-o" />
-          <arg value="${build}/resize.vo.js" />
-        </exec>
-     </target>
-     <target name="layout" depends="init">
+    </target>
+    <target name="layout" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
           <arg value="${yui2.build}/layout/layout.js" />
           <arg value="-o" />
           <arg value="${build}/layout.vo.js" />
         </exec>
-     </target>
+    </target>
+    <target name="logger" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/logger/logger.js" />
+          <arg value="-o" />
+          <arg value="${build}/logger.vo.js" />
+        </exec>
+    </target>
+    <target name="menu" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/menu/menu.js" />
+          <arg value="-o" />
+          <arg value="${build}/menu.vo.js" />
+        </exec>
+    </target>
+    <target name="paginator" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/paginator/paginator.js" />
+          <arg value="-o" />
+          <arg value="${build}/paginator.vo.js" />
+        </exec>
+    </target>
+    <target name="profiler" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/profiler/profiler.js" />
+          <arg value="-o" />
+          <arg value="${build}/profiler.vo.js" />
+        </exec>
+    </target>
+    <target name="profilerviewer" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/profilerviewer/profilerviewer.js" />
+          <arg value="-o" />
+          <arg value="${build}/profilerviewer.vo.js" />
+        </exec>
+    </target>
+    <target name="progressbar" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/progressbar/progressbar.js" />
+          <arg value="-o" />
+          <arg value="${build}/progressbar.vo.js" />
+        </exec>
+    </target>
+    <target name="reset" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/reset/reset.css" />
+          <arg value="-o" />
+          <arg value="${build}/reset.vo.js" />
+        </exec>
+    </target>
+    <target name="reset-fonts" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/reset-fonts/reset-fonts.css" />
+          <arg value="-o" />
+          <arg value="${build}/reset-fonts.vo.js" />
+        </exec>
+    </target>
+    <target name="reset-fonts-grids" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/reset-fonts-grids/reset-fonts-grids.css" />
+          <arg value="-o" />
+          <arg value="${build}/reset-fonts-grids.vo.js" />
+        </exec>
+    </target>
+    <target name="resize" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/resize/resize.js" />
+          <arg value="-o" />
+          <arg value="${build}/resize.vo.js" />
+        </exec>
+    </target>
+    <target name="selector" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/selector/selector.js" />
+          <arg value="-o" />
+          <arg value="${build}/selector.vo.js" />
+        </exec>
+    </target>
+    <target name="slider" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/slider/slider.js" />
+          <arg value="-o" />
+          <arg value="${build}/slider.vo.js" />
+        </exec>
+    </target>
+    <target name="storage" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/storage/storage.js" />
+          <arg value="-o" />
+          <arg value="${build}/storage.vo.js" />
+        </exec>
+    </target>
+    <target name="stylesheet" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/stylesheet/stylesheet.js" />
+          <arg value="-o" />
+          <arg value="${build}/stylesheet.vo.js" />
+        </exec>
+    </target>
+    <target name="swf" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/swf/swf.js" />
+          <arg value="-o" />
+          <arg value="${build}/swf.vo.js" />
+        </exec>
+    </target>
+    <target name="swfdetect" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/swfdetect/swfdetect.js" />
+          <arg value="-o" />
+          <arg value="${build}/swfdetect.vo.js" />
+        </exec>
+    </target>
+    <target name="swfstore" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/swfstore/swfstore.js" />
+          <arg value="-o" />
+          <arg value="${build}/swfstore.vo.js" />
+        </exec>
+    </target>
+    <target name="tabview" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/tabview/tabview.js" />
+          <arg value="-o" />
+          <arg value="${build}/tabview.vo.js" />
+        </exec>
+    </target>
+    <target name="treeview" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/treeview/treeview.js" />
+          <arg value="-o" />
+          <arg value="${build}/treeview.vo.js" />
+        </exec>
+    </target>
+    <target name="uploader" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/uploader/uploader.js" />
+          <arg value="-o" />
+          <arg value="${build}/uploader.vo.js" />
+        </exec>
+    </target>
+    <target name="utilities" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/utilities/utilities.js" />
+          <arg value="-o" />
+          <arg value="${build}/utilities.vo.js" />
+        </exec>
+    </target>
+    <target name="yahoo" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/yahoo/yahoo.js" />
+          <arg value="-o" />
+          <arg value="${build}/yahoo.vo.js" />
+        </exec>
+    </target>
+    <target name="yahoo-dom-event" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/yahoo-dom-event/yahoo-dom-event.js" />
+          <arg value="-o" />
+          <arg value="${build}/yahoo-dom-event.vo.js" />
+        </exec>
+    </target>
+    <target name="yuiloader" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/yuiloader/yuiloader.js" />
+          <arg value="-o" />
+          <arg value="${build}/yuiloader.vo.js" />
+        </exec>
+    </target>
+    <target name="yuiloader-dom-event" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/yuiloader-dom-event/yuiloader-dom-event.js" />
+          <arg value="-o" />
+          <arg value="${build}/yuiloader-dom-event.vo.js" />
+        </exec>
+    </target>
+    <target name="yuitest" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.build}/yuitest/yuitest.js" />
+          <arg value="-o" />
+          <arg value="${build}/yuitest.vo.js" />
+        </exec>
+    </target>
+    <target name="yui_modules" depends="animation, autocomplete, base, button, calendar, carousel, charts, colorpicker, connection, container, cookie, datasource, datatable, datemath, dom, dragdrop, editor, element, element-delegate, event, event-delegate, event-mouseenter, event-simulate, fonts, get, grids, history, imagecropper, imageloader, json, layout, logger, menu, paginator, profiler, profilerviewer, progressbar, reset, reset-fonts, reset-fonts-grids, resize, selector, slider, storage, stylesheet, swf, swfdetect, swfstore, tabview, treeview, uploader, utilities, yahoo, yahoo-dom-event, yuiloader, yuiloader-dom-event, yuitest"/>
 
-     <target name="yui_css" depends="init">
+    <target name="animation_test0" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${test}/all_css.html" />
+          <arg value="${yui2.tests}/animation/tests/animation_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/all_css_gadget.vo.js" />
+          <arg value="${build}/animation_test0.vo.js" />
         </exec>
-     </target>
+    </target>
+    <target name="autocomplete_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/autocomplete/tests/autocomplete_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/autocomplete_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="button_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/button/tests/button-activeelement-test_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/button_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="button_test1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/button/tests/label-click-test_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/button_test1.vo.js" />
+        </exec>
+    </target>
+    <target name="button_test2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/button/tests/label-replace-test_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/button_test2.vo.js" />
+        </exec>
+    </target>
+    <target name="button_test3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/button/tests/preventoverlap_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/button_test3.vo.js" />
+        </exec>
+    </target>
+    <target name="button_test4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/button/tests/selected-menuitem-change-test_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/button_test4.vo.js" />
+        </exec>
+    </target>
+    <target name="button_test5" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/button/tests/submit-twice-test_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/button_test5.vo.js" />
+        </exec>
+    </target>
+    <target name="button_test6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/button/tests/yui-prefix-test_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/button_test6.vo.js" />
+        </exec>
+    </target>
+    <target name="calendar_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/calendar/tests/calendar_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/calendar_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="carousel_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/carousel/tests/AllTests_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/carousel_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="colorpicker_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/colorpicker/tests/colorpicker_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/colorpicker_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="common_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/common/tests/YUI_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/common_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="connection_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/connection/tests/setForm_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/connection_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="container_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/container/tests/config_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/container_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="container_test1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/container/tests/module_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/container_test1.vo.js" />
+        </exec>
+    </target>
+    <target name="cookie_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/cookie/tests/cookie_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/cookie_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="datasource_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/datasource/tests/datasource_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datasource_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="datasource_test1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/datasource/tests/xmlparsing_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datasource_test1.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/datatable/tests/2099844_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_test1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/datatable/tests/datatable_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_test1.vo.js" />
+        </exec>
+    </target>
+    <target name="datemath_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/datemath/tests/datemath_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datemath_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="dom_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/dom/tests/dom_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dom_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="dragdrop_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/dragdrop/tests/index_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dragdrop_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="editor_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/editor/tests/index_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/editor_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="element_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/element/tests/element_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/element_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="element_test1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/element/tests/mouseenter_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/element_test1.vo.js" />
+        </exec>
+    </target>
+    <target name="event_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/event/tests/focusblur_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/event_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="event_test1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/event/tests/focusin-focusout_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/event_test1.vo.js" />
+        </exec>
+    </target>
+    <target name="event-delegate_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/event-delegate/tests/delegation2_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/event-delegate_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="event-delegate_test1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/event-delegate/tests/delegation_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/event-delegate_test1.vo.js" />
+        </exec>
+    </target>
+    <target name="event-mouseenter_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/event-mouseenter/tests/mouseenter2_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/event-mouseenter_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="event-mouseenter_test1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/event-mouseenter/tests/mouseenter3_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/event-mouseenter_test1.vo.js" />
+        </exec>
+    </target>
+    <target name="event-mouseenter_test2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/event-mouseenter/tests/mouseenter_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/event-mouseenter_test2.vo.js" />
+        </exec>
+    </target>
+    <target name="imageloader_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/imageloader/tests/imageloader_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/imageloader_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="json_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/json/tests/json_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/json_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="logger_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/logger/tests/logger_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/logger_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/menu/tests/keep-open-fix_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_test1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/menu/tests/keep-open-repo_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_test1.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_test2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/menu/tests/menu-activeelement-test_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_test2.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_test3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/menu/tests/menu-right-click-test_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_test3.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_test4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/menu/tests/menu-unsubscribe_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_test4.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_test5" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/menu/tests/menu_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_test5.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_test6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/menu/tests/visited-link-test_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_test6.vo.js" />
+        </exec>
+    </target>
+    <target name="paginator_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/paginator/tests/basic_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/paginator_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="paginator_test1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/paginator/tests/example_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/paginator_test1.vo.js" />
+        </exec>
+    </target>
+    <target name="profiler_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/profiler/tests/profiler_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/profiler_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="progressbar_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/progressbar/tests/index_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/progressbar_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="selector_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/selector/tests/selector_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/selector_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="slider_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/slider/tests/background_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/slider_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="slider_test1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/slider/tests/base_animated_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/slider_test1.vo.js" />
+        </exec>
+    </target>
+    <target name="slider_test2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/slider/tests/base_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/slider_test2.vo.js" />
+        </exec>
+    </target>
+    <target name="slider_test3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/slider/tests/base_dual_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/slider_test3.vo.js" />
+        </exec>
+    </target>
+    <target name="slider_test4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/slider/tests/base_graduated_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/slider_test4.vo.js" />
+        </exec>
+    </target>
+    <target name="slider_test5" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/slider/tests/base_graduated_region_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/slider_test5.vo.js" />
+        </exec>
+    </target>
+    <target name="slider_test6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/slider/tests/base_region_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/slider_test6.vo.js" />
+        </exec>
+    </target>
+    <target name="slider_test7" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/slider/tests/grad_win_resize_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/slider_test7.vo.js" />
+        </exec>
+    </target>
+    <target name="slider_test8" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/slider/tests/move_setval_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/slider_test8.vo.js" />
+        </exec>
+    </target>
+    <target name="slider_test9" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/slider/tests/offscreen_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/slider_test9.vo.js" />
+        </exec>
+    </target>
+    <target name="storage_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/storage/tests/storage_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/storage_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="stylesheet_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/stylesheet/tests/stylesheet_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/stylesheet_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="swf_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/swf/tests/basic_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/swf_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="tabview_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/tabview/tests/tabview_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/tabview_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="yahoo_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/yahoo/tests/yahoo_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/yahoo_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="yuiloader_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/yuiloader/tests/yuiloader_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/yuiloader_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="yuiloader_test1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/yuiloader/tests/yuiloader_config_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/yuiloader_test1.vo.js" />
+        </exec>
+    </target>
+    <target name="yuiloader_test2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/yuiloader/tests/yuiloader_rollup_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/yuiloader_test2.vo.js" />
+        </exec>
+    </target>
+    <target name="yuitest_test0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.tests}/yuitest/tests/yuitest_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/yuitest_test0.vo.js" />
+        </exec>
+    </target>
+    <target name="yui_tests" depends="animation_test0, autocomplete_test0, button_test0, button_test1, button_test2, button_test3, button_test4, button_test5, button_test6, calendar_test0, carousel_test0, colorpicker_test0, common_test0, connection_test0, container_test0, container_test1, cookie_test0, datasource_test0, datasource_test1, datatable_test0, datatable_test1, datemath_test0, dom_test0, dragdrop_test0, editor_test0, element_test0, element_test1, event_test0, event_test1, event-delegate_test0, event-delegate_test1, event-mouseenter_test0, event-mouseenter_test1, event-mouseenter_test2, imageloader_test0, json_test0, logger_test0, menu_test0, menu_test1, menu_test2, menu_test3, menu_test4, menu_test5, menu_test6, paginator_test0, paginator_test1, profiler_test0, progressbar_test0, selector_test0, slider_test0, slider_test1, slider_test2, slider_test3, slider_test4, slider_test5, slider_test6, slider_test7, slider_test8, slider_test9, storage_test0, stylesheet_test0, swf_test0, tabview_test0, yahoo_test0, yuiloader_test0, yuiloader_test1, yuiloader_test2, yuitest_test0"/>
 
-     <target name="core" depends="init">
+    <target name="animation_ex0" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${test}/core_gadget.html" />
+          <arg value="${yui2.examples}/animation/anim-chaining_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/core_gadget.vo.js" />
+          <arg value="${build}/animation_ex0.vo.js" />
         </exec>
-     </target>
-     <target name="dd" depends="init">
+    </target>
+    <target name="animation_ex1" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${test}/dd_gadget.html" />
+          <arg value="${yui2.examples}/animation/attributes_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/dd_gadget.vo.js" />
+          <arg value="${build}/animation_ex1.vo.js" />
         </exec>
-     </target>
+    </target>
+    <target name="animation_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/animation/basic_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/animation_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="animation_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/animation/colors_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/animation_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="animation_ex4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/animation/control_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/animation_ex4.vo.js" />
+        </exec>
+    </target>
+    <target name="animation_ex5" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/animation/easing_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/animation_ex5.vo.js" />
+        </exec>
+    </target>
+    <target name="animation_ex6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/animation/from_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/animation_ex6.vo.js" />
+        </exec>
+    </target>
+    <target name="animation_ex7" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/animation/motion_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/animation_ex7.vo.js" />
+        </exec>
+    </target>
+    <target name="animation_ex8" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/animation/scroll_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/animation_ex8.vo.js" />
+        </exec>
+    </target>
+    <target name="animation_ex9" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/animation/units_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/animation_ex9.vo.js" />
+        </exec>
+    </target>
+    <target name="animation_examples" depends="animation_ex0, animation_ex1, animation_ex2, animation_ex3, animation_ex4, animation_ex5, animation_ex6, animation_ex7, animation_ex8, animation_ex9" />
 
-     <target name="resize_gadget" depends="init">
+    <target name="autocomplete_ex0" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${test}/resize_gadget.html" />
+          <arg value="${yui2.examples}/autocomplete/ac_accessible_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/resize_gadget.vo.js" />
+          <arg value="${build}/autocomplete_ex0.vo.js" />
         </exec>
-     </target>
-     <target name="connection_gadget" depends="init">
+    </target>
+    <target name="autocomplete_ex1" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${test}/connection_gadget.html" />
+          <arg value="${yui2.examples}/autocomplete/ac_basic_array_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/connection_gadget.vo.js" />
+          <arg value="${build}/autocomplete_ex1.vo.js" />
         </exec>
-     </target>
-     <target name="json_gadget" depends="init">
+    </target>
+    <target name="autocomplete_ex2" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${test}/json_gadget.html" />
+          <arg value="${yui2.examples}/autocomplete/ac_basic_xhr_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/json_gadget.vo.js" />
+          <arg value="${build}/autocomplete_ex2.vo.js" />
         </exec>
-     </target>
-     <target name="treeview_gadget" depends="init">
+    </target>
+    <target name="autocomplete_ex3" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${test}/treeview_gadget.html" />
+          <arg value="${yui2.examples}/autocomplete/ac_combobox_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/treeview_gadget.vo.js" />
+          <arg value="${build}/autocomplete_ex3.vo.js" />
         </exec>
-     </target>
-     <target name="yuitest_gadget" depends="init">
+    </target>
+    <target name="autocomplete_ex4" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${test}/yuitest_gadget.html" />
+          <arg value="${yui2.examples}/autocomplete/ac_customize_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/yuitest_gadget.vo.js" />
+          <arg value="${build}/autocomplete_ex4.vo.js" />
         </exec>
-     </target>
-     <target name="error_gadget" depends="init">
+    </target>
+    <target name="autocomplete_ex5" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${test}/error_gadget.html" />
+          <arg value="${yui2.examples}/autocomplete/ac_flickr_xml_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/error_gadget.vo.js" />
+          <arg value="${build}/autocomplete_ex5.vo.js" />
         </exec>
-     </target>
+    </target>
+    <target name="autocomplete_ex6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/autocomplete/ac_fn_multfields_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/autocomplete_ex6.vo.js" />
+        </exec>
+    </target>
+    <target name="autocomplete_ex7" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/autocomplete/ac_formatting_proxyless_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/autocomplete_ex7.vo.js" />
+        </exec>
+    </target>
+    <target name="autocomplete_ex8" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/autocomplete/ac_itemselect_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/autocomplete_ex8.vo.js" />
+        </exec>
+    </target>
+    <target name="autocomplete_ex9" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/autocomplete/ac_tags_alwaysshow_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/autocomplete_ex9.vo.js" />
+        </exec>
+    </target>
+    <target name="autocomplete_ex10" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/autocomplete/ac_xhr_customrequest_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/autocomplete_ex10.vo.js" />
+        </exec>
+    </target>
+    <target name="autocomplete_ex11" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/autocomplete/ac_ysearch_flat_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/autocomplete_ex11.vo.js" />
+        </exec>
+    </target>
+    <target name="autocomplete_ex12" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/autocomplete/ac_ysearch_json_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/autocomplete_ex12.vo.js" />
+        </exec>
+    </target>
+    <target name="autocomplete_examples" depends="autocomplete_ex0, autocomplete_ex1, autocomplete_ex2, autocomplete_ex3, autocomplete_ex4, autocomplete_ex5, autocomplete_ex6, autocomplete_ex7, autocomplete_ex8, autocomplete_ex9, autocomplete_ex10, autocomplete_ex11, autocomplete_ex12" />
 
-     <target name="basic_test" depends="init">
+    <target name="base_ex0" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${test}/basic.html" />
+          <arg value="${yui2.examples}/base/base-in-doc2_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/basic_test.vo.js" />
+          <arg value="${build}/base_ex0.vo.js" />
         </exec>
-     </target>
+    </target>
+    <target name="base_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/base/base-in-doc3_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/base_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="base_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/base/base-in-doc4_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/base_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="base_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/base/base-in-doc_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/base_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="base_ex4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/base/base-simple_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/base_ex4.vo.js" />
+        </exec>
+    </target>
+    <target name="base_examples" depends="base_ex0, base_ex1, base_ex2, base_ex3, base_ex4" />
 
-     <target name="yahoo_test" depends="init">
+    <target name="button_ex0" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yuitest}/yahoo.html" />
+          <arg value="${yui2.examples}/button/btn_example01_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/yahoo_test.vo.js" />
+          <arg value="${build}/button_ex0.vo.js" />
         </exec>
-     </target>
-     <target name="animation_test" depends="init">
+    </target>
+    <target name="button_ex1" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yuitest}/animation.html" />
+          <arg value="${yui2.examples}/button/btn_example02_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/animation_test.vo.js" />
+          <arg value="${build}/button_ex1.vo.js" />
         </exec>
-     </target>
-     <target name="dd_test" depends="init">
+    </target>
+    <target name="button_ex2" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yuitest}/dd.html" />
+          <arg value="${yui2.examples}/button/btn_example03_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/dd_test.vo.js" />
+          <arg value="${build}/button_ex2.vo.js" />
         </exec>
-     </target>
-     <target name="dom_test" depends="init">
+    </target>
+    <target name="button_ex3" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yuitest}/dom.html" />
+          <arg value="${yui2.examples}/button/btn_example04_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/dom_test.vo.js" />
+          <arg value="${build}/button_ex3.vo.js" />
         </exec>
-     </target>
-     <target name="selector_test" depends="init">
+    </target>
+    <target name="button_ex4" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yuitest}/selector.html" />
+          <arg value="${yui2.examples}/button/btn_example05_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/selector_test.vo.js" />
+          <arg value="${build}/button_ex4.vo.js" />
         </exec>
-     </target>
-     <target name="element_test" depends="init">
+    </target>
+    <target name="button_ex5" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yuitest}/element.html" />
+          <arg value="${yui2.examples}/button/btn_example06_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/element_test.vo.js" />
+          <arg value="${build}/button_ex5.vo.js" />
         </exec>
-     </target>
-     <target name="yuitest_test" depends="init">
+    </target>
+    <target name="button_ex6" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yuitest}/yuitest.html" />
+          <arg value="${yui2.examples}/button/btn_example07_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/yuitest_test.vo.js" />
+          <arg value="${build}/button_ex6.vo.js" />
         </exec>
-     </target>
-     <target name="connection_test" depends="init">
+    </target>
+    <target name="button_ex7" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yuitest}/connection.html" />
+          <arg value="${yui2.examples}/button/btn_example08_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/connection_test.vo.js" />
+          <arg value="${build}/button_ex7.vo.js" />
         </exec>
-     </target>
-     <target name="cookie_test" depends="init">
+    </target>
+    <target name="button_ex8" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yuitest}/cookie.html" />
+          <arg value="${yui2.examples}/button/btn_example09_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/cookie_test.vo.js" />
+          <arg value="${build}/button_ex8.vo.js" />
         </exec>
-     </target>
-     <target name="profiler_test" depends="init">
+    </target>
+    <target name="button_ex9" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yuitest}/profiler.html" />
+          <arg value="${yui2.examples}/button/btn_example10_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/profiler_test.vo.js" />
+          <arg value="${build}/button_ex9.vo.js" />
         </exec>
-     </target>
-     <target name="datasource_test" depends="init">
+    </target>
+    <target name="button_ex10" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yuitest}/datasource.html" />
+          <arg value="${yui2.examples}/button/btn_example11_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/datasource_test.vo.js" />
+          <arg value="${build}/button_ex10.vo.js" />
         </exec>
-     </target>
-     <target name="imageloader_test" depends="init">
+    </target>
+    <target name="button_ex11" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yuitest}/imageloader.html" />
+          <arg value="${yui2.examples}/button/btn_example12_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/imageloader_test.vo.js" />
+          <arg value="${build}/button_ex11.vo.js" />
         </exec>
-     </target>
-     <target name="tabview_test" depends="init">
+    </target>
+    <target name="button_ex12" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yuitest}/tabview.html" />
+          <arg value="${yui2.examples}/button/btn_example13_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/tabview_test.vo.js" />
+          <arg value="${build}/button_ex12.vo.js" />
         </exec>
-     </target>
-     <target name="autocomplete_test" depends="init">
+    </target>
+    <target name="button_ex13" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yuitest}/autocomplete.html" />
+          <arg value="${yui2.examples}/button/btn_example14_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/autocomplete_test.vo.js" />
+          <arg value="${build}/button_ex13.vo.js" />
         </exec>
-     </target>
-     <target name="menu_test" depends="init">
+    </target>
+    <target name="button_ex14" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yuitest}/menu.html" />
+          <arg value="${yui2.examples}/button/button-ariaplugin_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/menu_test.vo.js" />
+          <arg value="${build}/button_ex14.vo.js" />
         </exec>
-     </target>
-     <target name="slider_test" depends="init">
+    </target>
+    <target name="button_ex15" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yuitest}/slider.html" />
+          <arg value="${yui2.examples}/button/button-menu-select_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/slider_test.vo.js" />
+          <arg value="${build}/button_ex15.vo.js" />
         </exec>
-     </target>
-     <target name="module_test" depends="init">
+    </target>
+    <target name="button_ex16" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${yuitest}/module.html" />
+          <arg value="${yui2.examples}/button/button-menu-swap_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/module_test.vo.js" />
+          <arg value="${build}/button_ex16.vo.js" />
         </exec>
-     </target>
-     <target name="config_test" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yuitest}/config.html" />
-          <arg value="-o" />
-          <arg value="${build}/config_test.vo.js" />
-        </exec>
-     </target>
-     <target name="calendar_test" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yuitest}/calendar.html" />
-          <arg value="-o" />
-          <arg value="${build}/calendar_test.vo.js" />
-        </exec>
-     </target>
-     <target name="datemath_test" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yuitest}/datemath.html" />
-          <arg value="-o" />
-          <arg value="${build}/datemath_test.vo.js" />
-        </exec>
-     </target>
-     <target name="colorpicker_test" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yuitest}/colorpicker.html" />
-          <arg value="-o" />
-          <arg value="${build}/colorpicker_test.vo.js" />
-        </exec>
-     </target>
-     <target name="paginator_test" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yuitest}/paginator.html" />
-          <arg value="-o" />
-          <arg value="${build}/paginator_test.vo.js" />
-        </exec>
-     </target>
-     <target name="json_test" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yuitest}/json.html" />
-          <arg value="-o" />
-          <arg value="${build}/json_test.vo.js" />
-        </exec>
-     </target>
-     <target name="datatable_test" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yuitest}/datatable.html" />
-          <arg value="-o" />
-          <arg value="${build}/datatable_test.vo.js" />
-        </exec>
-     </target>
-     <target name="stylesheet_test" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${yuitest}/stylesheet.html" />
-          <arg value="-o" />
-          <arg value="${build}/stylesheet_test.vo.js" />
-        </exec>
-     </target>
+    </target>
+    <target name="button_examples" depends="button_ex0, button_ex1, button_ex2, button_ex3, button_ex4, button_ex5, button_ex6, button_ex7, button_ex8, button_ex9, button_ex10, button_ex11, button_ex12, button_ex13, button_ex14, button_ex15, button_ex16" />
 
-     <target name="example_data" depends="init">
+    <target name="calendar_ex0" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/assets/data.js" />
+          <arg value="${yui2.examples}/calendar/calcontainer_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/data.vo.js" />
+          <arg value="${build}/calendar_ex0.vo.js" />
         </exec>
-     </target>
-     <target name="autocomplete_basic_array_ex" depends="init">
+    </target>
+    <target name="calendar_ex1" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/ac_basic_array_clean.html" />
+          <arg value="${yui2.examples}/calendar/calgrp_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/autocomplete_basic_array_example.vo.js" />
+          <arg value="${build}/calendar_ex1.vo.js" />
         </exec>
-     </target>
-     <target name="connection_get_ex" depends="init">
+    </target>
+    <target name="calendar_ex2" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/get_clean.html" />
+          <arg value="${yui2.examples}/calendar/calnavigator_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/get_example.vo.js" />
+          <arg value="${build}/calendar_ex2.vo.js" />
         </exec>
-     </target>
-     <target name="connection_post_ex" depends="init">
+    </target>
+    <target name="calendar_ex3" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/post_clean.html" />
+          <arg value="${yui2.examples}/calendar/events_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/post_example.vo.js" />
+          <arg value="${build}/calendar_ex3.vo.js" />
         </exec>
-     </target>
-     <target name="connection_abort_ex" depends="init">
+    </target>
+    <target name="calendar_ex4" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/abort_clean.html" />
+          <arg value="${yui2.examples}/calendar/formsel_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/abort_example.vo.js" />
+          <arg value="${build}/calendar_ex4.vo.js" />
         </exec>
-     </target>
-     <target name="connection_weather_ex" depends="init">
+    </target>
+    <target name="calendar_ex5" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/weather_clean.html" />
+          <arg value="${yui2.examples}/calendar/formtxt_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/weather_example.vo.js" />
+          <arg value="${build}/calendar_ex5.vo.js" />
         </exec>
-     </target>
-     <target name="connection_global_customevents_ex" depends="init">
+    </target>
+    <target name="calendar_ex6" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/global_customevents_clean.html" />
+          <arg value="${yui2.examples}/calendar/germany_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/global_customevents_example.vo.js" />
+          <arg value="${build}/calendar_ex6.vo.js" />
         </exec>
-     </target>
-     <target name="connection_callback_customevents_ex" depends="init">
+    </target>
+    <target name="calendar_ex7" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/callback_customevents_clean.html" />
+          <arg value="${yui2.examples}/calendar/intervalcal_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/callback_customevents_example.vo.js" />
+          <arg value="${build}/calendar_ex7.vo.js" />
         </exec>
-     </target>
+    </target>
+    <target name="calendar_ex8" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/calendar/japan_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/calendar_ex8.vo.js" />
+        </exec>
+    </target>
+    <target name="calendar_ex9" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/calendar/minmax_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/calendar_ex9.vo.js" />
+        </exec>
+    </target>
+    <target name="calendar_ex10" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/calendar/multi_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/calendar_ex10.vo.js" />
+        </exec>
+    </target>
+    <target name="calendar_ex11" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/calendar/popup_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/calendar_ex11.vo.js" />
+        </exec>
+    </target>
+    <target name="calendar_ex12" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/calendar/quickstart_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/calendar_ex12.vo.js" />
+        </exec>
+    </target>
+    <target name="calendar_ex13" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/calendar/render_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/calendar_ex13.vo.js" />
+        </exec>
+    </target>
+    <target name="calendar_ex14" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/calendar/taiwan_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/calendar_ex14.vo.js" />
+        </exec>
+    </target>
+    <target name="calendar_examples" depends="calendar_ex0, calendar_ex1, calendar_ex2, calendar_ex3, calendar_ex4, calendar_ex5, calendar_ex6, calendar_ex7, calendar_ex8, calendar_ex9, calendar_ex10, calendar_ex11, calendar_ex12, calendar_ex13, calendar_ex14" />
 
-     <target name="event_eventsimple_ex" depends="init">
+    <target name="carousel_ex0" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/eventsimple_clean.html" />
+          <arg value="${yui2.examples}/carousel/carousel-ariaplugin_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/eventsimple_example.vo.js" />
+          <arg value="${build}/carousel_ex0.vo.js" />
         </exec>
-     </target>
-     <target name="event_custom-event_ex" depends="init">
+    </target>
+    <target name="carousel_ex1" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/custom-event_clean.html" />
+          <arg value="${yui2.examples}/carousel/csl_circular_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/custom-event_example.vo.js" />
+          <arg value="${build}/carousel_ex1.vo.js" />
         </exec>
-     </target>
-     <target name="event_event-delegation_ex" depends="init">
+    </target>
+    <target name="carousel_ex2" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/event-delegation_clean.html" />
+          <arg value="${yui2.examples}/carousel/csl_dynload2_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/event-delegation_example.vo.js" />
+          <arg value="${build}/carousel_ex2.vo.js" />
         </exec>
-     </target>
+    </target>
+    <target name="carousel_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/carousel/csl_dynloadandreplace_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/carousel_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="carousel_ex4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/carousel/csl_imagentext_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/carousel_ex4.vo.js" />
+        </exec>
+    </target>
+    <target name="carousel_ex5" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/carousel/csl_multirow_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/carousel_ex5.vo.js" />
+        </exec>
+    </target>
+    <target name="carousel_ex6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/carousel/csl_pagination_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/carousel_ex6.vo.js" />
+        </exec>
+    </target>
+    <target name="carousel_ex7" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/carousel/csl_paginationtemplate_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/carousel_ex7.vo.js" />
+        </exec>
+    </target>
+    <target name="carousel_ex8" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/carousel/csl_reveal_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/carousel_ex8.vo.js" />
+        </exec>
+    </target>
+    <target name="carousel_ex9" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/carousel/csl_selection_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/carousel_ex9.vo.js" />
+        </exec>
+    </target>
+    <target name="carousel_examples" depends="carousel_ex0, carousel_ex1, carousel_ex2, carousel_ex3, carousel_ex4, carousel_ex5, carousel_ex6, carousel_ex7, carousel_ex8, carousel_ex9" />
 
-     <target name="module_ex" depends="init">
+    <target name="charts_ex0" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/module_clean.html" />
+          <arg value="${yui2.examples}/charts/charts-datatable_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/module_example.vo.js" />
+          <arg value="${build}/charts_ex0.vo.js" />
         </exec>
-     </target>
-     <target name="overlay_ex" depends="init">
+    </target>
+    <target name="charts_ex1" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/overlay_clean.html" />
+          <arg value="${yui2.examples}/charts/charts-dualaxes_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/overlay_example.vo.js" />
+          <arg value="${build}/charts_ex1.vo.js" />
         </exec>
-     </target>
-     <target name="tooltip_ex" depends="init">
+    </target>
+    <target name="charts_ex2" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/tooltip_clean.html" />
+          <arg value="${yui2.examples}/charts/charts-functionscope_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/tooltip_example.vo.js" />
+          <arg value="${build}/charts_ex2.vo.js" />
         </exec>
-     </target>
-     <target name="panel_ex" depends="init">
+    </target>
+    <target name="charts_ex3" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/panel_clean.html" />
+          <arg value="${yui2.examples}/charts/charts-hideseries_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/panel_example.vo.js" />
+          <arg value="${build}/charts_ex3.vo.js" />
         </exec>
-     </target>
-     <target name="dialog_ex" depends="init">
+    </target>
+    <target name="charts_ex4" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/dialog-quickstart_clean.html" />
+          <arg value="${yui2.examples}/charts/charts-legend_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/dialog_example.vo.js" />
+          <arg value="${build}/charts_ex4.vo.js" />
         </exec>
-     </target>
-     <target name="simpledialog_ex" depends="init">
+    </target>
+    <target name="charts_ex5" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/simpledialog-quickstart_clean.html" />
+          <arg value="${yui2.examples}/charts/charts-quickstart_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/simpledialog_example.vo.js" />
+          <arg value="${build}/charts_ex5.vo.js" />
         </exec>
-     </target>
+    </target>
+    <target name="charts_ex6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/charts/charts-rotation_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/charts_ex6.vo.js" />
+        </exec>
+    </target>
+    <target name="charts_ex7" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/charts/charts-seriescustomization_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/charts_ex7.vo.js" />
+        </exec>
+    </target>
+    <target name="charts_ex8" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/charts/charts-skins_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/charts_ex8.vo.js" />
+        </exec>
+    </target>
+    <target name="charts_ex9" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/charts/charts-stacked_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/charts_ex9.vo.js" />
+        </exec>
+    </target>
+    <target name="charts_ex10" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/charts/charts-styles_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/charts_ex10.vo.js" />
+        </exec>
+    </target>
+    <target name="charts_ex11" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/charts/charts-tabview_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/charts_ex11.vo.js" />
+        </exec>
+    </target>
+    <target name="charts_ex12" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/charts/charts-xhr-polling_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/charts_ex12.vo.js" />
+        </exec>
+    </target>
+    <target name="charts_examples" depends="charts_ex0, charts_ex1, charts_ex2, charts_ex3, charts_ex4, charts_ex5, charts_ex6, charts_ex7, charts_ex8, charts_ex9, charts_ex10, charts_ex11, charts_ex12" />
 
-     <target name="button1_ex" depends="init">
+    <target name="colorpicker_ex0" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/btn_example01_clean.html" />
+          <arg value="${yui2.examples}/colorpicker/colorpicker-custom_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/button1_example.vo.js" />
+          <arg value="${build}/colorpicker_ex0.vo.js" />
         </exec>
-     </target>
-     <target name="button2_ex" depends="init">
+    </target>
+    <target name="colorpicker_ex1" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/btn_example02_clean.html" />
+          <arg value="${yui2.examples}/colorpicker/colorpicker-dialog-from-markup_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/button2_example.vo.js" />
+          <arg value="${build}/colorpicker_ex1.vo.js" />
         </exec>
-     </target>
-     <target name="button3_ex" depends="init">
+    </target>
+    <target name="colorpicker_ex2" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/btn_example03_clean.html" />
+          <arg value="${yui2.examples}/colorpicker/colorpicker-dialog-from-script_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/button3_example.vo.js" />
+          <arg value="${build}/colorpicker_ex2.vo.js" />
         </exec>
-     </target>
-     <target name="button4_ex" depends="init">
+    </target>
+    <target name="colorpicker_ex3" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/btn_example04_clean.html" />
+          <arg value="${yui2.examples}/colorpicker/colorpicker-fromscript_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/button4_example.vo.js" />
+          <arg value="${build}/colorpicker_ex3.vo.js" />
         </exec>
-     </target>
-     <target name="button5_ex" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${example}/btn_example05_clean.html" />
-          <arg value="-o" />
-          <arg value="${build}/button5_example.vo.js" />
-        </exec>
-     </target>
-     <target name="button6_ex" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${example}/btn_example06_clean.html" />
-          <arg value="-o" />
-          <arg value="${build}/button6_example.vo.js" />
-        </exec>
-     </target>
-     <target name="button7_ex" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${example}/btn_example07_clean.html" />
-          <arg value="-o" />
-          <arg value="${build}/button7_example.vo.js" />
-        </exec>
-     </target>
-     <target name="button8_ex" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${example}/btn_example08_clean.html" />
-          <arg value="-o" />
-          <arg value="${build}/button8_example.vo.js" />
-        </exec>
-     </target>
-     <target name="button9_ex" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${example}/btn_example09_clean.html" />
-          <arg value="-o" />
-          <arg value="${build}/button9_example.vo.js" />
-        </exec>
-     </target>
-     <target name="button10_ex" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${example}/btn_example10_clean.html" />
-          <arg value="-o" />
-          <arg value="${build}/button10_example.vo.js" />
-        </exec>
-     </target>
-     <target name="button11_ex" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${example}/btn_example11_clean.html" />
-          <arg value="-o" />
-          <arg value="${build}/button11_example.vo.js" />
-        </exec>
-     </target>
-     <target name="button12_ex" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${example}/btn_example12_clean.html" />
-          <arg value="-o" />
-          <arg value="${build}/button12_example.vo.js" />
-        </exec>
-     </target>
-     <target name="button13_ex" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${example}/btn_example13_clean.html" />
-          <arg value="-o" />
-          <arg value="${build}/button13_example.vo.js" />
-        </exec>
-     </target>
-     <target name="button14_ex" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${example}/btn_example14_clean.html" />
-          <arg value="-o" />
-          <arg value="${build}/button14_example.vo.js" />
-        </exec>
-     </target>
-     <target name="button-aria_ex" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${example}/button-ariaplugin_clean.html" />
-          <arg value="-o" />
-          <arg value="${build}/button-aria_example.vo.js" />
-        </exec>
-     </target>
-     <target name="button-menu-select_ex" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${example}/button-menu-select_clean.html" />
-          <arg value="-o" />
-          <arg value="${build}/button-menu-select_example.vo.js" />
-        </exec>
-     </target>
-     <target name="button-menu-swap_ex" depends="init">
-        <exec dir="." executable="${caja.cajoler}" >
-          <arg value="-i" />
-          <arg value="${example}/button-menu-swap_clean.html" />
-          <arg value="-o" />
-          <arg value="${build}/button-menu-swap_example.vo.js" />
-        </exec>
-     </target>
+    </target>
+    <target name="colorpicker_examples" depends="colorpicker_ex0, colorpicker_ex1, colorpicker_ex2, colorpicker_ex3" />
 
-     <target name="layout1_ex" depends="init">
+    <target name="connection_ex0" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/page_layout_clean.html" />
+          <arg value="${yui2.examples}/connection/abort_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/layout1_example.vo.js" />
+          <arg value="${build}/connection_ex0.vo.js" />
         </exec>
-     </target>
-     <target name="layout2_ex" depends="init">
+    </target>
+    <target name="connection_ex1" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/panel_layout_clean.html" />
+          <arg value="${yui2.examples}/connection/callback_customevents_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/layout2_example.vo.js" />
+          <arg value="${build}/connection_ex1.vo.js" />
         </exec>
-     </target>
-     <target name="layout3_ex" depends="init">
+    </target>
+    <target name="connection_ex2" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/nested_layout_clean.html" />
+          <arg value="${yui2.examples}/connection/get_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/layout3_example.vo.js" />
+          <arg value="${build}/connection_ex2.vo.js" />
         </exec>
-     </target>
-     <target name="layout4_ex" depends="init">
+    </target>
+    <target name="connection_ex3" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/menu_layout_clean.html" />
+          <arg value="${yui2.examples}/connection/global_customevents_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/layout4_example.vo.js" />
+          <arg value="${build}/connection_ex3.vo.js" />
         </exec>
-     </target>
-
-     <target name="datatable1_ex" depends="init">
+    </target>
+    <target name="connection_ex4" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/dt_basic_clean.html" />
+          <arg value="${yui2.examples}/connection/post_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/datatable1_example.vo.js" />
+          <arg value="${build}/connection_ex4.vo.js" />
         </exec>
-     </target>
-     <target name="datatable2_ex" depends="init">
+    </target>
+    <target name="connection_ex5" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/dt_clientpagination_clean.html" />
+          <arg value="${yui2.examples}/connection/weather_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/datatable2_example.vo.js" />
+          <arg value="${build}/connection_ex5.vo.js" />
         </exec>
-     </target>
-     <target name="datatable3_ex" depends="init">
+    </target>
+    <target name="connection_ex6" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/dt_cellediting_clean.html" />
+          <arg value="${yui2.examples}/connection/xdr_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/datatable3_example.vo.js" />
+          <arg value="${build}/connection_ex6.vo.js" />
         </exec>
-     </target>
-     <target name="datatable4_ex" depends="init">
+    </target>
+    <target name="connection_examples" depends="connection_ex0, connection_ex1, connection_ex2, connection_ex3, connection_ex4, connection_ex5, connection_ex6" />
+
+    <target name="container_ex0" depends="init">
         <exec dir="." executable="${caja.cajoler}" >
           <arg value="-i" />
-          <arg value="${example}/dt_enhanced_clean.html" />
+          <arg value="${yui2.examples}/container/container-ariaplugin_caja.html" />
           <arg value="-o" />
-          <arg value="${build}/datatable4_example.vo.js" />
+          <arg value="${build}/container_ex0.vo.js" />
         </exec>
-     </target>
+    </target>
+    <target name="container_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/container/container-effect_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/container_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="container_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/container/dialog-quickstart_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/container_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="container_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/container/keylistener_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/container_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="container_ex4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/container/module_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/container_ex4.vo.js" />
+        </exec>
+    </target>
+    <target name="container_ex5" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/container/overlay_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/container_ex5.vo.js" />
+        </exec>
+    </target>
+    <target name="container_ex6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/container/overlaymanager_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/container_ex6.vo.js" />
+        </exec>
+    </target>
+    <target name="container_ex7" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/container/panel-loading_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/container_ex7.vo.js" />
+        </exec>
+    </target>
+    <target name="container_ex8" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/container/panel-resize_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/container_ex8.vo.js" />
+        </exec>
+    </target>
+    <target name="container_ex9" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/container/panel_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/container_ex9.vo.js" />
+        </exec>
+    </target>
+    <target name="container_ex10" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/container/panelskin1_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/container_ex10.vo.js" />
+        </exec>
+    </target>
+    <target name="container_ex11" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/container/panelskin2_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/container_ex11.vo.js" />
+        </exec>
+    </target>
+    <target name="container_ex12" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/container/simpledialog-quickstart_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/container_ex12.vo.js" />
+        </exec>
+    </target>
+    <target name="container_ex13" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/container/tooltip-multi_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/container_ex13.vo.js" />
+        </exec>
+    </target>
+    <target name="container_ex14" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/container/tooltip_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/container_ex14.vo.js" />
+        </exec>
+    </target>
+    <target name="container_examples" depends="container_ex0, container_ex1, container_ex2, container_ex3, container_ex4, container_ex5, container_ex6, container_ex7, container_ex8, container_ex9, container_ex10, container_ex11, container_ex12, container_ex13, container_ex14" />
 
-     <target name="all"
-        depends="init, yui, yui_css, gadgets, yuitests, examples" />
+    <target name="cookie_examples" depends="" />
 
-     <target name="yui"
-        depends="init, utilities, yahoo-dom-event, yahoo, dom, event, connection, dragdrop, animation, element, yuitest, json, treeview, resize, yuitest, selector, cookie, profiler, datasource, tabview, autocomplete, button, calendar, carousel, colorpicker, imagecropper, datatable, logger, menu, paginator, editor, slider, stylesheet, container, layout" />
+    <target name="datasource_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datasource/datasource_table_to_array_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datasource_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="datasource_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datasource/datasource_yql_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datasource_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="datasource_examples" depends="datasource_ex0, datasource_ex1" />
 
-     <target name="patch"
-        depends="patch-utilities" />
+    <target name="datatable_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_autocomplete_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_basic_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_bhm_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_cellediting_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_cellselect_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex4.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex5" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_clientpagination_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex5.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_clientsorting_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex6.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex7" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_colshowhide_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex7.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex8" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_complex_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex8.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex9" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_contextmenu_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex9.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex10" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_ddrows_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex10.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex11" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_dynamicdata_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex11.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex12" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_dynamicfilter_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex12.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex13" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_enhanced_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex13.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex14" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_fixedscroll_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex14.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex15" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_formatting_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex15.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex16" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_highlighting_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex16.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex17" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_localfilter_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex17.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex18" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_nestedheaders_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex18.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex19" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_polling_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex19.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex20" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_row_coloring_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex20.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex21" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_rowdatamod_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex21.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex22" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_rowexp_basic_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex22.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex23" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_rowselect_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex23.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex24" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_tabview_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex24.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex25" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_xhrjson_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex25.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex26" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_xhrpostxml_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex26.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex27" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_xhrtext_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex27.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_ex28" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/datatable/dt_xpath_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/datatable_ex28.vo.js" />
+        </exec>
+    </target>
+    <target name="datatable_examples" depends="datatable_ex0, datatable_ex1, datatable_ex2, datatable_ex3, datatable_ex4, datatable_ex5, datatable_ex6, datatable_ex7, datatable_ex8, datatable_ex9, datatable_ex10, datatable_ex11, datatable_ex12, datatable_ex13, datatable_ex14, datatable_ex15, datatable_ex16, datatable_ex17, datatable_ex18, datatable_ex19, datatable_ex20, datatable_ex21, datatable_ex22, datatable_ex23, datatable_ex24, datatable_ex25, datatable_ex26, datatable_ex27, datatable_ex28" />
 
-     <target name="gadgets"
-        depends="init, core, dd, resize_gadget, connection_gadget, json_gadget, treeview_gadget, yuitest_gadget, error_gadget" />
+    <target name="dom_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dom/addclass_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dom_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="dom_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dom/dom-explorer_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dom_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="dom_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dom/getelementsbyclassname_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dom_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="dom_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dom/getstyle_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dom_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="dom_ex4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dom/getxy_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dom_ex4.vo.js" />
+        </exec>
+    </target>
+    <target name="dom_ex5" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dom/hasclass_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dom_ex5.vo.js" />
+        </exec>
+    </target>
+    <target name="dom_ex6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dom/removeclass_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dom_ex6.vo.js" />
+        </exec>
+    </target>
+    <target name="dom_ex7" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dom/setstyle_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dom_ex7.vo.js" />
+        </exec>
+    </target>
+    <target name="dom_ex8" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dom/setxy_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dom_ex8.vo.js" />
+        </exec>
+    </target>
+    <target name="dom_examples" depends="dom_ex0, dom_ex1, dom_ex2, dom_ex3, dom_ex4, dom_ex5, dom_ex6, dom_ex7, dom_ex8" />
 
-     <target name="yuitests"
-        depends="init, yahoo_test, animation_test, dd_test, dom_test, selector_test, yuitest_test, connection_test, cookie_test, profiler_test, datasource_test, tabview_test, autocomplete_test, menu_test, slider_test, module_test, config_test, calendar_test, datemath_test, colorpicker_test, paginator_test, json_test, datatable_test" />
+    <target name="dragdrop_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dragdrop/dd-basic_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dragdrop_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="dragdrop_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dragdrop/dd-circle_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dragdrop_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="dragdrop_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dragdrop/dd-groups_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dragdrop_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="dragdrop_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dragdrop/dd-handles_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dragdrop_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="dragdrop_ex4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dragdrop/dd-ontop_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dragdrop_ex4.vo.js" />
+        </exec>
+    </target>
+    <target name="dragdrop_ex5" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dragdrop/dd-proxy_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dragdrop_ex5.vo.js" />
+        </exec>
+    </target>
+    <target name="dragdrop_ex6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dragdrop/dd-region_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dragdrop_ex6.vo.js" />
+        </exec>
+    </target>
+    <target name="dragdrop_ex7" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dragdrop/dd-reorder_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dragdrop_ex7.vo.js" />
+        </exec>
+    </target>
+    <target name="dragdrop_ex8" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/dragdrop/dd-shim_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/dragdrop_ex8.vo.js" />
+        </exec>
+    </target>
+    <target name="dragdrop_examples" depends="dragdrop_ex0, dragdrop_ex1, dragdrop_ex2, dragdrop_ex3, dragdrop_ex4, dragdrop_ex5, dragdrop_ex6, dragdrop_ex7, dragdrop_ex8" />
 
-     <target name="examples"
-        depends="init, core, example_data, autocomplete_examples, connection_examples, event_examples, container_examples, button_examples, layout_examples, datatable_examples"/>
+    <target name="editor_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/editor/autoheight_editor_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/editor_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="editor_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/editor/cal_editor_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/editor_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="editor_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/editor/code_editor_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/editor_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="editor_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/editor/dialog_editor_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/editor_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="editor_ex4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/editor/editor_adv_editor_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/editor_ex4.vo.js" />
+        </exec>
+    </target>
+    <target name="editor_ex5" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/editor/flickr_editor_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/editor_ex5.vo.js" />
+        </exec>
+    </target>
+    <target name="editor_ex6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/editor/icon_editor_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/editor_ex6.vo.js" />
+        </exec>
+    </target>
+    <target name="editor_ex7" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/editor/imagebrowser_editor_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/editor_ex7.vo.js" />
+        </exec>
+    </target>
+    <target name="editor_ex8" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/editor/multi_editor_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/editor_ex8.vo.js" />
+        </exec>
+    </target>
+    <target name="editor_ex9" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/editor/post_editor_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/editor_ex9.vo.js" />
+        </exec>
+    </target>
+    <target name="editor_ex10" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/editor/simple_adv_editor_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/editor_ex10.vo.js" />
+        </exec>
+    </target>
+    <target name="editor_ex11" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/editor/simple_editor_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/editor_ex11.vo.js" />
+        </exec>
+    </target>
+    <target name="editor_ex12" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/editor/switch_editor_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/editor_ex12.vo.js" />
+        </exec>
+    </target>
+    <target name="editor_ex13" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/editor/tabview_editor_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/editor_ex13.vo.js" />
+        </exec>
+    </target>
+    <target name="editor_examples" depends="editor_ex0, editor_ex1, editor_ex2, editor_ex3, editor_ex4, editor_ex5, editor_ex6, editor_ex7, editor_ex8, editor_ex9, editor_ex10, editor_ex11, editor_ex12, editor_ex13" />
 
-     <target name="autocomplete_examples"
-        depends="init, core, autocomplete_basic_array_ex" />
+    <target name="event_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/event/custom-event_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/event_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="event_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/event/event-delegation_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/event_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="event_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/event/event-focus-blur_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/event_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="event_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/event/eventsimple_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/event_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="event_examples" depends="event_ex0, event_ex1, event_ex2, event_ex3" />
 
-     <target name="connection_examples"
-        depends="init, core, connection_get_ex, connection_post_ex, connection_abort_ex, connection_weather_ex, connection_global_customevents_ex, connection_callback_customevents_ex" />
+    <target name="fonts_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/fonts/fonts-family_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/fonts_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="fonts_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/fonts/fonts-simple_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/fonts_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="fonts_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/fonts/fonts-size_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/fonts_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="fonts_examples" depends="fonts_ex0, fonts_ex1, fonts_ex2" />
 
-     <target name="event_examples"
-        depends="init, core, event_eventsimple_ex, event_custom-event_ex, event_event-delegation_ex"/>
+    <target name="get_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/get/get-css-basic_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/get_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="get_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/get/get-script-basic_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/get_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="get_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/get/get-script-simple_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/get_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="get_examples" depends="get_ex0, get_ex1, get_ex2" />
 
-     <target name="container_examples"
-        depends="init, core, module_ex, overlay_ex, tooltip_ex, panel_ex, dialog_ex, simpledialog_ex"/>
+    <target name="grids_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-doc-custom_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-doc2_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-doc3_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-doc4_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-doc_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex4.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex5" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-g_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex5.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-gb_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex6.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex7" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-gc_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex7.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex8" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-gd_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex8.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex9" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-ge_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex9.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex10" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-gf_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex10.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex11" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-gg_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex11.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex12" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-landmarks_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex12.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex13" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-t1_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex13.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex14" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-t2_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex14.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex15" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-t3_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex15.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex16" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-t4_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex16.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex17" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-t5_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex17.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_ex18" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/grids/grids-t6_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/grids_ex18.vo.js" />
+        </exec>
+    </target>
+    <target name="grids_examples" depends="grids_ex0, grids_ex1, grids_ex2, grids_ex3, grids_ex4, grids_ex5, grids_ex6, grids_ex7, grids_ex8, grids_ex9, grids_ex10, grids_ex11, grids_ex12, grids_ex13, grids_ex14, grids_ex15, grids_ex16, grids_ex17, grids_ex18" />
 
-     <target name="button_examples"
-        depends="init, core, button1_ex, button2_ex, button3_ex, button4_ex, button5_ex, button6_ex, button7_ex, button8_ex, button9_ex, button10_ex, button11_ex, button12_ex, button13_ex, button14_ex, button-aria_ex, button-menu-select_ex, button-menu-swap_ex" />
+    <target name="history_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/history/history-calendar_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/history_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="history_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/history/history-multiple_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/history_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="history_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/history/history-navbar_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/history_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="history_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/history/history-tabview_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/history_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="history_examples" depends="history_ex0, history_ex1, history_ex2, history_ex3" />
 
-     <target name="layout_examples"
-        depends="init, core, layout1_ex, layout2_ex, layout3_ex, layout4_ex" />
+    <target name="imagecropper_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/imagecropper/adv_crop_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/imagecropper_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="imagecropper_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/imagecropper/conn_crop_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/imagecropper_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="imagecropper_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/imagecropper/feedback_crop_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/imagecropper_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="imagecropper_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/imagecropper/simple_crop_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/imagecropper_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="imagecropper_examples" depends="imagecropper_ex0, imagecropper_ex1, imagecropper_ex2, imagecropper_ex3" />
 
-    <target name="datatable_examples"
-        depends="init, core, datatable1_ex, datatable2_ex, datatable3_ex, datatable4_ex" />
+    <target name="imageloader_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/imageloader/imgloadbasics_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/imageloader_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="imageloader_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/imageloader/imgloadclass_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/imageloader_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="imageloader_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/imageloader/imgloadfold_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/imageloader_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="imageloader_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/imageloader/imgloadtabs_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/imageloader_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="imageloader_examples" depends="imageloader_ex0, imageloader_ex1, imageloader_ex2, imageloader_ex3" />
+
+    <target name="json_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/json/json_connect_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/json_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="json_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/json/json_convert_values_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/json_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="json_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/json/json_freeze_thaw_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/json_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="json_examples" depends="json_ex0, json_ex1, json_ex2" />
+
+    <target name="layout_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/layout/adv_layout_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/layout_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="layout_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/layout/calrte_layout_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/layout_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="layout_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/layout/grids_layout_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/layout_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="layout_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/layout/menu_layout_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/layout_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="layout_ex4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/layout/nested_layout_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/layout_ex4.vo.js" />
+        </exec>
+    </target>
+    <target name="layout_ex5" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/layout/page_layout_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/layout_ex5.vo.js" />
+        </exec>
+    </target>
+    <target name="layout_ex6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/layout/panel_layout_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/layout_ex6.vo.js" />
+        </exec>
+    </target>
+    <target name="layout_examples" depends="layout_ex0, layout_ex1, layout_ex2, layout_ex3, layout_ex4, layout_ex5, layout_ex6" />
+
+    <target name="logger_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/logger/log_autocomplete_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/logger_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="logger_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/logger/log_basic_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/logger_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="logger_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/logger/log_skinning_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/logger_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="logger_examples" depends="logger_ex0, logger_ex1, logger_ex2" />
+
+    <target name="menu_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/applicationmenubar_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/contextmenu_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/example01_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/example02_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/example03_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex4.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex5" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/example04_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex5.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/example05_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex6.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex7" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/example06_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex7.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex8" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/example07_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex8.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex9" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/example08_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex9.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex10" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/example09_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex10.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex11" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/example10_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex11.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex12" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/example11_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex12.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex13" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/example12_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex13.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex14" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/leftnavfromjs_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex14.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex15" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/leftnavfromjswithanim_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex15.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex16" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/leftnavfrommarkup_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex16.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex17" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/leftnavfrommarkupwithanim_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex17.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex18" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/menuwaiaria_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex18.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex19" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/programsmenu_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex19.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex20" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/tablecontextmenu_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex20.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex21" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/topnavfromjs_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex21.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex22" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/topnavfromjswithanim_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex22.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex23" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/topnavfrommarkup_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex23.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex24" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/topnavfrommarkupwithanim_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex24.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_ex25" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/menu/treeviewcontextmenu_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/menu_ex25.vo.js" />
+        </exec>
+    </target>
+    <target name="menu_examples" depends="menu_ex0, menu_ex1, menu_ex2, menu_ex3, menu_ex4, menu_ex5, menu_ex6, menu_ex7, menu_ex8, menu_ex9, menu_ex10, menu_ex11, menu_ex12, menu_ex13, menu_ex14, menu_ex15, menu_ex16, menu_ex17, menu_ex18, menu_ex19, menu_ex20, menu_ex21, menu_ex22, menu_ex23, menu_ex24, menu_ex25" />
+
+    <target name="paginator_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/paginator/pag_configuration_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/paginator_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="paginator_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/paginator/pag_getting_started_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/paginator_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="paginator_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/paginator/pag_manual_render_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/paginator_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="paginator_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/paginator/pag_multiple_containers_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/paginator_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="paginator_examples" depends="paginator_ex0, paginator_ex1, paginator_ex2, paginator_ex3" />
+
+    <target name="profiler_examples" depends="" />
+
+    <target name="profilerviewer_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/profilerviewer/pv-api_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/profilerviewer_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="profilerviewer_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/profilerviewer/pv-basic_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/profilerviewer_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="profilerviewer_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/profilerviewer/pv-bootstrap_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/profilerviewer_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="profilerviewer_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/profilerviewer/pv-german_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/profilerviewer_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="profilerviewer_ex4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/profilerviewer/pv-spanish_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/profilerviewer_ex4.vo.js" />
+        </exec>
+    </target>
+    <target name="profilerviewer_examples" depends="profilerviewer_ex0, profilerviewer_ex1, profilerviewer_ex2, profilerviewer_ex3, profilerviewer_ex4" />
+
+    <target name="progressbar_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/progressbar/pb_basic_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/progressbar_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="progressbar_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/progressbar/pb_events_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/progressbar_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="progressbar_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/progressbar/pb_ratings_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/progressbar_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="progressbar_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/progressbar/pb_vumeter_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/progressbar_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="progressbar_examples" depends="progressbar_ex0, progressbar_ex1, progressbar_ex2, progressbar_ex3" />
+
+    <target name="reset_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/reset/reset-simple_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/reset_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="reset_examples" depends="reset_ex0" />
+
+    <target name="resize_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/resize/anim_resize_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/resize_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="resize_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/resize/eightway_resize_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/resize_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="resize_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/resize/ghost_resize_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/resize_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="resize_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/resize/grids_resize_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/resize_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="resize_ex4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/resize/proxy_resize_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/resize_ex4.vo.js" />
+        </exec>
+    </target>
+    <target name="resize_ex5" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/resize/rte_resize_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/resize_ex5.vo.js" />
+        </exec>
+    </target>
+    <target name="resize_ex6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/resize/simple_resize_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/resize_ex6.vo.js" />
+        </exec>
+    </target>
+    <target name="resize_examples" depends="resize_ex0, resize_ex1, resize_ex2, resize_ex3, resize_ex4, resize_ex5, resize_ex6" />
+
+    <target name="selector_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/selector/filter_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/selector_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="selector_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/selector/query_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/selector_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="selector_examples" depends="selector_ex0, selector_ex1" />
+
+    <target name="slider_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/slider/slider-rgb_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/slider_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="slider_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/slider/slider-simple_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/slider_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="slider_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/slider/slider-ticks_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/slider_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="slider_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/slider/slider_dual_thumb_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/slider_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="slider_ex4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/slider/slider_dual_with_highlight_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/slider_ex4.vo.js" />
+        </exec>
+    </target>
+    <target name="slider_ex5" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/slider/slider_vert_swapped_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/slider_ex5.vo.js" />
+        </exec>
+    </target>
+    <target name="slider_examples" depends="slider_ex0, slider_ex1, slider_ex2, slider_ex3, slider_ex4, slider_ex5" />
+
+    <target name="storage_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/storage/storage-advanced_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/storage_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="storage_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/storage/storage-simple_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/storage_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="storage_examples" depends="storage_ex0, storage_ex1" />
+
+    <target name="stylesheet_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/stylesheet/stylesheet_anim_multi_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/stylesheet_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="stylesheet_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/stylesheet/stylesheet_theme_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/stylesheet_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="stylesheet_examples" depends="stylesheet_ex0, stylesheet_ex1" />
+
+    <target name="swf_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/swf/swf-advanced_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/swf_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="swf_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/swf/swf-simple_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/swf_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="swf_examples" depends="swf_ex0, swf_ex1" />
+
+    <target name="swfstore_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/swfstore/swfstore-advanced-example_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/swfstore_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="swfstore_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/swfstore/swfstore-settings-example_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/swfstore_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="swfstore_examples" depends="swfstore_ex0, swfstore_ex1" />
+
+    <target name="tabview_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/tabview/addtab_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/tabview_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="tabview_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/tabview/datasrc_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/tabview_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="tabview_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/tabview/frommarkup_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/tabview_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="tabview_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/tabview/fromscript_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/tabview_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="tabview_ex4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/tabview/removetab_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/tabview_ex4.vo.js" />
+        </exec>
+    </target>
+    <target name="tabview_ex5" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/tabview/skinning_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/tabview_ex5.vo.js" />
+        </exec>
+    </target>
+    <target name="tabview_ex6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/tabview/tabview-ariaplugin_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/tabview_ex6.vo.js" />
+        </exec>
+    </target>
+    <target name="tabview_examples" depends="tabview_ex0, tabview_ex1, tabview_ex2, tabview_ex3, tabview_ex4, tabview_ex5, tabview_ex6" />
+
+    <target name="treeview_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/treeview/customicons_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/treeview_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="treeview_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/treeview/default_tree_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/treeview_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="treeview_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/treeview/dynamic_tree_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/treeview_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="treeview_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/treeview/folder_style_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/treeview_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="treeview_ex4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/treeview/menu_style_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/treeview_ex4.vo.js" />
+        </exec>
+    </target>
+    <target name="treeview_ex5" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/treeview/tv_edit_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/treeview_ex5.vo.js" />
+        </exec>
+    </target>
+    <target name="treeview_ex6" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/treeview/tv_highlight_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/treeview_ex6.vo.js" />
+        </exec>
+    </target>
+    <target name="treeview_ex7" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/treeview/tv_markup_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/treeview_ex7.vo.js" />
+        </exec>
+    </target>
+    <target name="treeview_ex8" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/treeview/tv_tooltip_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/treeview_ex8.vo.js" />
+        </exec>
+    </target>
+    <target name="treeview_examples" depends="treeview_ex0, treeview_ex1, treeview_ex2, treeview_ex3, treeview_ex4, treeview_ex5, treeview_ex6, treeview_ex7, treeview_ex8" />
+
+    <target name="uploader_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/uploader/uploader-advanced-cookie_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/uploader_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="uploader_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/uploader/uploader-advanced-postvars_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/uploader_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="uploader_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/uploader/uploader-advanced-queue_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/uploader_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="uploader_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/uploader/uploader-simple-button_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/uploader_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="uploader_examples" depends="uploader_ex0, uploader_ex1, uploader_ex2, uploader_ex3" />
+
+    <target name="yahoo_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/yahoo/yahoo_type_checking_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/yahoo_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="yahoo_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/yahoo/yahoo_ua_detection_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/yahoo_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="yahoo_examples" depends="yahoo_ex0, yahoo_ex1" />
+
+    <target name="yuiloader_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/yuiloader/yl-addmodule_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/yuiloader_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="yuiloader_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/yuiloader/yl-basic_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/yuiloader_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="yuiloader_examples" depends="yuiloader_ex0, yuiloader_ex1" />
+
+    <target name="yuitest_ex0" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/yuitest/yt-advanced-test-options_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/yuitest_ex0.vo.js" />
+        </exec>
+    </target>
+    <target name="yuitest_ex1" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/yuitest/yt-array-tests_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/yuitest_ex1.vo.js" />
+        </exec>
+    </target>
+    <target name="yuitest_ex2" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/yuitest/yt-async-event-tests_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/yuitest_ex2.vo.js" />
+        </exec>
+    </target>
+    <target name="yuitest_ex3" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/yuitest/yt-async-test_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/yuitest_ex3.vo.js" />
+        </exec>
+    </target>
+    <target name="yuitest_ex4" depends="init">
+        <exec dir="." executable="${caja.cajoler}" >
+          <arg value="-i" />
+          <arg value="${yui2.examples}/yuitest/yt-simple-example_caja.html" />
+          <arg value="-o" />
+          <arg value="${build}/yuitest_ex4.vo.js" />
+        </exec>
+    </target>
+    <target name="yuitest_examples" depends="yuitest_ex0, yuitest_ex1, yuitest_ex2, yuitest_ex3, yuitest_ex4" />
+
+    <target name="yui_examples" depends="animation_examples, autocomplete_examples, base_examples, button_examples, calendar_examples, carousel_examples, charts_examples, colorpicker_examples, connection_examples, container_examples, cookie_examples, datasource_examples, datatable_examples, dom_examples, dragdrop_examples, editor_examples, event_examples, fonts_examples, get_examples, grids_examples, history_examples, imagecropper_examples, imageloader_examples, json_examples, layout_examples, logger_examples, menu_examples, paginator_examples, profiler_examples, profilerviewer_examples, progressbar_examples, reset_examples, resize_examples, selector_examples, slider_examples, storage_examples, stylesheet_examples, swf_examples, swfstore_examples, tabview_examples, treeview_examples, uploader_examples, yahoo_examples, yuiloader_examples, yuitest_examples" />
+
+    <target name="all" depends="init, yui_modules, yui_tests, yui_examples"/>
 </project>
-

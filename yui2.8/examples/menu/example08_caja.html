@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "#">
+<html>
+<head>
+
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Multi-tiered Menu From JavaScript</title>
+
+<style type="text/css">
+/*margin and padding on body element
+  can introduce errors in determining
+  element position and are not recommended;
+  we turn them off as a foundation for YUI
+  CSS treatments. */
+body {
+	margin:0;
+	padding:0;
+}
+</style>
+
+<link rel="stylesheet" type="text/css" href="yui/fonts/fonts-min.css" />
+<link rel="stylesheet" type="text/css" href="yui/menu/assets/skins/sam/menu.css" />
+<script type="text/javascript" src="yui/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="yui/container/container_core-min.js"></script>
+<script type="text/javascript" src="yui/menu/menu-min.js"></script>
+
+
+<!--begin custom header content for this example-->
+<style type="text/css">
+
+    /*
+        Set the "zoom" property to "normal" since it is set to "1" by the 
+        ".example-container .bd" rule in yui.css and this causes a Menu
+        instance's width to expand to 100% of the browser viewport.
+    */
+    
+    div.yuimenu .bd {
+    
+        zoom: normal;
+    
+    }
+
+</style>
+<!--end custom header content for this example-->
+
+</head>
+
+<body class="yui-skin-sam">
+
+
+<h1>Multi-tiered Menu From JavaScript</h1>
+
+<div class="exampleIntro">
+	<p>
+This example demonstrates how to create a multi-tiered menu using nothing 
+but JavaScript.
+</p>
+<p id="clicknote">
+<em>Note:</em> By default clicking outside of a Menu instance will hide it.  
+Additionally, MenuItem instances without a submenu or a URL to navigate to will 
+hide their parent Menu instance when clicked.  Click the "Show Menu" button 
+below to make the Menu instance visible if it is hidden.
+</p>			
+</div>
+
+<!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
+
+<script type="text/javascript">
+
+    /*
+         Initialize and render the Menu when the element it is to be 
+         rendered into is ready to be scripted.
+    */
+
+    YAHOO.util.Event.onAvailable("rendertarget", function () {
+
+        /*
+             Define an array of object literals, each containing 
+             the configuration properties necessary to create a MenuItem and 
+             its corresponding submenu.
+        */
+
+       var aItems = [
+        
+            {
+                text: "Communication", 
+                url: "#communication", 
+                submenu: { 
+                
+                    id: "communication", 
+                    itemdata: [ 
+            
+                        { text: "360", url: "#" },
+                        { text: "Alerts", url: "#" },
+                        { text: "Avatars", url: "#" },
+                        { text: "Groups", url: "#" },
+                        { text: "Internet Access", url: "#" },
+                        {
+                            text: "PIM", 
+                            url: "#pim", 
+                            submenu: {
+                                id: "pim", 
+                                itemdata: [
+        
+                                    { text: "Yahoo! Mail", url: "#" },
+                                    { text: "Yahoo! Address Book", url: "#" },
+                                    { text: "Yahoo! Calendar",  url: "#" },
+                                    { text: "Yahoo! Notepad", url: "#" }
+        
+                                ] 
+                            }
+                        
+                        }, 
+                        { text: "Member Directory", url: "#" },
+                        { text: "Messenger", url: "#" },
+                        { text: "Mobile", url: "#" },
+                        { text: "Flickr Photo Sharing", url: "#" }
+            
+                    ] 
+                
+                } 
+            
+            },
+
+            {
+                text: "Shopping", 
+                url: "#", 
+                submenu: {
+                    id: "shopping", 
+                    itemdata: [
+
+                        { text: "Auctions", url: "#" },
+                        { text: "Autos", url: "#" },
+                        { text: "Classifieds", url: "#" },
+                        { text: "Flowers & Gifts", url: "#" },
+                        { text: "Real Estate", url: "#" },
+                        { text: "Travel", url: "#" },
+                        { text: "Wallet", url: "#" },
+                        { text: "Yellow Pages", url: "#" }
+            
+                    ] 
+                } 
+            },
+
+            {
+                text: "Entertainment", 
+                url: "#", 
+                submenu: { 
+                    id: "entertainment", 
+                    itemdata: [
+            
+                        { text: "Fantasy Sports", url: "#" },
+                        { text: "Games", url: "#" },
+                        { text: "Kids", url: "#" },
+                        { text: "Music", url: "#" },
+                        { text: "Movies", url: "#" },
+                        { text: "Radio", url: "#" },
+                        { text: "Travel", url: "#" },
+                        { text: "TV", url: "#" }              
+                    ] 
+                } 
+            },
+
+            {
+                text: "Information", 
+                url: "#information", 
+                submenu: {
+                    id: "information", 
+                    itemdata: [
+            
+                        { text: "Downloads", url: "#" },
+                        { text: "Finance", url: "#" },
+                        { text: "Health", url: "#" },
+                        { text: "Local", url: "#" },
+                        { text: "Maps & Directions", url: "#" },
+                        { text: "My Yahoo!", url: "#" },
+                        { text: "News", url: "#" },
+                        { text: "Search", url: "#" },
+                        { text: "Small Business", url: "#" },
+                        { text: "Weather", url: "#" }
+            
+                    ]
+                } 
+            }            
+        ];                
+
+
+        /*
+			Instantiate a Menu:  The first argument passed to the constructor
+			is the id for the Menu element to be created, the second is an 
+			object literal of configuration properties.
+        */
+
+        var oMenu = new YAHOO.widget.Menu("productsandservices", { fixedcenter: true });
+
+
+        /*
+            Add items to the Menu instance by passing an array of object literals 
+            (each of which represents a set of YAHOO.widget.MenuItem 
+            configuration properties) to the "addItems" method.
+        */
+
+        oMenu.addItems(aItems);
+
+
+        /*
+            Since this Menu instance is built completely from script, call the 
+            "render" method passing in the DOM element that it should be 
+            appended to.
+        */
+        
+        oMenu.render("rendertarget");
+
+
+        YAHOO.util.Event.addListener("menutoggle", "click", oMenu.show, null, oMenu);
+    
+    });
+    
+</script>
+
+<button id="menutoggle" type="button">Show Menu</button>
+<div id="rendertarget"></div>
+<!--END SOURCE CODE FOR EXAMPLE =============================== -->
+
+</body>
+</html>

@@ -20,7 +20,7 @@ function yuitests(cell, rec, col, data) {
 function examples(cell, rec, col, data) {
     var examples = (Yc.examples[rec.getData('module')] || []).length;
 
-    cell.innerHTML = examples + '/' + data;
+    cell.innerHTML = examples;
     if (examples) {
         Dom.addClass(cell,'has-examples');
     }
@@ -54,7 +54,7 @@ function format_detail_links(_,uri,label) {
     return '<a href="' + (
         uri.charAt(0) === '#' ?
             ('http://code.google.com/p/google-caja/issues/detail?id=' + uri.slice(1)) :
-            (YAHOO.caja.host + uri)) + '">' + label + '</a>';
+            (YAHOO.caja.host + 'test=' + uri)) + '">' + label + '</a>';
 }
 
 function expand(row, rec) {
@@ -98,7 +98,7 @@ function initTable(section) {
 var dt = YAHOO.caja[section + 'Table'] = new YAHOO.widget.DataTable(section,[
     { key: 'module', formatter: module },
     { key: 'yuitest', formatter: yuitests },
-    { key: 'examples', label: 'examples &amp; tests', formatter: examples }, 
+    { label: 'examples &amp; tests', formatter: examples }, 
     { label: 'test results', children: [
         { key: 'tests[0]', label: 'pass' },
         { key: 'tests[1]', label: 'fail', formatter: failed_tests },
@@ -119,7 +119,7 @@ var dt = YAHOO.caja[section + 'Table'] = new YAHOO.widget.DataTable(section,[
                 'status']
         }}));
 
-dt.sortColumn('module', YAHOO.widget.DataTable.CLASS_ASC);
+//dt.sortColumn('module', YAHOO.widget.DataTable.CLASS_ASC);
 
 dt.subscribe('buttonClickEvent', function (e) {
     var rec = this.getRecord(e.target),

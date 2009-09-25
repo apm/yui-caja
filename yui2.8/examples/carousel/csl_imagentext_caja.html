@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "#">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Carousel: Using both images and text within an item</title>
+<link rel="stylesheet" type="text/css" href="yui/fonts/fonts.css"> 
+<link type="text/css" rel="stylesheet" href="yui/carousel/assets/skins/sam/carousel.css">
+<script src="yui/utilities/utilities.js"></script>
+<script src="yui/carousel/carousel-min.js"></script>
+
+<style type="text/css">
+    .yui-carousel-element li {
+        height: 158px;
+        text-align: left;
+    }
+
+    #container {
+        font-size: 13px;
+        margin: 0 auto;
+    }
+
+    #container a {
+        text-decoration: none;
+    }
+            
+    #container .intro {
+        display: inline;
+        margin: 0px 14px 0px 4px;
+        width: 202px;
+    }
+            
+    #container .item {
+        display: inline;
+        margin: 0 22px 0 12px;
+        overflow: hidden;
+        padding-right: 80px;
+        width: 106px;
+    }
+
+    #container .item .authimg {
+        bottom: 2px;
+        margin-left: 61px;
+        position: absolute;
+        z-index: 1;
+    }
+            
+    #container .item h3 {
+        line-height: 85%;
+        margin-top: 4px;
+    }
+            
+    #container .item h3 a {
+        font: 77% Arial, sans-serif;
+        position: relative;
+        text-transform: uppercase;
+        z-index: 2;
+    }
+            
+    #container .item h3 a:link {
+        color:#35a235;
+    }
+            
+    #container .item h4 {
+        margin-top:5px;
+    }
+            
+    #container .item h4 a {
+        font: 100% Georgia, Times, serif;
+        position: relative;
+        z-index:2;
+    }
+
+    #container .item h4 a:link {
+        color:#00639b;
+    }
+            
+    #container .item cite {
+        color: #888;
+        display: block;
+        font-size: 77%;
+        line-height: normal;
+        margin-bottom: 30px;
+    }
+            
+    #container .item p.all {
+        bottom: 25px;
+        position: absolute;
+        z-index: 2;
+    }
+            
+    #container .item p.all a {
+        font-weight: bold;
+        font-size: 85%;
+    }
+</style>
+
+</head>
+
+<body class="yui-skin-sam">
+
+<h1>Using both images and text within an item</h1>
+
+<p> This example uses the <a href="#">YUI Carousel Control</a> to showcase an example where each
+  (list) item contains an image and some text.  As always, you can use arrow
+  keys to select items or to click on an item to select it. </p>
+<p> Also in this example, you will see the animation capabilities available in
+  the YUI Carousel Control.  For getting an animated effect during scroll, you
+  will have to set the <code>animation</code> configuration setting in the constructor and include the <a href="#">YUI Animation Utility</a> on the page.</p>
+<!-- The Carousel container -->
+<div id="container">
+    <ol id="carousel">
+        <li class="intro">
+            <a href="#">
+                <img width="202" height="162" border="0"
+                     alt="Health Expert Advice: Leading experts share advice, tips and personal experiences."
+                     src="#"/>
+            </a>
+        </li>
+        <li class="item">
+            <a title="View Author's Biography" class="authimg"
+               href="#">
+                <img width="125" height="154" border="0"
+                     alt="Leslie Baumann, M.D."
+                     src="#"/>
+            </a>
+            <h3><a href="#">Leslie Baumann, M.D.</a></h3>
+            <h4><a href="#">
+            Skin Treatments for…</a></h4>
+            <cite>Posted Thu 5.1.08</cite>
+            <p class="all"><a href="#">View All Posts &raquo;</a></p>
+        </li>
+        <li class="item">
+            <a title="View Author's Biography" class="authimg"
+               href="#">
+                <img width="125" height="154" border="0"
+                     alt="Deepak Chopra, M.D."
+                     src="#"/>
+            </a>
+            <h3><a href="#">Deepak Chopra, M.D.</a></h3>
+            <h4><a href="#">
+            How You Think About Illness…</a></h4>
+            <cite>Posted Thu 5.1.08</cite>
+            <p class="all"><a href="#">View All Posts &raquo;</a></p>
+        </li>
+        <li class="item">
+            <a title="View Author's Biography" class="authimg"
+               href="#">
+                <img width="125" height="154" border="0" class="lz"
+                     alt="Christine McKinney, M.S., R.D., C.D.E."
+                     src="#"/>
+            </a>
+            <h3><a href="#">
+            Christine McKinney, M.S., R.D., C.D.E.</a></h3>
+            <h4><a href="#">
+            Fat: How Much Is Enough of a…</a></h4>
+            <cite>Posted Thu 5.1.08</cite>
+            <p class="all"><a href="#">View All Posts &raquo;</a></p>
+        </li>
+        <li class="item">
+            <a title="View Author's Biography" class="authimg"
+               href="#">
+                <img width="125" height="154" border="0" class="lz"
+                     alt="Dr. Maoshing Ni"
+                     src="#"/>
+            </a>
+            <h3><a href="#">Dr. Maoshing Ni</a></h3>
+            <h4><a href="#">
+            Centenarian Tips for a Long…</a></h4>
+            <cite>Posted Tue 4.29.08</cite>
+            <p class="all"><a href="#">View All Posts &raquo;</a></p>
+        </li>
+        <li class="item">
+            <a title="View Author's Biography" class="authimg"
+               href="#">
+                <img width="125" height="154" border="0" class="lz"
+                     alt="Lillie Shockney, R.N., M.A.S."
+                     src="#"/>
+            </a>
+            <h3><a href="#">
+            Lillie Shockney, R.N., M.A.S.</a></h3>
+            <h4><a href="#">
+            Are You Being Over- or…</a></h4>
+            <cite>Posted Tue 4.29.08</cite>
+            <p class="all"><a href="#">View All Posts &raquo;</a></p>
+        </li>
+        <li class="item">
+            <a title="View Author's Biography" class="authimg"
+               href="#">
+                <img width="125" height="154" border="0" class="lz"
+                     alt="David Neubauer, M.D."
+                     src="#"/>
+            </a>
+            <h3><a href="#">David Neubauer, M.D.</a></h3>
+            <h4><a href="#">
+            Could a Breast Cancer…</a></h4>
+            <cite>Posted Tue 4.29.08</cite>
+            <p class="all"><a href="#">View All Posts &raquo;</a></p>
+        </li>
+        <li class="item">
+            <a title="View Author's Biography" class="authimg"
+               href="#">
+                <img width="125" height="154" border="0" class="lz"
+                     alt="Jennifer Tuma-Young"
+                     src="#"/>
+            </a>
+            <h3><a href="#">Jennifer Tuma-Young</a></h3>
+            <h4><a href="#">
+            Relieve Stress With Your…</a></h4>
+            <cite>Posted Mon 4.28.08</cite>
+            <p class="all"><a href="#">View All Posts &raquo;</a></p>
+        </li>
+        <li class="item">
+            <a title="View Author's Biography" class="authimg"
+               href="#">
+                <img width="125" height="154" border="0" class="lz"
+                     alt="Lucy Danziger, SELF Edit"
+                     src="#"/>
+            </a>
+            <h3><a href="#">Lucy Danziger, SELF Edit</a></h3>
+            <h4><a href="#">
+            De-Stress in Mere Minutes</a></h4>
+            <cite>Posted Mon 4.28.08</cite>
+            <p class="all"><a href="#">View All Posts &raquo;</a></p>
+        </li>
+        <li class="item">
+            <a title="View Author's Biography" class="authimg"
+               href="#">
+                <img width="125" height="154" border="0" class="lz"
+                     alt="Simeon Margolis, M.D., Ph.D."
+                     src="#"/>
+            </a>
+            <h3><a href="#">Simeon Margolis, M.D., Ph.D.</a></h3>
+            <h4><a href="#">
+            Alzheimer's and Dementia: Will…</a></h4>
+            <cite>Posted Mon 4.28.08</cite>
+            <p class="all"><a href="#">View All Posts &raquo;</a></p>
+        </li>
+        <li class="item">
+            <a title="View Author's Biography" class="authimg"
+               href="#">
+                <img width="125" height="154" border="0" class="lz"
+                     alt="Mallika Chopra, IntentBlog"
+                     src="#"/>
+            </a>
+            <h3><a href="#">Mallika Chopra, IntentBlog</a></h3>
+            <h4><a href="#">
+            Treating a Sore Throat</a></h4>
+            <cite>Posted Mon 4.28.08</cite>
+            <p class="all"><a href="#">View All Posts &raquo;</a></p>
+        </li>
+        <li class="intro">
+            <a href="#">
+                <img width="202" height="162" border="0"
+                     alt="Health Expert Advice: Leading experts share advice, tips and personal experiences."
+                     src="#"/>
+            </a>
+        </li>
+    </ol>
+</div>
+<script>
+    (function () {
+        var carousel;
+                
+        YAHOO.util.Event.onDOMReady(function (ev) {
+            var carousel    = new YAHOO.widget.Carousel("container", {
+                        animation: { speed: 0.5 }
+                });
+                        
+            carousel.render(); // get ready for rendering the widget
+            carousel.show();   // display the widget
+        });
+    })();
+</script>
+</body>
+</html>

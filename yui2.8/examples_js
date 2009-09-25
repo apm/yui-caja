@@ -1,0 +1,46 @@
+#!/usr/bin/perl
+
+use warnings;
+use strict;
+
+opendir(my $modules, 'examples');
+
+my @files;
+
+while (my $module = readdir($modules)) {
+    my $dir = "examples/$module";
+    my $counter = 0;
+
+    next unless ($module !~ /^\./ && -d $dir);
+
+    print "$module: [\n";
+    opendir(my $examples, $dir);
+
+    while (my $ex = readdir($examples)) {
+        my $file = "$dir/$ex";
+
+        if ($ex =~ /_caja\.html$/) {
+            my $name = $module . "_ex" . $counter;
+
+            $counter++;
+
+            my $label = "$module example $counter";
+
+            open (EX, $file);
+            while (<EX>) {
+                if (/<h1>(.*?)<\/h1>/i) {
+                    $label = $1;
+                    $label =~ s/["\]]/)/g;
+                    last;
+                }
+            }
+            close(EX);
+            print "    \"[[$name]$label]\",\n";
+        }
+    }
+    closedir($examples);
+
+    print "],\n\n";
+}
+
+closedir($modules);

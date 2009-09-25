@@ -1,12 +1,12 @@
 h2. YUI-Caja
 
-This projects contains files related to the effort to cajole YUI.
+This projects contains files related to the effort to cajole YUI 2.8.0.
 
 * <a href="http://developer.yahoo.com/yui/">YUI</a>: The YUI Library is a set of utilities and controls, written in JavaScript, for building richly interactive web applications using techniques such as DOM scripting, DHTML and AJAX.
 
 * <a href="http://code.google.com/p/google-caja/">Caja</a>: A source-to-source translator for securing Javascript-based web content
 
-This project requires the full source tree for YUI2 and Caja, both publically available.
+This project requires the full source tree for Caja in a sibling directory.
 
 Quick start:
 
@@ -14,29 +14,27 @@ Quick start:
 <pre>
 [~] ➔ mkdir src; cd src
 [~/src] ➔ svn checkout http://google-caja.googlecode.com/svn/trunk/ google-caja
-[~/src] ➔ git clone git://github.com/yui/yui2.git
 [~/src] ➔ git clone git://github.com/apm/yui-caja.git
 [~/src] ➔ cd google-caja
 [~/src/google-caja] ➔ ant testbed
 [~/src/google-caja] ➔ cd ../yui-caja
-[~/src/yui-caja] ➔ ln -s ../yui2/build tests/yui
-[~/src/yui-caja] ➔ ln -s ../yui2/build tests/yuitests/yui
-[~/src/yui-caja] ➔ ln -s ../yui2/build tests/examples/yui
-[~/src/yui-caja] ➔ ant
+[~/src/yui-caja] ➔ . create_symlinks.sh
+[~/src/yui-caja] ➔ ant all
 </pre>
 </notextile>
 
 Then open tests/index.php in a web browser.  This will require a local web server running PHP.
 
-The index page summarizes the current status of the cajoling and testing process for YUI 2.  Test suites and examples are all powered by a single host.php that wraps the cajoled test and example pages (referred to as gadgets after cajoling).  host.php operates by evaluating query string parameters, so it can be used to test other cajoled content not linked by the index file.
+The full download bundle of YUI 2.8.0 is included in the yui-caja project folder in the yui2.8 subfolder.
 
-The original source of the individual tests, test suites, and examples are under the /tests directory, in the respective yuitests and examples subfolders.
+The index page summarizes the current status of the cajoling and testing process for YUI 2.  Test suites and examples are all powered by a single host.php that wraps the cajoled test and example pages (referred to as gadgets after cajoling).  host.php operates by reading the value of the 'test' query string parameter for which cajoled file will be injected into the host body.
 
-FireBug Lite is automatically loaded onto the page in IE6 and 7.
+FireBug Lite is automatically loaded into the host page in IE6 and 7.
 
 p. Todo:
 
-* Replace the script execs with the cajole task should it exist, or create one.
 * Host file build step that generates the correct urls to the caja environment based on the caja.base property.
-* Document capabilities and known issues for each component. (in progress see /tests/index.php)
-* auto-generate yuitests from ../yui2/src/{module}/tests/*.html in the build step.
+* Update test results in index.php
+* Fix the YUI Test suite links to point to new test pages
+* Go through each component's examples and document in the notes.js its capabilities and known issues.  This is in parallel to filing bugs with Caja
+* Remove all LOG messages in the build-all log, looking for alarming WARNINGs or ERRORs

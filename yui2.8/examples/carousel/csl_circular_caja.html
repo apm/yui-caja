@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "#">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Carousel: Circular Carousel</title>
+
+    <link rel="stylesheet" type="text/css" href="yui/fonts/fonts.css">
+    <link type="text/css" rel="stylesheet" href="yui/carousel/assets/skins/sam/carousel.css">
+
+    <script type="text/javascript" src="yui/yahoo-dom-event/yahoo-dom-event.js"></script>
+    <script type="text/javascript" src="yui/element/element-min.js"></script>
+    <script type="text/javascript" src="yui/carousel/carousel-min.js"></script>
+
+    <style type="text/css">
+    body {
+        margin:0;
+        padding:0;
+    }
+
+    #container {
+        margin: 0 auto;
+    }
+
+    .yui-carousel-element li {
+        height: 375px;
+    }
+    </style>
+
+</head>
+<body class="yui-skin-sam">
+    <h1>Circular Carousel Example</h1>
+    <!-- The Carousel container -->
+    <div id="container">
+        <ol id="carousel">
+            <li>
+                <img src="#"
+                 height="375" width="500">
+            </li>
+            <li>
+                <img src="#"
+                 height="375" width="500">
+            </li>
+            <li>
+                <img src="#"
+                 height="375" width="500">
+            </li>
+            <li>
+                <img src="#"
+                 height="375" width="500">
+            </li>
+            <li>
+                <img src="#"
+                 height="375" width="500">
+            </li>
+            <li>
+                <img src="#"
+                 height="375" width="500">
+            </li>
+            <li>
+                <img src="#"
+                 height="375" width="500">
+            </li>
+            <li>
+                <img src="#"
+                 height="375" width="500">
+            </li>
+            <li>
+                <img src="#"
+                 height="375" width="500">
+            </li>
+            <li>
+                <img src="#"
+                 height="375" width="500">
+            </li>
+        </ol>
+    </div>
+    <script>
+    (function () {
+        var carousel;
+                
+        YAHOO.util.Event.onDOMReady(function (ev) {
+            var carousel    = new YAHOO.widget.Carousel("container", {
+                        isCircular: true, numVisible: 1
+                });
+
+            carousel.render(); // get ready for rendering the widget
+            carousel.show();   // display the widget
+        });
+    })();
+    </script>
+</body>
+</html>
