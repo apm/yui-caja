@@ -37,7 +37,7 @@
     <h2>Widgets</h2>
     <div id="widgets"></div>
 
-    <a href="host.php?caja_base=<?php echo $caja_base; ?>&test=basic">Run basic test</a>
+    <a href="host.php?caja_base=<?php echo $caja_base; ?>&test=basic_gadget">Run basic test</a>
 </div>
 <script src="../../yui2/build/yahoo-dom-event/yahoo-dom-event.js"></script>
 <script src="../../yui2/build/element/element-min.js"></script>
