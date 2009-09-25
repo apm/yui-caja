@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Test gadgets directory
+ln fs ../yui2.8/build tests/yui
+
 # YUI Test directories
 ln -fs ../../../build yui2.8/tests/animation/tests/yui
 ln -fs ../../../build yui2.8/tests/autocomplete/tests/yui
