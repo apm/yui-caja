@@ -1,11 +1,9 @@
 <?php
-    $base = '../cajoled';
+    $base      = '../cajoled';
     $caja_base = '../../google-caja';
 
-    $scripts = array();
-    $css = array();
-    $test = $bodyClass = '';
-    $bodyClass = ' class="yui-skin-sam"';
+    $fblite    = false;
+    $test      = '';
     
     if (isset($_GET['caja_base'])) {
         $caja_base = $_GET['caja_base'];
@@ -15,36 +13,14 @@
         $base = $_GET['base'];
     }
 
-    if (isset($_GET['css'])) {
-        array_map("addCSS", split(',',$_GET['css']));
+    if (isset($_GET['fblite'])) {
+        $fblite = $_GET['fblite'];
     }
 
     if (isset($_GET['test'])) {
-        $test = $_GET['test'];
-        add($test);
-    }
-
-
-    function add($file) {
-        global $scripts, $base;
-
-        $f = "$base/$file.vo..out.js";
-        if (file_exists($f)) {
-            $scripts[] = "<script src='$f'></script>";
-        }
-
-        addCSS($file);
-    }
-    function addCSS($file) {
-        global $css, $bodyClass;
-
-        $a = "../../yui2/build/$file/assets/skins/sam/$file.css";
-        $b = "../../yui2/build/$file/$file.css";
-        $f = file_exists($a) ? $a : (file_exists($b) ? $b : false);
-
-        if ($f) {
-            //$css[] = "<link rel='stylesheet' type='text/css' href='$f'>";
-            $bodyClass = ' class="yui-skin-sam"';
+        $f = "$base/".$_GET['test'].".vo..out";
+        if (file_exists("$f.js")) {
+            $test = $f;
         }
     }
 ?>
@@ -53,11 +29,15 @@
   <head>
 
     <title>YUI/Caja Host Page</title>
-    <?php echo(join("\n",array_unique($css))); ?>
-
+    <?php
+    if ($fblite) {
+    echo <<<END
     <!--[if lt IE 8]>
     <script type='text/javascript' src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>
     <![endif]-->
+END;
+    }
+    ?>
     <script>
         if (!window.console &&
             Object.prototype.toString.call(window.opera) === '[object Opera]') {
@@ -95,8 +75,8 @@
   <body>
 
     <div id="gadget___" class="gadget___">
-        <div<?php echo($bodyClass); ?>>
-            <?php include("$base/$test.vo..out.html"); ?>
+        <div class="yui-skin-sam">
+            <?php include("$test.html"); ?>
         </div>
     </div>
 
@@ -166,7 +146,7 @@
       // inlineHtml("dom_test.vo.html", document.getElementById('gadget___'));
     </script>
 
-    <?php echo(join("\n",array_unique($scripts))); ?>
+    <script src="<?php echo $test; ?>.js"></script>
 
   </body>
 </html>
