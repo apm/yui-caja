@@ -9,12 +9,12 @@ function module(cell, rec, col, data) {
 }
 
 function yuitests(cell, rec, col, data) {
-    var html = YAHOO.lang.isArray(data) ? data.join(" ") :
-            data === false ? "Not found" :
-            /test=/.test(data) ? "[["+data+"]run]" :
-            data;
+    var tests = (Yc.tests[rec.getData('module')] || []).length;
 
-    cell.innerHTML = html.replace(/\[\[(.*?)\](.*?)\]/gm,format_detail_links);
+    cell.innerHTML = tests;
+    if (examples) {
+        Dom.addClass(cell,'has-tests');
+    }
 }
 
 function examples(cell, rec, col, data) {
@@ -62,9 +62,11 @@ function expand(row, rec) {
         td = tr.appendChild(document.createElement('td')),
         div = td.appendChild(document.createElement('div')),
         module = rec.getData('module'),
-        sections = ['examples','failed','errors','notes'],i,s,
+        sections = ['examples','tests','failed','errors','notes'],
         sectionCount = 0,
-        html = '';
+        html = '',
+        s,
+        i,len;
 
     Dom.addClass(tr, /yui-dt-(?:odd|even)/.exec(row.className)[0]);
     td.colSpan = row.cells.length;
@@ -73,7 +75,7 @@ function expand(row, rec) {
     Dom.addClass(div, 'yui-dt-liner');
     Dom.addClass(div, rec.getData('status'));
 
-    for (i = 0; i < 4; ++i) {
+    for (i = 0, len = sections.length; i < len; ++i) {
         s = Yc[sections[i]][module];
         if (s) {
             sectionCount++;
@@ -97,7 +99,7 @@ function collapse(row) {
 function initTable(section) {
 var dt = YAHOO.caja[section + 'Table'] = new YAHOO.widget.DataTable(section,[
     { key: 'module', formatter: module },
-    { key: 'yuitest', formatter: yuitests },
+    { label: 'test pages', formatter: yuitests },
     { label: 'examples &amp; tests', formatter: examples }, 
     { label: 'test results', children: [
         { key: 'tests[0]', label: 'pass' },
@@ -111,8 +113,6 @@ var dt = YAHOO.caja[section + 'Table'] = new YAHOO.widget.DataTable(section,[
             resultsList: section,
             fields: [
                 'module',
-                { key: 'yuitest' },
-                { key: 'examples', parser: 'number' },
                 { key: 'tests[0]', parser: 'number' },
                 { key: 'tests[1]', parser: 'number' },
                 { key: 'tests[2]', parser: 'number' },

@@ -117,8 +117,7 @@ YAHOO.namespace('caja').examples = {
         "[[connection_ex3]Subscribing to Connection Manager Global Events]",
         "[[connection_ex4]Connection Manager POST Transaction]",
         "[[connection_ex5]Retrieving a Yahoo! Weather RSS Feed]",
-        "[[connection_ex6]Connection Manager: Cross-Domain Transactions with Connection Manager]",
-        '[[connection_gadget]Basic asyncRequest]'
+        "[[connection_ex6]Connection Manager: Cross-Domain Transactions with Connection Manager]"
     ],
 
     container: [
@@ -221,8 +220,7 @@ YAHOO.namespace('caja').examples = {
         "[[event_ex0]Using Custom Events]",
         "[[event_ex1]Using Event Utility and Event Delegation to Improve Performance]",
         "[[event_ex2]Skinning via Progressive Enhancement using the Event Utility and the YUILoader]",
-        "[[event_ex3]Simple Event Handling and Processing]",
-        "[[core_gadget]Core test (events, lang, etc)]"
+        "[[event_ex3]Simple Event Handling and Processing]"
     ],
 
     fonts: [
@@ -364,8 +362,7 @@ YAHOO.namespace('caja').examples = {
         "[[resize_ex3]Split Pane resizing with Grids CSS]",
         "[[resize_ex4]Proxy Resize]",
         "[[resize_ex5]Custom resizing for the Rich Text Editor]",
-        "[[resize_ex6]Simple Resize]",
-        '[[resize_gadget]Simple test]'
+        "[[resize_ex6]Simple Resize]"
     ],
 
     selector: [
@@ -421,8 +418,7 @@ YAHOO.namespace('caja').examples = {
         "[[treeview_ex5]Inline Editing of TreeView Node Labels]",
         "[[treeview_ex6]Treeview Node Selection and Checkbox Example]",
         "[[treeview_ex7]Three Ways to Define a TreeView: Markup (Progressive Enhancement), Existing TreeView Instance, and Object Literal ]",
-        "[[treeview_ex8]TreeView with Tooltips]",
-        '[[treeview_gadget]Simple test]'
+        "[[treeview_ex8]TreeView with Tooltips]"
     ],
 
     uploader: [
@@ -432,18 +428,9 @@ YAHOO.namespace('caja').examples = {
         "[[uploader_ex3]Simple Uploader Example With Button UI]"
     ],
 
-    utilities: [
-        "[[core_gadget]Core test (events, lang, etc)]",
-    ],
-
     yahoo: [
         "[[yahoo_ex0]Type-Checking Your Data]",
-        "[[yahoo_ex1]User Agent Detection]",
-        "[[core_gadget]Core test (events, lang, etc)]"
-    ],
-
-    'yahoo-dom-event': [
-        "[[core_gadget]Core test (events, lang, etc)]"
+        "[[yahoo_ex1]User Agent Detection]"
     ],
 
     yuiloader: [

@@ -49,6 +49,7 @@
 <script src="js/examples.js"></script>
 <script src="js/failed.js"></script>
 <script src="js/errors.js"></script>
+<script src="js/tests.js"></script>
 <script src="js/status.js"></script>
 </body>
 </html>
