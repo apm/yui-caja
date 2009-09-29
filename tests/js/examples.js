@@ -75,7 +75,7 @@ YAHOO.namespace('caja').examples = {
     ],
 
     carousel: [
-        "[[carousel_ex0]carousel example 1]",
+        "[[carousel_ex0]Aria Plugin]",
         "[[carousel_ex1]Circular Carousel Example]",
         "[[carousel_ex2]Using Ajax for deferred loading of items]",
         "[[carousel_ex3]Using deferred loading of items and Carousel's built-in paginator]",
@@ -208,7 +208,7 @@ YAHOO.namespace('caja').examples = {
         "[[editor_ex5]Flickr Image Search]",
         "[[editor_ex6]Icon Insertion]",
         "[[editor_ex7]Editor with Custom Image Browser]",
-        "[[editor_ex8]editor example 9]",
+        "[[editor_ex8]One Editor, multiple edit areas]",
         "[[editor_ex9]Editor Data Post with Connection Manager]",
         "[[editor_ex10]Simple Editor &mdash; Advanced Buttons]",
         "[[editor_ex11]Simple Editor &mdash; Basic Buttons]",
@@ -236,31 +236,31 @@ YAHOO.namespace('caja').examples = {
     ],
 
     grids: [
-        "[[grids_ex0]grids example 1]",
-        "[[grids_ex1]grids example 2]",
-        "[[grids_ex2]grids example 3]",
-        "[[grids_ex3]grids example 4]",
-        "[[grids_ex4]grids example 5]",
-        "[[grids_ex5]grids example 6]",
-        "[[grids_ex6]grids example 7]",
-        "[[grids_ex7]grids example 8]",
-        "[[grids_ex8]grids example 9]",
-        "[[grids_ex9]grids example 10]",
-        "[[grids_ex10]grids example 11]",
-        "[[grids_ex11]grids example 12]",
-        "[[grids_ex12]Example Blog]",
-        "[[grids_ex13]grids example 14]",
-        "[[grids_ex14]grids example 15]",
-        "[[grids_ex15]grids example 16]",
-        "[[grids_ex16]grids example 17]",
-        "[[grids_ex17]grids example 18]",
-        "[[grids_ex18]grids example 19]"
+        "[[grids_ex0]doc custom]",
+        "[[grids_ex1]doc2]",
+        "[[grids_ex2]doc3]",
+        "[[grids_ex3]doc4]",
+        "[[grids_ex4]doc]",
+        "[[grids_ex5]g (nested grids)]",
+        "[[grids_ex6]gb (nested grids)]",
+        "[[grids_ex7]gc (nested grids)]",
+        "[[grids_ex8]gd (nested grids)]",
+        "[[grids_ex9]ge (nested grids)]",
+        "[[grids_ex10]gf (nested grids)]",
+        "[[grids_ex11]gg (nested grids)]",
+        "[[grids_ex12]Landmarks]",
+        "[[grids_ex13]t1]",
+        "[[grids_ex14]t2]",
+        "[[grids_ex15]t3]",
+        "[[grids_ex16]t4]",
+        "[[grids_ex17]t5]",
+        "[[grids_ex18]t6]"
     ],
 
     history: [
         "[[history_ex0]Calendar Control]",
         "[[history_ex1]Multiple Modules]",
-        "[[history_ex2]history example 3]",
+        "[[history_ex2]Simple navigation bar]",
         "[[history_ex3]TabView Control]"
     ],
 
@@ -285,24 +285,24 @@ YAHOO.namespace('caja').examples = {
     ],
 
     layout: [
-        "[[layout_ex0]layout example 1]",
-        "[[layout_ex1]layout example 2]",
-        "[[layout_ex2]YUI: CSS Grid Builder]",
-        "[[layout_ex3]layout example 4]",
-        "[[layout_ex4]layout example 5]",
-        "[[layout_ex5]layout example 6]",
-        "[[layout_ex6]layout example 7]"
+        "[[layout_ex0]Complex application]",
+        //"[[layout_ex1]Calendar/RTE (for advanced layout)]",
+        "[[layout_ex2]CSS Grid]",
+        "[[layout_ex3]Layout with Menu controls]",
+        "[[layout_ex4]Nesting a Layout]",
+        "[[layout_ex5]Full page Layout]",
+        "[[layout_ex6]Layout inside a resizable panel]"
     ],
 
     logger: [
-        "[[logger_ex0]logger example 1]",
-        "[[logger_ex1]logger example 2]",
-        "[[logger_ex2]logger example 3]"
+        "[[logger_ex0]Logger integration (AutoComplete)]",
+        "[[logger_ex1]Basic logging]"//,
+        //"[[logger_ex2]Skinning model]"
     ],
 
     menu: [
-        "[[menu_ex0]menu example 1]",
-        "[[menu_ex1]menu example 2]",
+        "[[menu_ex0]Application Menu bar]",
+        "[[menu_ex1]Context Menu]",
         "[[menu_ex2]Basic Menu From Markup]",
         "[[menu_ex3]Basic Menu From JavaScript]",
         "[[menu_ex4]Grouped Menu Items Using Markup]",
@@ -319,14 +319,14 @@ YAHOO.namespace('caja').examples = {
         "[[menu_ex15]Example: Website Left Nav Using Animation With Submenus From JavaScript (YUI Library)]",
         "[[menu_ex16]Example: Website Left Nav With Submenus Built From Markup (YUI Library)]",
         "[[menu_ex17]Example: Website Left Nav Using Animation With Submenus Built From Markup (YUI Library)]",
-        "[[menu_ex18]menu example 19]",
-        "[[menu_ex19]<a id=)yahoo) href=)#)>Yahoo!</a>]",
+        "[[menu_ex18]Using the Menu ARIA Plugin]",
+        "[[menu_ex19]OS-Style Programs Menu]",
         "[[menu_ex20]Example: Adding A Context Menu To A Table (YUI Library)]",
         "[[menu_ex21]Example: Website Top Nav With Submenus From JavaScript (YUI Library)]",
         "[[menu_ex22]Example: Website Top Nav Using Animation With Submenus From JavaScript (YUI Library)]",
         "[[menu_ex23]Example: Website Top Nav With Submenus Built From Markup (YUI Library)]",
         "[[menu_ex24]Example: Website Top Nav Using Animation With Submenus Built From Markup (YUI Library)]",
-        "[[menu_ex25]menu example 26]"
+        "[[menu_ex25]TreeView Context Menu]"
     ],
 
     paginator: [
