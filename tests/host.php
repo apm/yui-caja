@@ -29,6 +29,9 @@
   <head>
 
     <title>YUI/Caja Host Page</title>
+    <style type="text/css">
+    body, html { margin: 0; padding: 0; }
+    </style>
     <?php
     if ($fblite) {
     echo <<<END
@@ -74,13 +77,15 @@ END;
   </head>
   <body>
 
-    <div id="gadget___" class="gadget___">
-        <div class="yui-skin-sam">
+    <div id="gadget___" class="gadget___"><!-- style="overflow: auto;"-->
+        <div class="yui-skin-sam" id="gadget_body___">
             <?php include("$test.html"); ?>
         </div>
     </div>
 
     <script>(function () {
+      //document.getElementById('gadget_body___').style.height = document.documentElement.clientHeight + 'px';
+
       var testImports = ___.copy(___.sharedImports);
       testImports.outers = testImports;
       var testDomContainer = document.getElementById('gadget___');
