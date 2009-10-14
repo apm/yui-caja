@@ -1,19 +1,18 @@
 YAHOO.namespace('caja').failed = {
-    autocomplete: [
-        "testExpandCollapseContainer: Expected container to be closed again\nExpected: (string)\nActual:none (string)"
-    ],
     cookie: ['All failures are because cookies are not supported in Caja'],
-    datasource: [
-        "testXHRSendRequest: XHR failure case.",
-        "testXHRHTMLTable: XHR failure case"
-    ],
     dragdrop: [
         "test_dragOver: dragOver should have fired 5 times\nExpected: 5 (number)\nActual:7 (number)",
         "test_bodyScroll: dragOver should have fired 5 times\nExpected: 5 (number)\nActual:7 (number)",
         "test_containerScroll: dragOver should have fired 5 times\nExpected: 5 (number)\nActual:7 (number)",
     ],
     dom: [
-        "test_setAttribute: Y.Dom.setAttribute(el, 'for', 'foo')\nExpected: foo (string)\nActual:undefined (undefined)"
+        "test_replaceClass: Y.Dom.replaceClass(el, /bar/, 'baz')\nExpected: foo baz (string)\nActual:foo  baz (string)",
+        "test_getAttribute: Unexpected error: invalid \"in\" operand: null"
+    ],
+    event: [
+        "Focus and Blur Test not working.  I suspect issues with capture phase support (needs investigation)",
+        "All 6 of the focusin, focusout tests (event test 2) fail (need investigation)",
+        "All 11 of the event delegation tests fail because of lack of support for event simulation."
     ],
     selector: [
         "testTest: type=checkbox:checked\nExpected: true (boolean)\nActual:false (boolean)",

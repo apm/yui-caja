@@ -4,10 +4,10 @@ YAHOO.namespace('caja').data = {
           yuitest: 'test=yahoo', tests : [16,3,3] },
 
         { module:'dom', status: 'working',
-          yuitest: 'test=dom', tests : [31,1,0] },
+          yuitest: 'test=dom', tests : [32,2,0] },
 
         { module:'event', status: 'working',
-          yuitest: false, tests : [0,0,0] },
+          yuitest: false, tests : [4,7,11] },
 
         { module:'yahoo-dom-event', status: 'working',
           yuitest: false, tests : [0,0,0] },
@@ -25,17 +25,17 @@ YAHOO.namespace('caja').data = {
 // Utils
 
     utils: [
-        { module:'animation', status: 'working',
+        { module:'animation', status: 'conditional',
           yuitest: 'test=animation', tests : [5,0,0] },
 
         { module:'connection', status: 'conditional',
-          yuitest: 'test=connection', tests : [0,0,1] },
+          yuitest: 'test=connection', tests : [1,0,1] },
 
         { module:'cookie', status: 'unsupported',
           yuitest: 'test=cookie', tests : [137,31,0] },
 
-        { module:'datasource', status: 'conditional',
-          yuitest: 'test=datasource', tests : [12,2,1]},
+        { module:'datasource', status: 'working',
+          yuitest: 'test=datasource', tests : [14,0,1]},
 
         { module:'dragdrop', status: 'conditional',
           yuitest: 'test=dd', tests : [5,3,0] },
@@ -61,8 +61,8 @@ YAHOO.namespace('caja').data = {
         { module:'layout', status: 'wip',
           yuitest: false, tests : [0,0,0] },
 
-        { module:'logger', status: 'pending',
-          yuitest: 'pending', tests : [0,0,0] },
+        { module:'logger', status: 'working',
+          yuitest: 'test=logger', tests : [5,0,0] },
 
         { module:'profiler', status: 'conditional',
           yuitest: 'test=profiler', tests : [13,0,1] },
@@ -71,7 +71,7 @@ YAHOO.namespace('caja').data = {
           yuitest: false, tests : [0,0,0] },
 
         { module:'selector', status: 'wip',
-          yuitest: 'test=selector', tests : [4,6,2] },
+          yuitest: 'test=selector', tests : [5,7,0] },
 
         { module:'storage', status: 'pending',
           yuitest: 'pending', tests : [0,0,0] },
@@ -98,8 +98,8 @@ YAHOO.namespace('caja').data = {
 // Widgets
 
     widgets: [
-        { module:'autocomplete', status: 'wip',
-          yuitest: 'test=autocomplete', tests : [14,1,0] },
+        { module:'autocomplete', status: 'working',
+          yuitest: 'test=autocomplete', tests : [15,0,0] },
 
         { module:'button', status: 'conditional',
           yuitest: false, tests : [0,0,0] },
