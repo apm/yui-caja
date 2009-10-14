@@ -1,6 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "#">
-
+<!doctype html>
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -33,7 +31,7 @@
 
 		Event.onDOMReady(function () {
 
-			var logReader = new YAHOO.widget.LogReader();
+			var logReader = new YAHOO.widget.LogReader('log');
 			
 		});
 		
@@ -44,6 +42,7 @@
 </head>
 <body class="yui-skin-sam">
 
+    <div id="log"></div>
 	<h1>Focus and Blur Test</h1>
 	
 	<ul>

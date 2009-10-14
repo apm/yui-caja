@@ -67,7 +67,7 @@
 
 			Event.onDOMReady(function () {
 
-				var logReader = new YAHOO.widget.LogReader();
+				var logReader = new YAHOO.widget.LogReader('log');
 
 
 				//	Create a Button using an existing <input> and <select> element.
@@ -137,6 +137,7 @@
 
 <body class=" yui-skin-sam">
 
+<div id="log"></div>
 <h1>Button activeElement Test</h1>
 <p>Test case for <a href="#">bug 2528245</a>.</p>
 <p>
