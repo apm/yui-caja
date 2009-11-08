@@ -24,7 +24,7 @@
         }
     }
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!doctype html>
 <html>
   <head>
 
@@ -84,7 +84,7 @@ END;
     </div>
 
     <script>(function () {
-      //document.getElementById('gadget_body___').style.height = document.documentElement.clientHeight + 'px';
+      document.getElementById('gadget_body___').style.height = document.documentElement.clientHeight + 'px';
 
       var testImports = ___.copy(___.sharedImports);
       testImports.outers = testImports;
