@@ -51,7 +51,7 @@ function notes_button(cell, rec, col, data) {
 }
 
 function format_detail_links(_,uri,label) {
-    return '<a href="' + (
+    return '<a target="_blank" href="' + (
         uri.charAt(0) === '#' ?
             ('http://code.google.com/p/google-caja/issues/detail?id=' + uri.slice(1)) :
             (YAHOO.caja.host + 'test=' + uri)) + '">' + label + '</a>';
