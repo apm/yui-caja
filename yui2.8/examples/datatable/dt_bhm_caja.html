@@ -29,6 +29,7 @@ body {
 <script type="text/javascript" src="yui/element/element-min.js"></script>
 <script type="text/javascript" src="yui/paginator/paginator-min.js"></script>
 <script type="text/javascript" src="yui/datatable/datatable-min.js"></script>
+<script type="text/javascript" src="yui/workaround.js"></script>
 
 
 <!--begin custom header content for this example-->
@@ -59,7 +60,7 @@ History Manager for the ability to bookmark states.</p>
 
 <!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
 
-<iframe id="yui-history-iframe" src="assets/html/blank.html"></iframe>
+<iframe id="yui-history-iframe" src="../yui2.8/examples/datatable/assets/html/blank.html"></iframe>
 <input id="yui-history-field" type="hidden">
 
 <div id="dt-pag-nav"></div>
@@ -68,7 +69,7 @@ History Manager for the ability to bookmark states.</p>
 <script type="text/javascript">
 (function () {
     // Create the DataSource
-    var myDataSource = new YAHOO.util.DataSource("assets/php/json_proxy.php?");
+    var myDataSource = new YAHOO.util.DataSource("../yui2.8/examples/datatable/assets/php/json_proxy.php?");
     myDataSource.responseType = YAHOO.util.DataSource.TYPE_JSON;
     myDataSource.responseSchema = {
         resultsList: "records",

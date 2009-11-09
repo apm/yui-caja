@@ -26,6 +26,7 @@ body {
 <script type="text/javascript" src="yui/datasource/datasource-min.js"></script>
 <script type="text/javascript" src="yui/element/element-min.js"></script>
 <script type="text/javascript" src="yui/datatable/datatable-min.js"></script>
+<script type="text/javascript" src="yui/workaround.js"></script>
 
 
 <!--begin custom header content for this example-->
@@ -60,7 +61,7 @@ body {
 
 <body class="yui-skin-sam">
 
-    <cite class="byline">DataTable Row Expansion was developed by <a href='http://standardpixel.com'>Eric Gelinas</a>. This was originally a concept for <a href='http://apt.yahoo.com/'>Yahoo! APT</a> by Ryan Leffel with designs by Edward Zee.</cite>
+    <cite class="byline">DataTable Row Expansion was developed by <a href='#'>Eric Gelinas</a>. This was originally a concept for <a href='#/'>Yahoo! APT</a> by Ryan Leffel with designs by Edward Zee.</cite>
 
 <h1>Row Expansion</h1>
 
@@ -469,7 +470,7 @@ YAHOO.util.Event.onDOMReady( function() {
 				* to query the Flickr web service.
 				*
 				**/
-				var myDataSource = new YAHOO.util.DataSource('assets/php/yql_proxy.php?q=select%20*%20from%20flickr.photos.interestingness(20)&format=json');
+				var myDataSource = new YAHOO.util.DataSource('../yui2.8/examples/datatable/assets/php/yql_proxy.php?q=select%20*%20from%20flickr.photos.interestingness(20)&format=json');
 						myDataSource.responseType = YAHOO.util.DataSource.TYPE_JSON;
 						myDataSource.connXhrMode = "queueRequests";
 						myDataSource.responseSchema = {

@@ -28,6 +28,7 @@ body {
 <script type="text/javascript" src="yui/paginator/paginator-min.js"></script>
 <script type="text/javascript" src="yui/datasource/datasource-min.js"></script>
 <script type="text/javascript" src="yui/datatable/datatable-min.js"></script>
+<script type="text/javascript" src="yui/workaround.js"></script>
 
 
 <!--begin custom header content for this example-->
@@ -72,7 +73,7 @@ YAHOO.util.Event.onDOMReady(function() {
             {key:"number", label:"Number"}
         ];
 
-        var myDataSource = new YAHOO.util.DataSource("assets/php/json_proxy.php?");
+        var myDataSource = new YAHOO.util.DataSource("../yui2.8/examples/datatable/assets/php/json_proxy.php?");
         myDataSource.responseType = YAHOO.util.DataSource.TYPE_JSON;
         myDataSource.responseSchema = {
             resultsList: "records",

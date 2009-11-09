@@ -28,6 +28,7 @@ body {
 <script type="text/javascript" src="yui/autocomplete/autocomplete-min.js"></script>
 <script type="text/javascript" src="yui/element/element-min.js"></script>
 <script type="text/javascript" src="yui/datatable/datatable-min.js"></script>
+<script type="text/javascript" src="yui/workaround.js"></script>
 
 <!--there is no custom header content for this example-->
 
@@ -130,7 +131,7 @@ body {
             }
         ];
 
-        myDataSource = new YAHOO.util.DataSource("assets/php/ylocal_proxy.php?");
+        myDataSource = new YAHOO.util.DataSource("../yui2.8/examples/datatable/assets/php/ylocal_proxy.php?");
         myDataSource.responseType = YAHOO.util.DataSource.TYPE_JSON;
         myDataSource.connXhrMode = "queueRequests";
         myDataSource.responseSchema = {
