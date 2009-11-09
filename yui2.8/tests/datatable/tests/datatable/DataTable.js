@@ -52,8 +52,8 @@
 
     DataTableTestCase.prototype.setUp = function() {
         // Create container anew
-        this.container = document.createElement("div");
-        document.body.appendChild(this.container);
+        this.container = Dom.get('wrapper').appendChild(
+            document.createElement("div"));
         
         // Create DataSource anew
         this.datasource = new YAHOO.util.DataSource(this.dsData, this.dsConfig);
@@ -67,7 +67,7 @@
         //  Destroy container
         if(this.container !== null) {
             YAHOO.util.Event.purgeElement(this.container, true);
-            document.body.removeChild(this.container);
+            this.container.parentNode.removeChild(this.container);
             this.container = null;
         }
         
