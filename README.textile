@@ -29,12 +29,11 @@ The full download bundle of YUI 2.8.0 is included in the yui-caja project folder
 
 The index page summarizes the current status of the cajoling and testing process for YUI 2.  Test suites and examples are all powered by a single host.php that wraps the cajoled test and example pages (referred to as gadgets after cajoling).  host.php operates by reading the value of the 'test' query string parameter for which cajoled file will be injected into the host body.
 
-FireBug Lite is automatically loaded into the host page in IE6 and 7.
+FireBug Lite may be loaded into any test/example page in IE6 and 7 by including the query param fblite=1 (any truthy value will do).
 
 p. Todo:
 
 * Host file build step that generates the correct urls to the caja environment based on the caja.base property.
 * Update test results in index.php
-* Fix the YUI Test suite links to point to new test pages
 * Go through each component's examples and document in the notes.js its capabilities and known issues.  This is in parallel to filing bugs with Caja
 * Remove all LOG messages in the build-all log, looking for alarming WARNINGs or ERRORs

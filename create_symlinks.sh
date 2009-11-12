@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Test gadgets directory
-ln fs ../yui2.8/build tests/yui
+ln -fs ../yui2.8/build tests/yui
+
+# Workaround script in sandbox
+ln -fs ../../sandbox/workaround.js yui2.8/build/workaround.js
 
 # YUI Test directories
 ln -fs ../../../build yui2.8/tests/animation/tests/yui
